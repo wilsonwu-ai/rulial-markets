@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api, probeHealth } from "@/lib/api";
 import { MOCK_NOTICE, mockTickers } from "@/lib/mock";
+import { BAKED_NOTICE, bakedAvailable } from "@/lib/baked";
 import type {
   Backtest, EventRec, ForecastResponse, Mode, TickerInfo,
 } from "@/lib/types";
@@ -57,10 +58,13 @@ export function Console() {
   const applyProbe = useCallback((ok: boolean) => {
     setHealthy(ok);
     setChecking(false);
-    if (!decided.current) {
-      decided.current = true;
-      setMode(ok ? "live" : "mock");
-    }
+    if (decided.current) return;
+    decided.current = true;
+    if (ok) { setMode("live"); return; }
+    // No backend. Prefer the PRECOMPUTED bundle over synthetic mock: those are
+    // real generator outputs over real price history. Showing seeded-RNG
+    // numbers while real ones sit in public/data was the bug this fixes.
+    void bakedAvailable().then((has) => setMode(has ? "baked" : "mock"));
   }, []);
 
   /** Re-probe on demand. Only ever called from a user event, so flipping the
@@ -143,14 +147,24 @@ export function Console() {
         onRecheck={() => void recheck()}
       />
 
-      {mode === "mock" && (
+      {mode !== "live" && (
         <div className="callout-notice rise mb-8 flex flex-wrap items-center gap-x-6 gap-y-3 px-6 py-5">
-          <span className="label-title" style={{ color: "var(--color-notice)" }}>Mock mode</span>
-          <span className="max-w-[86ch] text-sm leading-relaxed text-[var(--color-ink-dim)]">{MOCK_NOTICE}</span>
+          <span
+            className="label-title"
+            style={{ color: mode === "baked" ? "var(--color-accent)" : "var(--color-notice)" }}
+          >
+            {mode === "baked" ? "Precomputed · real" : "Mock mode · synthetic"}
+          </span>
+          <span className="max-w-[86ch] text-sm leading-relaxed text-[var(--color-ink-dim)]">
+            {mode === "baked" ? BAKED_NOTICE : MOCK_NOTICE}
+          </span>
           <button
             onClick={async () => { const ok = await recheck(); if (ok) setMode("live"); }}
             className="btn-secondary ml-auto bg-white"
-            style={{ color: "var(--color-notice)", borderColor: "var(--color-notice)" }}
+            style={{
+              color: mode === "baked" ? "var(--color-accent)" : "var(--color-notice)",
+              borderColor: mode === "baked" ? "var(--color-accent)" : "var(--color-notice)",
+            }}
           >
             Try live backend
           </button>
@@ -173,9 +187,13 @@ export function Console() {
             <div className="mt-6 rounded-lg border border-[var(--color-neg)] bg-[#FDF3F2] px-6 py-5">
               <div className="label" style={{ color: "var(--color-neg)" }}>backend error</div>
               <div className="num mt-2 text-sm text-[var(--color-ink-dim)]">{err}</div>
-              <button onClick={() => { setMode("mock"); setErr(null); }}
+              <button
+                onClick={async () => {
+                  setErr(null);
+                  setMode((await bakedAvailable()) ? "baked" : "mock");
+                }}
                 className="btn-secondary mt-4 bg-white">
-                Fall back to mock
+                Fall back to precomputed
               </button>
             </div>
           )}

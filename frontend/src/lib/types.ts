@@ -120,4 +120,8 @@ export interface Backtest {
   mean_crps_lift_obscure?: number;
 }
 
-export type Mode = "live" | "mock";
+/** Data source, in fallback order.
+ *  live  = the FastAPI backend answered
+ *  baked = real forward-model output precomputed at build time (public/data)
+ *  mock  = in-browser seeded RNG, synthetic, last resort */
+export type Mode = "live" | "baked" | "mock";

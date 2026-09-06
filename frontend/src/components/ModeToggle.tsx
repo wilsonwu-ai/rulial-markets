@@ -18,9 +18,12 @@ export function ModeToggle({
   healthy: boolean | null; checking: boolean;
   onRecheck: () => void;
 }) {
+  // Precomputed is REAL model output, so it does not deserve the red dot that
+  // means "nothing is answering". Amber: serving, but not live.
   const dot =
     checking ? "var(--color-gray-500)"
     : healthy ? "var(--color-up)"
+    : mode === "baked" ? "var(--color-accent)"
     : "var(--color-down)";
 
   return (
@@ -33,7 +36,7 @@ export function ModeToggle({
         <span className={`block h-2.5 w-2.5 rounded-full ${checking ? "pulse-dot" : ""}`}
           style={{ background: dot }} />
         <span className="label-title" style={{ color: "var(--color-ink-dim)" }}>
-          {checking ? "probing :8000" : healthy ? "backend up" : "backend down"}
+          {checking ? "probing :8000" : healthy ? "backend up" : mode === "baked" ? "precomputed \u00b7 real" : "backend down"}
         </span>
       </button>
 
@@ -42,7 +45,7 @@ export function ModeToggle({
         role="group"
         aria-label="data source"
       >
-        {(["live", "mock"] as Mode[]).map((m) => {
+        {(["live", "baked", "mock"] as Mode[]).map((m) => {
           const on = mode === m;
           return (
             <button
@@ -52,12 +55,16 @@ export function ModeToggle({
               className="label-title px-5 py-2 transition"
               style={{
                 background: on
-                  ? m === "live" ? "var(--color-blue)" : "var(--color-notice)"
+                  ? m === "live"
+                    ? "var(--color-blue)"
+                    : m === "baked"
+                      ? "var(--color-accent)"
+                      : "var(--color-notice)"
                   : "transparent",
                 color: on ? "#fff" : "var(--color-ink-faint)",
               }}
             >
-              {m}
+              {m === "baked" ? "precomputed" : m}
             </button>
           );
         })}

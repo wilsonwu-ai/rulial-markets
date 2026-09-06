@@ -12,6 +12,9 @@
 import type {
   Backtest, EventRec, ForecastRequest, ForecastResponse, Mode, TickerInfo,
 } from "./types";
+import {
+  bakedTickers, bakedEvents, bakedForecast, bakedBacktest,
+} from "./baked";
 import { mockBacktest, mockEvents, mockForecast, mockTickers } from "./mock";
 
 const BASE = process.env.NEXT_PUBLIC_API_BASE ?? "";
@@ -70,11 +73,13 @@ export async function probeHealth(): Promise<boolean> {
 export const api = {
   tickers(mode: Mode): Promise<TickerInfo[]> {
     if (mode === "mock") return Promise.resolve(mockTickers());
+    if (mode === "baked") return bakedTickers().then((t) => t ?? mockTickers());
     return req<TickerInfo[]>("/api/tickers");
   },
 
   events(mode: Mode, ticker: string): Promise<EventRec[]> {
     if (mode === "mock") return Promise.resolve(mockEvents(ticker));
+    if (mode === "baked") return bakedEvents(ticker).then((e) => e ?? mockEvents(ticker));
     return req<EventRec[]>(`/api/events?ticker=${encodeURIComponent(ticker)}`);
   },
 
@@ -82,6 +87,13 @@ export const api = {
     if (mode === "mock") {
       // small delay so the loading choreography is visible on stage
       return new Promise((r) => setTimeout(() => r(mockForecast(body)), 420));
+    }
+    if (mode === "baked") {
+      // A precomputed hit is REAL model output. A miss falls through to mock
+      // rather than showing a scenario the user did not ask for.
+      return bakedForecast(body).then(
+        (d) => d ?? new Promise<ForecastResponse>((r) => setTimeout(() => r(mockForecast(body)), 420)),
+      );
     }
     return req<ForecastResponse>("/api/forecast", {
       method: "POST",
@@ -91,6 +103,7 @@ export const api = {
 
   backtest(mode: Mode, ticker: string): Promise<Backtest> {
     if (mode === "mock") return Promise.resolve(mockBacktest(ticker));
+    if (mode === "baked") return bakedBacktest(ticker).then((b) => b ?? mockBacktest(ticker));
     return req<Backtest>(`/api/backtest?ticker=${encodeURIComponent(ticker)}`);
   },
 };
