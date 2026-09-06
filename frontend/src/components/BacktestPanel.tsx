@@ -1,17 +1,18 @@
 "use client";
 
 import type { Backtest, BacktestEvent } from "@/lib/types";
+import { signedPct } from "@/lib/quant";
 import { Empty } from "./Panel";
 import { PitHistogram } from "./PitHistogram";
 
 export function BacktestPanel({ bt, ticker }: { bt: Backtest | null; ticker: string }) {
-  if (!bt) return <div className="label py-8 text-center">loading walk-forward…</div>;
+  if (!bt) return <div className="label-title py-10 text-center" style={{ color: "var(--color-ink-faint)" }}>loading walk-forward…</div>;
 
   if (bt.n_tests === 0) {
     return (
       <Empty>
-        <div className="num text-2xl text-[var(--color-ink-dim)]">n_tests = 0</div>
-        <p className="mt-3 max-w-[52ch] text-sm leading-relaxed">
+        <div className="figure text-3xl">n_tests = 0</div>
+        <p className="mt-3 max-w-[54ch] text-base leading-relaxed">
           <span className="text-[var(--color-ink-dim)]">{ticker}</span> produced no qualifying event
           in the 2020+ test window at the frozen threshold, so there is nothing to walk forward and
           nothing to calibrate. We show the empty result rather than borrowing another ticker&rsquo;s
@@ -27,18 +28,18 @@ export function BacktestPanel({ bt, ticker }: { bt: Backtest | null; ticker: str
 
   return (
     <div className="grid gap-7">
-      <div className="grid gap-[1px] bg-[var(--color-rule)] sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-[1px] overflow-hidden rounded-lg border border-[var(--color-rule)] bg-[var(--color-rule)] sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="Events scored" value={String(bt.n_tests)} />
         <Stat
           label="Mean CRPS lift"
-          value={`${lift >= 0 ? "+" : "−"}${(Math.abs(lift) * 100).toFixed(1)}%`}
-          color={lift > 0 ? "var(--color-phosphor)" : "var(--color-down)"}
+          value={signedPct(lift)}
+          color={lift > 0 ? "var(--color-blue)" : "var(--color-neg)"}
         />
         {bt.mean_crps_lift_demeaned !== undefined ? (
           <Stat
             label="Mean lift, demeaned"
-            value={`${bt.mean_crps_lift_demeaned >= 0 ? "+" : "−"}${(Math.abs(bt.mean_crps_lift_demeaned) * 100).toFixed(1)}%`}
-            color={bt.mean_crps_lift_demeaned > 0 ? "var(--color-phosphor)" : "var(--color-down)"}
+            value={signedPct(bt.mean_crps_lift_demeaned)}
+            color={bt.mean_crps_lift_demeaned > 0 ? "var(--color-blue)" : "var(--color-neg)"}
             note="drift removed"
           />
         ) : (
@@ -46,7 +47,7 @@ export function BacktestPanel({ bt, ticker }: { bt: Backtest | null; ticker: str
             note="ask LANE-EVAL for the drift-decomposed field" />
         )}
         <Stat label="Calibration" value={bt.calibration_ok ? "PASS" : "not established"}
-          color={bt.calibration_ok ? "var(--color-phosphor)" : "var(--color-ink-faint)"} />
+          color={bt.calibration_ok ? "var(--color-blue)" : "var(--color-ink-faint)"} />
       </div>
 
       <PitHistogram counts={bt.pit_histogram} n={bt.n_tests} calibrationOk={bt.calibration_ok} />
@@ -55,9 +56,9 @@ export function BacktestPanel({ bt, ticker }: { bt: Backtest | null; ticker: str
       <div>
         <div className="label mb-3">Per-event lift · every scored event, none hidden</div>
         <PerEventStrip events={bt.per_event} />
-        <div className="mt-3 flex flex-wrap gap-x-8 gap-y-1 text-sm text-[var(--color-ink-faint)]">
-          <span>best: <span className="num text-[var(--color-phosphor)]">{best.date} {(best.crps_lift * 100).toFixed(1)}%</span></span>
-          <span>worst: <span className="num text-[var(--color-down)]">{worst.date} {(worst.crps_lift * 100).toFixed(1)}%</span></span>
+        <div className="mt-4 flex flex-wrap gap-x-8 gap-y-1 text-sm text-[var(--color-ink-faint)]">
+          <span>best: <span className="num font-semibold text-[var(--color-blue)]">{best.date} {(best.crps_lift * 100).toFixed(1)}%</span></span>
+          <span>worst: <span className="num font-semibold text-[var(--color-neg)]">{worst.date} {(worst.crps_lift * 100).toFixed(1)}%</span></span>
           <span className="ml-auto">above the line beat the null · the spread is the story, not the mean</span>
         </div>
       </div>
@@ -71,16 +72,21 @@ function PerEventStrip({ events }: { events: BacktestEvent[] }) {
   const mid = H / 2;
   const bw = (W - PAD * 2) / Math.max(1, events.length);
   const scale = (v: number) => (v / cap) * (H / 2 - 14);
+  // One stagger budget for every chart in the app: the whole assembly
+  // finishes inside 350ms regardless of how many marks there are. A chart
+  // still building itself while the presenter is talking about it is a
+  // liability, and motion on this build is deliberately dialled down.
+  const stagger = 350 / Math.max(1, events.length);
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img"
       aria-label="CRPS lift for each scored test event">
-      <line x1={PAD} x2={W - PAD} y1={mid} y2={mid} stroke="var(--color-rule-bright)" strokeWidth={1} />
-      <text x={PAD - 4} y={mid - 6} className="num" fontSize="11" fill="var(--color-ink-faint)"
+      <line x1={PAD} x2={W - PAD} y1={mid} y2={mid} stroke="var(--color-axis)" strokeWidth={2} />
+      <text x={PAD - 4} y={mid - 8} className="num" fontSize="13" fill="var(--color-ink-faint)"
         textAnchor="start">0</text>
-      <text x={PAD - 4} y={20} className="num" fontSize="11" fill="var(--color-phosphor)"
+      <text x={PAD - 4} y={20} className="num" fontSize="13" fill="var(--color-blue)"
         textAnchor="start">+{(cap * 100).toFixed(0)}%</text>
-      <text x={PAD - 4} y={H - 8} className="num" fontSize="11" fill="var(--color-down)"
+      <text x={PAD - 4} y={H - 8} className="num" fontSize="13" fill="var(--color-neg)"
         textAnchor="start">−{(cap * 100).toFixed(0)}%</text>
 
       {events.map((e, i) => {
@@ -94,9 +100,9 @@ function PerEventStrip({ events }: { events: BacktestEvent[] }) {
             <rect
               x={x} y={up ? mid - h : mid}
               width={w} height={Math.max(2, h)}
-              fill={up ? "var(--color-phosphor)" : "var(--color-down)"}
-              opacity={0.78}
-              className="bloom" style={{ animationDelay: `${i * 28}ms` }}
+              fill={up ? "var(--color-blue)" : "var(--color-neg)"}
+              opacity={0.85}
+              className="bloom" style={{ animationDelay: `${i * stagger}ms` }}
             />
           </g>
         );
@@ -107,12 +113,12 @@ function PerEventStrip({ events }: { events: BacktestEvent[] }) {
 
 function Stat({ label, value, color, note }: { label: string; value: string; color?: string; note?: string }) {
   return (
-    <div className="bg-[var(--color-panel)] px-5 py-5">
+    <div className="bg-[var(--color-panel)] px-6 py-6">
       <div className="label">{label}</div>
-      <div className="num mt-2 text-[1.9rem] leading-none" style={{ color: color ?? "var(--color-ink)" }}>
+      <div className="figure mt-2 text-[2.25rem]" style={{ color: color ?? "var(--color-navy)" }}>
         {value}
       </div>
-      {note && <div className="mt-2 text-[0.72rem] text-[var(--color-ink-faint)]">{note}</div>}
+      {note && <div className="mt-2 text-sm leading-snug text-[var(--color-ink-faint)]">{note}</div>}
     </div>
   );
 }

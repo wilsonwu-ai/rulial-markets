@@ -579,6 +579,11 @@ def _event_to_dict(ev: Event) -> dict:
         "articles": [a if isinstance(a, dict) else _article_to_dict(a) for a in (ev.articles or [])],
         "tier": ev.tier,
         "famous": bool(ev.famous),
+        # INTEGRATOR: researched, sourced description of WHY this window moved
+        # (data/event_context.json). Optional and additive, exactly like tier
+        # and famous already are. Empty string when unresearched.
+        "context": getattr(ev, "context", "") or "",
+        "category": getattr(ev, "category", "") or "",
     }
 
 
@@ -631,6 +636,8 @@ def load_ledger(path: Optional[Path] = None) -> List[Event]:
                     famous=bool(row.get("famous", False)),
                 )
             )
+            events[-1].context = row.get("context", "") or ""
+            events[-1].category = row.get("category", "") or ""
     return events
 
 

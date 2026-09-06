@@ -199,8 +199,25 @@ export function buildFan(paths: PathsPayload, horizon: number): FanBand {
   return band;
 }
 
-/* ---------- formatting ---------- */
+/* ---------- formatting ----------
+ * House rules for figures, applied everywhere:
+ *   percentages 1 decimal · CRPS 5 · PIT 3 · sigma 2
+ * The minus glyph is always U+2212 "−", never a hyphen. A hyphen is
+ * narrower than a plus and breaks column alignment even in a monospaced
+ * face, which is the whole reason the numbers are monospaced.
+ */
 export const pct = (x: number, d = 1) =>
+  `${x >= 0 ? "+" : "−"}${(Math.abs(x) * 100).toFixed(d)}%`;
+
+/**
+ * Signed percentage with an explicit + and a real U+2212 minus.
+ * Identical output to `pct`; it exists as a separate name because the
+ * lift figures (Scorecard headline, Scorecard demeaned, BacktestPanel
+ * mean lift, BacktestPanel demeaned, LeakagePanel famous/obscure split)
+ * had five hand-written copies of this expression and nothing enforced
+ * that they stayed the same.
+ */
+export const signedPct = (x: number, d = 1) =>
   `${x >= 0 ? "+" : "−"}${(Math.abs(x) * 100).toFixed(d)}%`;
 export const pctPlain = (x: number, d = 1) => `${(x * 100).toFixed(d)}%`;
 export const fixed = (x: number, d = 4) =>

@@ -7,9 +7,12 @@ import { buildFan, histogram, pct, terminalReturns } from "@/lib/quant";
 /**
  * THE MONEY SHOT.
  * Quantile fan (p5–p95, p25–p75, median) over the forecast horizon, with the
- * realized return laid over it as a hot line when the as-of date is historical.
- * The right edge carries the terminal density so the fan and the histogram
- * below read as the same object seen from two angles.
+ * realized return laid over it when the as-of date is historical.
+ *
+ * Light-ground rules (DESIGN_AMEX §5): bands are tints of --color-blue at
+ * increasing opacity toward the median; the median is solid navy; the realized
+ * return is coloured by SIGN (--pos / --neg) and labelled directly on the line
+ * rather than in a legend; nothing is thinner than 2px rendered.
  *
  * Honesty note rendered on screen: CONTRACT §5 types `paths` as a flat list of
  * terminal cumulative returns. When that is what arrives, the intermediate
@@ -76,43 +79,52 @@ export function FanChart({
     actual >= fan.p5[fan.p5.length - 1] &&
     actual <= fan.p95[fan.p95.length - 1];
 
+  /* Colour of the realized mark follows its SIGN, per DESIGN_AMEX §5. The
+     label always carries the signed number as well, so colour is decoration
+     on top of a value, never the only channel. */
+  const actualColor =
+    actual != null && actual < 0 ? "var(--color-neg)" : "var(--color-pos)";
+
   return (
     <div className="w-full">
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img"
         aria-label="Quantile fan of simulated forward returns">
         <defs>
+          {/* Tints of the brand blue, deepening toward the median. The two
+              bands stay separable because the outer tops out below where the
+              inner starts. */}
           <linearGradient id="fanOuter" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="var(--color-phosphor)" stopOpacity="0.05" />
-            <stop offset="100%" stopColor="var(--color-phosphor)" stopOpacity="0.17" />
+            <stop offset="0%" stopColor="var(--color-blue)" stopOpacity="0.10" />
+            <stop offset="100%" stopColor="var(--color-blue)" stopOpacity="0.18" />
           </linearGradient>
           <linearGradient id="fanInner" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="var(--color-phosphor)" stopOpacity="0.13" />
-            <stop offset="100%" stopColor="var(--color-phosphor)" stopOpacity="0.36" />
+            <stop offset="0%" stopColor="var(--color-blue)" stopOpacity="0.26" />
+            <stop offset="100%" stopColor="var(--color-blue)" stopOpacity="0.38" />
           </linearGradient>
-          <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="3" result="b" />
-            <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
         </defs>
 
-        {/* grid */}
-        {ticks.map((t) => (
-          <g key={t}>
-            <line x1={M.l} x2={W - M.r} y1={y(t)} y2={y(t)}
-              stroke="var(--color-rule)" strokeWidth={1}
-              strokeDasharray={Math.abs(t) < 1e-9 ? "0" : "2 5"}
-              opacity={Math.abs(t) < 1e-9 ? 0.9 : 0.6} />
-            <text x={M.l - 12} y={y(t) + 4} textAnchor="end"
-              className="num" fontSize="13" fill="var(--color-ink-faint)">
-              {(t * 100).toFixed(0)}%
-            </text>
-          </g>
-        ))}
+        {/* grid. Gridlines sit on --gray-200 and never darker (DESIGN_AMEX §5);
+            the zero line carries meaning, so it is on the 3:1 token at 2px. */}
+        {ticks.map((t) => {
+          const zero = Math.abs(t) < 1e-9;
+          return (
+            <g key={t}>
+              <line x1={M.l} x2={W - M.r} y1={y(t)} y2={y(t)}
+                stroke={zero ? "var(--color-axis)" : "var(--color-gray-200)"}
+                strokeWidth={zero ? 2 : 1.5}
+                strokeDasharray={zero ? "0" : "3 6"} />
+              <text x={M.l - 12} y={y(t) + 5} textAnchor="end"
+                className="num" fontSize="13" fill="var(--color-ink-faint)">
+                {(t * 100).toFixed(0)}%
+              </text>
+            </g>
+          );
+        })}
 
         {/* x axis */}
         {Array.from({ length: steps + 1 }, (_, i) => i).map((i) => (
-          <text key={i} x={x(i)} y={H - M.b + 24} textAnchor="middle"
-            className="num" fontSize="12" fill="var(--color-ink-faint)">
+          <text key={i} x={x(i)} y={H - M.b + 26} textAnchor="middle"
+            className="num" fontSize="13" fill="var(--color-ink-faint)">
             {i === 0 ? "as-of" : `+${i}d`}
           </text>
         ))}
@@ -121,10 +133,9 @@ export function FanChart({
         <g className="bloom">
           <path d={area(fan.p95, fan.p5)} fill="url(#fanOuter)" />
           <path d={area(fan.p75, fan.p25)} fill="url(#fanInner)" />
-          <path d={line(fan.p95)} fill="none" stroke="var(--color-phosphor)" strokeWidth={1} opacity={0.45} />
-          <path d={line(fan.p5)} fill="none" stroke="var(--color-phosphor)" strokeWidth={1} opacity={0.45} />
-          <path d={line(fan.p50)} fill="none" stroke="var(--color-phosphor)" strokeWidth={2.5}
-            filter="url(#glow)" />
+          <path d={line(fan.p95)} fill="none" stroke="var(--color-blue)" strokeWidth={2} opacity={0.55} />
+          <path d={line(fan.p5)} fill="none" stroke="var(--color-blue)" strokeWidth={2} opacity={0.55} />
+          <path d={line(fan.p50)} fill="none" stroke="var(--color-navy)" strokeWidth={3} />
         </g>
 
         {/* terminal density, right edge */}
@@ -132,19 +143,20 @@ export function FanChart({
           {dens.map((b, i) => (
             <rect key={i} x={0} y={y(b.x1)} width={Math.max(0.6, b.w)}
               height={Math.max(1, y(b.x0) - y(b.x1) - 1)}
-              fill="var(--color-phosphor)" opacity={0.34} />
+              fill="var(--color-blue-light)" opacity={0.75} />
           ))}
-          {/* NB: no `label` class here — that class sets font-size/letter-spacing
-              in CSS, which beats the SVG presentation attributes and overflows
-              the right margin. Inline style wins instead. */}
+          {/* NB: no `label` class here — that class sets font-size and
+              letter-spacing in CSS, which beats the SVG presentation
+              attributes and overflows the right margin. Inline style wins. */}
           <text
             x={M.r - 20} y={M.t - 8}
             textAnchor="end"
             fill="var(--color-ink-faint)"
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "11px",
-              letterSpacing: "0.06em",
+              fontFamily: "var(--font-sans)",
+              fontSize: "13px",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
             }}
           >
             TERMINAL DENSITY
@@ -155,13 +167,20 @@ export function FanChart({
         {actual != null && (
           <g>
             <line x1={M.l} x2={W - M.r + 14 + (M.r - 46)} y1={y(actual)} y2={y(actual)}
-              stroke="var(--color-actual)" strokeWidth={2} strokeDasharray="7 4" opacity={0.95} />
-            <circle cx={x(steps)} cy={y(actual)} r={6.5}
-              fill="var(--color-actual)" filter="url(#glow)" />
+              stroke={actualColor} strokeWidth={3} strokeDasharray="10 5" />
+            <circle cx={x(steps)} cy={y(actual)} r={6.5} fill={actualColor} />
             <circle cx={x(steps)} cy={y(actual)} r={12}
-              fill="none" stroke="var(--color-actual)" strokeWidth={1} opacity={0.5} />
-            <text x={M.l + 8} y={y(actual) - 11} className="num" fontSize="14"
-              fill="var(--color-actual)" letterSpacing="0.08em">
+              fill="none" stroke={actualColor} strokeWidth={2} opacity={0.55} />
+            {/* The label sits hard against the left axis, so when the realized
+                value lands near a gridline it would otherwise overprint that
+                gridline's % label. Opaque backing, sized off the string. */}
+            <rect
+              x={M.l + 4} y={y(actual) - 26}
+              width={`ACTUAL ${pct(actual)}`.length * 9.5 + 12} height={20} rx={3}
+              fill="var(--color-panel)" opacity={0.92}
+            />
+            <text x={M.l + 10} y={y(actual) - 11} className="num" fontSize="15"
+              fill={actualColor} fontWeight={600} letterSpacing="0.04em">
               ACTUAL {pct(actual)}
             </text>
           </g>
@@ -169,18 +188,18 @@ export function FanChart({
 
         {/* median label */}
         <text x={x(steps) - 8} y={y(fan.p50[fan.p50.length - 1]) - 12} textAnchor="end"
-          className="num" fontSize="13" fill="var(--color-phosphor)" opacity={0.9}>
+          className="num" fontSize="13" fill="var(--color-navy)">
           p50 {pct(fan.p50[fan.p50.length - 1])}
         </text>
       </svg>
 
-      <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-[var(--color-rule)] pt-3">
-        <Legend swatch="rgba(55,230,207,0.34)" label="p25–p75" />
-        <Legend swatch="rgba(55,230,207,0.14)" label="p5–p95" />
-        <Legend swatch="var(--color-phosphor)" label="median" line />
-        {actual != null && <Legend swatch="var(--color-actual)" label="realized return" line />}
+      <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-2 border-t border-[var(--color-rule)] pt-4">
+        <Legend swatch="rgba(0,111,207,0.32)" label="p25–p75" />
+        <Legend swatch="rgba(0,111,207,0.14)" label="p5–p95" />
+        <Legend swatch="var(--color-navy)" label="median" line />
+        {actual != null && <Legend swatch={actualColor} label="realized return" line />}
         {actual != null && (
-          <span className="label" style={{ color: inside ? "var(--color-phosphor)" : "var(--color-down)" }}>
+          <span className="label" style={{ color: inside ? "var(--color-blue)" : "var(--color-neg)" }}>
             {inside ? "actual landed inside the 90% band" : "actual landed OUTSIDE the 90% band"}
           </span>
         )}
@@ -198,8 +217,11 @@ function Legend({ swatch, label, line = false }: { swatch: string; label: string
   return (
     <span className="flex items-center gap-2">
       <span
-        style={{ background: swatch }}
-        className={line ? "block h-[2px] w-6" : "block h-3 w-6"}
+        style={{
+          background: swatch,
+          boxShadow: line ? undefined : "inset 0 0 0 1px rgba(0,111,207,0.55)",
+        }}
+        className={line ? "block h-[3px] w-6 rounded-full" : "block h-3 w-6 rounded-sm"}
       />
       <span className="label">{label}</span>
     </span>

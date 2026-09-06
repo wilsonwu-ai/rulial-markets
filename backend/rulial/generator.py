@@ -473,7 +473,7 @@ def _event_from_dict(d: Dict[str, Any]) -> Optional[Event]:
                     )
                 )
         mv = float(d["move_pct"])
-        return Event(
+        ev = Event(
             ticker=str(d["ticker"]).upper(),
             date=_iso(d["date"]),
             move_pct=mv,
@@ -484,6 +484,9 @@ def _event_from_dict(d: Dict[str, Any]) -> Optional[Event]:
             tier=str(d.get("tier", "major")),
             famous=bool(d.get("famous", False)),
         )
+        ev.context = str(d.get("context", "") or "")
+        ev.category = str(d.get("category", "") or "")
+        return ev
     except Exception:
         return None
 
@@ -557,10 +560,46 @@ def load_seed_corpus(events_path: Optional[Path] = None,
     return out
 
 
+#: INTEGRATOR FLAG -- does analog retrieval read the researched event text?
+#:
+#: `data/event_context.json` carries a researched, sourced description of why
+#: each of 233 ledger windows moved. Wiring it into `_event_document` (the
+#: TF-IDF document a user's event text is matched against) makes retrieval
+#: genuinely semantic: the NVDA 2018 crypto-hangover query stops matching on
+#: "NVDA + down words" and starts matching the 2008 defective-GPU warning and
+#: the datacenter guidance events. It reads better and it SCORES WORSE.
+#:
+#: Measured on the same 140 held-out post-2020 events, universe walk-forward,
+#: identical in every other respect (see docs/INTEGRATION.md):
+#:
+#:   retrieval document        mean lift   median    CI90
+#:   ticker + direction only     +1.934%   +1.345%   [+0.524%, +3.403%]   <- shipped
+#:   + researched headline       -1.305%   +0.575%   [-3.108%, +0.422%]
+#:   + headline + cause + cat    -1.642%   -0.448%   [-3.567%, +0.221%]
+#:
+#: So this ships OFF. The honest reading is that the enrichment is not the
+#: defect -- the width machinery downstream of retrieval was calibrated
+#: (HORIZON_CALIBRATION, the IQR scale) against the metadata-only analog pool,
+#: and a sharper, more topically-coherent pool needs its own calibration.
+#: Re-fitting those constants against these 140 test events is fitting on the
+#: test set, which CONTRACT.md section 2 exists to prevent, so it was not done.
+#: Turning this on is a one-line experiment for whoever re-calibrates on TRAIN.
+#:
+#: This flag does NOT gate display. `Event.headline` is populated in the ledger
+#: either way, so /api/events and the UI show the real story regardless.
+RETRIEVAL_USES_RESEARCH_TEXT = False
+
+
 def _event_document(ev: Event) -> str:
     """The text we match a query against: headline + article titles + snippets."""
-    parts = [ev.headline or "", f"{ev.ticker} {TICKER_NAMES.get(ev.ticker, '')}",
+    researched = bool(getattr(ev, "category", ""))
+    use_research = RETRIEVAL_USES_RESEARCH_TEXT or not researched
+    parts = [ev.headline if use_research else "",
+             f"{ev.ticker} {TICKER_NAMES.get(ev.ticker, '')}",
              "surged jumped rallied" if ev.direction == "up" else "plunged crashed fell slumped"]
+    if RETRIEVAL_USES_RESEARCH_TEXT:
+        parts.append(getattr(ev, "context", "") or "")
+        parts.append(getattr(ev, "category", "") or "")
     for a in ev.articles[:8]:
         parts.append(a.title or "")
         parts.append((a.snippet or "")[:400])

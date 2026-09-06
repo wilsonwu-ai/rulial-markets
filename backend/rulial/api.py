@@ -99,6 +99,10 @@ class EventModel(_Lenient):
     articles: List[ArticleModel] = Field(default_factory=list)
     tier: str = "significant"   # CONTRACT.md s3: "major" (>=25%) | "significant" (>=15%)
     famous: bool = False
+    # INTEGRATOR, additive: researched cause text + category for this window.
+    # Empty string when the event was never researched (96 of 329).
+    context: str = ""
+    category: str = ""
 
 
 class TickerModel(_Lenient):
@@ -956,3 +960,141 @@ def backtest(response: Response, ticker: str = Query(..., description="e.g. NVDA
     return BacktestResponse(ticker=sym, n_tests=int(n_tests), mean_crps_lift=lift,
                             pit_histogram=hist, calibration_ok=calib, per_event=per,
                             unavailable=False, error=None, notes=notes)
+
+
+# ===========================================================================
+# POST /api/scenario  -- the inverse (CONTRACT.md s6b, "Pavel's inversion")
+# ===========================================================================
+#
+# Owned by LANE-INVERSE. This is the ONLY block this lane added to api.py.
+#
+# The endpoint's whole reason to exist is that `achieved_prob` is COMPUTED --
+# `rulial.inverse` runs each candidate event text back through
+# `generator.generate_ensemble` and measures the fraction of paths moving in
+# the requested direction. This route does no probability arithmetic of its
+# own; it serialises what the solver measured. `verified` is never set here.
+# If the solver returns nothing, the response carries an empty `scenarios`
+# list, a null `best_error`, and a `note` explaining why -- never a filled-in
+# placeholder number.
+class ScenarioRequestModel(_Lenient):
+    ticker: str
+    direction: str = "down"                        # "up" | "down"
+    target_prob: float = 0.75                      # clamped to 0.50 .. 0.95
+    as_of_date: str = cfg.TRAIN_END
+    horizon_days: int = cfg.DEFAULT_HORIZON_DAYS
+    n_candidates: int = 3
+
+
+class ScenarioModel(_Lenient):
+    event_text: str = ""
+    achieved_prob: float = 0.0     # COMPUTED by the forward model, never asserted
+    error: float = 0.0             # |achieved - target|
+    quantiles: Dict[str, float] = Field(default_factory=dict)
+    analogs_used: List[EventModel] = Field(default_factory=list)
+    narrative: str = ""
+    verified: bool = False         # true ONLY when generate_ensemble actually ran
+
+
+class ScenarioResponse(_Lenient):
+    target_prob: float = 0.0
+    direction: str = "down"
+    ticker: str = ""
+    scenarios: List[ScenarioModel] = Field(default_factory=list)
+    # CONTRACT.md s6b types this `float`. It is Optional here so that "nothing
+    # was verified" can be reported as null instead of a fabricated 0.0 or 1.0.
+    best_error: Optional[float] = None
+    search_iterations: int = 0
+    note: str = ""
+    unavailable: bool = False
+    error: Optional[str] = None
+    leakage_disclosure: str = ""
+
+
+@app.post("/api/scenario", response_model=ScenarioResponse)
+def scenario(req: ScenarioRequestModel) -> ScenarioResponse:
+    """Target probability -> candidate events that produce it, each VERIFIED.
+
+    Degrades to a well-formed empty result with an explanatory `note` rather
+    than raising, exactly like /api/forecast.
+    """
+    ticker = (req.ticker or "").strip().upper()
+    direction = (req.direction or "down").strip().lower()
+    as_of = (req.as_of_date or cfg.TRAIN_END)[:10]
+    horizon = max(1, min(int(req.horizon_days or cfg.DEFAULT_HORIZON_DAYS), 60))
+    n_cand = max(1, min(int(req.n_candidates or 3), 8))
+
+    if ticker not in cfg.UNIVERSE:
+        return ScenarioResponse(
+            target_prob=float(req.target_prob or 0.0), direction=direction, ticker=ticker,
+            unavailable=True,
+            error=f"'{ticker}' is not in the frozen universe {cfg.UNIVERSE}",
+            note="No scenarios generated: ticker outside the frozen universe.",
+            leakage_disclosure=LEAKAGE_DISCLOSURE,
+        )
+
+    inv_mod, ierr = _safe_import("inverse")
+    solve = getattr(inv_mod, "solve_inverse", None) if inv_mod else None
+    if not callable(solve):
+        return ScenarioResponse(
+            target_prob=float(req.target_prob or 0.0), direction=direction, ticker=ticker,
+            unavailable=True,
+            error=f"rulial.inverse unavailable ({ierr or 'solve_inverse missing'})",
+            note="The inverse solver could not be imported, so nothing was verified and no "
+                 "probability is reported.",
+            leakage_disclosure=LEAKAGE_DISCLOSURE,
+        )
+
+    try:
+        native = inv_mod.ScenarioRequest(          # type: ignore[attr-defined]
+            ticker=ticker, direction=direction, target_prob=float(req.target_prob),
+            as_of_date=as_of, horizon_days=horizon, n_candidates=n_cand,
+        )
+        result = solve(native)
+    except Exception as exc:  # noqa: BLE001 - a demo must degrade, not 500
+        log.warning("solve_inverse blew up:\n%s", traceback.format_exc())
+        return ScenarioResponse(
+            target_prob=float(req.target_prob or 0.0), direction=direction, ticker=ticker,
+            unavailable=False,
+            error=f"solve_inverse() failed: {type(exc).__name__}: {exc}",
+            note="The inverse search raised, so no candidate was verified and no probability "
+                 "is reported. `scenarios` is empty rather than filled with a placeholder.",
+            leakage_disclosure=LEAKAGE_DISCLOSURE,
+        )
+
+    d = _to_dict(result) or {}
+    scen: List[ScenarioModel] = []
+    for raw in (d.get("scenarios") or []):
+        sd = _to_dict(raw) or {}
+        analogs = [a for a in (_coerce_event(x) for x in (sd.get("analogs_used") or []))
+                   if a is not None]
+        try:
+            achieved = float(sd.get("achieved_prob"))
+            err = float(sd.get("error"))
+        except (TypeError, ValueError):
+            continue                     # a candidate with no measured number is dropped
+        scen.append(ScenarioModel(
+            event_text=str(sd.get("event_text", "")),
+            achieved_prob=achieved,
+            error=err,
+            quantiles={str(k): float(v) for k, v in (sd.get("quantiles") or {}).items()
+                       if isinstance(v, (int, float))},
+            analogs_used=analogs,
+            narrative=str(sd.get("narrative", "")),
+            verified=bool(sd.get("verified", False)),
+        ))
+
+    best = d.get("best_error")
+    best = float(best) if isinstance(best, (int, float)) else None
+
+    return ScenarioResponse(
+        target_prob=float(d.get("target_prob", req.target_prob or 0.0)),
+        direction=str(d.get("direction", direction)),
+        ticker=str(d.get("ticker", ticker)),
+        scenarios=scen,
+        best_error=best,
+        search_iterations=int(d.get("search_iterations", 0) or 0),
+        note=str(d.get("note", "")),
+        unavailable=False,
+        error=None,
+        leakage_disclosure=LEAKAGE_DISCLOSURE,
+    )

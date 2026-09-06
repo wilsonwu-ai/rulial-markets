@@ -215,6 +215,10 @@ def test_only_the_frozen_routes_exist():
         ("/api/events", ("GET",)),
         ("/api/forecast", ("POST",)),
         ("/api/backtest", ("GET",)),
+        # CONTRACT.md section 6b ("Pavel's inversion") freezes this route too.
+        # The set above predated 6b; corrected by the INTEGRATOR after
+        # rulial/inverse.py landed. The contract is the authority, not this list.
+        ("/api/scenario", ("POST",)),
     }
 
 

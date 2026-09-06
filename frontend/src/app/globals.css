@@ -1,47 +1,124 @@
 @import "tailwindcss";
 
 /* ============================================================
-   rulial-markets — "OBSERVATORY" design language
-   A scientific instrument, not a fintech dashboard.
-   Near-black ground, phosphor readouts, editorial serif for
-   the moments that matter. Tuned for projection: heavy type,
-   hairline rules, no mid-grey mush.
+   rulial-markets — AMERICAN EXPRESS institutional direction
+   Implements docs/DESIGN_AMEX.md. Supersedes the dark
+   "Observatory" terminal language: this is a financial
+   institution's own tool, not a trading terminal.
+
+   Three rules govern the whole file:
+     1. LIGHT. White cards on a tinted ground. No dark panels
+        anywhere — a dark panel kept "for contrast" reads as two
+        designs stapled together.
+     2. Every text/background pair clears WCAG AA 4.5:1. Ratios
+        are noted inline and were computed from these exact hexes.
+     3. Every number is tabular. A column of figures that shifts
+        width as it animates reads as broken.
    ============================================================ */
 
 @theme {
-  /* ground */
-  --color-void:        #05060a;
-  --color-ground:      #090b11;
-  --color-panel:       #0d1017;
-  --color-panel-2:     #12161f;
-  --color-rule:        #1e2532;
-  --color-rule-bright: #2f3a4d;
+  /* ---- brand, read off amex.com's live CSS (DESIGN_AMEX §2) ---- */
+  --color-blue:       #006FCF;   /* primary accent — 4.89:1 on white */
+  --color-blue-hover: #0066BE;
+  --color-blue-press: #005DAE;
+  --color-blue-light: #56A1E3;   /* chart fills only, never text */
+  --color-blue-pale:  #B5D7F4;
+  --color-blue-tint:  #EDF7FF;   /* callout wash */
+  --color-navy:       #00175A;   /* headings, median line, big figures */
 
-  /* ink */
-  --color-ink:         #eef1f6;
-  --color-ink-dim:     #9aa6b8;
-  --color-ink-faint:   #5d6879;
+  /* ---- neutrals ---- */
+  --color-gray-000: #FFFFFF;
+  --color-gray-050: #FBFBFB;
+  --color-gray-100: #F4F4F4;
+  --color-gray-150: #F7F8F9;   /* the page ground */
+  --color-gray-200: #E0E0E0;   /* borders, dividers */
+  --color-gray-400: #BDBDBD;
+  --color-gray-500: #8C8C8C;   /* NOT text. 3.36:1 — meaningful strokes only */
+  --color-gray-600: #737373;   /* 4.74:1 — smallest permissible secondary text */
+  --color-gray-800: #3D3D3D;   /* 10.37:1 */
+  --color-gray-900: #1D2429;   /* 15.63:1 — body */
 
-  /* signal */
-  --color-phosphor:    #37e6cf;   /* the ensemble */
-  --color-phosphor-dk: #0f5d55;
-  --color-actual:      #ffb020;   /* the realized outcome */
-  --color-null:        #7b8db0;   /* the baseline we must beat */
-  --color-down:        #ff5f56;
-  --color-up:          #52e07a;
-  --color-hazard:      #ffcf4a;
+  /* ---- semantic. NEVER colour alone: always a sign or a glyph ---- */
+  --color-pos:  #00733B;   /* 5.97:1 */
+  --color-neg:  #B42318;   /* 6.57:1 */
 
-  --font-display: var(--font-instrument-serif), "Iowan Old Style", Georgia, serif;
-  --font-sans:    var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono:    var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+  /* Attention amber for the two honesty surfaces (MOCK banner, leakage
+     disclosure). Outside the Amex palette on purpose — those panels must
+     never be mistakable for ordinary chrome. 5.60:1 on its own tint. */
+  --color-notice:      #8A5A00;
+  --color-notice-tint: #FFF8E6;
+  --color-notice-rule: #D9A441;
+
+  /* ---- role aliases used by the components -------------------------
+     Named for what they DO. Restyling the app means editing this block,
+     not eleven files. */
+  --color-ground:    #F7F8F9;   /* page */
+  --color-panel:     #FFFFFF;   /* card surface */
+  --color-panel-2:   #FBFBFB;   /* recessed surface inside a card */
+  --color-rule:      #E0E0E0;   /* dividers, card borders */
+  --color-rule-soft: #EDEDED;
+  --color-axis:      #8C8C8C;   /* 3.36:1 — anything that CARRIES MEANING:
+                                   chart baselines, zero lines, control borders */
+  --color-ink:       #1D2429;
+  --color-ink-dim:   #3D3D3D;
+  --color-ink-faint: #737373;
+  --color-series:    #006FCF;   /* our ensemble */
+  --color-null:      #55637A;   /* 6.09:1 — the baseline we must beat.
+                                   A different SERIES, not a dimmer us. */
+  --color-up:        #00733B;
+  --color-down:      #B42318;
+
+  --font-display: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-sans:    var(--font-public-sans), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
 }
 
-:root { color-scheme: dark; }
+:root {
+  color-scheme: light;
 
-html { background: var(--color-void); }
+  /* --- type scale (DESIGN_AMEX §4) --------------------------------- */
+  --fs-label:      0.75rem;    /* 12px  labels, legends, captions */
+  --fs-label-lg:   0.8125rem;  /* 13px  panel titles, mode toggle  */
+  --fs-body-sm:    0.875rem;   /* 14px  secondary prose, table cells */
+  --fs-body:       1rem;       /* 16px  default body */
+  --fs-body-lg:    1.0625rem;  /* 17px  narrative, plain-English readouts */
+  --fs-lede:       1.125rem;   /* 18px  masthead sub-paragraph */
+  --fs-h3:         1.125rem;   /* 18px */
+  --fs-h2:         1.5rem;     /* 24px */
+  --fs-h1:         2rem;       /* 32px */
+  --fs-metric:     2.25rem;    /* 36px  the Amex metric size */
+  --fs-metric-lg:  2.75rem;    /* 44px  display */
+  --fs-hero:       clamp(2.25rem, 5vw, 3.5rem);
+
+  --lh-tight:   1.1;
+  --lh-snug:    1.3;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.6;
+
+  --tr-label:   0.08em;   /* Amex tracking is restrained, not terminal-wide */
+  --tr-title:   0.06em;
+  --tr-display: -0.015em;
+
+  /* --- spacing: 4 8 12 16 24 32 48 64. Nothing off-scale. --------- */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+
+  --radius-card: 8px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(0, 23, 90, 0.04), 0 1px 3px rgba(0, 23, 90, 0.05);
+  --shadow-lift: 0 2px 6px rgba(0, 23, 90, 0.07), 0 8px 20px rgba(0, 23, 90, 0.06);
+}
+
+html { background: var(--color-ground); }
 
 body {
-  background: var(--color-void);
+  background: var(--color-ground);
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: 16px;
@@ -49,124 +126,264 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* atmospheric ground: dot lattice + two soft field glows + grain */
+/* One faint field of brand blue at the top of the page so the masthead has
+   a ground to sit on. No lattice, no grain, no glow — the old texture layers
+   sat over every chart in the app and cost real contrast. */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: 0 0 auto 0;
+  height: 420px;
   pointer-events: none;
   z-index: 0;
-  background-image:
-    radial-gradient(circle at 18% 8%, rgba(55, 230, 207, 0.09), transparent 42%),
-    radial-gradient(circle at 88% 72%, rgba(255, 176, 32, 0.055), transparent 46%),
-    radial-gradient(rgba(120, 145, 180, 0.16) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 34px 34px;
+  background: linear-gradient(180deg, rgba(0, 111, 207, 0.06), rgba(0, 111, 207, 0));
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.22;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-}
+#shell { position: relative; z-index: 1; }
 
-#shell { position: relative; z-index: 2; }
-
-/* ---- type utilities ---- */
+/* ---- type utilities ----
+   ORDER IS LOAD-BEARING: `.num` and `.figure` are declared AFTER `.display`
+   so an element carrying both renders with tabular figures. Equal
+   specificity means source order decides, and a number is a number
+   regardless of what else it is tagged. */
 .label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: var(--tr-label);
   text-transform: uppercase;
   color: var(--color-ink-faint);
+  font-variant-numeric: tabular-nums;
 }
 .label-bright { color: var(--color-ink-dim); }
 
-.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+/* Panel titles and the mock/live toggle are section headings, not captions. */
+.label-title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label-lg);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-title);
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-navy);
+}
 
 .display {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 0.94;
+  font-weight: 600;
+  letter-spacing: var(--tr-display);
+  line-height: 1.1;
+  color: var(--color-navy);
 }
 
-/* ---- panel chrome: corner ticks, like a measuring instrument ---- */
+/* Inline values, tickers, dates: mono, tabular by construction. */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Headline figures: the Amex `metric` role — sans, heavy, navy, tabular.
+   Mono at 36px+ reads as a code listing rather than as a number. */
+.figure {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--color-navy);
+}
+
+/* ---- card surfaces ---- */
 .panel {
   position: relative;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.022), rgba(255,255,255,0) 120px),
-    var(--color-panel);
+  background: var(--color-panel);
   border: 1px solid var(--color-rule);
-}
-.panel::before,
-.panel::after {
-  content: "";
-  position: absolute;
-  width: 9px; height: 9px;
-  border: 1px solid var(--color-rule-bright);
-  pointer-events: none;
-}
-.panel::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-.panel::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-
-/* ---- hazard stripes for the leakage disclosure ---- */
-.hazard {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    rgba(255, 207, 74, 0.22) 0px,
-    rgba(255, 207, 74, 0.22) 9px,
-    transparent 9px,
-    transparent 20px
-  );
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
 }
 
-/* ---- entrance choreography ---- */
+/* ---- the one primary action shape: solid blue, full round ---- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  background: var(--color-blue);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid var(--color-blue);
+  border-radius: var(--radius-pill);
+  padding: 0.875rem 2rem;
+  transition: background 160ms ease, box-shadow 160ms ease, transform 120ms ease;
+}
+.btn-primary:hover:not(:disabled) { background: var(--color-blue-hover); border-color: var(--color-blue-hover); box-shadow: var(--shadow-lift); }
+.btn-primary:active:not(:disabled) { background: var(--color-blue-press); border-color: var(--color-blue-press); transform: translateY(1px); }
+.btn-primary:disabled { background: var(--color-gray-400); border-color: var(--color-gray-400); cursor: not-allowed; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  background: transparent;
+  color: var(--color-blue);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  border: 1px solid var(--color-blue);
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.125rem;
+  transition: background 160ms ease, color 160ms ease;
+}
+.btn-secondary:hover { background: var(--color-blue-tint); }
+
+/* ---- callout: the shape the leakage disclosure and the mock banner share ---- */
+.callout {
+  border: 1px solid var(--color-blue-pale);
+  border-left: 4px solid var(--color-blue);
+  background: var(--color-blue-tint);
+  border-radius: var(--radius-card);
+}
+.callout-notice {
+  border: 1px solid var(--color-notice-rule);
+  border-left: 4px solid var(--color-notice);
+  background: var(--color-notice-tint);
+  border-radius: var(--radius-card);
+}
+
+/* ---- entrance choreography: restrained. Amex does not bounce. ---- */
 @keyframes rise {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: none; }
 }
-.rise { animation: rise 0.62s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.rise { animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
-@keyframes sweep {
-  from { stroke-dashoffset: var(--len); }
-  to   { stroke-dashoffset: 0; }
-}
 @keyframes bloom {
-  from { opacity: 0; transform: scaleX(0.965); transform-origin: left center; }
+  from { opacity: 0; transform: scaleX(0.97); transform-origin: left center; }
   to   { opacity: 1; transform: none; }
 }
-.bloom { animation: bloom 0.75s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.bloom { animation: bloom 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
-  50%      { opacity: 0.28; }
+  50%      { opacity: 0.35; }
 }
 .pulse-dot { animation: pulse-dot 2.1s ease-in-out infinite; }
 
+/* Broad enough that anything added later inherits it. The explicit
+   `animation: none` line stays as well — `.rise` uses fill-mode `both`, so a
+   0.01ms animation still lands on its end state, but `none` is unambiguous.
+   The smooth scroll in Console.run() cannot be reached from CSS and is
+   handled in JS. */
 @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
   .rise, .bloom, .pulse-dot { animation: none !important; }
-  * { transition-duration: 0.01ms !important; }
 }
 
-/* ---- form controls, restyled to the instrument ---- */
-select, input, textarea {
-  background: var(--color-panel-2);
-  border: 1px solid var(--color-rule);
-  color: var(--color-ink);
-  font-family: var(--font-mono);
+/* ---- form controls ----
+   The border is --color-axis (3.36:1), not --color-rule: WCAG 1.4.11 requires
+   3:1 for the boundary of an interactive control. Size and radius are explicit
+   because the UA defaults are ~13.33px and, in Safari, differently rounded. */
+@layer base {
+  /* IN @layer base ON PURPOSE. Everything else in this file is unlayered and
+     therefore outranks any Tailwind utility, which is fine for `.label` and
+     friends but would be wrong here: a `font-size` set outside a layer would
+     silently beat the `text-lg` on the ticker and as-of-date controls. */
+  select, input, textarea {
+    background: var(--color-gray-000);
+    border: 1px solid var(--color-axis);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    border-radius: 6px;
+  }
+  select, input[type="date"] {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  select:focus, input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-blue);
+    box-shadow: 0 0 0 2px rgba(0, 111, 207, 0.25);
+  }
 }
-select:focus, input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--color-phosphor);
-  box-shadow: 0 0 0 1px rgba(55, 230, 207, 0.35);
+
+/* ---- range slider: the primary control of the inverse surface ----
+   Styled explicitly in both engines because a UA-default range on a light
+   ground is a 2px hairline nobody can hit from a stage. */
+input[type="range"].prob-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 34px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
 }
-::selection { background: rgba(55, 230, 207, 0.28); }
+input[type="range"].prob-slider:focus { box-shadow: none; }
+input[type="range"].prob-slider::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--slider-track, var(--color-gray-200));
+  border: 1px solid var(--color-gray-400);
+}
+input[type="range"].prob-slider::-moz-range-track {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--slider-track, var(--color-gray-200));
+  border: 1px solid var(--color-gray-400);
+}
+input[type="range"].prob-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  margin-top: -9px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--slider-accent, var(--color-blue));
+  box-shadow: var(--shadow-card);
+  transition: transform 120ms ease;
+}
+input[type="range"].prob-slider::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #fff;
+  border: 3px solid var(--slider-accent, var(--color-blue));
+  box-shadow: var(--shadow-card);
+}
+input[type="range"].prob-slider:active::-webkit-slider-thumb { transform: scale(1.08); }
+
+/* ---- focus: one treatment for the whole app ----
+   :focus-visible is keyboard-only, so this never fires on a mouse click.
+   --color-blue is 4.89:1 on white, well past the 3:1 a focus indicator needs.
+   Written with :where() so it has zero specificity and any component can
+   override the ring colour inline. */
+:where(button, a, [role="button"], summary, tr[tabindex], input[type="range"]):focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+select:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 1px;
+}
+
+::selection { background: rgba(0, 111, 207, 0.18); }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--color-ground); }
-::-webkit-scrollbar-thumb { background: var(--color-rule-bright); border: 2px solid var(--color-ground); }
+::-webkit-scrollbar-track { background: var(--color-gray-100); }
+::-webkit-scrollbar-thumb { background: var(--color-gray-400); border: 2px solid var(--color-gray-100); border-radius: 999px; }

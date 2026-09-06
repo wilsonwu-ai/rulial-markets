@@ -16,6 +16,7 @@ python-dateutil>=2.8
 fastapi>=0.110
 uvicorn[standard]>=0.27
 pydantic>=2.5
+httpx>=0.27        # required by fastapi.testclient (test_api.py) and by any HTTP client code
 
 # --- llm (generator narrative + counterfactual conditioning) ----------------
 anthropic>=0.40

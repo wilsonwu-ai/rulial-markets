@@ -53,6 +53,7 @@ from __future__ import annotations
 
 import hashlib
 import math
+import re as _re
 import warnings
 from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -629,9 +630,24 @@ def _ledger_by_ticker(ticker: str) -> List[Event]:
     return list(_LEDGER_CACHE.get(ticker, []))
 
 
-def _load_events(ticker: str, close, events: Any = None) -> Tuple[List[Event], str]:
+def _load_events(ticker: str, close, events: Any = None, *,
+                 allow_ledger: bool = True) -> Tuple[List[Event], str]:
     if events is not None:
         return list(events), "injected"
+
+    # `allow_ledger` is False whenever the caller INJECTED a price series. The
+    # on-disk ledger describes the real market; pairing it with a synthetic or
+    # fixture price frame would score real event dates against invented prices.
+    # Injected prices therefore always re-detect from the series in hand.
+    if not allow_ledger:
+        try:
+            from . import events as _ev  # LANE-EVENTS
+
+            got = _ev.detect_events(close)
+            got = [e for e in got if getattr(e, "ticker", ticker) == ticker] or list(got)
+            return list(got), "events.detect_events"
+        except Exception:  # noqa: BLE001
+            return _fallback_detect_events(close, ticker), "evaluate._fallback_detect_events"
 
     # INTEGRATOR FIX. Prefer the SHIPPED LEDGER over live re-detection.
     #
@@ -698,6 +714,53 @@ def _subset(rows: List[Dict[str, Any]], key: str, val: Any) -> Dict[str, Any]:
     }
 
 
+
+# --- INTEGRATOR: lookahead in the backtest query -----------------------------
+#
+# THE DEFECT. walk_forward used to build each test event's conditioning text as
+#     f"{ticker} moved {e.move_pct:+.1%} over {window} trading days"
+# i.e. it interpolated the REALIZED MOVE into the prompt the model is scored on.
+# That is not cosmetic: generator._implied_magnitude() parses the percent back
+# out ("NVDA moved -28.4% over 5 trading days" -> 0.284) and _severity_anchor()
+# uses it to choose which analogs to retrieve. The model was being handed the
+# size of the answer on every scored event.
+#
+# It did not flatter the score -- with the leak the universe mean lift is
+# +1.93%, with a neutral query it is +3.18% -- but "the leak made us look worse"
+# is not a defence of a leak. CONTRACT.md section 2 is the leak guard and this
+# path walked straight through it.
+#
+# THE FIX. Two rules, applied to every query the backtest builds:
+#   1. never interpolate move_pct, direction, or window return into the text;
+#   2. scrub magnitudes out of the RESEARCHED headline too, because that text
+#      was written with hindsight and often states the outcome verbatim
+#      ("... Stock -18.8% Nov 16, -12% more Nov 19").
+# What survives is the qualitative description of the catalyst -- which is what
+# a forecaster actually has at as_of, and what the product claims to condition
+# on. Pass event_text= explicitly to override.
+_MAGNITUDE_RE = _re.compile(r"[-+]?\d+(?:\.\d+)?\s?(?:%|percent|pct)", _re.I)
+_MONEY_RE = _re.compile(r"[-+]?\$\s?\d[\d,.]*\s?(?:bn|billion|mn|million|m|b|k)?", _re.I)
+
+
+def scrub_outcome(text: str) -> str:
+    """Remove quantitative outcome tokens from a conditioning string."""
+    if not text:
+        return ""
+    out = _MAGNITUDE_RE.sub("[pct]", text)
+    out = _MONEY_RE.sub("[amt]", out)
+    return _re.sub(r"\s{2,}", " ", out).strip()
+
+
+def _backtest_query(ticker: str, e) -> str:
+    """The conditioning text for one scored event. Never carries the answer."""
+    head = scrub_outcome(getattr(e, "headline", "") or "")
+    cat = (getattr(e, "category", "") or "").strip()
+    if head:
+        return head
+    if cat:
+        return f"{ticker} {cat} event"
+    return f"{ticker} company-specific news event"
+
 def walk_forward(
     ticker: str,
     generate: Optional[Callable[[ForecastRequest], Any]] = None,
@@ -745,7 +808,7 @@ def walk_forward(
         embargo_until = train_end_ts
     eff_start = max(pd.Timestamp(test_start), pd.Timestamp(embargo_until))
 
-    all_events, ev_src = _load_events(ticker, close, events)
+    all_events, ev_src = _load_events(ticker, close, events, allow_ledger=(prices is None))
     test_events = []
     for e in all_events:
         try:
@@ -787,9 +850,7 @@ def walk_forward(
         if gen_fn is not None:
             req = ForecastRequest(
                 ticker=ticker,
-                event_text=event_text or (getattr(e, "headline", "") or
-                                          f"{ticker} moved {e.move_pct:+.1%} over "
-                                          f"{getattr(e,'window_days',WINDOW_DAYS)} trading days"),
+                event_text=event_text or _backtest_query(ticker, e),
                 as_of_date=asof,
                 horizon_days=horizon_days,
                 n_paths=n_paths,
