@@ -32,16 +32,30 @@ EMBARGO_DAYS = 5             # purge gap between train and test windows
 
 **No lane may move `TRAIN_END` "for better results." Moving it is the leak.**
 
-## 3. Event definition (FROZEN)
+## 3. Event definition (FROZEN — two tiers)
 
-An *event* is a trading day where `|close_to_close_return| >= 0.25` over a
-rolling `WINDOW_DAYS = 5` window (a 25% move in a week, not a single day —
-single-day 25% moves are too rare to build a corpus from).
+An *event* is a trading day where `|close_to_close_return|` clears a tier
+threshold over a rolling `WINDOW_DAYS = 5` window (a move in a week, not a
+single day — single-day 25% moves are too rare to build a corpus from).
 
 ```python
-JUMP_THRESHOLD = 0.25
-WINDOW_DAYS    = 5
+TIER_MAJOR       = 0.25   # the stage narrative: black-swan scale
+TIER_SIGNIFICANT = 0.15   # the training corpus: every ticker contributes
+JUMP_THRESHOLD   = TIER_SIGNIFICANT   # detection floor
+WINDOW_DAYS      = 5
 ```
+
+**Why two tiers.** At 25% only, four of the ten tickers (AAPL, BA, MSFT, XOM)
+produce zero pre-2019 events — mega-caps do not move 25% in a week — and JPM's
+ten events are all 2008-09, one regime wearing ten hats. The 15% tier widens
+the corpus so analog retrieval has something to retrieve; the 25% tier stays
+intact as the demo narrative. Every `Event` carries `tier` so the two never
+get conflated in a report.
+
+**Neither threshold may be tuned by a lane.** Moving them silently changes
+every number downstream.
+
+Overlapping windows are deduplicated to the single most extreme window.
 
 ## 4. Python module boundaries (FROZEN — one owner each)
 

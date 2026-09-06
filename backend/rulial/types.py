@@ -26,6 +26,7 @@ class Event:
     window_days: int = 5
     headline: str = ""
     articles: List[Article] = field(default_factory=list)
+    tier: str = "major"           # "major" (>=25%) | "significant" (>=15%)
     famous: bool = False          # salience flag -- see CONTRACT.md s8.2
     to_dict = _d
 

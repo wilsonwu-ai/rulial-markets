@@ -22,11 +22,27 @@ TRAIN_END = "2019-12-31"
 TEST_START = "2020-01-01"
 TEST_END = "2024-12-31"
 EMBARGO_DAYS = 5
-HISTORY_START = "2010-01-01"
+# Inception. A floor date, not a real start: each ticker's series naturally
+# begins at its own IPO (META 2012-05-18, TSLA 2010-06-29). Kept as a parseable
+# ISO date because data.py uses it as a lower bound via date.fromisoformat.
+HISTORY_START = "1900-01-01"
 
 # --- FROZEN: event definition -----------------------------------------------
-JUMP_THRESHOLD = 0.25
+# Two tiers over the same WINDOW_DAYS window. MAJOR is the stage narrative
+# (black-swan scale moves); SIGNIFICANT widens the training corpus so every
+# ticker in the universe contributes seed events. Neither may be tuned by a
+# lane -- moving them silently changes every number downstream.
+TIER_MAJOR = 0.25
+TIER_SIGNIFICANT = 0.15
+JUMP_THRESHOLD = TIER_SIGNIFICANT   # detection floor; tier is labelled per event
 WINDOW_DAYS = 5
+
+def tier_for(move_pct):
+    """Classify a move. Returns 'major' | 'significant' | None."""
+    a = abs(move_pct)
+    if a >= TIER_MAJOR: return "major"
+    if a >= TIER_SIGNIFICANT: return "significant"
+    return None
 
 # --- Forecast defaults ------------------------------------------------------
 DEFAULT_HORIZON_DAYS = 5
