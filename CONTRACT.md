@@ -157,6 +157,81 @@ GET  /api/health -> {"ok": true}
 
 Backend runs on **:8000**. Frontend dev on **:3000**, proxying `/api/*` to :8000.
 
+## 6b. Inverse scenario API (FROZEN) — Pavel's inversion
+
+The forward model answers "given this event, what is the distribution?".
+This inverts it: "given a target probability, what event would produce it?".
+
+```
+POST /api/scenario
+  body: { ticker: str,
+          direction: "up" | "down",
+          target_prob: float,        # 0.50 .. 0.95, P(move in `direction`)
+          as_of_date: str,           # ISO, <= TRAIN_END for scored demos
+          horizon_days: int = 5,
+          n_candidates: int = 3 }
+
+  -> { target_prob: float,
+       direction: str,
+       ticker: str,
+       scenarios: [ { event_text: str,
+                      achieved_prob: float,     # COMPUTED, never asserted
+                      error: float,             # |achieved - target|
+                      quantiles: {p5,p25,p50,p75,p95},
+                      analogs_used: [ Event ],
+                      narrative: str,
+                      verified: true } ],
+       best_error: float,
+       search_iterations: int,
+       note: str }
+```
+
+### The rule that makes this feature honest
+
+**`achieved_prob` is ALWAYS computed by running the candidate event text back
+through `generator.generate_ensemble` and measuring the fraction of paths that
+move in `direction`. An LLM proposes the text. It never states the number.**
+
+If a proposed event is drafted as "57% bearish" and the forward model computes
+43%, the response says **43%**. The search may iterate to close the gap, and if
+it cannot, `note` says so plainly and `best_error` carries the miss. Reporting an
+asserted probability would make this a language model with a percent sign, which
+is precisely the thing the rest of this project exists not to be.
+
+### The inverse is not unique
+
+Many different events map to the same probability. The endpoint therefore returns
+a **set** of candidate scenarios, never "the" answer, and the UI must say so.
+This is a property of the problem, not a limitation of the implementation.
+
+### Pipeline
+
+1. **RETRIEVE** — real events from the ledger whose realized forward windows sit
+   near the target probability for this ticker and direction.
+2. **PROPOSE** — an LLM drafts candidate event texts grounded in those analogs.
+   Falls back to templated recombination of real analog headlines with no LLM.
+3. **VERIFY** — every candidate is scored by the existing forward model.
+4. **SELECT** — rank by `|achieved - target|`, dedupe near-identical texts.
+
+### Frozen for this endpoint
+
+- `achieved_prob` computed, never asserted. No exceptions.
+- No widening of `vol_mult` to hit a target. That games the metric, and
+  over-widening was already measured at -52% lift.
+- Candidate events must respect `as_of_date`: no analog whose forward window
+  closes after it, same guard as the forward path.
+- `verified` may only be `true` when the forward model actually ran.
+
+## 6c. Scenario UI contract (FROZEN)
+
+- A **slider**, 50% to 95%, is the primary control for `target_prob`.
+- **Preset buttons at 60 / 75 / 90**, in both directions, for one-click stage use.
+- Direction is expressed by color: **green for up/buy, red for down/sell**, and
+  ALWAYS paired with a text label and an arrow glyph. Color is never the only
+  signal (CONTRACT.md accessibility, and 8% of men are red-green colorblind).
+- The achieved probability is displayed next to the target whenever they differ,
+  so the viewer always sees what the model actually computed.
+
 ## 7. Scoring (FROZEN — this is the whole defensibility argument)
 
 - Primary metric: **CRPS** (continuous ranked probability score) of the ensemble
