@@ -1,1 +1,72 @@
-{"ticker": "AAPL", "n_tests": 3, "mean_crps_lift": 0.013885460276335774, "pit_histogram": [0, 0, 0, 1, 0, 1, 0, 0, 1, 0], "calibration_ok": true, "per_event": [{"date": "2020-03-12", "crps": 0.013849369318455502, "crps_null": 0.012130439741181014, "crps_lift": -0.14170381403725876, "z_score": -0.15613097109043897, "tier": "significant", "famous": true}, {"date": "2020-03-20", "crps": 0.0463918129917599, "crps_null": 0.05408148047269037, "crps_lift": 0.14218670446371254, "z_score": 1.045143037149599, "tier": "significant", "famous": false}, {"date": "2020-08-06", "crps": 0.013849295077311037, "crps_null": 0.014444005186220313, "crps_lift": 0.041173490402553546, "z_score": 0.005229268066012932, "tier": "significant", "famous": true}], "unavailable": false, "error": null, "notes": ["n_tests=3: per-ticker PIT calibration is statistically underpowered at this sample size; treat calibration_ok as indicative and prefer the pooled universe verdict.", "mean_crps_lift_demeaned=-0.10338506681896882"], "n_famous": 2, "n_obscure": 1, "mean_crps_lift_famous": -0.050265161817352605, "mean_crps_lift_obscure": 0.14218670446371254, "salience_split_source": "computed from per_event.famous in this file"}
+{
+ "ticker": "AAPL",
+ "n_tests": 3,
+ "mean_crps_lift": 0.016649878487110758,
+ "mean_fhs_lift": 0.037433990109105975,
+ "fhs_lift_ci90": [
+  -0.06245068094526013,
+  0.13731866116347208
+ ],
+ "mean_retrieval_increment": -0.020784111621995217,
+ "retrieval_increment_ci90": [
+  -0.0635482461277883,
+  0.021980022883797867
+ ],
+ "pit_histogram": [
+  0,
+  0,
+  0,
+  0,
+  2,
+  0,
+  0,
+  0,
+  1,
+  0
+ ],
+ "calibration_ok": true,
+ "per_event": [
+  {
+   "date": "2020-03-12",
+   "crps": 0.014131796519643781,
+   "crps_null": 0.012130439741181014,
+   "crps_lift": -0.164986333650252,
+   "z_score": -0.14462772768781812,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.014026328988409775,
+   "fhs_lift_vs_null": -0.1562918812244294,
+   "retrieval_increment": -0.00869445242582259
+  },
+  {
+   "date": "2020-03-20",
+   "crps": 0.0452905909767612,
+   "crps_null": 0.05408148047269037,
+   "crps_lift": 0.16254898015168653,
+   "z_score": 0.9888916331982252,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.04730876367387423,
+   "fhs_lift_vs_null": 0.12523171961307844,
+   "retrieval_increment": 0.037317260538608094
+  },
+  {
+   "date": "2020-08-04",
+   "crps": 0.013113587778367908,
+   "crps_null": 0.013838547619744481,
+   "crps_lift": 0.05238698895989774,
+   "z_score": -0.08971032857474254,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.01185462393004312,
+   "fhs_lift_vs_null": 0.1433621319386689,
+   "retrieval_increment": -0.09097514297877116
+  }
+ ],
+ "unavailable": false,
+ "error": null,
+ "notes": [
+  "n_tests=3: per-ticker PIT calibration is statistically underpowered at this sample size; treat calibration_ok as indicative and prefer the pooled universe verdict.",
+  "mean_crps_lift_demeaned=-0.04676809311391112"
+ ]
+}

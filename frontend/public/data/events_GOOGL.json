@@ -1,1 +1,93 @@
-[{"ticker": "GOOGL", "date": "2008-04-22", "move_pct": 0.242055, "direction": "up", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "GOOGL", "date": "2008-10-08", "move_pct": -0.178787, "direction": "down", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "GOOGL", "date": "2008-11-11", "move_pct": -0.151196, "direction": "down", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "GOOGL", "date": "2008-11-20", "move_pct": -0.16829, "direction": "down", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "GOOGL", "date": "2009-01-27", "move_pct": 0.172343, "direction": "up", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "GOOGL", "date": "2013-10-18", "move_pct": 0.159887, "direction": "up", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": true}, {"ticker": "GOOGL", "date": "2015-07-17", "move_pct": 0.25806, "direction": "up", "window_days": 5, "headline": "", "articles": [], "tier": "major", "famous": true}]
+[
+ {
+  "ticker": "GOOGL",
+  "date": "2008-04-18",
+  "move_pct": 0.179167,
+  "direction": "up",
+  "window_days": 5,
+  "headline": "",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "",
+  "category": ""
+ },
+ {
+  "ticker": "GOOGL",
+  "date": "2008-10-08",
+  "move_pct": -0.178787,
+  "direction": "down",
+  "window_days": 5,
+  "headline": "The credit-freeze week: coordinated six-central-bank rate cut fails to stop the rout",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "Pure macro. The window covers 2 to 8 October 2008, the week after the initial TARP vote failure and during the Reserve Primary Fund and Icelandic banking collapses.",
+  "category": "macro"
+ },
+ {
+  "ticker": "GOOGL",
+  "date": "2008-11-11",
+  "move_pct": -0.151196,
+  "direction": "down",
+  "window_days": 5,
+  "headline": "Post-election plunge, and Google walks away from the Yahoo ad deal under DOJ threat",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "Mixed, and the weakest attribution in the file. The window covers 5 to 11 November 2008. Two things sit inside it.",
+  "category": "macro"
+ },
+ {
+  "ticker": "GOOGL",
+  "date": "2008-11-20",
+  "move_pct": -0.16829,
+  "direction": "down",
+  "window_days": 5,
+  "headline": "Capitulation into the 20 Nov S&P close of 752, lowest since 1997",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "Pure macro, and the deepest point of the 2008 bear market. The S&P 500 closed at 752.44 on 20 November, its lowest close since 1997 and down more than 50% from the October 2007 peak (Benzinga, \"This Day In Market History\"; Trading Economics, 20 Nov 2008).",
+  "category": "macro"
+ },
+ {
+  "ticker": "GOOGL",
+  "date": "2009-01-27",
+  "move_pct": 0.172343,
+  "direction": "up",
+  "window_days": 5,
+  "headline": "Q4 2008 beats on an ex-items basis; GAAP profit down 70% but the ad apocalypse did not arrive",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "Google reported Q4 2008 after the close on 22 January. GAAP net income fell 70% to $382m, hit by writedowns on the AOL and Clearwire stakes, but ex-items EPS of $5.10 beat the roughly $4.95 consensus and revenue rose 18% to $5.70bn (CBS News, 22 Jan 2009; CNN Money, 22 Jan 2009). GOOGL rose 5.9% on 23 January and kept going.",
+  "category": "earnings"
+ },
+ {
+  "ticker": "GOOGL",
+  "date": "2013-10-18",
+  "move_pct": 0.159887,
+  "direction": "up",
+  "window_days": 5,
+  "headline": "Q3 2013 mobile and YouTube beat; GOOG closes above $1,000 for the first time",
+  "articles": [],
+  "tier": "significant",
+  "famous": true,
+  "context": "Google reported Q3 2013 after the close on 17 October. Revenue rose 12% to $14.89bn, non-GAAP EPS was $10.74, paid clicks rose 26% year over year, and YouTube brand video ads grew more than 75%. GOOGL rose 13.8% on 18 October and closed above $1,000 per share for the first time, at $1,011.41 (CNN Money, 18 Oct 2013; CNBC, 18 Oct 2013).",
+  "category": "earnings"
+ },
+ {
+  "ticker": "GOOGL",
+  "date": "2015-07-17",
+  "move_pct": 0.25806,
+  "direction": "up",
+  "window_days": 5,
+  "headline": "Ruth Porat's first quarter as CFO; +16% in a day, ~$65bn of market cap, then a record",
+  "articles": [],
+  "tier": "major",
+  "famous": true,
+  "context": "Google reported Q2 2015 after the close on Thursday 16 July. Adjusted EPS of $6.99 beat a consensus of roughly $6.70 to $6.75, and ex-TAC revenue of $14.35bn beat $14.27bn (TechCrunch, 16 Jul 2015). It was the first quarter reported by Ruth Porat, who had joined from Morgan Stanley in May.",
+  "category": "earnings"
+ }
+]

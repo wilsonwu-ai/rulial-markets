@@ -1,1 +1,120 @@
-{"ticker": "JPM", "n_tests": 7, "mean_crps_lift": 0.024350595056496775, "pit_histogram": [1, 1, 2, 0, 1, 0, 0, 1, 1, 0], "calibration_ok": true, "per_event": [{"date": "2020-03-09", "crps": 0.02846082141259948, "crps_null": 0.035741637237457574, "crps_lift": 0.20370683571338277, "z_score": -0.6855892662223868, "tier": "significant", "famous": true}, {"date": "2020-03-20", "crps": 0.06266574644932726, "crps_null": 0.06242834629861246, "crps_lift": -0.0038027621231428313, "z_score": 1.1331936145330044, "tier": "significant", "famous": true}, {"date": "2020-03-30", "crps": 0.02501756873225372, "crps_null": 0.025933339185232926, "crps_lift": 0.03531247736506944, "z_score": -0.6563331406292824, "tier": "significant", "famous": false}, {"date": "2020-04-09", "crps": 0.04467928142255695, "crps_null": 0.045659197335477825, "crps_lift": 0.021461522981251962, "z_score": -0.9828970270927757, "tier": "significant", "famous": false}, {"date": "2020-06-08", "crps": 0.06334551545029568, "crps_null": 0.07193637043023439, "crps_lift": 0.11942296961271245, "z_score": -1.148652650895806, "tier": "significant", "famous": false}, {"date": "2020-11-09", "crps": 0.023369112766651795, "crps_null": 0.01785952341853606, "crps_lift": -0.3084958774654333, "z_score": -0.1215353638539837, "tier": "significant", "famous": false}, {"date": "2022-10-18", "crps": 0.017359993066714135, "crps_null": 0.019350135098098555, "crps_lift": 0.10284899931163692, "z_score": 0.4231570426026393, "tier": "significant", "famous": false}], "unavailable": false, "error": null, "notes": ["n_tests=7: per-ticker PIT calibration is statistically underpowered at this sample size; treat calibration_ok as indicative and prefer the pooled universe verdict.", "mean_crps_lift_demeaned=-0.006254814543198075"], "n_famous": 2, "n_obscure": 5, "mean_crps_lift_famous": 0.09995203679511996, "mean_crps_lift_obscure": -0.005889981638952499, "salience_split_source": "computed from per_event.famous in this file"}
+{
+ "ticker": "JPM",
+ "n_tests": 7,
+ "mean_crps_lift": 0.03955566020060972,
+ "mean_fhs_lift": 0.02661576886134701,
+ "fhs_lift_ci90": [
+  -0.029849982501096887,
+  0.09019372776003827
+ ],
+ "mean_retrieval_increment": 0.012939891339262707,
+ "retrieval_increment_ci90": [
+  -0.03661070303760803,
+  0.06065820809700976
+ ],
+ "pit_histogram": [
+  1,
+  2,
+  1,
+  0,
+  0,
+  1,
+  1,
+  0,
+  1,
+  0
+ ],
+ "calibration_ok": true,
+ "per_event": [
+  {
+   "date": "2020-03-09",
+   "crps": 0.028410073520203902,
+   "crps_null": 0.035741637237457574,
+   "crps_lift": 0.205126689316015,
+   "z_score": -0.7077705030098944,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.02826529635223933,
+   "fhs_lift_vs_null": 0.2091773478519604,
+   "retrieval_increment": -0.004050658535945412
+  },
+  {
+   "date": "2020-03-20",
+   "crps": 0.06302993821105768,
+   "crps_null": 0.06242834629861246,
+   "crps_lift": -0.009636518474598664,
+   "z_score": 1.1547980103789879,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.0657569343300215,
+   "fhs_lift_vs_null": -0.05331853602989039,
+   "retrieval_increment": 0.043682017555291726
+  },
+  {
+   "date": "2020-03-30",
+   "crps": 0.02344305028873897,
+   "crps_null": 0.025933339185232926,
+   "crps_lift": 0.09602654246360942,
+   "z_score": -0.7105257127089484,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.026812331776321384,
+   "fhs_lift_vs_null": -0.033894308203433275,
+   "retrieval_increment": 0.1299208506670427
+  },
+  {
+   "date": "2020-04-09",
+   "crps": 0.04498513530515962,
+   "crps_null": 0.045659197335477825,
+   "crps_lift": 0.014762897064650038,
+   "z_score": -1.016613049244937,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.04859413457283794,
+   "fhs_lift_vs_null": -0.06427921226463676,
+   "retrieval_increment": 0.07904210932928679
+  },
+  {
+   "date": "2020-06-08",
+   "crps": 0.06302870902594239,
+   "crps_null": 0.07193637043023439,
+   "crps_lift": 0.1238269508319281,
+   "z_score": -1.160803094018771,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.06342841157626228,
+   "fhs_lift_vs_null": 0.11827061614435125,
+   "retrieval_increment": 0.005556334687576853
+  },
+  {
+   "date": "2020-11-09",
+   "crps": 0.02109148706625618,
+   "crps_null": 0.01785952341853606,
+   "crps_lift": -0.18096583945603656,
+   "z_score": -0.10361947020410384,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.018790029647503474,
+   "fhs_lift_vs_null": -0.05210140310920396,
+   "retrieval_increment": -0.1288644363468326
+  },
+  {
+   "date": "2022-10-18",
+   "crps": 0.018813190140879114,
+   "crps_null": 0.019350135098098555,
+   "crps_lift": 0.027748899658700737,
+   "z_score": 0.35507161343922444,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.018141605428088788,
+   "fhs_lift_vs_null": 0.062455877640281834,
+   "retrieval_increment": -0.034706977981581094
+  }
+ ],
+ "unavailable": false,
+ "error": null,
+ "notes": [
+  "n_tests=7: per-ticker PIT calibration is statistically underpowered at this sample size; treat calibration_ok as indicative and prefer the pooled universe verdict.",
+  "mean_crps_lift_demeaned=-0.0027494238075014277"
+ ]
+}

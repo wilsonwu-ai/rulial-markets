@@ -277,6 +277,55 @@ def null_ensemble(
 
 
 # --------------------------------------------------------------------------- #
+# the SECOND baseline -- event-conditioned full-pool historical simulation
+# --------------------------------------------------------------------------- #
+#: Effectively "no cap": retrieve_analogs returns the whole admissible pool.
+FHS_ALL_ANALOGS = 10 ** 6
+
+
+def fhs_baseline(req: Any) -> Optional[np.ndarray]:
+    """Event-conditioned full-pool historical simulation. CONTRACT.md s7 permits
+    baselines ALONGSIDE the frozen null; this does not replace it.
+
+    WHAT IT KNOWS, AND WHAT IT DOES NOT
+    -----------------------------------
+    It knows a qualifying (>=15% / 5d) event just happened, and it draws from
+    every admissible past post-event window under the same lookahead filter the
+    model uses. It does NOT know WHICH KIND of event happened -- no text, no
+    similarity ranking. So it is *event-conditioned*, not unconditioned, and the
+    label matters: calling it "unconditioned" would overstate what the model is
+    being asked to beat.
+
+    WHY IT EXISTS
+    -------------
+    The frozen Gaussian null answers "does post-event historical simulation beat
+    a simple volatility model?" -- and a heavy-tailed ensemble can win that on
+    distributional shape alone, without any forecasting skill. This baseline
+    answers the harder and more interesting question: "does knowing which event
+    happened add anything beyond knowing that some large event happened?"
+
+    Identical machinery to the model -- same vol standardisation, same block
+    bootstrap, same IQR width anchor, same rule mixture -- so the ONLY thing
+    that differs is the size and selection of the analog pool. Measured on the
+    2020-2024 window it scores +2.13% CRPS lift over the null (CI90 [+0.62,
+    +3.55]) against the shipped top-25 configuration's +0.94%, i.e. selection
+    currently costs rather than pays. See ``retrieval_increment``.
+
+    Returns terminal cumulative returns, or None if the generator is unavailable
+    or raises -- the backtest degrades to null-only rather than failing.
+    """
+    try:
+        from . import generator as _gen
+    except Exception:  # noqa: BLE001
+        return None
+    try:
+        ens = _gen.generate_ensemble(req, n_analogs=FHS_ALL_ANALOGS)
+        return _as_paths(ens)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+# --------------------------------------------------------------------------- #
 # PIT and calibration
 # --------------------------------------------------------------------------- #
 def _pit_seed(*parts: Any) -> int:
@@ -880,6 +929,20 @@ def walk_forward(
         c_null = crps_gaussian(0.0, sig, actual)
         lift = (c_null - c_model) / c_null if c_null > _EPS else float("nan")
 
+        # ---- second baseline: same machinery, whole analog pool, no ranking.
+        # `retrieval_increment` is the paired quantity that actually answers
+        # "is the similarity layer earning its keep": positive means selecting
+        # analogs beat using all of them on this event.
+        fhs_paths = fhs_baseline(req) if gen_fn is not None else None
+        if fhs_paths is not None and fhs_paths.size:
+            c_fhs = crps(fhs_paths, actual)
+            lift_fhs = (c_null - c_fhs) / c_null if c_null > _EPS else float("nan")
+            increment = lift - lift_fhs
+        else:
+            c_fhs = float("nan")
+            lift_fhs = float("nan")
+            increment = float("nan")
+
         demeaned = model_paths - float(np.mean(model_paths))
         c_dm = crps(demeaned, actual)
         lift_dm = (c_null - c_dm) / c_null if c_null > _EPS else float("nan")
@@ -899,6 +962,9 @@ def walk_forward(
                 "crps": float(c_model),
                 "crps_null": float(c_null),
                 "crps_lift": float(lift),
+                "crps_fhs": float(c_fhs),
+                "fhs_lift_vs_null": float(lift_fhs),
+                "retrieval_increment": float(increment),
                 "crps_demeaned": float(c_dm),
                 "crps_lift_demeaned": float(lift_dm),
                 "pit": float(p),
@@ -915,6 +981,8 @@ def walk_forward(
     n = len(rows)
     lifts = np.asarray([r["crps_lift"] for r in rows], dtype=float)
     lifts_dm = np.asarray([r["crps_lift_demeaned"] for r in rows], dtype=float)
+    lifts_fhs = np.asarray([r.get("fhs_lift_vs_null", float("nan")) for r in rows], dtype=float)
+    increments = np.asarray([r.get("retrieval_increment", float("nan")) for r in rows], dtype=float)
     pits = [r["pit"] for r in rows]
     cal = calibration_test(pits)
     lo, hi = _bootstrap_ci(lifts)
@@ -925,6 +993,17 @@ def walk_forward(
         "ticker": ticker,
         "n_tests": n,
         "mean_crps_lift": float(np.nanmean(lifts)) if n else None,
+        # ---- second baseline (CONTRACT s7 allows baselines beside the null) --
+        # fhs_*  : event-conditioned full-pool historical simulation vs the null
+        # retrieval_increment_* : model MINUS that baseline, paired per event.
+        #   This is the number that says whether similarity retrieval earns its
+        #   keep. Reported even when negative -- especially when negative.
+        "mean_fhs_lift": (float(np.nanmean(lifts_fhs))
+                          if n and np.isfinite(lifts_fhs).any() else None),
+        "fhs_lift_ci90": list(_bootstrap_ci(lifts_fhs)) if n else [None, None],
+        "mean_retrieval_increment": (float(np.nanmean(increments))
+                                     if n and np.isfinite(increments).any() else None),
+        "retrieval_increment_ci90": list(_bootstrap_ci(increments)) if n else [None, None],
         "pit_histogram": pit_histogram(pits),
         "calibration_ok": cal["calibration_ok"],
         "per_event": rows,

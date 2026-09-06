@@ -1,1 +1,54 @@
-[{"ticker": "MSFT", "date": "2008-10-10", "move_pct": -0.183131, "direction": "down", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "MSFT", "date": "2008-11-20", "move_pct": -0.175059, "direction": "down", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "MSFT", "date": "2008-11-28", "move_pct": 0.153451, "direction": "up", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "MSFT", "date": "2015-04-28", "move_pct": 0.152908, "direction": "up", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}]
+[
+ {
+  "ticker": "MSFT",
+  "date": "2008-10-09",
+  "move_pct": -0.150476,
+  "direction": "down",
+  "window_days": 5,
+  "headline": "",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "",
+  "category": ""
+ },
+ {
+  "ticker": "MSFT",
+  "date": "2008-11-20",
+  "move_pct": -0.175059,
+  "direction": "down",
+  "window_days": 5,
+  "headline": "Capitulation to the 11-year S&P low as Citigroup looked like the next failure",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "The S&P 500 closed at 752.44 on 20 November 2008, its lowest close since 1997, down 6.7% on the day, with Citigroup down 26% and the cost of insuring against corporate default at an all-time high, as an auto-industry rescue vote was postponed (TradingEconomics, 20 Nov 2008).",
+  "category": "macro"
+ },
+ {
+  "ticker": "MSFT",
+  "date": "2008-11-28",
+  "move_pct": 0.153451,
+  "direction": "up",
+  "window_days": 5,
+  "headline": "Bounce off the November low on the Citigroup rescue and the Fed's $800bn facilities",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "The window runs from the 20 November closing low (17.53) to 28 November (20.22). On 23 November the US government announced a rescue of Citigroup including an FDIC guarantee on more than $300bn of assets, and on 25 November the government announced an $800bn programme to restart consumer and small-business lending (CNNMoney, 24 Nov 2008, CNNMoney, 26 Nov 2008).",
+  "category": "macro"
+ },
+ {
+  "ticker": "MSFT",
+  "date": "2015-04-24",
+  "move_pct": 0.150168,
+  "direction": "up",
+  "window_days": 5,
+  "headline": "",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "",
+  "category": ""
+ }
+]

@@ -1,1 +1,60 @@
-{"ticker": "MSFT", "n_tests": 2, "mean_crps_lift": -0.10085898862930678, "pit_histogram": [0, 0, 0, 0, 0, 0, 1, 1, 0, 0], "calibration_ok": true, "per_event": [{"date": "2020-03-12", "crps": 0.02075912102693584, "crps_null": 0.015888305270126104, "crps_lift": -0.3065660983974207, "z_score": 0.5347801936669855, "tier": "significant", "famous": true}, {"date": "2020-03-30", "crps": 0.017635408911564593, "crps_null": 0.019701024293218555, "crps_lift": 0.10484812113880716, "z_score": 0.32222019723062767, "tier": "significant", "famous": false}], "unavailable": false, "error": null, "notes": ["n_tests=2: per-ticker PIT calibration is statistically underpowered at this sample size; treat calibration_ok as indicative and prefer the pooled universe verdict.", "mean_crps_lift_demeaned=-0.13217421463503687"], "n_famous": 1, "n_obscure": 1, "mean_crps_lift_famous": -0.3065660983974207, "mean_crps_lift_obscure": 0.10484812113880716, "salience_split_source": "computed from per_event.famous in this file"}
+{
+ "ticker": "MSFT",
+ "n_tests": 2,
+ "mean_crps_lift": -0.06851050259166687,
+ "mean_fhs_lift": -0.07268664192794372,
+ "fhs_lift_ci90": [
+  null,
+  null
+ ],
+ "mean_retrieval_increment": 0.004176139336276849,
+ "retrieval_increment_ci90": [
+  null,
+  null
+ ],
+ "pit_histogram": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  2,
+  0,
+  0,
+  0
+ ],
+ "calibration_ok": true,
+ "per_event": [
+  {
+   "date": "2020-03-12",
+   "crps": 0.020538639567133046,
+   "crps_null": 0.015888305270126104,
+   "crps_lift": -0.2926891331670664,
+   "z_score": 0.4972385967183873,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.0200916342134626,
+   "fhs_lift_vs_null": -0.26455489568417223,
+   "retrieval_increment": -0.028134237482894175
+  },
+  {
+   "date": "2020-03-30",
+   "crps": 0.016634202722131182,
+   "crps_null": 0.019701024293218555,
+   "crps_lift": 0.15566812798373267,
+   "z_score": 0.26704437045149965,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.017353024463284572,
+   "fhs_lift_vs_null": 0.1191816118282848,
+   "retrieval_increment": 0.03648651615544787
+  }
+ ],
+ "unavailable": false,
+ "error": null,
+ "notes": [
+  "n_tests=2: per-ticker PIT calibration is statistically underpowered at this sample size; treat calibration_ok as indicative and prefer the pooled universe verdict.",
+  "mean_crps_lift_demeaned=-0.128341187384864"
+ ]
+}

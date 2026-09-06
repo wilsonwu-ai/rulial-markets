@@ -160,12 +160,25 @@ class PerEventModel(_Lenient):
     z_score: Optional[float] = None
     tier: Optional[str] = None
     famous: Optional[bool] = None
+    # second baseline, per event (see evaluate.fhs_baseline)
+    crps_fhs: Optional[float] = None
+    fhs_lift_vs_null: Optional[float] = None
+    retrieval_increment: Optional[float] = None
 
 
 class BacktestResponse(_Lenient):
     ticker: str = ""
     n_tests: int = 0
     mean_crps_lift: Optional[float] = None
+    # ---- second baseline: event-conditioned full-pool historical simulation.
+    # The frozen Gaussian null asks "does post-event simulation beat a simple
+    # vol model". This asks the harder one: "does knowing WHICH event happened
+    # add anything beyond knowing that SOME large event happened". Negative
+    # values are reported, not hidden -- that is the point of measuring it.
+    mean_fhs_lift: Optional[float] = None
+    fhs_lift_ci90: List[Optional[float]] = Field(default_factory=lambda: [None, None])
+    mean_retrieval_increment: Optional[float] = None
+    retrieval_increment_ci90: List[Optional[float]] = Field(default_factory=lambda: [None, None])
     pit_histogram: List[int] = Field(default_factory=lambda: [0] * 10)
     calibration_ok: Optional[bool] = None
     per_event: List[PerEventModel] = Field(default_factory=list)
@@ -957,8 +970,22 @@ def backtest(response: Response, ticker: str = Query(..., description="e.g. NVDA
     if isinstance(d.get("notes"), list):
         notes.extend(str(x) for x in d["notes"])
 
+    def _f(key):
+        v = d.get(key)
+        return float(v) if isinstance(v, (int, float)) else None
+
+    def _ci(key):
+        v = d.get(key)
+        if isinstance(v, (list, tuple)) and len(v) == 2:
+            return [float(x) if isinstance(x, (int, float)) else None for x in v]
+        return [None, None]
+
     return BacktestResponse(ticker=sym, n_tests=int(n_tests), mean_crps_lift=lift,
                             pit_histogram=hist, calibration_ok=calib, per_event=per,
+                            mean_fhs_lift=_f("mean_fhs_lift"),
+                            fhs_lift_ci90=_ci("fhs_lift_ci90"),
+                            mean_retrieval_increment=_f("mean_retrieval_increment"),
+                            retrieval_increment_ci90=_ci("retrieval_increment_ci90"),
                             unavailable=False, error=None, notes=notes)
 
 

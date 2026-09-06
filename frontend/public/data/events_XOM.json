@@ -1,1 +1,41 @@
-[{"ticker": "XOM", "date": "2008-10-10", "move_pct": -0.199897, "direction": "down", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": true}, {"ticker": "XOM", "date": "2008-10-29", "move_pct": 0.15611, "direction": "up", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}, {"ticker": "XOM", "date": "2008-11-28", "move_pct": 0.169902, "direction": "up", "window_days": 5, "headline": "", "articles": [], "tier": "significant", "famous": false}]
+[
+ {
+  "ticker": "XOM",
+  "date": "2008-10-10",
+  "move_pct": -0.199897,
+  "direction": "down",
+  "window_days": 5,
+  "headline": "Worst week in Dow history: global credit seizure drags crude and energy equities down together",
+  "articles": [],
+  "tier": "significant",
+  "famous": true,
+  "context": "The week ending October 10, 2008 was the worst week in Dow history, down about 1,874 points or 18%, with roughly $2.4trn of US market value erased. The proximate cause was the post-Lehman freeze in interbank and commercial paper funding, which forced indiscriminate deleveraging across every asset class. Crude was in free-fall from its July 2008 peak near $147 as a global recession was priced in.",
+  "category": "macro"
+ },
+ {
+  "ticker": "XOM",
+  "date": "2008-10-29",
+  "move_pct": 0.15611,
+  "direction": "up",
+  "window_days": 5,
+  "headline": "Dow's +10.9% / 889-point snapback off the October panic low, ahead of the FOMC cut",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "On October 28 the Dow added 889 points, +10.9%, its second-largest point gain ever at the time and sixth-largest percentage gain, on bargain hunting into the close as the two-day FOMC meeting opened with a rate cut expected. XOM had bottomed at $64.57 on October 22 and captured that snapback almost in full.",
+  "category": "macro"
+ },
+ {
+  "ticker": "XOM",
+  "date": "2008-11-28",
+  "move_pct": 0.169902,
+  "direction": "up",
+  "window_days": 5,
+  "headline": "Citigroup rescue plus the Geithner nomination trigger the biggest two-day rally since 1987",
+  "articles": [],
+  "tier": "significant",
+  "famous": false,
+  "context": "November 20, 2008 was an interim capitulation low for the S&P 500 (the ultimate crisis low came in March 2009), and XOM's own $68.51 close that day is the window's starting point. On November 21 stocks rallied late on reports that Timothy Geithner was Obama's Treasury pick.",
+  "category": "macro"
+ }
+]

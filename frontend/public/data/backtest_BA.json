@@ -1,1 +1,264 @@
-{"ticker": "BA", "n_tests": 19, "mean_crps_lift": -0.014362023943139303, "pit_histogram": [3, 1, 2, 0, 2, 2, 3, 2, 2, 2], "calibration_ok": true, "per_event": [{"date": "2020-02-28", "crps": 0.024327144910847608, "crps_null": 0.028533861555689606, "crps_lift": 0.14742892884062467, "z_score": -0.6297656683296727, "tier": "significant", "famous": false}, {"date": "2020-03-09", "crps": 0.4038023390560041, "crps_null": 0.40336779268051665, "crps_lift": -0.0010772956675587449, "z_score": -8.834319758156418, "tier": "significant", "famous": false}, {"date": "2020-03-17", "crps": 0.017764962795061907, "crps_null": 0.02076486696380998, "crps_lift": 0.1444701848548537, "z_score": 0.3139251722334472, "tier": "major", "famous": true}, {"date": "2020-03-26", "crps": 0.2672791107370782, "crps_null": 0.2662734209373887, "crps_lift": -0.003776906445070949, "z_score": -3.017355340129593, "tier": "major", "famous": true}, {"date": "2020-04-02", "crps": 0.18211356651313543, "crps_null": 0.17939806541111533, "crps_lift": -0.015136735704463434, "z_score": 2.013940186997991, "tier": "major", "famous": true}, {"date": "2020-04-09", "crps": 0.02061087463720261, "crps_null": 0.02369657276844746, "crps_lift": 0.13021706393565607, "z_score": 0.17759739378875472, "tier": "significant", "famous": true}, {"date": "2020-04-24", "crps": 0.03136198174097107, "crps_null": 0.028339933084666147, "crps_lift": -0.10663570190079463, "z_score": 0.2893523192813443, "tier": "significant", "famous": false}, {"date": "2020-06-08", "crps": 0.12554997773260784, "crps_null": 0.11504217187913088, "crps_lift": -0.09133872980524912, "z_score": -1.3107058643233784, "tier": "major", "famous": true}, {"date": "2020-06-15", "crps": 0.032291876456122345, "crps_null": 0.027275248718235272, "crps_lift": -0.18392601254386115, "z_score": -0.08496510459792744, "tier": "significant", "famous": true}, {"date": "2020-11-10", "crps": 0.06556117934753944, "crps_null": 0.06764927241651415, "crps_lift": 0.030866452725735165, "z_score": 0.7923150276736174, "tier": "significant", "famous": false}, {"date": "2020-11-19", "crps": 0.031827787929496906, "crps_null": 0.03762570149785767, "crps_lift": 0.15409449757875968, "z_score": 0.36481613387691125, "tier": "significant", "famous": true}, {"date": "2021-03-12", "crps": 0.0415179162842302, "crps_null": 0.0347985949573096, "crps_lift": -0.19309174221441291, "z_score": -0.41151346313876497, "tier": "significant", "famous": true}, {"date": "2022-03-07", "crps": 0.02382231273807072, "crps_null": 0.022434296613748645, "crps_lift": -0.061870276042951276, "z_score": 0.7119355814796281, "tier": "significant", "famous": false}, {"date": "2022-04-29", "crps": 0.010740048380227518, "crps_null": 0.012045916336249693, "crps_lift": 0.10840752331081992, "z_score": 0.10153126819357326, "tier": "significant", "famous": false}, {"date": "2022-05-12", "crps": 0.022157890240941225, "crps_null": 0.02019384423725067, "crps_lift": -0.09725963915615278, "z_score": 0.5634992650554945, "tier": "significant", "famous": false}, {"date": "2022-06-02", "crps": 0.03382156988242127, "crps_null": 0.028666568897140577, "crps_lift": -0.17982622907462403, "z_score": -0.7182062191590121, "tier": "significant", "famous": false}, {"date": "2022-06-13", "crps": 0.15040683375386063, "crps_null": 0.146949883099254, "crps_lift": -0.023524691423345425, "z_score": 2.2741095017253516, "tier": "significant", "famous": false}, {"date": "2022-06-21", "crps": 0.014645632597957543, "crps_null": 0.015617739543590749, "crps_lift": 0.06224376728270781, "z_score": 0.057155541166014, "tier": "significant", "famous": false}, {"date": "2022-11-08", "crps": 0.024522139708048604, "crps_null": 0.02243269329734755, "crps_lift": -0.0931429134703193, "z_score": 0.4379078691180704, "tier": "significant", "famous": true}], "unavailable": false, "error": null, "notes": ["n_tests=19: per-ticker PIT calibration is statistically underpowered at this sample size; treat calibration_ok as indicative and prefer the pooled universe verdict.", "mean_crps_lift_demeaned=0.003435312279565893"], "n_famous": 9, "n_obscure": 10, "mean_crps_lift_famous": -0.016847921534900827, "mean_crps_lift_obscure": -0.012124716110553933, "salience_split_source": "computed from per_event.famous in this file"}
+{
+ "ticker": "BA",
+ "n_tests": 19,
+ "mean_crps_lift": -0.008062417253222525,
+ "mean_fhs_lift": 0.009595199181407669,
+ "fhs_lift_ci90": [
+  -0.024005910044701508,
+  0.043341065582298846
+ ],
+ "mean_retrieval_increment": -0.017657616434630197,
+ "retrieval_increment_ci90": [
+  -0.039444938140027544,
+  0.004033791781166243
+ ],
+ "pit_histogram": [
+  2,
+  2,
+  3,
+  1,
+  0,
+  2,
+  3,
+  2,
+  1,
+  3
+ ],
+ "calibration_ok": true,
+ "per_event": [
+  {
+   "date": "2020-02-28",
+   "crps": 0.024522707632960612,
+   "crps_null": 0.028533861555689606,
+   "crps_lift": 0.14057522200072411,
+   "z_score": -0.5974245027025047,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.02392696578404062,
+   "fhs_lift_vs_null": 0.16145363860610656,
+   "retrieval_increment": -0.02087841660538245
+  },
+  {
+   "date": "2020-03-09",
+   "crps": 0.4045314520756245,
+   "crps_null": 0.40336779268051665,
+   "crps_lift": -0.0028848594662825226,
+   "z_score": -8.80211363479413,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.40526813037169984,
+   "fhs_lift_vs_null": -0.004711178546395098,
+   "retrieval_increment": 0.0018263190801125757
+  },
+  {
+   "date": "2020-03-16",
+   "crps": 0.1464597055489892,
+   "crps_null": 0.14641297766587477,
+   "crps_lift": -0.00031915123822613304,
+   "z_score": -1.970941716232137,
+   "tier": "major",
+   "famous": true,
+   "crps_fhs": 0.14574058134163353,
+   "fhs_lift_vs_null": 0.004592463967065097,
+   "retrieval_increment": -0.0049116152052912304
+  },
+  {
+   "date": "2020-03-23",
+   "crps": 0.393729563701713,
+   "crps_null": 0.39932480559052397,
+   "crps_lift": 0.014011756370948867,
+   "z_score": 4.429403307773152,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.3950637988931175,
+   "fhs_lift_vs_null": 0.010670528446399104,
+   "retrieval_increment": 0.0033412279245497636
+  },
+  {
+   "date": "2020-03-30",
+   "crps": 0.02394475811524307,
+   "crps_null": 0.023740575898707816,
+   "crps_lift": -0.008600558697751124,
+   "z_score": -0.2561810468372038,
+   "tier": "major",
+   "famous": true,
+   "crps_fhs": 0.02243245318977794,
+   "fhs_lift_vs_null": 0.05510071510106354,
+   "retrieval_increment": -0.06370127379881467
+  },
+  {
+   "date": "2020-04-09",
+   "crps": 0.020587235107412838,
+   "crps_null": 0.02369657276844746,
+   "crps_lift": 0.13121465671081256,
+   "z_score": 0.0917985080245958,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.019678185667143473,
+   "fhs_lift_vs_null": 0.1695767206747536,
+   "retrieval_increment": -0.03836206396394104
+  },
+  {
+   "date": "2020-04-24",
+   "crps": 0.03471414328149296,
+   "crps_null": 0.028339933084666147,
+   "crps_lift": -0.22491973350055988,
+   "z_score": 0.27135595206932855,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.033548234680550126,
+   "fhs_lift_vs_null": -0.1837796010429548,
+   "retrieval_increment": -0.04114013245760509
+  },
+  {
+   "date": "2020-06-03",
+   "crps": 0.11786300032405211,
+   "crps_null": 0.11878333811296063,
+   "crps_lift": 0.0077480377595828456,
+   "z_score": 1.2849635212841157,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.12206813895851218,
+   "fhs_lift_vs_null": -0.027653717244650666,
+   "retrieval_increment": 0.03540175500423351
+  },
+  {
+   "date": "2020-06-10",
+   "crps": 0.038272916743365915,
+   "crps_null": 0.03601900729733058,
+   "crps_lift": -0.06257555705046797,
+   "z_score": -0.4177673626912013,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.03539381639088153,
+   "fhs_lift_vs_null": 0.017357249778935085,
+   "retrieval_increment": -0.07993280682940306
+  },
+  {
+   "date": "2020-11-09",
+   "crps": 0.07467765231639215,
+   "crps_null": 0.07801373231831851,
+   "crps_lift": 0.04276272782738043,
+   "z_score": 0.8020927081290499,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.07858959127159806,
+   "fhs_lift_vs_null": -0.007381507539337825,
+   "retrieval_increment": 0.050144235366718255
+  },
+  {
+   "date": "2020-11-19",
+   "crps": 0.03214159934701134,
+   "crps_null": 0.03762570149785767,
+   "crps_lift": 0.14575415028896085,
+   "z_score": 0.3598500953983413,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.03455604169708419,
+   "fhs_lift_vs_null": 0.08158412145347663,
+   "retrieval_increment": 0.06417002883548423
+  },
+  {
+   "date": "2021-03-12",
+   "crps": 0.04150924215526061,
+   "crps_null": 0.0347985949573096,
+   "crps_lift": -0.19284247557073875,
+   "z_score": -0.48072624920858353,
+   "tier": "significant",
+   "famous": true,
+   "crps_fhs": 0.03906020168795181,
+   "fhs_lift_vs_null": -0.12246490801913937,
+   "retrieval_increment": -0.07037756755159938
+  },
+  {
+   "date": "2022-03-07",
+   "crps": 0.02420887203704672,
+   "crps_null": 0.022434296613748645,
+   "crps_lift": -0.07910100565446489,
+   "z_score": 0.6133254827619969,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.02384309708538926,
+   "fhs_lift_vs_null": -0.06279673019822889,
+   "retrieval_increment": -0.016304275456236
+  },
+  {
+   "date": "2022-04-27",
+   "crps": 0.011558339685379164,
+   "crps_null": 0.014031463974145633,
+   "crps_lift": 0.17625561333610282,
+   "z_score": 0.2658395742955385,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.011938548945231532,
+   "fhs_lift_vs_null": 0.14915870737155473,
+   "retrieval_increment": 0.027096905964548085
+  },
+  {
+   "date": "2022-05-11",
+   "crps": 0.021804381916441004,
+   "crps_null": 0.01902376061940803,
+   "crps_lift": -0.14616570049752345,
+   "z_score": -0.4347045282677615,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.01909748593406271,
+   "fhs_lift_vs_null": -0.00387543326104863,
+   "retrieval_increment": -0.1422902672364748
+  },
+  {
+   "date": "2022-06-02",
+   "crps": 0.03504476905011031,
+   "crps_null": 0.028666568897140577,
+   "crps_lift": -0.22249611301078803,
+   "z_score": -0.6558227524258373,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.03145482056858372,
+   "fhs_lift_vs_null": -0.09726492491821258,
+   "retrieval_increment": -0.12523118809257544
+  },
+  {
+   "date": "2022-06-13",
+   "crps": 0.1444849962902751,
+   "crps_null": 0.146949883099254,
+   "crps_lift": 0.01677365614040032,
+   "z_score": 2.0271214795428905,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.14755944260593776,
+   "fhs_lift_vs_null": -0.004148077520225359,
+   "retrieval_increment": 0.02092173366062568
+  },
+  {
+   "date": "2022-06-21",
+   "crps": 0.01566798161566632,
+   "crps_null": 0.015617739543590749,
+   "crps_lift": -0.003216987447853193,
+   "z_score": 0.039101097684633254,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.01562606437209888,
+   "fhs_lift_vs_null": -0.0005330367102676382,
+   "retrieval_increment": -0.0026839507375855548
+  },
+  {
+   "date": "2022-11-07",
+   "crps": 0.027649307201035922,
+   "crps_null": 0.03123652165116256,
+   "crps_lift": 0.11484039388851512,
+   "z_score": 0.5455326526553419,
+   "tier": "significant",
+   "famous": false,
+   "crps_fhs": 0.029755168531067418,
+   "fhs_lift_vs_null": 0.0474237540478522,
+   "retrieval_increment": 0.06741663984066293
+  }
+ ],
+ "unavailable": false,
+ "error": null,
+ "notes": [
+  "n_tests=19: per-ticker PIT calibration is statistically underpowered at this sample size; treat calibration_ok as indicative and prefer the pooled universe verdict.",
+  "mean_crps_lift_demeaned=0.0009373050592534751"
+ ]
+}
