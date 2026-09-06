@@ -1,0 +1,14 @@
+{
+  "symbol": "AMZN",
+  "name": "Amazon.com Inc.",
+  "provider_name": "Amazon.com, Inc.",
+  "sector": "Consumer Cyclical",
+  "industry": "Internet Retail",
+  "exchange": "NMS",
+  "country": "United States",
+  "employees": 1595000,
+  "currency": "USD",
+  "beta": 1.443,
+  "description": "Amazon.com engages in the retail sale of consumer products, advertising, and subscription services, and operates Amazon Web Services (AWS).",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

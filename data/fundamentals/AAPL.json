@@ -1,0 +1,14 @@
+{
+  "symbol": "AAPL",
+  "name": "Apple Inc.",
+  "provider_name": "Apple Inc.",
+  "sector": "Technology",
+  "industry": "Consumer Electronics",
+  "exchange": "NMS",
+  "country": "United States",
+  "employees": 150000,
+  "currency": "USD",
+  "beta": 1.085,
+  "description": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

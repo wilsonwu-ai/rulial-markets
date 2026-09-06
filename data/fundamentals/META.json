@@ -1,0 +1,14 @@
+{
+  "symbol": "META",
+  "name": "Meta Platforms Inc.",
+  "provider_name": "Meta Platforms, Inc.",
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "exchange": "NMS",
+  "country": "United States",
+  "employees": 75472,
+  "currency": "USD",
+  "beta": 1.243,
+  "description": "Meta Platforms develops products that enable people to connect and share through mobile devices, PCs, VR headsets, and AI glasses; segments are Family of Apps and Reality Labs.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

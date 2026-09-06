@@ -1,0 +1,14 @@
+{
+  "symbol": "BA",
+  "name": "The Boeing Company",
+  "provider_name": "The Boeing Company",
+  "sector": "Industrials",
+  "industry": "Aerospace & Defense",
+  "exchange": "NYQ",
+  "country": "United States",
+  "employees": 182000,
+  "currency": "USD",
+  "beta": 1.213,
+  "description": "Boeing designs, develops, manufactures, sells, services, and supports commercial jetliners, military aircraft, satellites, and space systems.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

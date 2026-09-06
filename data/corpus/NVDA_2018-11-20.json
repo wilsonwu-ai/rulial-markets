@@ -1,0 +1,66 @@
+{
+  "ticker": "NVDA",
+  "event_date": "2018-11-20",
+  "move_pct": -0.252,
+  "direction": "down",
+  "lookback_days": 30,
+  "window": {
+    "start": "2018-10-21",
+    "end_exclusive": "2018-11-20"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:39:07+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 1,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 2,
+    "sec": 2,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "curated": 2,
+    "sec-edgar": 2
+  },
+  "n_articles": 4,
+  "articles": [
+    {
+      "url": "https://www.fool.com/investing/2018/11/16/nvidias-earnings-were-solid-but-stock-plunges-17-o.aspx",
+      "title": "NVIDIA's Earnings Were Solid, but Stock Plunges 17% on Weak Outlook Due to \"Crypto Hangover\"",
+      "published": "2018-11-16",
+      "source": "curated",
+      "snippet": "[curated seed; publisher fool.com] Contemporaneous coverage of the Q3 FY19 guidance cut and channel inventory glut that opened the November 2018 collapse."
+    },
+    {
+      "url": "https://www.theregister.com/2018/11/16/nvidia_q3_2019/",
+      "title": "Nvidia's Q3 2019 results: crypto hangover hits gaming GPU sales",
+      "published": "2018-11-16",
+      "source": "curated",
+      "snippet": "[curated seed; publisher theregister.com] Trade-press coverage of the same guidance cut, from a publisher whose archive is still resolvable."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581018000150/nvda2019q310q.htm",
+      "title": "NVDA 10-Q: Q3FY19 10-Q",
+      "published": "2018-11-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001045810-18-000150, period 2018-10-28. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581018000148/form8-kq3fy19.htm",
+      "title": "NVDA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2018-11-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001045810-18-000148, period 2018-11-15. Filing date is the authoritative publication date."
+    }
+  ]
+}

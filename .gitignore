@@ -41,3 +41,6 @@ yarn-error.log*
 # data/events.jsonl    -> COMMITTED. without refetching from Yahoo.
 # data/corpus/*.json   -> COMMITTED. The news harvest is ~400-800 web calls;
 #                         nobody should have to run it twice.
+
+# --- cloudflare -------------------------------------------------------------
+.wrangler/

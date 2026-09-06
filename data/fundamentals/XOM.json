@@ -1,0 +1,14 @@
+{
+  "symbol": "XOM",
+  "name": "Exxon Mobil Corporation",
+  "provider_name": "ExxonMobil Holdings Corporation",
+  "sector": "Energy",
+  "industry": "Oil & Gas Integrated",
+  "exchange": "NYQ",
+  "country": "United States",
+  "employees": 57900,
+  "currency": "USD",
+  "beta": 0.175,
+  "description": "ExxonMobil engages in the exploration and production of crude oil and natural gas, with Upstream, Energy Products, Chemical Products, and Specialty Products segments.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

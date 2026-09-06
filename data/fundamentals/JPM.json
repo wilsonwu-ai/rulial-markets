@@ -1,0 +1,14 @@
+{
+  "symbol": "JPM",
+  "name": "JPMorgan Chase & Co.",
+  "provider_name": "JPMorgan Chase & Co.",
+  "sector": "Financial Services",
+  "industry": "Banks - Diversified",
+  "exchange": "NYQ",
+  "country": "United States",
+  "employees": 320560,
+  "currency": "USD",
+  "beta": 0.975,
+  "description": "JPMorgan Chase operates as a bank and financial holding company through Consumer & Community Banking, Commercial & Investment Bank, and Asset & Wealth Management.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

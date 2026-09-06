@@ -1,0 +1,14 @@
+{
+  "symbol": "MSFT",
+  "name": "Microsoft Corporation",
+  "provider_name": "Microsoft Corporation",
+  "sector": "Technology",
+  "industry": "Software - Infrastructure",
+  "exchange": "NMS",
+  "country": "United States",
+  "employees": 223000,
+  "currency": "USD",
+  "beta": 1.108,
+  "description": "Microsoft Corporation develops and supports a portfolio of technology solutions for individuals and businesses worldwide across Productivity and Business Processes, Intelligent Cloud, and More Personal Computing.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

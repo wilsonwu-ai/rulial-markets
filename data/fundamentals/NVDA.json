@@ -1,0 +1,14 @@
+{
+  "symbol": "NVDA",
+  "name": "NVIDIA Corporation",
+  "provider_name": "NVIDIA Corporation",
+  "sector": "Technology",
+  "industry": "Semiconductors",
+  "exchange": "NMS",
+  "country": "United States",
+  "employees": 42000,
+  "currency": "USD",
+  "beta": 2.217,
+  "description": "NVIDIA Corporation operates as a data center scale AI infrastructure company; it operates through Compute & Networking, and Graphics segments.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

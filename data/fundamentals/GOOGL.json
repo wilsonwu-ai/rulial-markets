@@ -1,0 +1,14 @@
+{
+  "symbol": "GOOGL",
+  "name": "Alphabet Inc.",
+  "provider_name": "Alphabet Inc.",
+  "sector": "Communication Services",
+  "industry": "Internet Content & Information",
+  "exchange": "NMS",
+  "country": "United States",
+  "employees": 198933,
+  "currency": "USD",
+  "beta": 1.225,
+  "description": "Alphabet operates through Google Services, Google Cloud, and Other Bets segments.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}

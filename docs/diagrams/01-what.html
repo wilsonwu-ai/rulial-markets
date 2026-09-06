@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What rulial-markets does</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#f5f5f5; --paper-2:#ececec; --ink:#2d3142; --muted:#4f5d75; --soft:#7a8399;
+    --rule:rgba(45,49,66,0.14); --rule-strong:rgba(45,49,66,0.28);
+    --accent:#eb6c36; --accent-tint:rgba(235,108,54,0.10); --accent-half:rgba(235,108,54,0.55);
+    --link:#2e5aa8;
+    --node:#ffffff; --store:rgba(45,49,66,0.06); --zone:rgba(45,49,66,0.03); --input:rgba(79,93,117,0.12);
+    --font-sans:'Geist',system-ui,sans-serif; --font-serif:'Instrument Serif',serif; --font-mono:'Geist Mono',ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#2d3142; --paper-2:#393e53; --ink:#f5f5f5; --muted:#bfc0c0; --soft:#8e98ac;
+      --rule:rgba(245,245,245,0.18); --rule-strong:rgba(245,245,245,0.34);
+      --accent:#f08a59; --accent-tint:rgba(240,138,89,0.16); --accent-half:rgba(240,138,89,0.60);
+      --link:#6a95d8;
+      --node:rgba(245,245,245,0.07); --store:rgba(245,245,245,0.09); --zone:rgba(245,245,245,0.04); --input:rgba(245,245,245,0.11);
+    }
+  }
+  body{font-family:var(--font-sans);background:var(--paper);color:var(--ink);padding:3rem 2rem;display:flex;justify-content:center}
+  .frame{max-width:1440px;width:100%}
+  .eyebrow{font-family:var(--font-mono);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+  h1{font-family:var(--font-serif);font-size:clamp(1.75rem,2.6vw + .75rem,2.5rem);font-weight:400;letter-spacing:-.02em;line-height:1.12;margin-bottom:.5rem}
+  .sub{color:var(--muted);font-size:.95rem;line-height:1.5;max-width:66ch;margin-bottom:1.75rem}
+  .wrap{overflow-x:auto}
+  svg{width:100%;min-width:980px;display:block}
+  footer{margin-top:1.75rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;color:var(--soft);text-transform:uppercase}
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="frame">
+  <p class="eyebrow">01 · What we are building</p>
+  <h1>One sentence in. A scored distribution out.</h1>
+  <p class="sub">You describe an event that has not happened. The system finds the historical jumps that rhyme with it, simulates a cloud of forward paths, flattens that cloud into a distribution, and then scores the distribution against what actually happened. The point is never the median. The point is whether the spread was honest.</p>
+
+  <div class="wrap">
+  <svg viewBox="0 184 1600 756" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="what-title what-desc">
+    <title id="what-title">What rulial-markets does, end to end</title>
+    <desc id="what-desc">A six-step pipeline: an analyst describes an event, the system retrieves historical analog jumps from a train-only ledger, generates a 2000-path ensemble, coarse-grains it into quantiles, scores it against the realized return alongside an unconditional-volatility null model, and shows the lift and calibration verdict.</desc>
+    <defs>
+      <marker id="w-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="var(--muted)"/></marker>
+      <marker id="w-arrow-accent" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="var(--accent)"/></marker>
+    </defs>
+
+    <rect x="0" y="184" width="1600" height="756" fill="var(--paper)"/>
+
+    <!-- ============ ARROWS FIRST (z-order) ============ -->
+    <!-- main chain, y = 364 -->
+    <line x1="272" y1="364" x2="316" y2="364" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#w-arrow)"/>
+    <line x1="512" y1="364" x2="556" y2="364" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#w-arrow)"/>
+    <line x1="752" y1="364" x2="796" y2="364" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#w-arrow-accent)"/>
+    <line x1="992" y1="364" x2="1036" y2="364" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#w-arrow)"/>
+    <line x1="1232" y1="364" x2="1276" y2="364" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#w-arrow)"/>
+
+    <!-- store feeds, straight verticals (shared x) -->
+    <line x1="416" y1="608" x2="416" y2="428" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#w-arrow)"/>
+    <line x1="656" y1="608" x2="656" y2="428" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#w-arrow)"/>
+    <line x1="1136" y1="608" x2="1136" y2="428" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#w-arrow-accent)"/>
+
+    <!-- ============ NODES ============ -->
+    <!-- A -->
+    <rect x="80" y="304" width="192" height="120" rx="6" fill="var(--paper)"/>
+    <rect x="80" y="304" width="192" height="120" rx="6" fill="var(--input)" stroke="var(--soft)" stroke-width="1.2"/>
+    <rect x="92" y="316" width="64" height="16" rx="2" fill="none" stroke="var(--soft)" stroke-width="1"/>
+    <text x="124" y="328" fill="var(--muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">INPUT</text>
+    <text x="176" y="368" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Describe an event</text>
+    <text x="176" y="392" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">free text + ticker</text>
+    <text x="176" y="412" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">+ as_of date</text>
+
+    <!-- B -->
+    <rect x="320" y="304" width="192" height="120" rx="6" fill="var(--paper)"/>
+    <rect x="320" y="304" width="192" height="120" rx="6" fill="var(--node)" stroke="var(--ink)" stroke-width="1.2"/>
+    <rect x="332" y="316" width="72" height="16" rx="2" fill="none" stroke="var(--rule-strong)" stroke-width="1"/>
+    <text x="368" y="328" fill="var(--muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">RETRIEVE</text>
+    <text x="416" y="368" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Find the analogs</text>
+    <text x="416" y="392" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">past 25% / 5d jumps</text>
+    <text x="416" y="412" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">train window only</text>
+
+    <!-- C  (FOCAL) -->
+    <rect x="560" y="304" width="192" height="120" rx="6" fill="var(--paper)"/>
+    <rect x="560" y="304" width="192" height="120" rx="6" fill="var(--accent-tint)" stroke="var(--accent)" stroke-width="1.6"/>
+    <rect x="572" y="316" width="56" height="16" rx="2" fill="none" stroke="var(--accent-half)" stroke-width="1"/>
+    <text x="600" y="328" fill="var(--accent)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">MODEL</text>
+    <text x="656" y="368" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Generate ensemble</text>
+    <text x="656" y="392" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">2000 paths x 5 days</text>
+    <text x="656" y="412" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">generator.py</text>
+
+    <!-- D -->
+    <rect x="800" y="304" width="192" height="120" rx="6" fill="var(--paper)"/>
+    <rect x="800" y="304" width="192" height="120" rx="6" fill="var(--node)" stroke="var(--ink)" stroke-width="1.2"/>
+    <rect x="812" y="316" width="64" height="16" rx="2" fill="none" stroke="var(--rule-strong)" stroke-width="1"/>
+    <text x="844" y="328" fill="var(--muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">REDUCE</text>
+    <text x="896" y="368" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Coarse-grain it</text>
+    <text x="896" y="392" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">p5 p25 p50 p75 p95</text>
+    <text x="896" y="412" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">mean · std</text>
+
+    <!-- E -->
+    <rect x="1040" y="304" width="192" height="120" rx="6" fill="var(--paper)"/>
+    <rect x="1040" y="304" width="192" height="120" rx="6" fill="var(--node)" stroke="var(--ink)" stroke-width="1.2"/>
+    <rect x="1052" y="316" width="56" height="16" rx="2" fill="none" stroke="var(--rule-strong)" stroke-width="1"/>
+    <text x="1080" y="328" fill="var(--muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">SCORE</text>
+    <text x="1136" y="368" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Score vs actual</text>
+    <text x="1136" y="392" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">CRPS vs CRPS_null</text>
+    <text x="1136" y="412" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">PIT · z-score</text>
+
+    <!-- F -->
+    <rect x="1280" y="304" width="192" height="120" rx="6" fill="var(--paper)"/>
+    <rect x="1280" y="304" width="192" height="120" rx="6" fill="var(--node)" stroke="var(--ink)" stroke-width="1.2"/>
+    <rect x="1292" y="316" width="64" height="16" rx="2" fill="none" stroke="var(--rule-strong)" stroke-width="1"/>
+    <text x="1324" y="328" fill="var(--muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">OUTPUT</text>
+    <text x="1376" y="368" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Read the verdict</text>
+    <text x="1376" y="392" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">crps_lift · flat PIT?</text>
+    <text x="1376" y="412" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">+ leakage notice</text>
+
+    <!-- ============ STORES ============ -->
+    <rect x="320" y="608" width="192" height="112" rx="6" fill="var(--paper)"/>
+    <rect x="320" y="608" width="192" height="112" rx="6" fill="var(--store)" stroke="var(--muted)" stroke-width="1.2"/>
+    <rect x="332" y="620" width="64" height="16" rx="2" fill="none" stroke="var(--rule-strong)" stroke-width="1"/>
+    <text x="364" y="632" fill="var(--muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">LEDGER</text>
+    <text x="416" y="672" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Seed corpus</text>
+    <text x="416" y="696" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">events + articles</text>
+    <text x="416" y="714" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">to 2019-12-31</text>
+
+    <rect x="560" y="608" width="192" height="112" rx="6" fill="var(--paper)"/>
+    <rect x="560" y="608" width="192" height="112" rx="6" fill="var(--store)" stroke="var(--muted)" stroke-width="1.2"/>
+    <rect x="572" y="620" width="60" height="16" rx="2" fill="none" stroke="var(--rule-strong)" stroke-width="1"/>
+    <text x="602" y="632" fill="var(--muted)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">PRICES</text>
+    <text x="656" y="672" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Daily OHLCV</text>
+    <text x="656" y="696" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">10-ticker universe</text>
+    <text x="656" y="714" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">data.py</text>
+
+    <rect x="1040" y="608" width="192" height="112" rx="6" fill="var(--paper)"/>
+    <rect x="1040" y="608" width="192" height="112" rx="6" fill="var(--accent-tint)" stroke="var(--accent)" stroke-width="1.6"/>
+    <rect x="1052" y="620" width="48" height="16" rx="2" fill="none" stroke="var(--accent-half)" stroke-width="1"/>
+    <text x="1076" y="632" fill="var(--accent)" font-size="8" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">NULL</text>
+    <text x="1136" y="672" fill="var(--ink)" font-size="16" font-weight="600" font-family="var(--font-sans)" text-anchor="middle">Null model</text>
+    <text x="1136" y="696" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">trailing 250d sigma</text>
+    <text x="1136" y="714" fill="var(--soft)" font-size="12" font-family="var(--font-mono)" text-anchor="middle">zero drift</text>
+
+    <!-- ============ ANNOTATION CALLOUTS (max 2) ============ -->
+    <text x="1472" y="224" fill="var(--ink)" font-size="18" font-style="italic" font-family="var(--font-serif)" text-anchor="end">Flat PIT is the win condition,</text>
+    <text x="1472" y="248" fill="var(--ink)" font-size="18" font-style="italic" font-family="var(--font-serif)" text-anchor="end">not &#8220;we called the crash.&#8221;</text>
+    <path d="M 1396 264 Q 1390 282 1376 300" fill="none" stroke="var(--rule-strong)" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <circle cx="1376" cy="300" r="3" fill="var(--ink)"/>
+
+    <text x="1472" y="812" fill="var(--accent)" font-size="18" font-style="italic" font-family="var(--font-serif)" text-anchor="end">The null is frozen in. We are not</text>
+    <text x="1472" y="836" fill="var(--accent)" font-size="18" font-style="italic" font-family="var(--font-serif)" text-anchor="end">allowed to delete it to look better.</text>
+    <path d="M 1300 796 Q 1268 740 1236 692" fill="none" stroke="var(--accent-half)" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <circle cx="1236" cy="692" r="3" fill="var(--accent)"/>
+
+    <!-- ============ LEGEND ============ -->
+    <line x1="80" y1="876" x2="1520" y2="876" stroke="var(--rule)" stroke-width="1"/>
+    <text x="80" y="908" fill="var(--muted)" font-size="12" font-family="var(--font-mono)" letter-spacing="0.16em">LEGEND</text>
+
+    <rect x="176" y="896" width="20" height="16" rx="3" fill="var(--input)" stroke="var(--soft)" stroke-width="1.2"/>
+    <text x="204" y="908" fill="var(--muted)" font-size="12" font-family="var(--font-mono)">user input</text>
+
+    <rect x="336" y="896" width="20" height="16" rx="3" fill="var(--node)" stroke="var(--ink)" stroke-width="1.2"/>
+    <text x="364" y="908" fill="var(--muted)" font-size="12" font-family="var(--font-mono)">pipeline step</text>
+
+    <rect x="528" y="896" width="20" height="16" rx="3" fill="var(--store)" stroke="var(--muted)" stroke-width="1.2"/>
+    <text x="556" y="908" fill="var(--muted)" font-size="12" font-family="var(--font-mono)">stored corpus</text>
+
+    <rect x="732" y="896" width="20" height="16" rx="3" fill="var(--accent-tint)" stroke="var(--accent)" stroke-width="1.6"/>
+    <text x="760" y="908" fill="var(--muted)" font-size="12" font-family="var(--font-mono)">the two things the whole argument rests on: the generator, and the baseline it must beat</text>
+  </svg>
+  </div>
+
+  <footer>rulial-markets · docs/diagrams/01-what.html · contract sections 0, 5, 7</footer>
+</div>
+</body>
+</html>

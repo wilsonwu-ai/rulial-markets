@@ -1,0 +1,14 @@
+{
+  "symbol": "TSLA",
+  "name": "Tesla Inc.",
+  "provider_name": "Tesla, Inc.",
+  "sector": "Consumer Cyclical",
+  "industry": "Auto Manufacturers",
+  "exchange": "NMS",
+  "country": "United States",
+  "employees": 134785,
+  "currency": "USD",
+  "beta": 1.845,
+  "description": "Tesla designs, develops, manufactures, leases, and sells electric vehicles and energy generation and storage systems.",
+  "source": "mcp:dubbs-research/equity_profile[yfinance] 2026-09-06"
+}
