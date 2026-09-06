@@ -144,12 +144,38 @@ def test_selected_windows_never_overlap():
     )
 
 
-def test_dedupe_keeps_the_most_extreme_window():
+def test_dedupe_keeps_the_first_crossing_not_the_most_extreme():
+    """LEAK GUARD. The event date may not be chosen by looking at later bars.
+
+    Bar 11 is the biggest window in this neighbourhood, but bar 10 is where the
+    threshold was first crossed. Selecting 11 would mean bar 11's price decided
+    bar 10's event -- lookahead, and it biases the walk-forward sample toward
+    the trough of a crash, where the forward return is likelier to bounce.
+
+    This test previously asserted the opposite. It is inverted deliberately.
+    """
     idx = np.array([10, 11, 12, 13])
     ret = np.array([0.26, 0.40, 0.28, 0.27])
     keep = E._dedupe_candidates(idx, ret, WINDOW_DAYS)
     assert len(keep) == 1
-    assert idx[keep[0]] == 11  # the 40% window, not the first one
+    assert idx[keep[0]] == 10, "the first bar to cross must win, not the largest"
+
+
+def test_dedupe_decision_is_causal():
+    """Selection must not change when bars AFTER the emitted one change.
+
+    Same prefix, different future: if appending a much larger later window can
+    move an already-emitted event date, the detector is reading the future.
+    """
+    prefix_idx, prefix_ret = np.array([10, 11]), np.array([0.26, 0.20])
+    quiet = E._dedupe_candidates(prefix_idx, prefix_ret, WINDOW_DAYS)
+    loud = E._dedupe_candidates(
+        np.array([10, 11, 12]), np.array([0.26, 0.20, 0.99]), WINDOW_DAYS
+    )
+    assert [prefix_idx[k] for k in quiet] == [10]
+    assert [np.array([10, 11, 12])[k] for k in loud][0] == 10, (
+        "a huge window two bars later rewrote an earlier event date"
+    )
 
 
 def test_dedupe_does_not_delete_a_distinct_earlier_event():

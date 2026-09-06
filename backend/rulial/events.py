@@ -187,47 +187,73 @@ def _dedupe_candidates(idx: np.ndarray, ret: np.ndarray, window_days: int) -> Li
     Two windows ending at bars ``a`` and ``b`` overlap iff ``|a - b| < window_days``
     (each window covers the half-open bar span ``(end - window_days, end]``).
 
-    Algorithm -- greedy non-maximum suppression, the standard approach:
+    Algorithm -- FIRST CROSSING WINS, then a fixed refractory period:
 
-    1. Sort all qualifying windows by ``|return|`` descending (ties broken by the
-       earlier date, so the result is fully deterministic).
-    2. Take the largest surviving window, emit it, and suppress every other
-       window within ``window_days`` bars of it.
-    3. Repeat until nothing is left.
+    1. Walk qualifying windows left to right in time.
+    2. Emit the first one. That bar is the event date, frozen immediately.
+    3. Skip every window ending within ``window_days`` bars of it.
+    4. Resume scanning at the next surviving window.
 
-    NMS is used here rather than a left-to-right scan on purpose. A forward scan
-    that walks a *chain* of overlapping bars looking for the chain maximum will
-    silently delete legitimate earlier events whenever the chain is long and its
-    peak sits at the far end -- A overlaps B, B overlaps C, but A and C do not
-    overlap, so dropping A is wrong. That bug cost this lane its first ledger
-    (it collapsed 118 NVDA candidate windows into 1 event instead of ~40).
-    NMS has no such ordering artefact: the winner in each neighbourhood is the
-    globally most extreme window, and only genuinely overlapping windows die.
+    WHY NOT "MOST EXTREME WINDOW", WHICH THIS FUNCTION USED TO DO
+    ------------------------------------------------------------
+    The previous implementation was greedy non-maximum suppression: sort every
+    qualifying window in the entire series by ``|return|`` descending, take the
+    global maximum, suppress its neighbours, repeat. It produced pairwise
+    non-overlapping events and it read as the standard approach, but it is
+    LOOKAHEAD, and the backtest is the thing it contaminates.
+
+    Concretely: a slide crosses the threshold on Thursday. NMS then inspects
+    Friday, and Saturday, and every other bar in the ticker's history, decides
+    Wednesday-to-Friday was the more extreme window, and stamps the event on
+    Friday. Friday's price has now been used to choose the date on which the
+    model is asked to forecast forward. The model itself never sees the future
+    -- analog admissibility is filtered separately and correctly -- but the
+    SAMPLE OF DATES the walk-forward scores was selected with hindsight, and
+    that selection is biased: the global maximum of a crash sits at its trough,
+    where the forward 5-day return is systematically more likely to bounce.
+
+    First-crossing needs only ``close[t - window_days .. t]`` to decide bar t.
+    A detector running live in 2008 emits exactly the same ledger this one does.
+
+    THE BUG THIS MUST NOT REINTRODUCE
+    ---------------------------------
+    NMS was originally chosen over a forward scan that walked a *chain* of
+    overlapping bars looking for the chain maximum. That scan silently deleted
+    legitimate earlier events: A overlaps B, B overlaps C, A and C do not
+    overlap, peak at C, so A is thrown away. It collapsed 118 NVDA candidate
+    windows into 1 event instead of ~40.
+
+    This scan never searches for a maximum, so the chain never forms. It emits
+    on sight and suppresses a fixed ``window_days`` afterwards, which is exactly
+    the overlap radius -- so A survives, B dies, C survives.
+    (``test_dedupe_does_not_delete_a_distinct_earlier_event`` pins this.)
 
     Guarantees: the selected windows are pairwise non-overlapping, every emitted
-    window is the most extreme within its own overlap radius, and the output is
-    sorted by bar index ascending.
+    window is the EARLIEST in its own overlap radius, the decision at each bar
+    uses no bar after it, and the output is sorted by bar index ascending.
 
     Parameters
     ----------
     idx : bar positions of qualifying windows, strictly increasing.
     ret : the window return at each of those bars (same length as ``idx``).
+          Unused by the selection itself -- kept in the signature because the
+          caller has it and because a magnitude-aware variant is exactly the
+          leak documented above, so its absence here should be conspicuous.
 
     Returns the selected positions *into ``idx``* (not bar numbers).
     """
     n = len(idx)
     if n == 0:
         return []
-    order = sorted(range(n), key=lambda k: (-abs(ret[k]), idx[k]))
-    alive = np.ones(n, dtype=bool)
     selected: List[int] = []
-    for k in order:
-        if not alive[k]:
+    next_allowed = -(10**9)
+    for k in range(n):
+        bar = int(idx[k])
+        if bar < next_allowed:
             continue
         selected.append(k)
-        # suppress every window overlapping this one (including itself)
-        alive &= np.abs(idx - idx[k]) >= window_days
-    return sorted(selected)
+        next_allowed = bar + window_days
+    return selected
 
 
 # ---------------------------------------------------------------------------
@@ -245,7 +271,10 @@ def detect_events(
 
     A bar qualifies when ``|close[t] / close[t - window_days] - 1| >= threshold``.
     Overlapping qualifying windows are de-duplicated (see ``_dedupe_candidates``)
-    so one crash produces one event.
+    so one crash produces one event: the FIRST bar to cross is the event date,
+    and the next ``window_days`` bars are suppressed. The detector is causal --
+    bar t is decided on ``close[t - window_days .. t]`` alone -- so no event
+    date carries information from after itself.
 
     ``ticker`` may be omitted if the frame carries a ticker/symbol column or a
     ``.attrs['ticker']``; it is only used to stamp ``Event.ticker``.
