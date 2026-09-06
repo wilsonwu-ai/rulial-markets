@@ -10,6 +10,67 @@ Audience: the build team (including Guzel) and anyone judging, testing, or attac
 
 ---
 
+## 0a. Status board — verified facts, not plans
+
+**Live frontend:** https://rulial-markets.wilson-af8.workers.dev (Cloudflare Workers, static export)
+**Repo:** https://github.com/wilsonwu-ai/rulial-markets
+
+### Team and lanes
+
+| Person | GitHub | Lane | Categories |
+|---|---|---|---|
+| Wilson | [@wilsonwu-ai](https://github.com/wilsonwu-ai) | Product, eval methodology, demo | C, F |
+| Guzel | [@guzalkhonkh-stack](https://github.com/guzalkhonkh-stack) | Generator and ensemble math | B |
+| Pavel | [@Pavel-Tk](https://github.com/Pavel-Tk) | Data pipeline and corpus | A |
+| Harsh | [@harshk02](https://github.com/harshk02) | API and integration | D |
+| Luke | [@lrast](https://github.com/lrast) | Frontend | E |
+
+### The event ledger, built from real prices
+
+Two tiers over a 5 day window: **major** at 25 percent and above is the stage narrative,
+**significant** at 15 percent and above builds the training corpus. At 25 percent alone, four of
+ten tickers (AAPL, BA, MSFT, XOM) produced zero pre-2019 events, because mega caps do not move 25
+percent in a week, and JPM's ten were all 2008-09, one regime wearing ten hats.
+
+| Split | Events | Major | Significant |
+|---|---|---|---|
+| Train, to 2019-12-31 | **164** | 36 | 128 |
+| Test, 2020 onward | **165** | 32 | 133 |
+| **Total** | **329** | 68 | 261 |
+
+Ten tickers, all contributing. 77 carry the `famous` salience flag. Counts were produced twice by
+independent implementations and agree exactly, so this is an anchor rather than one implementation
+agreeing with itself. Overlapping windows are collapsed by greedy non-maximum suppression, so one
+crash yields one event and the survivor is the most extreme window in its neighbourhood.
+
+### One verified end-to-end run
+
+NVDA, as of 2018-11-15, event text: *"NVIDIA warns datacenter revenue will miss badly on crypto
+collapse."* Real prices, real analogs, real scoring.
+
+```
+quantiles   p5 -16.1%   p50 -0.9%   p95 +14.1%     2000 paths, 25 analogs
+CRPS        0.2260   vs null 0.2504   ->  LIFT +9.7%
+actual      -28.4%      z-score -3.08      PIT 0.0005
+```
+
+**Read both numbers together, because that is the honest result.** The ensemble beat the
+unconditional baseline by 9.7 percent, and the realized return still landed 3.1 sigma below our
+mean with a PIT of 0.0005, meaning only 0.05 percent of sampled paths were worse. Our distribution
+was better than the null and still too narrow to contain the tail. That is what a black swan is,
+and it is exactly why the scorecard reports calibration instead of accuracy. Do not hide this on
+stage; lead with it.
+
+### Known limitations, current
+
+- The deployed frontend runs in **mock mode**. The FastAPI backend is not hosted; run it locally
+  with `make api`, or expose it with a tunnel and set `NEXT_PUBLIC_API_BASE`.
+- The news corpus is thin. Only a handful of events have harvested articles so far.
+- Six price files were briefly synthetic because `yfinance` was missing from the environment.
+  Refetched and verified; IPO dates confirm authenticity (META 2012-05-18, TSLA 2010-06-29).
+
+---
+
 ## 0. The two layers (read this before anything else)
 
 This product has two layers. They are held separately on purpose, and merging them is the single failure mode that would sink the project.
