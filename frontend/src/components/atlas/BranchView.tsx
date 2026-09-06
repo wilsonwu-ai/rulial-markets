@@ -9,6 +9,7 @@ import { TRAIN_END } from "@/lib/types";
 import { PRESETS } from "../presets";
 import { Verdict } from "../Verdict";
 import { DisclosureLine } from "../DisclosureLine";
+import { MethodDisclosure } from "../MethodDisclosure";
 import { RulialPanel } from "../RulialPanel";
 import { SourceTag } from "../SourceTag";
 import { BranchChart } from "./BranchChart";
@@ -297,6 +298,11 @@ export function BranchView({
             )}
           </div>
         </section>
+      )}
+
+      {/* ---------------- show your work, folded ---------------- */}
+      {ens && (
+        <MethodDisclosure ensemble={ens} mode={shownSource as Mode} ticker={ticker} />
       )}
 
       {/* ---------------- one line, per contract §8 ---------------- */}
