@@ -232,6 +232,77 @@ This is a property of the problem, not a limitation of the implementation.
 - The achieved probability is displayed next to the target whenever they differ,
   so the viewer always sees what the model actually computed.
 
+## 6d. Rulial ensemble (FROZEN) — and why we keep Boltzmann beside it
+
+### The distinction, stated so nobody has to guess
+
+**Boltzmann ensemble** (what we had): one generator, many sampled paths. An ensemble over
+*configurations under a fixed rule*. Its spread answers "how uncertain is the outcome, GIVEN
+that my model is the right one?"
+
+**Rulial ensemble** (what we add): many generators, each sampled. An ensemble over *possible
+rules*. Its spread answers "how uncertain am I, given that I do not know which rule generates
+reality?" Wolfram's rulial ensemble is explicitly an ensemble of rules, and he contrasts it
+against the gas case, which is Boltzmann.
+
+**We ship both.** Dropping Boltzmann would hide the comparison that justifies the choice.
+
+### FROZEN rule grid — 144 generators
+
+```python
+RULE_AXES = {
+  "analog_selection": ["tfidf_magnitude", "ticker_only", "tier_only", "text_only"],   # 4
+  "conditioning":     ["cross_ticker", "same_ticker", "same_era"],                    # 3
+  "drift_prior":      ["scenario", "zero", "unconditional", "sign_only"],             # 4
+  "resampling":       ["block", "iid", "stationary"],                                 # 3
+}                                                                    # 4*3*4*3 = 144
+```
+
+A *rule* is one point in that grid. No lane may add, remove or reweight an axis: the grid is
+the ensemble, and quietly dropping the axis that disagrees with you is the exact move this
+construction exists to prevent.
+
+### API
+
+```
+POST /api/rulial   -> { ticker, event_text, as_of_date, horizon_days, n_paths_per_rule }
+  -> { boltzmann: { quantiles, median, p_down, n_paths },
+       rulial: { n_generators,
+                 per_generator: [ { rule: {...4 axes...}, quantiles, median, p_down } ],
+                 consensus: { median_band: [lo,hi], p_down_band: [lo,hi],
+                              sign_agreement: float, reducible: bool } },
+       invariants:     [ str ],   # properties surviving >=90% of rules
+       rule_dependent: [ str ],   # properties that flip across rules
+       note: str }
+```
+
+### What may be reported
+
+- **Invariant** = holds under at least 90% of the 144 generators. Only invariants may be
+  stated as findings.
+- **Rule-dependent** = flips sign or changes materially across the grid. These must be
+  reported as rule-dependent and MUST NOT be presented as skill.
+
+This is not decoration. The measured `+14.8% lift that becomes -4.5% when demeaned` is a
+rule-dependence on the drift axis, and a Boltzmann ensemble cannot see it by construction.
+The rulial ensemble surfaces it without anyone remembering to check.
+
+### Wolfram mapping, now literal rather than analogical
+
+| Wolfram | Ours |
+|---|---|
+| Rulial ensemble | the 144 generators |
+| Computationally bounded observer | us, unable to run every possible rule |
+| Coarse-graining | what survives across rules |
+| Pockets of reducibility | regions of rule-space where the generators agree |
+
+### Frozen for this endpoint
+
+- The grid is 144 and fixed. No pruning to improve a result.
+- `reducible` is a measured agreement fraction, never asserted.
+- Boltzmann stays in the response so the comparison is always visible.
+- A property that flips across rules is never reported as a finding.
+
 ## 7. Scoring (FROZEN — this is the whole defensibility argument)
 
 - Primary metric: **CRPS** (continuous ranked probability score) of the ensemble
