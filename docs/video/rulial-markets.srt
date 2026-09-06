@@ -1,0 +1,103 @@
+1
+00:00:01,046 --> 00:00:03,113
+Something happens to a company you own.
+
+2
+00:00:03,647 --> 00:00:04,541
+Does it matter?
+
+3
+00:00:05,005 --> 00:00:08,779
+Rulial Markets turns that question into a landscape you can explore.
+
+4
+00:00:10,463 --> 00:00:11,984
+Start with real history.
+
+5
+00:00:12,239 --> 00:00:13,969
+Three hundred twenty-nine events.
+
+6
+00:00:14,155 --> 00:00:15,211
+Ten companies.
+
+7
+00:00:15,676 --> 00:00:21,202
+Retrieve comparable shocks, using only price windows that end before the scenario's cutoff.
+
+8
+00:00:22,817 --> 00:00:24,999
+Imagine a Boeing fleet-grounding shock.
+
+9
+00:00:25,162 --> 00:00:31,373
+The engine resamples historical returns into two thousand possible outcomes over five trading days.
+
+10
+00:00:31,838 --> 00:00:34,368
+You see a range, with its evidence attached.
+
+11
+00:00:35,983 --> 00:00:37,747
+But there is a deeper uncertainty.
+
+12
+00:00:37,968 --> 00:00:40,290
+What if the rules inside your model are wrong?
+
+13
+00:00:41,660 --> 00:00:42,659
+Pull it apart.
+
+14
+00:00:43,193 --> 00:00:49,288
+Change which analogs count, how they are grouped, the drift assumption, and how returns are resampled.
+
+15
+00:00:49,822 --> 00:00:52,330
+Now run one hundred forty-four combinations.
+
+16
+00:00:54,339 --> 00:00:55,140
+Same event.
+
+17
+00:00:55,268 --> 00:00:56,301
+Different rules.
+
+18
+00:00:56,940 --> 00:01:03,453
+In this stored example, the simulated fraction of down outcomes ranges from twenty-five to eighty-two percent.
+
+19
+00:01:03,917 --> 00:01:07,063
+A confident-looking answer can depend on an assumption.
+
+20
+00:01:08,678 --> 00:01:10,233
+So we ask what survives.
+
+21
+00:01:10,698 --> 00:01:15,876
+Downside tail risk appears in one hundred thirty-seven of the one hundred forty-four models.
+
+22
+00:01:16,410 --> 00:01:19,788
+Directional agreement stays below our ninety-percent threshold.
+
+23
+00:01:21,403 --> 00:01:24,341
+This is a small, hand-chosen map of model risk.
+
+24
+00:01:24,805 --> 00:01:26,012
+Rulial Markets.
+
+25
+00:01:26,651 --> 00:01:28,044
+Explore what could happen.
+
+26
+00:01:28,300 --> 00:01:30,378
+See what survives changing the rules.

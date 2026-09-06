@@ -200,6 +200,34 @@ export function AtlasView({
         </label>
       </div>
 
+      {/* When a viewer focuses NVDA, offer the hardware explainer. The atlas
+          says WHAT the stock did; that page says what the company actually
+          sells, which is the question a value investor asks next. */}
+      {focus === "NVDA" && (
+        <a
+          href="/nvidia/studio.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-wrap items-center gap-x-5 gap-y-2 rounded-lg border border-[var(--color-blue)] bg-[var(--color-blue-tint)] px-5 py-4 transition hover:bg-white"
+        >
+          <span className="label-title" style={{ color: "var(--color-blue)" }}>
+            Why NVIDIA
+          </span>
+          <span className="max-w-[74ch] text-sm leading-relaxed text-[var(--color-ink-dim)]">
+            The atlas shows what the stock did. This shows what the company actually sells:
+            an interactive teardown of the H100 — cooling, memory, compute, NVLink, CUDA and
+            the software layer. Drag to rotate, or take it apart.
+          </span>
+          <span
+            className="num ml-auto whitespace-nowrap text-sm font-semibold transition group-hover:translate-x-0.5"
+            style={{ color: "var(--color-blue)" }}
+            aria-hidden
+          >
+            Open the teardown →
+          </span>
+        </a>
+      )}
+
       {/* ---------- chart + drill ---------- */}
       <div className={sel ? "grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_380px]" : "grid min-w-0 gap-6"}>
         <div className="panel min-w-0 overflow-hidden">

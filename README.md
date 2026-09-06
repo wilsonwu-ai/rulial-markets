@@ -128,6 +128,34 @@ escape. Full argument in [`docs/BOLTZMANN_VS_RULIAL.md`](docs/BOLTZMANN_VS_RULIA
 
 ## T & A — Task and Action
 
+### Watch it first — 93 seconds
+
+<video src="https://github.com/wilsonwu-ai/rulial-markets/raw/main/docs/video/rulial-markets.mp4" controls muted playsinline poster="docs/img/video-poster.jpg" width="100%"></video>
+
+[![Rulial Markets — 93 second walkthrough](docs/img/video-poster.jpg)](https://github.com/wilsonwu-ai/rulial-markets/raw/main/docs/video/rulial-markets.mp4)
+
+*If the player does not load, the image above links straight to the file.*
+Subtitles: [`rulial-markets.srt`](docs/video/rulial-markets.srt) ·
+Narration and timings: [`presenter-notes.md`](docs/video/presenter-notes.md)
+
+| | Chapter | |
+|---|---|---|
+| 01 | The question | 0.0–10.0s |
+| 02 | Real history | 10.0–22.4s |
+| 03 | Possible outcomes | 22.4–35.5s |
+| 04 | **The hidden assumption** | 35.5–41.2s |
+| 05 | The space of rules | 41.2–53.9s |
+| 06 | **Model disagreement** | 53.9–68.2s |
+| 07 | What survives | 68.2–81.0s |
+| 08 | Rulial Markets | 81.0–92.7s |
+
+Chapters 04 through 07 are the argument. Four is the drift assumption nobody states. Five is why
+we ensemble over rules rather than paths. Six is those rules disagreeing, which is the thing a
+single-generator Monte Carlo cannot show you. Seven is what is left once you only keep what
+survives all of them.
+
+---
+
 **Task:** build a web app where a value investor describes an event and gets an honest read on
 what it means for a stock, with the evidence attached.
 
