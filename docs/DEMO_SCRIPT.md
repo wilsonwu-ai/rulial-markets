@@ -12,8 +12,56 @@ rather than guess. That is on-brand for this project.
 
 > "We asked whether AI could help a regular investor. We built a thing that shows you what
 > actually happened, historically, when events like the one you're describing hit a stock.
-> Then we spent most of the day trying to prove our own model was fooling us. It mostly was,
-> and the interesting part is what survived."
+>
+> Then Wolfram's essay this month told us we were doing it wrong, so we rebuilt it. And the
+> rebuild caught a bug in our own model that we could not otherwise have seen. That's the talk."
+
+---
+
+## The Wolfram thread — how the sponsor's work actually changed the build
+
+*Source: Stephen Wolfram, "What's Special About Life? Bulk Orchestration and the Rulial Ensemble
+in Biology and Beyond," November 2025.*
+https://writings.stephenwolfram.com/2025/11/whats-special-about-life-bulk-orchestration-and-the-rulial-ensemble-in-biology-and-beyond/
+
+Three things came out of that essay, in the order they hit us.
+
+**1. It told us where to look.** Wolfram's argument is that when a process is computationally
+irreducible you cannot predict the trajectory, but you can still predict the *statistics of the
+ensemble it lives in* — which is why he reaches for statistical mechanics instead of a better
+model. That is a falsifiable claim about markets, so we tested it on about nine thousand
+held-out observations. Forward **direction**: R-squared of approximately zero. Forward
+**dispersion**: R-squared of about 0.10. The framing pointed at the right variable and the
+wrong one, and it was right about which was which. **We did not discover volatility clustering.
+Wolfram's scheme correctly predicted where in an unpredictable system a bounded observer gets
+traction, and we checked.**
+
+**2. It caught us in a category error.** We had built a Monte Carlo: one generator, two thousand
+paths. That is an ensemble over *configurations under a fixed rule* — Boltzmann's ensemble, the
+gas case Wolfram explicitly contrasts *against* the rulial one. The rulial ensemble is an
+ensemble over *possible rules*. Our repository was named after a thing we had not built.
+
+**3. So we built it, and it found a real bug.** We took the generator apart into four decisions —
+how it selects analogs, what it conditions on, what drift it assumes, how it resamples — and ran
+all 144 combinations. **The drift axis dominates the variance, and on some events it flips the
+sign of the answer.** Same event text, same data, change one rule, and the forecast reverses.
+A Boltzmann ensemble reports one median and is structurally blind to that. The rulial one
+surfaces it without anyone remembering to check.
+
+**The mapping, and we grade our own honesty on it:**
+
+| Wolfram | Ours | Rigorous or analogical |
+|---|---|---|
+| Rulial ensemble | the 144 generators | **rigorous** |
+| Computationally bounded observer | us, unable to run every rule | **rigorous** |
+| Coarse-graining | collapsing paths to quantile bands | **rigorous** |
+| Computational irreducibility | why we resample rather than solve | **rigorous** |
+| Pockets of reducibility | where the 144 rules agree | **measured** — and it came back FALSE for direction, 100% for width |
+| Bulk orchestration | weak analogs producing coherent aggregate structure | **analogical.** We say so. |
+
+**The concession to lead with:** 144 points is a small, hand-chosen slice of rule space, not
+Wolfram's full rulial ensemble. We picked the axes, which is itself a rule choice we cannot
+escape. Say that before anyone asks.
 
 ---
 
@@ -40,6 +88,20 @@ rather than guess. That is on-brand for this project.
 > basically a coin flip — and that's not our model failing, that's the market. What IS
 > predictable is how *big* the move will be. We measured that three separate ways and they all
 > agree."
+
+**Beat 5 — the Wolfram payoff (30s).** Open the 144-rule panel.
+> "And this is where the sponsor's work actually earned its place. What you saw a moment ago was
+> one generator making two thousand guesses. Wolfram would call that the gas case — an ensemble
+> over configurations under one fixed rule. His rulial ensemble is an ensemble over the *rules*
+> themselves.
+>
+> So here are 144 of them. Where the bands stack up, the rules agree and you're in a pocket of
+> reducibility. Where they fan apart, you're looking at irreducibility directly.
+>
+> And it caught something. One of those four axes — the drift assumption — flips the sign of the
+> answer on its own. We had a result that looked like skill, plus fourteen point eight percent.
+> Take the assumed drift out and it becomes minus four point five. **The essay is why we found
+> that instead of putting it on a slide.**"
 
 ---
 
