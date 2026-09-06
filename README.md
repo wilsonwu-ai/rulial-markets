@@ -5,6 +5,10 @@
 Built at [Sundai Hack 139](https://www.sundai.club/events/boston/wolfram-hack), Harvard iLabs,
 6 September 2026. Theme: *AI Agents That Adapt and Evolve, with Wolfram Research*.
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-006FCF.svg)](LICENSE)
+[![tests](https://img.shields.io/badge/tests-378%20passing-00733B.svg)](backend/tests)
+[![data](https://img.shields.io/badge/data-329%20events%20%C2%B7%2010%20tickers-00175A.svg)](data/events.jsonl)
+
 **Live app → https://rulial-markets.wilson-af8.workers.dev**
 
 ![rulial-markets](docs/img/webapp-hero.jpg)
@@ -246,14 +250,43 @@ instead, because a tool that knows what it cannot predict is worth more than one
 
 ## Run it
 
+MIT licensed and fully open source. No API keys required, no accounts, no paid data feeds.
+
 ```bash
 git clone https://github.com/wilsonwu-ai/rulial-markets && cd rulial-markets
-make install
-make data      # build the event ledger and news corpus
-make demo      # FastAPI on :8000, Next.js on :3000
+make install     # creates .venv, installs Python + npm dependencies
+make data        # builds the event ledger and news corpus from public sources
+make demo        # FastAPI on :8000, Next.js on :3000
 ```
 
-The deployed frontend runs on precomputed real results, so it works with no backend at all.
+**This path is tested, not assumed.** On 2026-09-06 we cloned the repo into a clean directory
+and ran it from scratch:
+
+| Step | Result |
+|---|---|
+| `make install` from a bare clone | exit 0, Python and npm dependencies both |
+| Every core module imports | `config, types, data, events, generator, evaluate` ✅ |
+| `pytest backend/tests` | **378 passed** |
+| API boots and answers | `{"ok":true}`, all five modules loaded |
+| `/api/events?ticker=NVDA` | 39 events returned |
+
+The deployed frontend also runs on precomputed real results, so the web app works with no
+backend running at all. `make demo` gives you the live version with your own data.
+
+**Optional.** Set `ANTHROPIC_API_KEY` to enable LLM-proposed scenario weights. Without it the
+generator falls back to a deterministic keyword prior and **says so loudly in its output** —
+it never pretends a fallback was a model result.
+
+## License
+
+[MIT](LICENSE). Use it, fork it, sell something built on it. Attribution appreciated, not required.
+
+**Not investment advice.** This produces statistical descriptions of historical market
+behaviour. It is a research and educational tool, and nobody involved is your financial adviser.
+
+**Third-party data.** Prices via yfinance and OpenBB, filings from the SEC EDGAR public API,
+news retrieved from public sources and cited with links. Article text is not redistributed here.
+The MIT license covers this repository's code and derived analysis, not the underlying data.
 
 ## Repo map
 
