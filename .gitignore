@@ -1,0 +1,43 @@
+# --- python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- virtualenvs ------------------------------------------------------------
+.venv/
+venv/
+env/
+
+# --- node / next ------------------------------------------------------------
+node_modules/
+.next/
+out/
+frontend/.next/
+frontend/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# --- secrets ----------------------------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- os / editor ------------------------------------------------------------
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# --- runtime scratch --------------------------------------------------------
+*.pid
+.api.pid
+*.log
+
+# --- NOT ignored, on purpose -------------------------------------------------
+# data/prices/*.csv    -> COMMITTED. Teammates joining mid-day get the dataset
+# data/events.jsonl    -> COMMITTED. without refetching from Yahoo.
+# data/corpus/*.json   -> COMMITTED. The news harvest is ~400-800 web calls;
+#                         nobody should have to run it twice.
