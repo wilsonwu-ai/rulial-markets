@@ -1,0 +1,44 @@
+{
+ "swan_ba": {
+  "ticker": "BA",
+  "as_of": "2019-03-08",
+  "sign_agreement": 0.7152777777777778,
+  "reducible": false,
+  "n": 144,
+  "drift_eta2": null
+ },
+ "geo_xom": {
+  "ticker": "XOM",
+  "as_of": "2019-09-13",
+  "sign_agreement": 0.5208333333333334,
+  "reducible": false,
+  "n": 144,
+  "drift_eta2": null
+ },
+ "boom_nvda": {
+  "ticker": "NVDA",
+  "as_of": "2016-11-10",
+  "sign_agreement": 0.6458333333333334,
+  "reducible": false,
+  "n": 144,
+  "drift_eta2": null
+ },
+ "control_nvda": {
+  "ticker": "NVDA",
+  "as_of": "2016-11-10",
+  "sign_agreement": 0.7777777777777778,
+  "reducible": false,
+  "n": 144,
+  "drift_eta2": null
+ },
+ "_noise": {
+  "n_paths_per_rule": 1000,
+  "sign_agreement_samples": [
+   0.6319444444444444,
+   0.6666666666666666,
+   0.6319444444444444,
+   0.7013888888888888
+  ],
+  "spread": 0.06944444444444442
+ }
+}

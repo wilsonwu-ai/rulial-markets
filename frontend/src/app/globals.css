@@ -387,3 +387,77 @@ select:focus-visible, input:focus-visible, textarea:focus-visible {
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-gray-100); }
 ::-webkit-scrollbar-thumb { background: var(--color-gray-400); border: 2px solid var(--color-gray-100); border-radius: 999px; }
+
+/* ============================================================
+   RULIAL FAN — 144 overlaid generator bands
+   ============================================================
+   The highlight is done in CSS on purpose. Toggling one `data-hl`
+   attribute on the <svg> re-styles all 144 bands and all 144 median
+   dots without React touching a single node, which is the difference
+   between a smooth hover and a visible stall on a projector.
+
+   Opacities are chosen so that STACKING is the signal: a single band
+   at 0.014 is all but invisible, while 144 of them fully overlapped
+   reach roughly 0.82 alpha. That leaves a real gradient between the
+   two, which is the whole picture — dense core, pale fanned edges. That contrast is the finding — dense where the rules agree,
+   fanned where they do not — so nothing here may be raised to make an
+   individual band "readable" on its own.
+   ============================================================ */
+
+.rulial-svg .rband {
+  fill: var(--color-blue);
+  fill-opacity: 0.014;
+  transition: fill-opacity 160ms ease;
+}
+.rulial-svg .rdot {
+  fill: var(--color-blue);
+  fill-opacity: 0.55;
+  transition: fill-opacity 160ms ease;
+}
+
+/* Any highlight active: everything recedes to a neutral ghost first... */
+.rulial-svg[data-hl] .rband { fill: var(--color-gray-500); fill-opacity: 0.006; }
+.rulial-svg[data-hl] .rdot  { fill: var(--color-gray-400); fill-opacity: 0.28; }
+
+/* ...then the selected level is brought back in brand blue. Enumerated
+   because CSS cannot match "the class that equals the attribute". Fourteen
+   levels: 4 analog + 3 conditioning + 4 drift + 3 resampling. */
+.rulial-svg[data-hl="a0"] .rband.rf-a0,
+.rulial-svg[data-hl="a1"] .rband.rf-a1,
+.rulial-svg[data-hl="a2"] .rband.rf-a2,
+.rulial-svg[data-hl="a3"] .rband.rf-a3,
+.rulial-svg[data-hl="c0"] .rband.rf-c0,
+.rulial-svg[data-hl="c1"] .rband.rf-c1,
+.rulial-svg[data-hl="c2"] .rband.rf-c2,
+.rulial-svg[data-hl="d0"] .rband.rf-d0,
+.rulial-svg[data-hl="d1"] .rband.rf-d1,
+.rulial-svg[data-hl="d2"] .rband.rf-d2,
+.rulial-svg[data-hl="d3"] .rband.rf-d3,
+.rulial-svg[data-hl="r0"] .rband.rf-r0,
+.rulial-svg[data-hl="r1"] .rband.rf-r1,
+.rulial-svg[data-hl="r2"] .rband.rf-r2 {
+  fill: var(--color-blue);
+  fill-opacity: 0.045;
+}
+
+.rulial-svg[data-hl="a0"] .rdot.rf-a0,
+.rulial-svg[data-hl="a1"] .rdot.rf-a1,
+.rulial-svg[data-hl="a2"] .rdot.rf-a2,
+.rulial-svg[data-hl="a3"] .rdot.rf-a3,
+.rulial-svg[data-hl="c0"] .rdot.rf-c0,
+.rulial-svg[data-hl="c1"] .rdot.rf-c1,
+.rulial-svg[data-hl="c2"] .rdot.rf-c2,
+.rulial-svg[data-hl="d0"] .rdot.rf-d0,
+.rulial-svg[data-hl="d1"] .rdot.rf-d1,
+.rulial-svg[data-hl="d2"] .rdot.rf-d2,
+.rulial-svg[data-hl="d3"] .rdot.rf-d3,
+.rulial-svg[data-hl="r0"] .rdot.rf-r0,
+.rulial-svg[data-hl="r1"] .rdot.rf-r1,
+.rulial-svg[data-hl="r2"] .rdot.rf-r2 {
+  fill: var(--color-blue);
+  fill-opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rulial-svg .rband, .rulial-svg .rdot { transition: none !important; }
+}

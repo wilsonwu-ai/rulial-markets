@@ -19,6 +19,7 @@ import { BacktestPanel } from "./BacktestPanel";
 import { EventLedger } from "./EventLedger";
 import { ModeToggle } from "./ModeToggle";
 import { ScenarioPanel } from "./ScenarioPanel";
+import { RulialPanel } from "./RulialPanel";
 import { PRESETS } from "./presets";
 
 export function Console() {
@@ -259,6 +260,14 @@ export function Console() {
             </div>
           </Panel>
         )}
+
+        <Panel
+          title="Rulial ensemble — 144 generators, and the one we started with"
+          index="04" delay={100}
+          right={<span className="label">grid frozen at 144 · agreement measured, never asserted</span>}
+        >
+          <RulialPanel ticker={ticker} asOf={asOf} text={text} horizon={horizon} mode={mode} />
+        </Panel>
 
         <LeakagePanel
           famous={bt?.n_famous}

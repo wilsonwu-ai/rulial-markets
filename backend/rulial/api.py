@@ -1098,3 +1098,167 @@ def scenario(req: ScenarioRequestModel) -> ScenarioResponse:
         error=None,
         leakage_disclosure=LEAKAGE_DISCLOSURE,
     )
+
+
+# ===========================================================================
+# CONTRACT.md s6d -- POST /api/rulial   (LANE W1-RULIAL-ENGINE)
+#
+# The rulial ensemble: the frozen 144-generator grid, plus the Boltzmann
+# single-generator result kept alongside it so the comparison is always on
+# screen. Every fraction below is measured by rulial.rulial, never asserted
+# here. Like every other route in this module it degrades to a well-formed
+# payload rather than raising.
+# ===========================================================================
+class RulialRequestModel(_Lenient):
+    ticker: str
+    event_text: str = ""
+    as_of_date: str = cfg.TRAIN_END
+    horizon_days: int = cfg.DEFAULT_HORIZON_DAYS
+    n_paths_per_rule: int = 250
+    n_paths: int = cfg.DEFAULT_N_PATHS      # the Boltzmann comparison's sample
+    seed: Optional[int] = None
+    use_llm: bool = False
+
+
+class PerGeneratorModel(_Lenient):
+    rule: Dict[str, str] = Field(default_factory=dict)
+    quantiles: Dict[str, Optional[float]] = Field(default_factory=dict)
+    median: Optional[float] = None
+    p_down: Optional[float] = None
+    mean: Optional[float] = None
+    std: Optional[float] = None
+    n_paths: int = 0
+    n_analogs: int = 0
+    drift_shift_log: float = 0.0
+    notes: List[str] = Field(default_factory=list)
+
+
+class ConsensusModel(_Lenient):
+    # Optional[float] throughout: an all-failed grid measures NOTHING, and a
+    # null on the wire is honest where a 0.0 would read as a measurement.
+    median_band: List[Optional[float]] = Field(default_factory=lambda: [None, None])
+    p_down_band: List[Optional[float]] = Field(default_factory=lambda: [None, None])
+    sign_agreement: Optional[float] = None
+    reducible: bool = False
+    majority_sign: str = "unknown"
+    n_median_negative: int = 0
+    n_median_positive: int = 0
+    n_median_zero: int = 0
+    median_of_medians: Optional[float] = None
+    p_down_median: Optional[float] = None
+
+
+class RulialBlockModel(_Lenient):
+    n_generators: int = 0
+    per_generator: List[PerGeneratorModel] = Field(default_factory=list)
+    consensus: ConsensusModel = Field(default_factory=ConsensusModel)
+
+
+class BoltzmannModel(_Lenient):
+    quantiles: Dict[str, Optional[float]] = Field(default_factory=dict)
+    median: Optional[float] = None
+    p_down: Optional[float] = None
+    n_paths: int = 0
+    mean: Optional[float] = None
+    std: Optional[float] = None
+    n_analogs: int = 0
+    narrative: str = ""
+    error: Optional[str] = None
+
+
+class RulialResponse(_Lenient):
+    boltzmann: BoltzmannModel = Field(default_factory=BoltzmannModel)
+    rulial: RulialBlockModel = Field(default_factory=RulialBlockModel)
+    invariants: List[str] = Field(default_factory=list)
+    rule_dependent: List[str] = Field(default_factory=list)
+    note: str = ""
+    variance_decomposition: Dict[str, Any] = Field(default_factory=dict)
+    failures: List[Dict[str, str]] = Field(default_factory=list)
+    diagnostics: Dict[str, Any] = Field(default_factory=dict)
+    unavailable: bool = False
+    error: Optional[str] = None
+    leakage_disclosure: str = ""
+
+
+def _finite(o: Any) -> Any:
+    """NaN/Inf -> None, recursively. JSON has no NaN and the UI must not get one."""
+    if isinstance(o, float):
+        return o if math.isfinite(o) else None
+    if isinstance(o, dict):
+        return {k: _finite(v) for k, v in o.items()}
+    if isinstance(o, (list, tuple)):
+        return [_finite(v) for v in o]
+    return o
+
+
+@app.post("/api/rulial", response_model=RulialResponse)
+def rulial(req: RulialRequestModel) -> RulialResponse:
+    """The 144-generator rulial ensemble. CONTRACT.md s6d.
+
+    The grid is frozen at 144 and this route never prunes it. `reducible` and
+    every agreement fraction arrive already measured from `rulial.rulial`; this
+    handler only serializes them. The Boltzmann block stays in the response by
+    contract, so the comparison is never quietly dropped.
+    """
+    ticker = (req.ticker or "").strip().upper()
+    as_of = (req.as_of_date or cfg.TRAIN_END)[:10]
+    horizon = max(1, min(int(req.horizon_days or cfg.DEFAULT_HORIZON_DAYS), 60))
+    n_pr = max(2, min(int(req.n_paths_per_rule or 250), 2000))
+    n_b = max(2, min(int(req.n_paths or cfg.DEFAULT_N_PATHS), MAX_N_PATHS))
+
+    if ticker not in cfg.UNIVERSE:
+        return RulialResponse(
+            unavailable=True,
+            error=f"'{ticker}' is not in the frozen universe {cfg.UNIVERSE}",
+            note="No grid was run: ticker outside the frozen universe.",
+            leakage_disclosure=LEAKAGE_DISCLOSURE,
+        )
+
+    mod, err = _safe_import("rulial")
+    run = getattr(mod, "rulial_ensemble", None) if mod else None
+    if not callable(run):
+        return RulialResponse(
+            unavailable=True,
+            error=err or "rulial.rulial.rulial_ensemble is unavailable",
+            note="The rulial engine could not be imported, so NO grid was run. This is an "
+                 "empty state, not a result: nothing here should be read as agreement.",
+            leakage_disclosure=LEAKAGE_DISCLOSURE,
+        )
+
+    fr = rtypes.ForecastRequest(
+        ticker=ticker, event_text=req.event_text or "", as_of_date=as_of,
+        horizon_days=horizon, n_paths=n_b,
+    )
+    try:
+        result = run(fr, n_paths_per_rule=n_pr,
+                     seed=(int(req.seed) if req.seed is not None else None),
+                     use_llm=bool(req.use_llm))
+    except Exception as exc:  # noqa: BLE001
+        log.exception("/api/rulial failed")
+        return RulialResponse(
+            unavailable=True,
+            error=f"{type(exc).__name__}: {exc}",
+            note="The rulial grid raised before producing any generator. Nothing was measured.",
+            diagnostics={"traceback_tail": traceback.format_exc()[-800:]},
+            leakage_disclosure=LEAKAGE_DISCLOSURE,
+        )
+
+    d = _finite(result.to_dict() if hasattr(result, "to_dict") else (_to_dict(result) or {}))
+    return RulialResponse(
+        boltzmann=BoltzmannModel(**(d.get("boltzmann") or {})),
+        rulial=RulialBlockModel(
+            n_generators=int((d.get("rulial") or {}).get("n_generators", 0) or 0),
+            per_generator=[PerGeneratorModel(**g)
+                           for g in ((d.get("rulial") or {}).get("per_generator") or [])],
+            consensus=ConsensusModel(**((d.get("rulial") or {}).get("consensus") or {})),
+        ),
+        invariants=list(d.get("invariants") or []),
+        rule_dependent=list(d.get("rule_dependent") or []),
+        note=str(d.get("note", "")),
+        variance_decomposition=d.get("variance_decomposition") or {},
+        failures=list(d.get("failures") or []),
+        diagnostics=d.get("diagnostics") or {},
+        unavailable=False,
+        error=None,
+        leakage_disclosure=LEAKAGE_DISCLOSURE,
+    )
