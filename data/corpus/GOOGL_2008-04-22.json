@@ -1,0 +1,72 @@
+{
+  "ticker": "GOOGL",
+  "event_date": "2008-04-22",
+  "move_pct": 0.242055,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2008-01-13",
+    "end_exclusive": "2008-04-22"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:57:14+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 6,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 5
+  },
+  "n_articles": 5,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312508083665/d8k.htm",
+      "title": "GOOGL 8-K: Results of Operations and Financial Condition; Other Events; Financial Statements and Exhibits",
+      "published": "2008-04-17",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-08-083665, period 2008-04-17. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312508064583/ddefa14a.htm",
+      "title": "GOOGL DEFA14A: DEFINITIVE ADDITIONAL MATERIALS",
+      "published": "2008-03-25",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001193125-08-064583. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312508064574/ddef14a.htm",
+      "title": "GOOGL DEF 14A: DEFINITIVE PROXY STATEMENT",
+      "published": "2008-03-25",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001193125-08-064574, period 2008-05-08. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312508057423/d8k.htm",
+      "title": "GOOGL 8-K: Completion of Acquisition or Disposition of Assets; Financial Statements and Exhibits",
+      "published": "2008-03-14",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-08-057423, period 2008-03-11. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312508032690/d10k.htm",
+      "title": "GOOGL 10-K: FORM 10-K",
+      "published": "2008-02-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-K, accession 0001193125-08-032690, period 2007-12-31. Filing date is the authoritative publication date."
+    }
+  ]
+}

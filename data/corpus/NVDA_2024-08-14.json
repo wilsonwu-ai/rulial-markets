@@ -1,0 +1,34 @@
+{
+  "ticker": "NVDA",
+  "event_date": "2024-08-14",
+  "move_pct": 0.193813,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2024-07-15",
+    "end_exclusive": "2024-08-14"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:43+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 0,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {},
+  "n_articles": 0,
+  "articles": []
+}

@@ -1,0 +1,93 @@
+{
+  "ticker": "BA",
+  "event_date": "2009-08-27",
+  "move_pct": 0.158248,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2009-05-19",
+    "end_exclusive": "2009-08-27"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:53:56+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 10,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 8
+  },
+  "n_articles": 8,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312509156623/d8k.htm",
+      "title": "BA 8-K: Other Events; Financial Statements and Exhibits",
+      "published": "2009-07-28",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-09-156623, period 2009-07-23. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312509152905/d10q.htm",
+      "title": "BA 10-Q: FORM 10-Q",
+      "published": "2009-07-22",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001193125-09-152905, period 2009-06-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312509152715/d8k.htm",
+      "title": "BA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2009-07-22",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-09-152715, period 2009-07-22. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312509144858/d8k.htm",
+      "title": "BA 8-K: Entry into a Material Definitive Agreement; Financial Statements and Exhibits",
+      "published": "2009-07-07",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-09-144858, period 2009-07-06. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312509139309/d8k.htm",
+      "title": "BA 8-K: Departure or Election of Directors or Principal Officers; Financial Statements and Exhibits",
+      "published": "2009-06-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-09-139309, period 2009-06-22. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312509137283/d8k.htm",
+      "title": "BA 8-K: Other Events",
+      "published": "2009-06-25",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-09-137283, period 2009-06-22. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312509135659/d11k.htm",
+      "title": "BA 11-K: ANNUAL REPORT ON FORM 11-K",
+      "published": "2009-06-23",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 11-K, accession 0001193125-09-135659, period 2008-12-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312509127777/d8k.htm",
+      "title": "BA 8-K: Departure or Election of Directors or Principal Officers; Amendments to Articles of Incorporation or Bylaws; Financial Statements and Exhibits",
+      "published": "2009-06-09",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-09-127777, period 2009-06-08. Filing date is the authoritative publication date."
+    }
+  ]
+}

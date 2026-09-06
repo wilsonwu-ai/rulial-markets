@@ -1,0 +1,79 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2015-08-25",
+  "move_pct": -0.156068,
+  "direction": "down",
+  "lookback_days": 100,
+  "window": {
+    "start": "2015-05-17",
+    "end_exclusive": "2015-08-25"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:22+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 6,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 6
+  },
+  "n_articles": 6,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312515296117/d45707d8k.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement; Material Modification to Rights of Security Holders; Other Events; Financial Statements and Exhibits",
+      "published": "2015-08-19",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-15-296117, period 2015-08-13. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459015006666/tsla-10q_20150630.htm",
+      "title": "TSLA 10-Q filed with the SEC",
+      "published": "2015-08-07",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001564590-15-006666, period 2015-06-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312515278803/d91160d8k.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2015-08-05",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-15-278803, period 2015-08-05. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312515243538/d79943d8k.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Regulation FD Disclosure; Financial Statements and Exhibits",
+      "published": "2015-07-02",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-15-243538, period 2015-07-02. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312515222013/d942001d8k.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement; Creation of a Direct Financial Obligation; Financial Statements and Exhibits",
+      "published": "2015-06-12",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-15-222013, period 2015-06-10. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312515219469/d940590d8k.htm",
+      "title": "TSLA 8-K: Departure or Election of Directors or Principal Officers; Submission of Matters to a Vote of Security Holders; Financial Statements and Exhibits",
+      "published": "2015-06-10",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-15-219469, period 2015-06-08. Filing date is the authoritative publication date."
+    }
+  ]
+}

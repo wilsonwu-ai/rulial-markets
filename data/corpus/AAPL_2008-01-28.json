@@ -1,0 +1,79 @@
+{
+  "ticker": "AAPL",
+  "event_date": "2008-01-28",
+  "move_pct": -0.194286,
+  "direction": "down",
+  "lookback_days": 100,
+  "window": {
+    "start": "2007-10-20",
+    "end_exclusive": "2008-01-28"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:53:56+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 7,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 6
+  },
+  "n_articles": 6,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000119312508010040/ddefa14a.htm",
+      "title": "AAPL DEFA14A: DEFINITIVE ADDITIONAL MATERIALS",
+      "published": "2008-01-23",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001193125-08-010040. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000119312508010038/ddef14a.htm",
+      "title": "AAPL DEF 14A: DEFINITIVE PROXY STATEMENT",
+      "published": "2008-01-23",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001193125-08-010038, period 2008-03-04. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000119312508009715/d8k.htm",
+      "title": "AAPL 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2008-01-22",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-08-009715, period 2008-01-22. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000118143108003342/rrd190089.htm",
+      "title": "AAPL 8-K: Results of Operations and Financial Condition; Other Events",
+      "published": "2008-01-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001181431-08-003342, period 2008-01-15. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000118143108002372/rrd188197.htm",
+      "title": "AAPL 8-K: Departure or Election of Directors or Principal Officers",
+      "published": "2008-01-08",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001181431-08-002372, period 2008-01-04. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000104746907009340/a2181030z10-k.htm",
+      "title": "AAPL 10-K filed with the SEC",
+      "published": "2007-11-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-K, accession 0001047469-07-009340, period 2007-09-29. Filing date is the authoritative publication date."
+    }
+  ]
+}

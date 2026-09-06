@@ -1,0 +1,86 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2011-08-08",
+  "move_pct": -0.178311,
+  "direction": "down",
+  "lookback_days": 100,
+  "window": {
+    "start": "2011-04-30",
+    "end_exclusive": "2011-08-08"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:22+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 9,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 7
+  },
+  "n_articles": 7,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312511208287/d8k.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2011-08-03",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-11-208287, period 2011-08-03. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312511192198/d8k.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement",
+      "published": "2011-07-20",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-11-192198, period 2011-07-15. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312511158545/d8k.htm",
+      "title": "TSLA 8-K: Submission of Matters to a Vote of Security Holders",
+      "published": "2011-06-03",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-11-158545, period 2011-06-01. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312511157135/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 1 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2011-06-02",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0001193125-11-157135. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312511156213/d8k.htm",
+      "title": "TSLA 8-K: Unregistered Sales of Equity Securities; Material Modification to Rights of Security Holders; Financial Statements and Exhibits",
+      "published": "2011-06-01",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-11-156213, period 2011-05-25. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312511149963/ds1.htm",
+      "title": "TSLA S-1: FORM S-1 REGISTRATION STATEMENT",
+      "published": "2011-05-25",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1, accession 0001193125-11-149963. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312511139677/d10q.htm",
+      "title": "TSLA 10-Q: FORM 10-Q",
+      "published": "2011-05-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001193125-11-139677, period 2011-03-31. Filing date is the authoritative publication date."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "ticker": "AMZN",
+  "event_date": "2012-04-30",
+  "move_pct": 0.231938,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2012-01-21",
+    "end_exclusive": "2012-04-30"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:53:56+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 9,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 7
+  },
+  "n_articles": 7,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312512187203/d316991d10q.htm",
+      "title": "AMZN 10-Q: FORM 10-Q",
+      "published": "2012-04-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001193125-12-187203, period 2012-03-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312512186222/d336343d8k.htm",
+      "title": "AMZN 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2012-04-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-12-186222, period 2012-04-26. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312512161812/d329990d8k.htm",
+      "title": "AMZN 8-K: Regulation FD Disclosure; Financial Statements and Exhibits",
+      "published": "2012-04-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-12-161812, period 2012-04-13. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312512161675/d329339ddefa14a.htm",
+      "title": "AMZN DEFA14A: DEFINITIVE ADDITIONAL MATERIALS",
+      "published": "2012-04-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001193125-12-161675. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312512161671/d329339ddef14a.htm",
+      "title": "AMZN DEF 14A: DEFINITIVE PROXY STATEMENT",
+      "published": "2012-04-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001193125-12-161671, period 2012-05-24. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312512050110/d295964d8k.htm",
+      "title": "AMZN 8-K: Departure or Election of Directors or Principal Officers",
+      "published": "2012-02-10",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-12-050110, period 2012-02-09. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312512032846/d269317d10k.htm",
+      "title": "AMZN 10-K: FORM 10-K",
+      "published": "2012-02-01",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-K, accession 0001193125-12-032846, period 2011-12-31. Filing date is the authoritative publication date."
+    }
+  ]
+}

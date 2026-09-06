@@ -1,0 +1,79 @@
+{
+  "ticker": "AMZN",
+  "event_date": "2022-05-05",
+  "move_pct": -0.194953,
+  "direction": "down",
+  "lookback_days": 30,
+  "window": {
+    "start": "2022-04-05",
+    "end_exclusive": "2022-05-05"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:02+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 7,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 6
+  },
+  "n_articles": 6,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000013/amzn-20220331.htm",
+      "title": "AMZN 10-Q filed with the SEC",
+      "published": "2022-04-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001018724-22-000013, period 2022-03-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872422000011/amzn-20220428.htm",
+      "title": "AMZN 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2022-04-28",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001018724-22-000011, period 2022-04-28. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465922047969/tm223357d7_defa14a.htm",
+      "title": "AMZN DEFA14A filed with the SEC",
+      "published": "2022-04-21",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001104659-22-047969. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465922045579/tm226241d2_8k.htm",
+      "title": "AMZN 8-K: Regulation FD Disclosure; Financial Statements and Exhibits",
+      "published": "2022-04-14",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001104659-22-045579, period 2022-04-14. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465922045572/tm223357-5_def14a.htm",
+      "title": "AMZN DEF 14A filed with the SEC",
+      "published": "2022-04-14",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001104659-22-045572, period 2022-05-25. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312522104336/d325485d8k.htm",
+      "title": "AMZN 8-K: Other Events; Financial Statements and Exhibits",
+      "published": "2022-04-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-22-104336, period 2022-04-13. Filing date is the authoritative publication date."
+    }
+  ]
+}

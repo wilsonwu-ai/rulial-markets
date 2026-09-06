@@ -1,0 +1,58 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2018-10-29",
+  "move_pct": 0.283196,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2018-09-29",
+    "end_exclusive": "2018-10-29"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:43+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 4,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 3
+  },
+  "n_articles": 3,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459018024902/tsla-8k_20181024.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2018-10-24",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-18-024902, period 2018-10-24. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459018024373/tsla-8k_20181016.htm",
+      "title": "TSLA 8-K: Other Events",
+      "published": "2018-10-17",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-18-024373, period 2018-10-16. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459018023815/tsla-8k_20181002.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Regulation FD Disclosure; Financial Statements and Exhibits",
+      "published": "2018-10-02",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-18-023815, period 2018-10-02. Filing date is the authoritative publication date."
+    }
+  ]
+}

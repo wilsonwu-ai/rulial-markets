@@ -1,0 +1,58 @@
+{
+  "ticker": "XOM",
+  "event_date": "2008-10-10",
+  "move_pct": -0.199897,
+  "direction": "down",
+  "lookback_days": 100,
+  "window": {
+    "start": "2008-07-02",
+    "end_exclusive": "2008-10-10"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:23+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 3,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 3
+  },
+  "n_articles": 3,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408808000104/r10q080508.htm",
+      "title": "XOM 10-Q filed with the SEC",
+      "published": "2008-08-05",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0000034088-08-000104, period 2008-06-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408808000102/r8k073108.htm",
+      "title": "XOM 8-K: Results of Operations and Financial Condition; Regulation FD Disclosure",
+      "published": "2008-07-31",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000034088-08-000102, period 2008-07-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/34088/000003408808000096/r8k070308.htm",
+      "title": "XOM 8-K: Other Events",
+      "published": "2008-07-03",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000034088-08-000096, period 2008-07-01. Filing date is the authoritative publication date."
+    }
+  ]
+}

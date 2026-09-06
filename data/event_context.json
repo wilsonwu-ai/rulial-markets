@@ -1,0 +1,2157 @@
+{
+  "AAPL|2008-01-28": {
+    "headline": "Apple guides FY08 Q2 far below consensus into a recession scare",
+    "cause": "Window 2008-01-18 to 2008-01-28. Apple reported FY08 Q1 after the close on 22 January. Profit rose 57% and still the stock collapsed, because the guide was the story: management forecast Q2 EPS of $0.94 against a $1.09 consensus and revenue near $6.8bn against $6.99bn (NBC News). AAPL fell 10.65% on 23 January and kept bleeding, another 2.50% and 4.12% on the two following sessions.",
+    "category": "guidance",
+    "sources": [
+      "https://www.nbcnews.com/id/wbna22789176",
+      "https://www.foxnews.com/story/apple-profit-nearly-doubles-but-forecast-well-below-expectations.print"
+    ],
+    "confidence": 0.92
+  },
+  "AAPL|2008-09-17": {
+    "headline": "Lehman fails, AIG is nationalised, the whole tape gaps down",
+    "cause": "Window 2008-09-10 to 2008-09-17. Nothing Apple did. Lehman Brothers filed the largest Chapter 11 in US history on 15 September, the Fed took a 79.9% equity stake in AIG for an $85bn loan on 16 September, and the S&P 500 still fell 4.71% on 17 September as the rescue failed to stop the run on the remaining broker-dealers (Benzinga). AAPL's own worst day was the 17th, at -8.6%, roughly twice the index.",
+    "category": "macro",
+    "sources": [
+      "https://benzinga.com/general/education/21/09/22971375/this-day-in-market-history-85b-aig-bailout",
+      "https://www.begintoinvest.com/september-15/",
+      "https://www.pbs.org/newshour/economy/business-july-dec08-aig_09-17"
+    ],
+    "confidence": 0.85
+  },
+  "AAPL|2008-10-03": {
+    "headline": "House rejects TARP, Dow loses 777 points, RBC and Morgan Stanley cut AAPL",
+    "cause": "Window 2008-09-26 to 2008-10-03, and it is dominated by a single day: 29 September 2008, AAPL -17.92%, the worst single session in the stock's history. Two forces landed together.",
+    "category": "macro",
+    "sources": [
+      "https://fortune.com/2008/09/29/apple-bruised-in-downgrades",
+      "https://money.cnn.com/2008/09/29/markets/markets_newyork/",
+      "https://money.cnn.com/2008/10/03/technology/apple/",
+      "https://www.theregister.com/2008/10/24/sec_jobs_heart_attack_probe/",
+      "https://fortune.com/2008/09/29/why-apple-shares-took-a-nosedive"
+    ],
+    "confidence": 0.93
+  },
+  "AAPL|2008-10-14": {
+    "headline": "Coordinated European bank recapitalisations spark the Dow's biggest point gain ever",
+    "cause": "Window 2008-10-07 to 2008-10-14, driven by 13 October (AAPL +13.9%). Over that weekend the UK committed £37bn to recapitalise RBS, HBOS and Lloyds TSB, France pledged up to €360bn of refinancing guarantees and capital, Germany put up €400bn of guarantees plus €100bn of state capital, and Paulson signalled the US would use TARP to buy bank equity directly rather than assets (Al Jazeera, Forbes).",
+    "category": "macro",
+    "sources": [
+      "https://www.aljazeera.com/news/2008/10/13/markets-surge-on-rescue-pledges",
+      "https://www.forbes.com/2008/10/13/europe-bailouts-update-markets-econ-cx_ll_po_1013markets14.html",
+      "https://www.macrumors.com/2008/10/14/apple-october-2008-notebook-media-event-coverage/"
+    ],
+    "confidence": 0.9
+  },
+  "AAPL|2008-11-03": {
+    "headline": "Dow's second-biggest point gain on record ahead of the October FOMC cut",
+    "cause": "Window 2008-10-27 to 2008-11-03, driven by 28 October (AAPL +8.5%). The Dow added 889 points that day, its second-biggest point gain ever at the time and its sixth-biggest percentage gain at 10.9%, as Asian markets rebounded overnight and buyers stepped into the cheapest valuations in two decades ahead of the FOMC's second cut of the month (CNN Money).",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/10/28/markets/markets_newyork/index.htm"
+    ],
+    "confidence": 0.85
+  },
+  "AAPL|2008-11-20": {
+    "headline": "S&P 500 closes at 752, the bear market low, on an auto-bailout stall",
+    "cause": "Window 2008-11-13 to 2008-11-20. This window ends on the exact closing low of the bear market: the S&P 500 settled at 752.44, its weakest level since 1997, after weak economic data, another shift in Treasury's approach to the banks, and a postponed Congressional vote on the auto rescue.",
+    "category": "macro",
+    "sources": [
+      "https://tradingeconomics.com/articles/11202008132217.htm",
+      "https://en.wikipedia.org/wiki/United_States_bear_market_of_2007%E2%80%932009"
+    ],
+    "confidence": 0.88
+  },
+  "AAPL|2008-11-28": {
+    "headline": "Citigroup rescue plus Obama's economic team plus Fed MBS buying: best 5 days since 1933",
+    "cause": "Window 2008-11-20 to 2008-11-28, starting from the exact bear-market low and driven by 24 November (AAPL +12.6%). On 23 November the Treasury, Fed and FDIC announced the Citigroup package: a $20bn preferred capital injection plus an asset guarantee covering roughly $306bn of assets (CNN Money).",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/11/24/news/companies/citigroup_reaction/",
+      "https://www.nbcnews.com/id/wbna27996123"
+    ],
+    "confidence": 0.9
+  },
+  "AAPL|2009-01-27": {
+    "headline": "Apple's first $10bn quarter beats a market braced for a Jobs-less disaster",
+    "cause": "Window 2009-01-20 to 2009-01-27, driven by 22 January (AAPL +6.7%), the first session after the FY09 Q1 print. Apple reported record revenue of $10.17bn and record net profit of $1.61bn, or $1.78 per diluted share, its first quarter above $10bn (Apple Newsroom, SEC 8-K exhibit). Shares rose about 9% after hours (CNN Money).",
+    "category": "earnings",
+    "sources": [
+      "https://www.apple.com/newsroom/2009/01/21Apple-Reports-First-Quarter-Results/",
+      "https://www.sec.gov/Archives/edgar/data/0000320193/000119312509009009/dex991.htm",
+      "https://money.cnn.com/2009/01/21/technology/Apple_earns/index.htm",
+      "https://www.macrumors.com/2009/01/21/apple-reports-1-61-billion-profit-for-q1-2009/"
+    ],
+    "confidence": 0.88
+  },
+  "AAPL|2020-03-12": {
+    "headline": "COVID: oil price war, WHO pandemic declaration, Europe travel ban, worst day since 1987",
+    "cause": "Window 2020-03-05 to 2020-03-12, with two crash days inside it: 9 March (-7.9%) and 12 March (-9.9%). On 8 March the OPEC-Russia talks collapsed and Saudi Arabia launched a production war, sending crude to its worst day since 1991 and tripping the S&P 500's circuit breaker on the 9th (CNBC). The WHO declared a pandemic on 11 March and the US suspended most travel from Europe.",
+    "category": "macro",
+    "sources": [
+      "https://www.cnbc.com/2020/03/08/opec-deal-collapse-sparks-price-war-20-oil-in-2020-is-coming.html",
+      "https://time.com/5802039/us-stocks-plummet-coronavirus/",
+      "https://www.washingtonpost.com/us-policy/2020/03/12/markets-stocks-today-coronavirus/"
+    ],
+    "confidence": 0.93
+  },
+  "AAPL|2020-03-20": {
+    "headline": "COVID leg two: worst week since October 2008 into a record quad-witching",
+    "cause": "Window 2020-03-13 to 2020-03-20, driven by 16 March (AAPL -12.9%), the session after the Fed's emergency Sunday cut to zero and $700bn QE restart, which the market read as confirmation of how bad things were rather than as support.",
+    "category": "macro",
+    "sources": [
+      "https://www.cnbc.com/2020/03/20/stock-market-live-today.html",
+      "https://www.newsquawk.com/headlines/newsquawk-us-market-wrap-20th-march-2020-largest-weekly-stock-decline-since-08-as-global-economy-falls-off-a-cliff-edge-20-03-2020",
+      "https://www.cnn.com/business/live-news/stock-market-news-today-032020"
+    ],
+    "confidence": 0.92
+  },
+  "AAPL|2020-08-06": {
+    "headline": "Record June quarter plus a surprise 4-for-1 stock split",
+    "cause": "Window 2020-07-30 to 2020-08-06, driven by 31 July (AAPL +10.5%). On 30 July after the close Apple reported June-quarter revenue of $59.7bn, up 11%, and diluted EPS of $2.58, up 18%, against a market that had expected COVID to gut hardware demand, and simultaneously announced a 4-for-1 stock split with an 24 August record date and 31 August split-adjusted trading (Apple 8-K exhibit 99.1, SEC, CNBC).",
+    "category": "earnings",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/320193/000032019320000060/a8-kexhibit991q3202062.htm",
+      "https://www.cnbc.com/2020/07/30/apple-stock-split-announced.html",
+      "https://9to5mac.com/2020/07/30/apple-announces-4-to-1-stock-split-as-shares-cross-400-following-record-q3-earnings/",
+      "https://www.forbes.com/sites/lcarrel/2020/07/31/apple-announces-4-for-1-stock-split-to-bring-in-new-investors/"
+    ],
+    "confidence": 0.94
+  },
+  "AAPL|2025-04-08": {
+    "headline": "\"Liberation Day\" reciprocal tariffs hit the most China-exposed mega-cap",
+    "cause": "Window 2025-04-01 to 2025-04-08, four consecutive down days of -9.25%, -7.29%, -3.67% and -4.98%. On 2 April, after the close, the administration announced \"reciprocal\" tariffs including a 54% rate on China. Apple is the most exposed mega-cap to that policy because roughly 85% of iPhones are assembled in China and its alternative sites, Vietnam and India, were themselves tariffed (Fortune).",
+    "category": "geopolitical",
+    "sources": [
+      "https://fortune.com/2025/04/08/apple-stock-selloff-trump-tariffs-economy-tech-markets-china-vietnam-india/",
+      "https://www.macrumors.com/2025/04/04/apple-shares-plunge-china-unveils-tariffs/",
+      "https://www.cnbc.com/2025/04/07/apples-3-day-loss-in-market-cap-swells-to-almost-640-billion.html",
+      "https://appleinsider.com/articles/25/04/07/apple-stock-hammered-for-third-consecutive-market-day-falls-on-news-of-more-tariffs"
+    ],
+    "confidence": 0.95
+  },
+  "AAPL|2025-04-15": {
+    "headline": "90-day tariff pause, then a CBP carve-out for smartphones and computers",
+    "cause": "Window 2025-04-08 to 2025-04-15. This is the mirror image of the event above and it is the sharpest illustration of the ledger's window-end labelling: the terminal day itself moved -0.19%.",
+    "category": "geopolitical",
+    "sources": [
+      "https://www.cnbc.com/2025/04/09/stock-market-today-live-updates.html",
+      "https://www.cnbc.com/2025/04/12/trump-exempts-phones-computers-chips-tariffs-apple-dell.html",
+      "https://www.ey.com/en_gl/technical/tax-alerts/us-exempts-certain-electronic-products-from-tariffs-under-president-trumps-reciprocal-tariff-policy",
+      "https://www.wilmerhale.com/en/insights/client-alerts/20250417-president-trump-announces-then-suspends-reciprocal-tariffs-defers-tariffs-on-certain-electronics-and-increases-tariffs-on-china",
+      "https://appleinsider.com/articles/25/04/16/trump-vs-china-how-the-tariff-war-has-hit-apple-so-far"
+    ],
+    "confidence": 0.93
+  },
+  "AMZN|2008-07-29": {
+    "headline": "Q2 2008 profit doubles, biggest one-day gain in a year on 24 Jul",
+    "cause": "- 2008-07-29, +15.1%. Driver: 24 July at +11.6%, the day after Q2 2008 results in which net income doubled and beat estimates on game-console demand and a weak dollar boosting international sales. Bloomberg described it as the largest one-day rise in a year. Source: Bloomberg, Amazon.com climbs after net doubles, beats estimates, 24 July 2008",
+    "category": "earnings",
+    "sources": [
+      "https://www.bloomberg.com/news/articles/2008-07-24/amazon-com-climbs-after-profit-doubles-exceeding-estimates"
+    ],
+    "confidence": 0.85
+  },
+  "AMZN|2008-09-29": {
+    "headline": "House rejects the TARP bailout; Dow falls a record 777 points",
+    "cause": "- 2008-09-29, -15.5%. Driver: 29 September at -10.4%, the day the House rejected the TARP bailout and the Dow fell a then-record 777 points. Well-established public record; I ran out of search budget before retrieving a citable URL, so the source list is empty and confidence is capped at 0.80. - 2008-10-07, -19.6% and 2008-10-15, -20.2%. The two worst weeks of the credit-market seizure.",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/10/28/markets/markets_newyork/index.htm"
+    ],
+    "confidence": 0.8
+  },
+  "AMZN|2008-10-07": {
+    "headline": "First week of the October 2008 credit-market seizure",
+    "cause": "First week of the October 2008 credit-market seizure",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.75
+  },
+  "AMZN|2008-10-15": {
+    "headline": "15 Oct 2008, the worst S&P session since 1987",
+    "cause": "15 Oct 2008, the worst S&P session since 1987",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "AMZN|2008-10-31": {
+    "headline": "28 Oct pre-FOMC rally, the Dow's second-biggest point gain ever",
+    "cause": "- 2008-10-31, +16.9%. Driver: 28 October at +13.0%, the pre-FOMC rally in which the Dow gained 889 points (+10.9%), the S&P +10.8% and the Nasdaq +9.5%, its second-biggest point gain ever. Amazon's Q3 2008 report on 22 October is inside neither this window nor a detected event. Source: CNNMoney, 28 October 2008 - 2008-11-11, -20.8% and 2008-11-18, -17.0%.",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/10/28/markets/markets_newyork/index.htm"
+    ],
+    "confidence": 0.85
+  },
+  "AMZN|2008-11-11": {
+    "headline": "Post-election GFC leg down; 5-6 Nov back-to-back double-digit losses",
+    "cause": "Post-election GFC leg down; 5-6 Nov back-to-back double-digit losses",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "AMZN|2008-11-18": {
+    "headline": "Final capitulation drive into the 20-21 Nov 2008 crisis low",
+    "cause": "Final capitulation drive into the 20-21 Nov 2008 crisis low",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "AMZN|2008-11-26": {
+    "headline": "Citigroup rescue plus Geithner nomination; biggest 2-day gain since 1987",
+    "cause": "- 2008-11-26, +22.7%. Drivers: 21 November (+8.1%) on reports that Geithner would be named Treasury Secretary, and 24 November (+12.2%) after the government's weekend rescue of Citigroup (a $20bn injection plus a backstop on more than $300bn of assets). The two sessions were the biggest two-day percentage gain since October 1987.",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/11/23/news/companies/citigroup/index.htm",
+      "https://money.cnn.com/2008/11/24/markets/markets_newyork/index.htm?postversion=2008112415"
+    ],
+    "confidence": 0.85
+  },
+  "AMZN|2008-12-08": {
+    "headline": "Obama public-works plan lifts the Nasdaq 4.1%, on top of a 9.8% day on 3 Dec",
+    "cause": "The window covers 2, 3, 4, 5 and 8 December 2008. Two sessions do the work: 3 December (+9.8%) and 8 December (+6.5%). The 8 December leg is well documented.",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/12/08/markets/markets_newyork/index.htm"
+    ],
+    "confidence": 0.6
+  },
+  "AMZN|2009-02-03": {
+    "headline": "Q4 2008 beats on 29 Jan; stock closes +17.6% the next session",
+    "cause": "The window covers 28, 29, 30 January and 2, 3 February 2009. The dominant session is 30 January at +17.6%. Amazon released Q4 2008 results after the close on 29 January 2009: net sales up 18% to $6.70 billion, net income up 9% to $225 million or $0.52 per diluted share, and Q1 2009 guidance of $4.525bn to $4.925bn in net sales, or 9% to 19% growth (verified in the 8-K exhibit filed with the SEC).",
+    "category": "earnings",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/1018724/000119312509014223/dex991.htm",
+      "https://www.nbcnews.com/news/amp/wbna28919297"
+    ],
+    "confidence": 0.95
+  },
+  "AMZN|2009-10-26": {
+    "headline": "Q3 2009 net income up 68%; stock closes +26.8% on 23 Oct",
+    "cause": "The window covers 20, 21, 22, 23 and 26 October 2009. One session accounts for almost the whole move: 23 October at +26.8%. Amazon released Q3 2009 after the close on 22 October 2009: net sales up 28% to $5.45 billion against a consensus nearer 18% growth, operating income up 62% to $251 million, net income up 68% to $199 million or $0.45 per diluted share versus a $0.33 consensus, and Q4 guidance of $8.125bn to $9.1…",
+    "category": "earnings",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/1018724/000119312509211972/dex991.htm",
+      "https://money.cnn.com/2009/10/22/technology/Amazon_earnings/",
+      "https://seekingalpha.com/article/168333-amazon-q3-2009-earnings-call-transcript"
+    ],
+    "confidence": 0.97
+  },
+  "AMZN|2011-08-29": {
+    "headline": "Rebound off the August 2011 debt-ceiling and euro-crisis low",
+    "cause": "- 2011-08-29, +16.3%. Drivers: 23 August (+9.0%), 26 August (+3.8%, Bernanke's Jackson Hole speech) and 29 August (+3.6%). A rebound off the August 2011 low that followed the US downgrade and the euro sovereign crisis. Sources empty; confidence 0.60.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "AMZN|2012-04-30": {
+    "headline": "Q1 2012 blows past a $0.07 consensus; +15.8% on 27 Apr",
+    "cause": "- 2012-04-30, +23.2%. Driver: 27 April at +15.8%, after Q1 2012 released post-close on 26 April: net sales up 34% to $13.18bn and EPS of $0.28 against a $0.07 consensus. Sources: TechCrunch, CNNMoney, Amazon Q1 profit blows estimates away",
+    "category": "earnings",
+    "sources": [
+      "https://techcrunch.com/2012/04/26/amazons-q1-2012-revenue-up-34-percent-to-13-2b-net-income-down-35-percent/",
+      "https://money.cnn.com/2012/04/26/technology/amazon-earnings/index.htm"
+    ],
+    "confidence": 0.95
+  },
+  "AMZN|2015-02-04": {
+    "headline": "Q4 2014 EPS $0.45 vs $0.18 expected; +13.7% on 30 Jan",
+    "cause": "- 2015-02-04, +20.0%. Driver: 30 January at +13.7%, after Q4 2014 released post-close on 29 January: EPS of $0.45 against $0.18 expected, a return to profit after two surprise quarterly losses. Sources: Fortune, eWeek",
+    "category": "earnings",
+    "sources": [
+      "https://fortune.com/2015/01/29/amazon-earnings-4q14/",
+      "https://www.eweek.com/cloud/amazon-reports-modest-q4-profit-2014-loss-yet-stock-rises/"
+    ],
+    "confidence": 0.95
+  },
+  "AMZN|2015-04-24": {
+    "headline": "AWS broken out for the first time; +14.1% on 24 Apr",
+    "cause": "Dominant session: 24 April 2015, +14.1%. Amazon reported Q1 2015 after the close on 23 April 2015 and, for the first time, broke out AWS as a separate reporting segment: $1.57 billion of quarterly revenue, up 49%, $265 million of operating income, a $5 billion annualized run rate. Revenue was $22.72bn, up 15%, with a $0.12 per share loss.",
+    "category": "earnings",
+    "sources": [
+      "https://techcrunch.com/2015/04/23/amazons-q1-beats-as-revenue-rises-15-to-22-72-billion-eps-loss-of-0-12/",
+      "https://awsinsider.net/articles/2015/04/23/amazon-earnings-q1-2015.aspx",
+      "https://ir.aboutamazon.com/news-release/news-release-details/2015/Amazoncom-Announces-First-Quarter-Sales-up-15-to-2272-Billion/default.aspx"
+    ],
+    "confidence": 0.97
+  },
+  "AMZN|2016-02-04": {
+    "headline": "Q4 2015 EPS misses badly, then a momentum-tech unwind",
+    "cause": "Driver: 29 January at -7.6%, after Q4 2015 released post-close on 28 January reported $1.00 of EPS against a $1.56 consensus on $35.75bn of revenue against $35.93bn expected. AWS was strong (revenue $2.41bn, up 69%; operating income $687m, up 187%), so the miss was in retail margin, not cloud.",
+    "category": "earnings",
+    "sources": [
+      "https://www.forbes.com/sites/ryanmac/2016/01/28/amazon-2015-q4-earnings/",
+      "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000170/amzn-20151231xex991.htm"
+    ],
+    "confidence": 0.85
+  },
+  "AMZN|2020-04-16": {
+    "headline": "Covid lockdown demand shock; AMZN to all-time highs",
+    "cause": "- 2020-04-16, +17.9%. A smooth four-session climb (13 to 16 April: +6.2%, +5.3%, +1.1%, +4.4%) with no single dominant day, driven by the Covid lockdown demand shock in both e-commerce and AWS as AMZN made new all-time highs. Q1 2020 earnings were 30 April, after this window. Sources empty; confidence 0.65.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.65
+  },
+  "AMZN|2022-05-05": {
+    "headline": "Q1 2022 Rivian writedown and soft guide (-14.1%), then post-FOMC reversal",
+    "cause": "Both of these are earnings plus macro stacked inside one window, and both would be mis-attributed if only the ledger date were searched.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2022/04/28/amazon-takes-7point6-billion-loss-on-rivian-stake-from-q1-stock-plunge.html",
+      "https://www.cnbc.com/2022/04/28/amazon-amzn-q1-2022-earnings.html",
+      "https://techcrunch.com/2022/10/27/amazons-income-dipped-in-q3-2022-as-the-economy-took-its-toll/",
+      "https://s2.q4cdn.com/299287126/files/doc_financials/2022/q3/Q3-2022-Amazon-Earnings-Release.pdf",
+      "https://www.cnbc.com/2022/11/01/amazon-plunge-pushes-valuation-below-1-trillion-first-time-since-2020.html",
+      "https://www.federalreserve.gov/mediacenter/files/FOMCpresconf20221102.pdf"
+    ],
+    "confidence": 0.9
+  },
+  "AMZN|2022-06-13": {
+    "headline": "8.6% May CPI print sends the S&P into a bear market",
+    "cause": "Driver sessions: 10 June at -5.6% and 13 June at -5.5%. The May CPI print released on Friday 10 June 2022 came in at 8.6% year over year, up from 8.3% and the fastest in four decades, killing the peak-inflation thesis. On Monday 13 June the S&P 500 closed 3,750, more than 21% below its January peak, formally entering a bear market; the Nasdaq fell 4.7%. Nothing about Amazon changed in this window.",
+    "category": "macro",
+    "sources": [
+      "https://www.cbsnews.com/news/stocks-down-inflation-federal-reserve-mohamed-el-erian-06-13-2022/"
+    ],
+    "confidence": 0.9
+  },
+  "AMZN|2022-08-02": {
+    "headline": "Q2 2022 beats and guides up; +10.4% on 29 Jul",
+    "cause": "- 2022-08-02, +16.9%. Driver: 29 July at +10.4%, after Q2 2022 released post-close on 28 July beat on revenue and guided Q3 above consensus, despite another Rivian markdown.",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "AMZN|2022-11-02": {
+    "headline": "Q3 2022 guides Q4 operating income to $0-$4bn, then a hawkish FOMC",
+    "cause": "Q3 2022 guides Q4 operating income to $0-$4bn, then a hawkish FOMC",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.92
+  },
+  "AMZN|2023-11-02": {
+    "headline": "Q3 2023 beat (+6.8% on 27 Oct) plus the dovish 1 Nov Fed hold",
+    "cause": "- 2023-11-02, +15.5%. Drivers: 27 October at +6.8% after Q3 2023 released post-close on 26 October (revenue $143.1bn against $141bn expected, EPS $0.94 against $0.58, AWS $23.1bn, advertising up 26%), then 30 October (+3.9%) and 1 November (+2.9%) on the dovish FOMC hold that started the November 2023 rally. Sources: CNBC, Amazon Q3 2023 earnings release (PDF)",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2023/10/26/amazon-amzn-q3-earnings-report-2023.html",
+      "https://s2.q4cdn.com/299287126/files/doc_financials/2023/q3/AMZN-Q3-2023-Earnings-Release.pdf"
+    ],
+    "confidence": 0.85
+  },
+  "AMZN|2026-04-14": {
+    "headline": "Jassy shareholder letter discloses a $15bn AI run rate; +5.6% on 9 Apr",
+    "cause": "Dominant session: 9 April 2026, +5.6% (close $233.65). This is the rarest category in the whole ledger: a large AMZN move with no earnings release inside the window.",
+    "category": "guidance",
+    "sources": [
+      "https://www.fool.com/coverage/stock-market-today/2026/04/09/stock-market-today-april-9-amazon-surges-after-ceo-details-ai-and-aws-growth-plans/"
+    ],
+    "confidence": 0.75
+  },
+  "AMZN|2026-08-03": {
+    "headline": "Q2 2026: AWS +37%, revenue tops $200bn, $3trn market cap; +15.3% on 31 Jul",
+    "cause": "Dominant session: 31 July 2026, +15.3%. Amazon released Q2 2026 after the close on 30 July 2026. Net sales up 20% to $200.6 billion, the first quarter above $200bn. AWS revenue $42.2 billion, up 37% year over year, its fastest growth in 18 quarters, a $169bn annualized run rate. Net income $62.6 billion or $5.75 per diluted share against $18.2bn a year earlier.",
+    "category": "earnings",
+    "sources": [
+      "https://www.aboutamazon.com/news/company-news/amazon-earnings-q2-2026-report",
+      "https://finance.yahoo.com/markets/stocks/articles/amazon-q2-2026-earnings-aws-204411872.html",
+      "https://www.cnbc.com/2026/08/03/amazon-amzn-stock-market-cap-earnings.html"
+    ],
+    "confidence": 0.97
+  },
+  "BA|2008-10-10": {
+    "headline": "Worst week of the global financial crisis",
+    "cause": "- 2008-10-10, -22.3%. The week of October 6-10, 2008 was the worst week in Dow history. No Boeing-specific catalyst is required, and the strike was still in progress, which compounds it.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "BA|2008-11-03": {
+    "headline": "Machinists ratify contract, ending the 8-week strike, into the late-October market bounce",
+    "cause": "The IAM machinists' strike that began September 7, 2008 and idled roughly 27,000 workers was settled by a tentative agreement in late October and ratified November 1, 2008 by 74 percent of voters. The strike cost Boeing about $100 million per day in revenue and delivery penalties.",
+    "category": "crisis",
+    "sources": [
+      "https://en.wikipedia.org/wiki/2008_Boeing_machinists_strike",
+      "https://www.seattletimes.com/business/boeing-aerospace/machinists-return-to-work-at-an-unsettled-boeing-after-8-week-strike/"
+    ],
+    "confidence": 0.75
+  },
+  "BA|2008-11-11": {
+    "headline": "Post-election GFC selloff",
+    "cause": "- 2008-11-11, -18.0%. The post-election GFC selloff. The base is November 4, election day, which was a local high.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.55
+  },
+  "BA|2009-03-03": {
+    "headline": "Slide into the March 2009 bear-market bottom",
+    "cause": "- 2009-03-03, -17.2%. The final slide into the March 6, 2009 bear-market low.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.55
+  },
+  "BA|2009-08-27": {
+    "headline": "Boeing publishes revised 787 schedule, first flight by end of 2009",
+    "cause": "Boeing published an updated 787 schedule on August 27, 2009 putting first flight by the end of 2009 and first delivery at the end of 2010, after the June 23, 2009 postponement for structural reasons. BA rose 8.4 percent on August 27 itself, from $47.82 to $51.82, which is the single largest day in the window and pins the cause to the announcement rather than to the market.",
+    "category": "product",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Boeing_787_Dreamliner"
+    ],
+    "confidence": 0.8
+  },
+  "BA|2011-08-08": {
+    "headline": "S&P strips the US of its AAA rating, Black Monday 2011",
+    "cause": "Standard & Poor's downgraded US sovereign debt from AAA to AA+ on August 5, 2011, and on the next trading day, August 8, the S&P 500 fell 6.5 percent. BA is a high-beta industrial with heavy US government defense exposure, so it fell roughly two and a half times the index over the window. No Boeing-specific news is required to explain this one.",
+    "category": "macro",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Black_Monday_(2011",
+      "https://www.npr.org/sections/thetwo-way/2011/08/06/139038762/s-p-lowers-united-states-long-term-rating",
+      "https://money.cnn.com/2011/08/05/news/economy/downgrade_rumors/index.htm"
+    ],
+    "confidence": 0.75
+  },
+  "BA|2020-02-28": {
+    "headline": "First COVID-19 crash week, airlines hit hardest",
+    "cause": "The week of February 24-28, 2020 was the first broad COVID-19 repricing. Airline stocks were hit hardest of any group, many down more than 25 percent year to date by that Friday, and BA fell more than 5 percent on February 28 alone. Because Boeing's demand is airline capital expenditure, airline equity weakness transmits to BA almost mechanically.",
+    "category": "macro",
+    "sources": [
+      "https://www.fool.com/investing/2020/02/28/why-boeing-shares-are-down-today.aspx"
+    ],
+    "confidence": 0.8
+  },
+  "BA|2020-03-09": {
+    "headline": "Oil price war plus COVID, circuit-breaker Monday",
+    "cause": "- 2020-03-09, -21.5%. The Saudi-Russia oil price war weekend followed by the March 9 limit-down open and first circuit breaker, layered on accelerating COVID case growth.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "BA|2020-03-17": {
+    "headline": "Boeing asks Washington for $60bn, market reads it as distress",
+    "cause": "On March 17, 2020 Boeing confirmed it was seeking at least $60bn in US government support for itself and the aerospace supply chain, framed as \"public and private liquidity, including loan guarantees\" covering roughly 17,000 suppliers.",
+    "category": "crisis",
+    "sources": [
+      "https://www.forbes.com/sites/jeremybogaisky/2020/03/17/boeing-seeks-60-billion-bailout-for-us-aerospace/",
+      "https://fortune.com/2020/03/18/coronavirus-boeing-stock-ba-share-price-bailout-request/",
+      "https://www.heraldnet.com/business/boeing-tumbles-after-seeking-60-billion-government-bailout/"
+    ],
+    "confidence": 0.9
+  },
+  "BA|2020-03-26": {
+    "headline": "CARES Act passes the Senate, largest one-day gain in BA history",
+    "cause": "The Senate passed the $2 trillion CARES Act 96-0 late on March 25, 2020. The bill contained a $500bn fund for loans and loan guarantees to large employers, roughly $17bn of which was widely reported as earmarked for businesses critical to national security, understood at the time to mean Boeing, plus about $50bn for passenger airlines.",
+    "category": "macro",
+    "sources": [
+      "https://www.thestreet.com/investing/boeing-extends-historic-gain-but-bailout-questions-persist",
+      "https://www.nasdaq.com/articles/why-boeing-stock-barreled-15-higher-on-todays-coronavirus-stimulus-2020-03-26",
+      "https://qz.com/1825549/boeing-cruise-lines-lead-stock-market-rally-as-stimulus-nears",
+      "https://www.cnn.com/2020/03/25/politics/boeing-bailout/index.html"
+    ],
+    "confidence": 0.9
+  },
+  "BA|2020-04-02": {
+    "headline": "The bailout rally unwinds, S&P cuts Boeing to BBB-",
+    "cause": "The base of this window is the March 26 peak, so mechanically this event is the unwind of the CARES rally. Two things drove it. First, S&P cut Boeing's credit rating to BBB-, one notch above junk and the lowest rating on Boeing's debt since 1981, citing the coronavirus hit to aircraft demand and an uncertain recovery path.",
+    "category": "macro",
+    "sources": [
+      "https://edition.cnn.com/business/live-news/stock-market-news-043020/h_7b975e57c8933a9a33a8d563f9384117",
+      "https://www.fool.com/investing/2020/04/01/why-shares-of-boeing-lost-nearly-half-their-value.aspx",
+      "https://www.nasdaq.com/articles/why-shares-of-boeing-lost-nearly-half-their-value-in-march-2020-04-01"
+    ],
+    "confidence": 0.8
+  },
+  "BA|2020-04-09": {
+    "headline": "Fed's $2.3tn facilities plus the \"flattening curve\" week",
+    "cause": "Over April 6-9, 2020 the Dow gained 12.67 percent and the S&P 500 12.10 percent, on the combination of the Fed announcing facilities supporting up to $2.3 trillion of credit (April 9, including the Main Street Lending Program) and evidence that infection curves were peaking in Italy and New York. BA rose from $124.52 to $151.84 across the window.",
+    "category": "macro",
+    "sources": [
+      "https://www.aljazeera.com/economy/2020/4/9/us-markets-rise-on-fed-intervention",
+      "https://www.congress.gov/crs-product/R46411"
+    ],
+    "confidence": 0.75
+  },
+  "BA|2020-04-24": {
+    "headline": "Embraer tie-up collapses, oil goes negative, off a spiked base",
+    "cause": "This window bases off April 17, 2020, when BA jumped 14.7 percent in a day on broad risk-on flow, and ends April 24. Inside it: WTI crude traded negative on April 20, and Boeing terminated its $4.2bn Master Transaction Agreement with Embraer, with April 24 as the stated termination date and the announcement on April 25. Embraer publicly said Boeing had \"wrongfully terminated\" the deal.",
+    "category": "crisis",
+    "sources": [
+      "https://boeing.mediaroom.com/2020-04-25-Boeing-Terminates-Agreement-to-Establish-Joint-Ventures-with-Embraer",
+      "https://www.cnbc.com/2020/04/25/boeing-terminates-joint-venture-agreement-with-brazils-embraer.html"
+    ],
+    "confidence": 0.55
+  },
+  "BA|2020-06-08": {
+    "headline": "Reopening melt-up, May payrolls shock, sell-side upgrades",
+    "cause": "The May 2020 US employment report, released June 5, showed payrolls rising instead of falling, which the market read as evidence the recovery had already begun. Reopening and travel names ran hard. Boeing gained roughly 40 percent in the week to June 5 and another 12 percent on June 8.",
+    "category": "macro",
+    "sources": [
+      "https://www.fool.com/investing/2020/06/08/why-shares-of-boeing-are-rallying-today.aspx",
+      "https://www.investing.com/analysis/boeing-stock-rally-gathers-pace-as-economy-reopens-200585185"
+    ],
+    "confidence": 0.85
+  },
+  "BA|2020-06-15": {
+    "headline": "June 11 second-wave selloff and the Fed's grim 2020 forecast",
+    "cause": "On June 11, 2020 the S&P 500 fell 5.89 percent and the Dow fell more than 1,800 points, the worst day in three months, on second-wave case growth plus the Fed's June 10 projection that the US economy would shrink 6.5 percent in 2020. Airlines, cruise lines and retailers led the decline. BA fell from $203.41 to $170.00 on June 11 alone.",
+    "category": "macro",
+    "sources": [
+      "https://www.fool.com/investing/2020/06/10/time-sensitive-why-boeing-triumph-group-and-spirit.aspx"
+    ],
+    "confidence": 0.8
+  },
+  "BA|2020-11-10": {
+    "headline": "Pfizer vaccine efficacy readout",
+    "cause": "Pfizer and BioNTech reported interim Phase 3 efficacy above 90 percent on November 9, 2020. BA rose 13.7 percent that day and another 5.2 percent on November 10. This is the single highest confidence macro attribution in the ledger, because the catalyst is a dated, unambiguous, non-financial announcement and the sector response was uniform across every travel name.",
+    "category": "macro",
+    "sources": [
+      "https://www.cnbc.com/2020/11/09/airlines-surge-on-upbeat-vaccine-news-american-jumps-19percent-.html"
+    ],
+    "confidence": 0.9
+  },
+  "BA|2020-11-19": {
+    "headline": "FAA ungrounds the 737 MAX after 20 months",
+    "cause": "On November 18, 2020 the FAA rescinded the grounding order on the 737 MAX, 20 months after the March 2019 grounding that followed two crashes killing 346 people. The window also contains the November 16 Moderna vaccine readout, so this is again a two-cause event, but the regulatory item is BA-specific and is the reason BA outperformed the broader travel complex that week.",
+    "category": "regulatory",
+    "sources": [
+      "https://boeing.mediaroom.com/2020-11-18-Boeing-Responds-to-FAA-Approval-to-Resume-737-MAX-Operations",
+      "https://www.washingtonpost.com/local/trafficandcommuting/boeing-737-max-ungrounded/2020/11/18/c4d6c1a8-2902-11eb-8fa2-06e7cbb145c0_story.html"
+    ],
+    "confidence": 0.85
+  },
+  "BA|2021-03-12": {
+    "headline": "Stimulus signing plus the vaccine-era travel-recovery trade",
+    "cause": "The window covers March 8-12, 2021, the peak of the vaccine-era reflation trade. Airline shares were rallying from March 8 on vaccine rollout, TSA throughput was running above the prior year for the first time since the pandemic began, and the American Rescue Plan (signed March 11, 2021) contained another round of airline payroll support.",
+    "category": "macro",
+    "sources": [
+      "https://www.cnbc.com/2021/03/15/air-travel-recovers-as-vaccinations-spur-bookings.html",
+      "https://www.prnewswire.com/news-releases/southwest-airlines-adds-100-firm-orders-for-the-boeing-737-max-7-301257190.html"
+    ],
+    "confidence": 0.7
+  },
+  "BA|2022-03-07": {
+    "headline": "Ukraine invasion, oil spike, Russian titanium supply cut",
+    "cause": "BA fell 6.5 percent on March 7, 2022 and slid every day of the window. Two channels: the general risk-off and oil spike following Russia's invasion of Ukraine, which raises airline fuel costs and therefore threatens fleet capex, and a direct supply-chain hit.",
+    "category": "geopolitical",
+    "sources": [
+      "https://www.cnbc.com/2022/03/07/boeing-suspends-buying-titanium-from-russia-assures-of-sufficient-supply.html",
+      "https://www.rte.ie/news/business/2022/0307/1284924-boeing-suspends-titanium-deals-from-russia/"
+    ],
+    "confidence": 0.75
+  },
+  "BA|2022-04-29": {
+    "headline": "Q1 2022 loss, $1.2bn of defense charges including Air Force One",
+    "cause": "Boeing reported Q1 2022 on April 27, 2022: a $1.2bn quarterly loss on $14bn of revenue, including a $660m charge on the VC-25B Air Force One programme and a $367m charge on the T-7A Red Hawk, both driven by supplier costs, requirement changes and schedule slippage. Cumulative Air Force One losses reached about $1.1bn and management warned of more to come.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2022/04/27/boeing-lost-billion-dollars-on-trump-air-force-one-plane-deal.html",
+      "https://www.upi.com/Top_News/US/2022/04/27/boeing-reports-loss-first-quarter-2022-Air-Force-One/5071651085696/",
+      "https://breakingdefense.com/2022/04/boeing-adds-1b-in-new-charges-for-air-force-one-replacement-t-7-red-hawk-programs/"
+    ],
+    "confidence": 0.85
+  },
+  "BA|2022-05-12": {
+    "headline": "777X slips to 2025 with $1.5bn of cost, 787 deliveries still halted",
+    "cause": "BA fell 11.7 percent across May 2022 while the S&P 500 was roughly flat, so this is genuinely idiosyncratic. Inside the window: first delivery of the 777X was pushed to 2025 with an additional $1.5bn of cost, the FAA told Boeing its 787 delivery-approval documentation was incomplete so 787 deliveries stayed halted, and customers went public with criticism, with Avolon's CEO saying Boeing had \"lost its way\" and Ryanai…",
+    "category": "guidance",
+    "sources": [
+      "https://www.fool.com/investing/2022/06/03/why-shares-in-boeing-slumped-in-may/"
+    ],
+    "confidence": 0.75
+  },
+  "BA|2022-06-13": {
+    "headline": "May CPI shock and the pre-FOMC crash",
+    "cause": "- 2022-06-13, -16.8%. The May 2022 CPI print on June 10 came in above expectations and the market sold off into the June 15 FOMC, which delivered 75bp. BA fell 8.8 percent on June 13.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.65
+  },
+  "BA|2022-06-21": {
+    "headline": "Rebound off the June 2022 low",
+    "cause": "Rebound off the June 2022 low",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.55
+  },
+  "BA|2022-11-08": {
+    "headline": "First investor day since 2018, free cash flow guidance above consensus",
+    "cause": "Boeing held its first investor day since 2018 on November 2, 2022 and issued forward free cash flow guidance for the first time since early 2019: $1.5-2bn for 2022 against consensus of about $670m, $3-5bn for 2023, and roughly $10bn of normalised free cash flow on $100bn of revenue by 2025-2026. Shares rose 4.7 percent that day and continued higher through the window on a supportive market tape.",
+    "category": "guidance",
+    "sources": [
+      "https://seekingalpha.com/news/3899755-boeing-advances-after-providing-free-cash-flow-update-at-investor-day",
+      "https://www.benzinga.com/news/large-cap/22/11/29528577/boeing-forecasts-upto-5b-free-cash-flow-in-2023-10b-by-mid-decade-shares-pop",
+      "https://www.benzinga.com/analyst-ratings/analyst-color/22/11/29549846/boeing-hosted-its-first-investor-day-in-4-years-and-the-company-made-a-statement-wh"
+    ],
+    "confidence": 0.85
+  },
+  "BA|2025-04-04": {
+    "headline": "\"Liberation Day\" tariffs and Chinese retaliation",
+    "cause": "President Trump announced a broad package of import duties on April 2, 2025. Markets fell hard on April 3 and 4 as China announced retaliation. Boeing fell 8.3 percent on Friday April 4 alone, to $136.59, a two-and-a-half year low.",
+    "category": "geopolitical",
+    "sources": [
+      "https://seekingalpha.com/news/4428824-boeing-tanks-to-two-and-a-half-year-low-swept-up-in-trumps-tariff-selloff",
+      "https://en.wikipedia.org/wiki/Liberation_Day_tariffs",
+      "https://www.forbes.com/sites/robertdaugherty/2025/06/07/boeing-stock-surges-54-on-trump-tariff-chaos-the-dj-taco-trade/"
+    ],
+    "confidence": 0.85
+  },
+  "GOOGL|2008-04-22": {
+    "headline": "Q1 2008 beat kills the comScore paid-click scare; stock gaps +20% on 18 Apr",
+    "cause": "Google reported Q1 2008 after the close on 17 April: revenue $5.19bn, up 42% year over year, and paid clicks up about 20% year over year (Google press release, 17 April 2008, filed with the SEC). The stock gapped from a split-adjusted $11.25 to $13.50 on 18 April, +20.0% in a day, contemporary press putting it at $539.26 and calling it the biggest one-day rise in two years (Fortune, 18 Apr 2008).",
+    "category": "earnings",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/1288776/000119312508083665/dex991.htm",
+      "https://fortune.com/2008/04/18/googles-relief-rally/",
+      "https://www.comscore.com/Insights/Blog/Reconciling-comScore-s-and-Google-s-Paid-Click-Data"
+    ],
+    "confidence": 0.95
+  },
+  "GOOGL|2008-10-08": {
+    "headline": "The credit-freeze week: coordinated six-central-bank rate cut fails to stop the rout",
+    "cause": "Pure macro. The window covers 2 to 8 October 2008, the week after the initial TARP vote failure and during the Reserve Primary Fund and Icelandic banking collapses.",
+    "category": "macro",
+    "sources": [
+      "https://www.federalreserve.gov/newsevents/pressreleases/monetary20081008a.htm",
+      "https://money.cnn.com/2008/10/08/news/international/world_crisis/"
+    ],
+    "confidence": 0.9
+  },
+  "GOOGL|2008-11-11": {
+    "headline": "Post-election plunge, and Google walks away from the Yahoo ad deal under DOJ threat",
+    "cause": "Mixed, and the weakest attribution in the file. The window covers 5 to 11 November 2008. Two things sit inside it.",
+    "category": "macro",
+    "sources": [
+      "https://www.justice.gov/archive/opa/pr/2008/November/08-at-981.html"
+    ],
+    "confidence": 0.7
+  },
+  "GOOGL|2008-11-20": {
+    "headline": "Capitulation into the 20 Nov S&P close of 752, lowest since 1997",
+    "cause": "Pure macro, and the deepest point of the 2008 bear market. The S&P 500 closed at 752.44 on 20 November, its lowest close since 1997 and down more than 50% from the October 2007 peak (Benzinga, \"This Day In Market History\"; Trading Economics, 20 Nov 2008).",
+    "category": "macro",
+    "sources": [
+      "https://benzinga.com/z/20077767",
+      "https://tradingeconomics.com/articles/11202008132217.htm"
+    ],
+    "confidence": 0.9
+  },
+  "GOOGL|2009-01-27": {
+    "headline": "Q4 2008 beats on an ex-items basis; GAAP profit down 70% but the ad apocalypse did not arrive",
+    "cause": "Google reported Q4 2008 after the close on 22 January. GAAP net income fell 70% to $382m, hit by writedowns on the AOL and Clearwire stakes, but ex-items EPS of $5.10 beat the roughly $4.95 consensus and revenue rose 18% to $5.70bn (CBS News, 22 Jan 2009; CNN Money, 22 Jan 2009). GOOGL rose 5.9% on 23 January and kept going.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cbsnews.com/news/earnings-google-q4-profits-plummet-70-percent-but-still-beats-estimates/",
+      "https://money.cnn.com/2009/01/22/technology/google_earns/"
+    ],
+    "confidence": 0.85
+  },
+  "GOOGL|2013-10-18": {
+    "headline": "Q3 2013 mobile and YouTube beat; GOOG closes above $1,000 for the first time",
+    "cause": "Google reported Q3 2013 after the close on 17 October. Revenue rose 12% to $14.89bn, non-GAAP EPS was $10.74, paid clicks rose 26% year over year, and YouTube brand video ads grew more than 75%. GOOGL rose 13.8% on 18 October and closed above $1,000 per share for the first time, at $1,011.41 (CNN Money, 18 Oct 2013; CNBC, 18 Oct 2013).",
+    "category": "earnings",
+    "sources": [
+      "https://money.cnn.com/2013/10/18/investing/google-stock/index.html",
+      "https://www.cnbc.com/2013/10/18/google-stock-hits-1000-for-the-first-time.html"
+    ],
+    "confidence": 0.95
+  },
+  "GOOGL|2015-07-17": {
+    "headline": "Ruth Porat's first quarter as CFO; +16% in a day, ~$65bn of market cap, then a record",
+    "cause": "Google reported Q2 2015 after the close on Thursday 16 July. Adjusted EPS of $6.99 beat a consensus of roughly $6.70 to $6.75, and ex-TAC revenue of $14.35bn beat $14.27bn (TechCrunch, 16 Jul 2015). It was the first quarter reported by Ruth Porat, who had joined from Morgan Stanley in May.",
+    "category": "earnings",
+    "sources": [
+      "https://techcrunch.com/2015/07/16/google-q2-2015-earnings/",
+      "https://www.bloomberg.com/news/articles/2015-07-23/google-cfo-ruth-porat-brings-fiscal-discipline",
+      "https://www.thestreet.com/investing/stocks/google-surges-on-q2-earnings-beat-new-role-for-cfo-ruth-porat"
+    ],
+    "confidence": 0.97
+  },
+  "GOOGL|2020-03-12": {
+    "headline": "COVID crash; 12 Mar was the worst US session since 1987",
+    "cause": "Pure macro, and outside the training boundary (TEST period). The window covers 5 to 12 March 2020. The WHO declared COVID-19 a pandemic on 11 March and the US announced suspension of most travel from Europe that evening; on 12 March the Dow fell 9.99% and the S&P 500 fell 9.5%, the worst session since the 1987 crash (TIME, 12 Mar 2020; PBS NewsHour, 12 Mar 2020).",
+    "category": "macro",
+    "sources": [
+      "https://time.com/5802039/us-stocks-plummet-coronavirus/",
+      "https://www.pbs.org/newshour/economy/worst-day-on-wall-street-since-1987-as-virus-fears-spread"
+    ],
+    "confidence": 0.95
+  },
+  "GOOGL|2020-11-04": {
+    "headline": "Q3 2020 blowout on 29 Oct, then the divided-government tech melt-up on 4 Nov",
+    "cause": "Outside the training boundary (TEST period). Two catalysts, both inside the window.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2020/10/29/alphabet-googl-earnings-q3-2020.html",
+      "https://www.cnbc.com/2020/11/04/how-the-nasdaq-and-tech-stocks-became-the-winner-on-election-night.html",
+      "https://www.axios.com/2020/11/04/tech-stocks-surge-market-election-nasdaq"
+    ],
+    "confidence": 0.9
+  },
+  "JPM|2008-01-23": {
+    "headline": "Fed emergency 75bp intermeeting cut, financials snap back from the Jan 22 washout",
+    "cause": "Fed emergency 75bp intermeeting cut, financials snap back from the Jan 22 washout",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.65
+  },
+  "JPM|2008-03-24": {
+    "headline": "JPM buys Bear Stearns with a Fed backstop, raises the bid from $2 to $10",
+    "cause": "On March 16, 2008 JPMorgan agreed to acquire Bear Stearns for $2 a share with a Federal Reserve backstop. On March 24 it raised the offer to $10 a share in stock and agreed to buy 95 million newly issued Bear shares, 39.5% of the company, at the same price (CNN Money, Forbes).",
+    "category": "crisis",
+    "sources": [
+      "https://money.cnn.com/2008/03/24/news/companies/bear/index.htm",
+      "https://www.forbes.com/2008/03/24/bear-morgan-acquisition-markets-cx_cl_0324bear.html"
+    ],
+    "confidence": 0.9
+  },
+  "JPM|2008-07-22": {
+    "headline": "Q2 earnings beat a very low bar into an SEC-driven short squeeze in financials",
+    "cause": "The window base is the July 15 close of $31.02, the low of the summer financials panic. On July 15 the SEC restricted naked short selling in 19 financial names including the primary dealers (SEC comment file on the ban, Harvard Law School Forum summary of the July emergency order).",
+    "category": "earnings",
+    "sources": [
+      "https://www.sec.gov/comments/s7-08-09/s70809-3779.pdf",
+      "https://corpgov.law.harvard.edu/wp-content/uploads/2008/07/fig_sec-bars-naked-short-sales-of-major-financial-firms.PDF",
+      "https://jpmorganchaseco.gcs-web.com/news-releases/news-release-details/jpmorgan-chase-reports-second-quarter-2008-net-income-20-billion"
+    ],
+    "confidence": 0.85
+  },
+  "JPM|2008-10-01": {
+    "headline": "JPM takes the WaMu deposit franchise from the FDIC for $1.9bn",
+    "cause": "- 2008-10-01, +22.5%, the WaMu acquisition. On September 25, 2008 JPMorgan acquired the deposits, assets and certain liabilities of Washington Mutual's banking operations from the FDIC for approximately $1.9bn, in the largest bank failure in US history (JPMorgan press release, SEC EX-99.1, Sept 25 2008, FDIC failed bank list).",
+    "category": "crisis",
+    "sources": [
+      "https://jpmorganchaseco.gcs-web.com/news-releases/news-release-details/jpmorgan-chase-acquires-deposits-assets-and-certain-liabilities",
+      "https://www.sec.gov/Archives/edgar/data/19617/000119312508201638/dex991.htm",
+      "https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/wamu.html"
+    ],
+    "confidence": 0.85
+  },
+  "JPM|2008-10-09": {
+    "headline": "The worst week in Dow history; credit markets seize post-Lehman",
+    "cause": "In the week ending October 9, 2008 the Dow fell a record 18% and the S&P 500 had its worst week since 1933. On October 9 alone the Dow fell 679 points, 7.3%, to its lowest close since May 2003 (Cantech Letter, Benzinga on the following week's rebound).",
+    "category": "crisis",
+    "sources": [
+      "https://www.cantechletter.com/2023/12/2008-10-09-what-happened/",
+      "https://www.benzinga.com/general/education/21/10/23355953/this-day-in-market-history-dow-rebounds-11-following-worst-week-ever-in-2008"
+    ],
+    "confidence": 0.85
+  },
+  "JPM|2008-10-27": {
+    "headline": "Global forced-selling leg; Dow down 24.7% for October at that close",
+    "cause": "Global forced-selling leg; Dow down 24.7% for October at that close",
+    "category": "crisis",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "JPM|2008-11-03": {
+    "headline": "Rebound off the Oct 27 low, led by the Oct 28 Dow +889 and the Oct 29 Fed cut",
+    "cause": "Rebound off the Oct 27 low, led by the Oct 28 Dow +889 and the Oct 29 Fed cut",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.75
+  },
+  "JPM|2008-11-20": {
+    "headline": "Citigroup solvency run drags the whole sector; S&P 500 to an 11-year low",
+    "cause": "On November 20 the S&P 500 lost 6.7% and closed at its lowest level since April 1997. Citigroup fell 26% to a 15-year low, JPMorgan fell nearly 18% to about $23, and Bank of America fell 14%. The decline came even after Prince Alwaleed bin Talal raised his Citi stake to 5% (CNN Money market report, CNN Money on bank stocks, CNBC).",
+    "category": "crisis",
+    "sources": [
+      "https://money.cnn.com/2008/11/20/markets/markets_newyork/index.htm?postversion=2008112018",
+      "https://money.cnn.com/2008/11/20/news/companies/bank_stocks/index.htm",
+      "https://www.cnbc.com/2008/11/20/sp-plunges-to-11year-low.html"
+    ],
+    "confidence": 0.9
+  },
+  "JPM|2008-11-28": {
+    "headline": "Government rescues Citigroup with a $306bn asset guarantee and $20bn injection",
+    "cause": "On November 23, 2008 Treasury, the Federal Reserve and the FDIC announced a rescue of Citigroup: a guarantee on roughly $306bn of assets plus a fresh $20bn Treasury investment (Federal Reserve press release, Nov 23 2008, CNN Money, Yale New Bagehot Project). Citi rose 65% in morning trade on November 24 and the Dow gained nearly 4%.",
+    "category": "regulatory",
+    "sources": [
+      "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20081123a.htm",
+      "https://money.cnn.com/2008/11/23/news/companies/citigroup/index.htm",
+      "https://newbagehot.yale.edu/docs/united-states-citigroup-capital-injection-2008/"
+    ],
+    "confidence": 0.9
+  },
+  "JPM|2008-12-08": {
+    "headline": "Rally off the Dec 1 recession-declaration crash into Obama's public works plan",
+    "cause": "The window base is the December 1 close of $26.12. December 1 was the day the NBER dated the recession and the S&P 500 fell 8.93%, with S&P financials down 17% (Wikipedia, Global financial crisis in December 2008).",
+    "category": "macro",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Global_financial_crisis_in_December_2008",
+      "https://money.cnn.com/2008/12/08/markets/markets_newyork/index.htm",
+      "https://www.pbs.org/newshour/economy/business-july-dec08-markets_12-08"
+    ],
+    "confidence": 0.75
+  },
+  "JPM|2008-12-15": {
+    "headline": "Give-back from the Dec 8 spike; Madoff arrest hits bank sentiment, Merrill cuts JPM",
+    "cause": "Give-back from the Dec 8 spike; Madoff arrest hits bank sentiment, Merrill cuts JPM",
+    "category": "crisis",
+    "sources": [],
+    "confidence": 0.65
+  },
+  "JPM|2009-01-09": {
+    "headline": "December payrolls fell 524,000, unemployment to 7.2%",
+    "cause": "2009-01-09, -17.2% (significant), weakly explained. December 2008 payrolls fell 524,000 and unemployment rose to 7.2%, released the morning of January 9 (BLS Employment Situation, Jan 9 2009, CNN Money pre-market).",
+    "category": "macro",
+    "sources": [
+      "https://www.bls.gov/news.release/archives/empsit_01092009.pdf",
+      "https://money.cnn.com/2009/01/09/markets/stockswatch/index.htm"
+    ],
+    "confidence": 0.55
+  },
+  "JPM|2009-01-20": {
+    "headline": "Inauguration Day bank rout on nationalization fear; worst Inauguration Day in Dow history",
+    "cause": "On January 20, 2009 the Dow fell 4%, its largest Inauguration Day decline in 112 years, and the S&P 500 fell 5.3%. State Street fell 59%, Bank of America 29%, Citigroup 20%, and Royal Bank of Scotland 69% in New York trading. The driver was open speculation that the government would have to seize one or more large US banks (CNN Money market report, CNN Money on bank stocks, Al Jazeera).",
+    "category": "crisis",
+    "sources": [
+      "https://money.cnn.com/2009/01/20/markets/markets_newyork/index.htm",
+      "https://money.cnn.com/2009/01/20/news/companies/banks_stocks/index.htm?postversion=2009012016",
+      "https://www.aljazeera.com/news/2009/1/21/record-us-stock-fall-greets-obama"
+    ],
+    "confidence": 0.9
+  },
+  "JPM|2009-02-20": {
+    "headline": "Dodd says regulators may have to take over Citi or BofA; nationalization panic peaks",
+    "cause": "Dodd says regulators may have to take over Citi or BofA; nationalization panic peaks",
+    "category": "crisis",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "JPM|2009-03-06": {
+    "headline": "Final leg into the March 6 12-year low (S&P intraday 666.79)",
+    "cause": "The S&P 500 reached an intraday low of 666.79 on March 6, 2009, roughly 57% below its October 2007 high, and the lowest level since 1996 (CNBC 10th-anniversary retrospective, Yahoo Finance retrospective).",
+    "category": "crisis",
+    "sources": [
+      "https://www.cnbc.com/2019/03/04/the-10th-anniversary-of-the-climactic-march-2009-market-bottom-arrives-this-week.html",
+      "https://finance.yahoo.com/news/stock-market-bottomed-9-years-110500236.html",
+      "https://www.washingtontimes.com/news/2009/feb/21/stocks-tank-talk-bank-nationalization/",
+      "https://www.cnbc.com/2009/02/20/bank-nationalization-casts-a-shadow.html"
+    ],
+    "confidence": 0.8
+  },
+  "JPM|2009-03-13": {
+    "headline": "Pandit memo says Citi is profitable; uptick rule and mark-to-market relief signalled",
+    "cause": "On March 10, 2009 a memo from Citigroup CEO Vikram Pandit, filed with the SEC, said Citi had generated $19bn of revenue in January and February excluding disclosed marks and was operating at a profit. Citi rose 38% and the KBW Bank Index rose 15.6%.",
+    "category": "crisis",
+    "sources": [
+      "https://money.cnn.com/2009/03/10/markets/markets_newyork/index.htm?postversion=2009031011",
+      "https://www.business-standard.com/article/finance/citi-profitable-in-first-two-months-this-year-report-109031000165_1.html",
+      "https://www.nbcnews.com/news/amp/wbna29611953"
+    ],
+    "confidence": 0.9
+  },
+  "JPM|2009-03-23": {
+    "headline": "Geithner unveils PPIP, up to $1trn to buy toxic assets; Dow +6.8%",
+    "cause": "Geithner unveils PPIP, up to $1trn to buy toxic assets; Dow +6.8%",
+    "category": "regulatory",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "JPM|2009-04-16": {
+    "headline": "Wells Fargo pre-announces a record quarter, JPM adds 19% on Apr 9, then beats on Apr 16",
+    "cause": "Wells Fargo pre-announces a record quarter, JPM adds 19% on Apr 9, then beats on Apr 16",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "JPM|2009-05-08": {
+    "headline": "SCAP stress tests: JPM among the nine banks told to raise nothing",
+    "cause": "SCAP stress tests: JPM among the nine banks told to raise nothing",
+    "category": "regulatory",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "JPM|2011-08-08": {
+    "headline": "S&P strips the US of AAA; S&P 500 falls 6.5% on the first trading day after",
+    "cause": "- 2011-08-08, -15.8%. S&P downgraded the US from AAA to AA+ after the close on Friday August 5; the S&P 500 fell 6.5% on Monday August 8, the worst day since 2008 (Wikipedia, Black Monday 2011), CNN Money, NPR). Banks led the decline because a sovereign downgrade is simultaneously a collateral-value question and a growth question.",
+    "category": "macro",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Black_Monday_(2011",
+      "https://money.cnn.com/2011/08/08/markets/markets_newyork/index.htm",
+      "https://www.npr.org/sections/thetwo-way/2011/08/06/139038762/s-p-lowers-united-states-long-term-rating"
+    ],
+    "confidence": 0.85
+  },
+  "JPM|2011-12-06": {
+    "headline": "Six central banks cut dollar swap-line pricing by 50bp on Nov 30",
+    "cause": "- 2011-12-06, +16.4%. On November 30, 2011 six central banks cut the pricing on existing dollar liquidity swap lines by 50 basis points to OIS plus 50 and extended them to February 2013 (Federal Reserve, Nov 30 2011). European bank dollar funding was the binding constraint at the time and US money-centre banks were the counterparty exposure.",
+    "category": "macro",
+    "sources": [
+      "https://www.federalreserve.gov/newsevents/pressreleases/monetary20111130a.htm"
+    ],
+    "confidence": 0.75
+  },
+  "JPM|2012-05-17": {
+    "headline": "The London Whale: $2bn CIO derivatives loss disclosed after the May 10 close",
+    "cause": "- 2012-05-17, -16.7%, the London Whale. JPMorgan disclosed at least $2bn of losses in the Chief Investment Office on May 10, 2012, after the close; the total eventually reached about $6bn (Wikipedia). The window base is the May 10 close of $40.74, the last pre-disclosure print, and JPM fell 9.3% on May 11 on 217 million shares against a typical 30 to 40 million.",
+    "category": "crisis",
+    "sources": [
+      "https://en.wikipedia.org/wiki/2012_JPMorgan_Chase_trading_loss"
+    ],
+    "confidence": 0.9
+  },
+  "JPM|2020-03-09": {
+    "headline": "COVID Black Monday plus the Saudi-Russia oil price war; yields collapse",
+    "cause": "COVID Black Monday plus the Saudi-Russia oil price war; yields collapse",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "JPM|2020-03-20": {
+    "headline": "Second COVID crash leg; Dow's largest weekly decline since 2008",
+    "cause": "Second COVID crash leg; Dow's largest weekly decline since 2008",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "JPM|2020-03-30": {
+    "headline": "Fed goes open-ended on asset purchases March 23; CARES Act signed March 27",
+    "cause": "Fed goes open-ended on asset purchases March 23; CARES Act signed March 27",
+    "category": "regulatory",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "JPM|2020-04-09": {
+    "headline": "Fed announces up to $2.3trn in lending facilities on April 9",
+    "cause": "Fed announces up to $2.3trn in lending facilities on April 9",
+    "category": "regulatory",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "JPM|2020-06-08": {
+    "headline": "May payrolls rose 2.5 million against expectations of further losses; reopening rotation",
+    "cause": "- 2020-06-08, +15.1%. May 2020 payrolls rose by 2.5 million and unemployment fell to 13.3% from 14.7%, against a consensus expecting further heavy losses (BLS Employment Situation, released June 5 2020). Banks were the highest-beta expression of the reopening trade.",
+    "category": "macro",
+    "sources": [
+      "https://www.bls.gov/news.release/archives/empsit_06052020.htm",
+      "https://www.mprnews.org/story/2009/04/09/wells-fargo-projects-record-3-billion-1q-profit",
+      "https://www.nbcnews.com/news/amp/wbna30151303",
+      "https://www.federalreserve.gov/newsevents/files/bcreg20090507a1.pdf",
+      "https://money.cnn.com/2009/05/07/news/companies/stress_test_announcement/index.htm"
+    ],
+    "confidence": 0.7
+  },
+  "JPM|2020-11-09": {
+    "headline": "Election-week rally, then Pfizer's 90%-efficacy readout; JPM +13.5% on the day",
+    "cause": "- 2020-11-09, +16.6%. JPM opened at $113.16 against a $102.96 prior close and finished at $116.90 on 47.8 million shares, the day Pfizer and BioNTech reported over 90% efficacy in the first Phase 3 interim analysis (Pfizer press release, Nov 9 2020). Banks were the largest beneficiaries of the vaccine rotation because a reopening path collapses the expected credit loss on the 2020 loan-loss reserve build.",
+    "category": "macro",
+    "sources": [
+      "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-and-biontech-announce-vaccine-candidate-against",
+      "https://www.federalreserve.gov/newsevents/pressreleases/monetary20200323b.htm",
+      "https://home.treasury.gov/policy-issues/coronavirus/about-the-cares-act",
+      "https://www.federalreserve.gov/newsevents/pressreleases/monetary20200409a.htm"
+    ],
+    "confidence": 0.9
+  },
+  "JPM|2022-10-18": {
+    "headline": "Oct 13 CPI reversal plus a Q3 beat on Oct 14 ($9.7bn, $3.12 EPS, NII +34%)",
+    "cause": "- 2022-10-18, +16.6%. The window base is the October 11 close. Two catalysts: the October 13 CPI reversal day (JPM +5.6%) and Q3 2022 results on October 14, net income $9.7bn, diluted EPS $3.12, managed revenue $33.5bn, and net interest income of $17.6bn, up 34% year over year (SEC 8-K exhibit 99.1, filed 2022-10-14).",
+    "category": "earnings",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/19617/000001961722000486/a3q22erfexhibit991narrative.htm"
+    ],
+    "confidence": 0.8
+  },
+  "META|2012-05-25": {
+    "headline": "IPO breaks issue price; the first week after the botched Nasdaq open",
+    "cause": "2012-05-25, -16.5% (IPO break). Window runs from the 18 May IPO close of $38.23 to $31.91. The IPO priced at $38 into a delayed and technically broken Nasdaq open; underwriters supported the price on day one, and once that support lifted the stock fell to $34.03 on 21 May and $31.00 on 22 May, tripping a circuit breaker.",
+    "category": "crisis",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Initial_public_offering_of_Facebook"
+    ],
+    "confidence": 0.9
+  },
+  "META|2012-06-04": {
+    "headline": "Post-IPO slide continues into lawsuits over selective analyst guidance",
+    "cause": "Post-IPO slide continues into lawsuits over selective analyst guidance",
+    "category": "crisis",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "META|2012-08-01": {
+    "headline": "First quarterly report as a public company; no mobile revenue model",
+    "cause": "Facebook reported its first quarter as a public company on 26 July 2012 after the close. Revenue grew but the company posted a GAAP loss on stock-compensation charges and, critically, gave the market no mobile monetization figure at a moment when usage was migrating to phones faster than the ad product could follow.",
+    "category": "earnings",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Initial_public_offering_of_Facebook"
+    ],
+    "confidence": 0.9
+  },
+  "META|2012-10-25": {
+    "headline": "Q3 2012: mobile advertising revenue disclosed for the first time",
+    "cause": "- 2012-10-25 (+18.9%): the +19.1 percent gap on 24 October is unmistakably a reaction to the Q3 2012 report of 23 October, in which Facebook first disclosed a mobile advertising revenue figure. The gap is verified; the content of the report is uncited here.",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "META|2012-11-16": {
+    "headline": "The 804 million share lockup expires and the stock goes up",
+    "cause": "2012-11-16, +22.6% (the lockup that did not break). 804 million insider shares became sellable on 14 November 2012, the single largest unlock of the sequence, and the stock rose as much as 11 percent that day rather than falling. The mechanism is that the unlock had been shorted and hedged in advance, so the actual event removed the overhang instead of creating supply.",
+    "category": "crisis",
+    "sources": [
+      "https://money.cnn.com/2012/11/14/technology/social/facebook-lockup-stock",
+      "https://www.cnbc.com/2012/11/14/why-facebooks-stock-soared-on-biggest-lockup-expiration.html"
+    ],
+    "confidence": 0.9
+  },
+  "META|2013-07-30": {
+    "headline": "Q2 2013: mobile hits 41% of ad revenue, the re-rating quarter",
+    "cause": "Facebook reported Q2 2013 on 24 July after the close. Revenue was $1.81bn, up 53 percent year over year, and mobile advertising reached 41 percent of total ad revenue, up from 30 percent the prior quarter, with mobile users up 51 percent to 819 million.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2013/07/24/facebook-earnings-beat-shares-jump-20.html",
+      "https://techcrunch.com/2013/07/31/facebook-shares-return-to-its-ipo-price/",
+      "https://money.cnn.com/2013/07/24/technology/facebook-earnings/index.html"
+    ],
+    "confidence": 0.95
+  },
+  "META|2014-02-05": {
+    "headline": "Q4 2013: mobile crosses half of ad revenue",
+    "cause": "Q4 2013: mobile crosses half of ad revenue",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "META|2016-02-03": {
+    "headline": "Q4 2015: revenue up 52%, the peak-execution quarter",
+    "cause": "Q4 2015: revenue up 52%, the peak-execution quarter",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "META|2018-08-01": {
+    "headline": "Q2 2018: margin and growth-deceleration guide, then the largest one-day cap loss to that date",
+    "cause": "2018-08-01, -21.1% (the guidance quarter). Window from $217.50 on 25 July to $171.65 on 1 August; the single-day drop of 19.0 percent on 26 July was the largest one-day market-capitalization loss in US history at the time.",
+    "category": "guidance",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "META|2019-02-05": {
+    "headline": "Q4 2018: growth intact despite the Cambridge Analytica year",
+    "cause": "Q4 2018: growth intact despite the Cambridge Analytica year",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "META|2020-03-12": {
+    "headline": "COVID crash: WHO pandemic declaration and the Europe travel ban",
+    "cause": "COVID crash: WHO pandemic declaration and the Europe travel ban",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.95
+  },
+  "META|2020-08-26": {
+    "headline": "August 2020 mega-cap melt-up; UBS e-commerce upgrade",
+    "cause": "2020-08-26, +15.7%. Facebook closed at a then-record $303.91, up 8.2 percent on the day, after UBS analyst Eric Sheridan reiterated a buy rating and raised his target from $242 to $330 on the e-commerce opportunity.",
+    "category": "sector-rotation",
+    "sources": [
+      "https://www.nasdaq.com/articles/why-facebook-stock-surged-to-a-new-all-time-high-today-2020-08-26"
+    ],
+    "confidence": 0.85
+  },
+  "META|2022-02-08": {
+    "headline": "First-ever DAU decline plus a $10bn ATT headwind; biggest one-day cap loss in US history",
+    "cause": "Meta reported Q4 2021 on 2 February 2022 after the close and disclosed the first sequential decline in daily active users in company history, from 1.930bn to 1.929bn. Management guided Q1 revenue below consensus, quantified the 2022 revenue headwind from Apple's App Tracking Transparency at roughly $10bn, and named TikTok as a direct competitor for engagement.",
+    "category": "guidance",
+    "sources": [
+      "https://www.cnbc.com/2022/02/03/facebook-shares-plummet-22percent-after-reporting-weak-guidance.html",
+      "https://www.cbsnews.com/news/stock-market-down-meta-facebook-earnings/"
+    ],
+    "confidence": 0.95
+  },
+  "META|2022-03-18": {
+    "headline": "Post-FOMC relief rally and the China ADR reversal",
+    "cause": "Post-FOMC relief rally and the China ADR reversal",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "META|2022-04-26": {
+    "headline": "Netflix subscriber shock repriced the whole ad and streaming complex",
+    "cause": "2022-04-26, -16.7%. Window from $217.31 on 19 April to $180.95. There is no Meta news in this window. Netflix reported a subscriber loss on 19 April and fell 35 percent on 20 April, which repriced the entire consumer-internet and advertising complex on read-across, and 26 April was a broad Nasdaq drawdown. Categorized sector-rotation.",
+    "category": "sector-rotation",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "META|2022-05-04": {
+    "headline": "Q1 2022 beat on DAU, then the one-day Fed relief rally of 4 May",
+    "cause": "Two separate catalysts fell inside one five-day window. Meta reported Q1 2022 on 27 April after the close; daily active users came in above expectations, reversing the previous quarter's decline, and the stock rose 17.6 percent on 28 April off a badly beaten-down base.",
+    "category": "earnings",
+    "sources": [
+      "https://www.aljazeera.com/economy/2022/4/27/meta-soars-as-facebook-reports-better-than-expected-daily-users"
+    ],
+    "confidence": 0.9
+  },
+  "META|2022-05-11": {
+    "headline": "The May 2022 growth unwind; the Fed rally reversed in 48 hours",
+    "cause": "The May 2022 growth unwind; the Fed rally reversed in 48 hours",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "META|2022-06-14": {
+    "headline": "8.6% CPI print forces a 75bp Fed and an S&P bear market",
+    "cause": "8.6% CPI print forces a 75bp Fed and an S&P bear market",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "META|2022-07-21": {
+    "headline": "Mid-summer bear-market rally; Netflix came in better than feared",
+    "cause": "2022-07-21, +15.9%. No Meta-specific catalyst. Netflix reported on 19 July having lost 970,000 subscribers against a guided 2 million, streaming and ad-adjacent names rallied hard, and the NYSE recorded a \"90 percent up day\" on 19 July. This is a bear-market rally row. Source: CNBC, \"Stocks rise, fueled by tech rally, as all major averages touch highest since early June\", 19 Jul 2022.",
+    "category": "sector-rotation",
+    "sources": [
+      "https://www.cnbc.com/2022/07/19/stock-futures-extend-dow-rally-as-netflix-earnings-beat-estimates-.html"
+    ],
+    "confidence": 0.7
+  },
+  "META|2022-11-01": {
+    "headline": "Q3 2022: revenue declines a second quarter while capex guidance rises",
+    "cause": "Meta reported Q3 2022 on 26 October after the close: revenue of $27.7bn, down more than 4 percent year over year and a second consecutive quarterly decline, profit down 52 percent to $4.4bn, and a Reality Labs loss of $3.7bn for the quarter, $9.4bn year to date. Management guided 2023 capital expenditure higher. Morgan Stanley, Cowen and KeyBanc downgraded the stock the next morning.",
+    "category": "guidance",
+    "sources": [
+      "https://www.cnbc.com/2022/10/27/meta-stock-falls-23percent-on-earnings-miss-analyst-downgrades.html",
+      "https://www.cnbc.com/2022/10/26/facebook-parent-meta-earnings-q3-2022.html",
+      "https://www.forbes.com/sites/siladityaray/2022/10/27/meta-shares-plummet-20-in-pre-market-after-q3-revenue-decline/"
+    ],
+    "confidence": 0.95
+  },
+  "META|2022-11-10": {
+    "headline": "11,000 layoffs on 9 Nov, then the soft October CPI print on 10 Nov",
+    "cause": "Three catalysts landed in sequence. A Wall Street Journal report over the weekend of 5 to 6 November said mass layoffs were imminent, and the stock rose 6.5 percent on Monday 7 November. On Wednesday 9 November Meta confirmed it was cutting more than 11,000 roles, about 13 percent of headcount, and the stock rose about 5.2 percent.",
+    "category": "macro",
+    "sources": [
+      "https://www.cnbc.com/2022/11/07/meta-shares-up-on-report-its-set-to-begin-mass-layoffs.html",
+      "https://www.cnbc.com/2022/11/09/takeaways-from-daily-meeting-cpi-disneys-bad-quarter-meta-layoffs.html",
+      "https://www.cnbc.com/2022/11/09/stock-market-futures-open-to-close-news.html"
+    ],
+    "confidence": 0.9
+  },
+  "META|2023-02-07": {
+    "headline": "\"Year of efficiency\" and a $40bn buyback",
+    "cause": "Meta reported Q4 2022 on 1 February 2023 after the close. Revenue of $32.2bn beat the $31.5bn consensus, daily active users reached 2bn, and the company authorized an incremental $40bn share repurchase while Zuckerberg declared 2023 a \"year of efficiency\". Shares rose more than 23 percent on 2 February and held the gain through 7 February.",
+    "category": "earnings",
+    "sources": [
+      "https://qz.com/meta-earnings-2023-q4-share-buyback-layoffs-1850063732",
+      "https://www.fool.com/investing/2023/02/05/why-meta-platforms-jumped-238-in-january/",
+      "https://seekingalpha.com/news/3931174-meta-platforms-soar-analysts-upgrade-praise-year-of-efficiency",
+      "https://www.cnbc.com/2023/02/01/meta-lost-13point7-billion-on-reality-labs-in-2022-after-metaverse-pivot.html"
+    ],
+    "confidence": 0.95
+  },
+  "META|2023-05-02": {
+    "headline": "Q1 2023: return to revenue growth, efficiency thesis confirmed",
+    "cause": "Q1 2023: return to revenue growth, efficiency thesis confirmed",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "META|2024-02-02": {
+    "headline": "First-ever dividend plus a $50bn buyback; record one-day cap gain",
+    "cause": "2024-02-02, +20.5%. Q4 2023 reported 1 February after the close, with the first dividend in company history plus a $50bn buyback authorization. Shares rose 20.3 percent on 2 February from $394.78 to $474.99, the largest single-day market-capitalization gain by any US company to that point. Same mechanism as 2023-02-07: a capital-return policy change, not an earnings surprise. Source: CNN, \"Meta stock surges 14%.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnn.com/2024/02/01/tech/meta-earnings-q4-2023-dividend/index.html"
+    ],
+    "confidence": 0.9
+  },
+  "META|2025-11-04": {
+    "headline": "$15.9bn one-time tax charge and a raised AI capex guide",
+    "cause": "2025-11-04, -16.5%. Window from $751.67 on 29 October to $627.32. Meta reported Q3 2025 on 29 October after the close: record revenue of $51.24bn, up 26 percent and above the $49.41bn consensus, but a one-time non-cash tax charge of about $15.9bn arising from the US Corporate Alternative Minimum Tax, and 2025 capex guidance narrowed upward to $70bn to $72bn with a warning that 2026 capex would be \"notably larger\".",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2025/10/30/meta-stock-earnings-ai-spend.html",
+      "https://www.cnbc.com/2025/10/29/meta-q3-earnings-report-2025.html"
+    ],
+    "confidence": 0.9
+  },
+  "META|2026-04-14": {
+    "headline": "Muse Spark model launch into an Iran-ceasefire risk rally",
+    "cause": "2026-04-14, +15.2%. Window from $575.05 on 7 April to $662.49. Two catalysts. On 8 April Meta launched Muse Spark, the first model from Meta Superintelligence Labs and its first major model since the $14bn Scale AI transaction, live in the Meta AI assistant in the US; the same session, President Trump announced a two-week suspension of strikes on Iran contingent on reopening the Strait of Hormuz, oil fell, and the Na…",
+    "category": "product",
+    "sources": [
+      "https://www.cnbc.com/2026/04/08/meta-debuts-first-major-ai-model-since-14-billion-deal-to-bring-in-alexandr-wang.html",
+      "https://www.cnbc.com/2026/04/08/alphabet-nvidia-microsoft-tech-stocks-iran-ceasefire.html",
+      "https://www.fool.com/investing/2026/04/08/why-meta-platforms-stock-jumped-today/",
+      "https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire"
+    ],
+    "confidence": 0.85
+  },
+  "MSFT|2008-10-10": {
+    "headline": "Worst week in Dow history as the post-Lehman credit freeze peaked",
+    "cause": "From 6 to 10 October 2008 the Dow closed lower in all five sessions, falling more than 1,874 points or 18%, the worst weekly decline in its history on both a point and a percentage basis, with the S&P down more than 20%. The mechanism was a total lock-up of short-term credit markets after Lehman's failure (CNNMoney, Benzinga).",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/10/31/markets/october_stocks_tough_month/index.htm",
+      "https://www.benzinga.com/general/education/21/10/23355953/this-day-in-market-history-dow-rebounds-11-following-worst-week-ever-in-2008"
+    ],
+    "confidence": 0.94
+  },
+  "MSFT|2008-11-20": {
+    "headline": "Capitulation to the 11-year S&P low as Citigroup looked like the next failure",
+    "cause": "The S&P 500 closed at 752.44 on 20 November 2008, its lowest close since 1997, down 6.7% on the day, with Citigroup down 26% and the cost of insuring against corporate default at an all-time high, as an auto-industry rescue vote was postponed (TradingEconomics, 20 Nov 2008).",
+    "category": "macro",
+    "sources": [
+      "https://tradingeconomics.com/articles/11202008132217.htm",
+      "https://www.theregister.com/2008/11/18/yang_resigns/",
+      "https://www.itpro.com/609714/timeline-the-saga-of-microsoft-and-yahoo"
+    ],
+    "confidence": 0.9
+  },
+  "MSFT|2008-11-28": {
+    "headline": "Bounce off the November low on the Citigroup rescue and the Fed's $800bn facilities",
+    "cause": "The window runs from the 20 November closing low (17.53) to 28 November (20.22). On 23 November the US government announced a rescue of Citigroup including an FDIC guarantee on more than $300bn of assets, and on 25 November the government announced an $800bn programme to restart consumer and small-business lending (CNNMoney, 24 Nov 2008, CNNMoney, 26 Nov 2008).",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/11/24/markets/markets_newyork/index.htm?postversion=2008112415",
+      "https://money.cnn.com/2008/11/26/markets/markets_newyork/"
+    ],
+    "confidence": 0.9
+  },
+  "MSFT|2015-04-28": {
+    "headline": "FQ3 2015 beat with commercial cloud up 106%, biggest one-day gain in six years",
+    "cause": "Microsoft reported fiscal Q3 2015 after the close on 23 April 2015: revenue $21.7bn (up 6%), diluted EPS $0.61, and commercial cloud revenue up 106% to a $6.3bn annualised run rate, offset by Windows OEM revenue down 19% (Pro) and 26% (non-Pro) (Microsoft IR, FY15 Q3).",
+    "category": "earnings",
+    "sources": [
+      "https://www.microsoft.com/en-us/investor/earnings/fy-2015-q3/press-release-webcast"
+    ],
+    "confidence": 0.93
+  },
+  "MSFT|2020-03-12": {
+    "headline": "COVID crash: worst day since 1987 the day after the WHO pandemic declaration",
+    "cause": "The WHO declared COVID-19 a pandemic on 11 March 2020. On 12 March the Dow fell 10%, its worst day since October 1987, and the S&P fell 9.5%, amid the suspension of most travel from Europe to the US and a cascade of global shutdowns (PBS NewsHour / AP).",
+    "category": "macro",
+    "sources": [
+      "https://www.pbs.org/newshour/economy/worst-day-on-wall-street-since-1987-as-virus-fears-spread"
+    ],
+    "confidence": 0.95
+  },
+  "MSFT|2020-03-30": {
+    "headline": "Rebound off the 23 March bottom on unlimited Fed QE and the $2.2T CARES Act",
+    "cause": "The window runs from the closing low of 23 March 2020 (135.98) to 30 March (160.23). On the morning of 23 March, before the US open, the Federal Reserve announced open-ended purchases of Treasuries and agency MBS \"in the amounts needed to support the smooth functioning of markets,\" together with new corporate credit and asset-backed facilities (Federal Reserve, CNBC).",
+    "category": "macro",
+    "sources": [
+      "https://www.federalreserve.gov/newsevents/pressreleases/monetary20200323a.htm",
+      "https://www.cnbc.com/2020/03/23/fed-announces-a-slew-of-new-programs-to-help-markets-including-open-ended-asset-purchases.html",
+      "https://en.wikipedia.org/wiki/CARES_Act"
+    ],
+    "confidence": 0.92
+  },
+  "MSFT|2026-08-03": {
+    "headline": "FQ4 2026 blowout: Azure +43%, biggest one-day market-cap gain in history",
+    "cause": "Microsoft reported fiscal Q4 2026 after the close on Wednesday 29 July 2026. Revenue was $90.0bn, up 18% year over year, with GAAP diluted EPS of $4.81, up 32%. Azure and other cloud services revenue grew 43%, Microsoft Cloud revenue was $59.3bn (up 27%), Microsoft 365 Copilot passed 30 million paid seats, and commercial remaining performance obligation rose 84% to $678bn.",
+    "category": "earnings",
+    "sources": [
+      "https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast",
+      "https://fortune.com/2026/07/30/microsoft-stock-biggest-one-day-gain-since-2008-480-billion-market-value-cloud-growth/",
+      "https://www.bloomberg.com/news/articles/2026-07-29/microsoft-reports-quarterly-cloud-revenue-that-beat-estimates",
+      "https://www.bloomberg.com/news/articles/2026-07-30/microsoft-eyes-history-with-490-billion-pop-in-market-value",
+      "https://www.tradingkey.com/news/market-movers/262070900-market-movers-msft-20260803"
+    ],
+    "confidence": 0.97
+  },
+  "NVDA|2008-01-22": {
+    "headline": "January 2008 global equity rout; semis hit by Intel's Q4 miss, then the Fed's emergency 75bp cut on Jan 22",
+    "cause": "January 2008 global equity rout; semis hit by Intel's Q4 miss, then the Fed's emergency 75bp cut on Jan 22",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.5
+  },
+  "NVDA|2008-02-21": {
+    "headline": "Q4 FY2008 record results on Feb 13 but a soft Q1 outlook; stock fell 16.3% on Feb 14",
+    "cause": "2008-02-21, -21.2%, guidance. NVIDIA reported record Q4 FY2008 results on Feb 13 2008: revenue of $1.20bn, up 37%, GAAP net income of $257.0M, up 57%, annual revenue of $4.10bn. The stock fell 16.3% the next day. This is a good quarter that traded badly, on decelerating growth signals and a soft outlook, and it is the earliest warning of the notebook problem that detonated five months later.",
+    "category": "guidance",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/0001045810/000104581008000003/q408pressrelease.htm",
+      "https://www.cnbc.com/2008/02/14/nvidia-shares-tumble-hurt-by-growth-concerns.html"
+    ],
+    "confidence": 0.85
+  },
+  "NVDA|2008-07-07": {
+    "headline": "July 2 warning: defective notebook GPU/MCP packaging, $150M to $200M charge, Q2 revenue guide cut ~17% below consensus; stock fell ~31% on July 3",
+    "cause": "On July 2 2008 NVIDIA pre-announced. It cut Q2 revenue guidance to roughly $912M, about 17% below consensus, and disclosed a one-time charge of $150M to $200M to cover warranty, repair, return and replacement costs for a \"weak die/packaging material set\" in certain notebook GPUs and MCPs.",
+    "category": "crisis",
+    "sources": [
+      "https://www.theregister.com/2008/07/03/nvidia_forecast_glitch/",
+      "https://fortune.com/2008/07/03/miss-by-chipmaker-nvidia-rattles-investors",
+      "https://www.computerworld.com/article/1580916/nvidia-hit-with-securities-lawsuit-over-bad-graphics-chips.html",
+      "https://www.fool.com/investing/general/2008/07/08/nvidia-explodes.aspx",
+      "https://www.sec.gov/Archives/edgar/data/0001045810/000104581008000018/q209form8kpressrelease.htm"
+    ],
+    "confidence": 0.97
+  },
+  "NVDA|2008-08-19": {
+    "headline": "Aug 12 Q2 FY2009 report absorbed the $196M defect charge and raised the buyback; relief rally off the July low",
+    "cause": "Aug 12 Q2 FY2009 report absorbed the $196M defect charge and raised the buyback; relief rally off the July low",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "NVDA|2008-09-15": {
+    "headline": "Lehman Brothers bankruptcy, Sept 15 2008",
+    "cause": "Lehman Brothers bankruptcy, Sept 15 2008",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "NVDA|2008-09-22": {
+    "headline": "TARP announcement and the SEC short-selling ban, Sept 18 to 19 2008",
+    "cause": "TARP announcement and the SEC short-selling ban, Sept 18 to 19 2008",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "NVDA|2008-10-07": {
+    "headline": "Worst week for US equities since 1933; Dow -18.1%, S&P 500 -20% over Oct 6 to 10",
+    "cause": "Nothing NVIDIA-specific. The window covers Sept 30 to Oct 7 2008, inside the week the Dow fell 18.1% and the S&P 500 fell more than 20%, three weeks after Lehman and days after the $700bn TARP bill was signed. NVDA closed at $0.268 on Sept 30 and $0.181 on Oct 7.",
+    "category": "macro",
+    "sources": [
+      "https://www.begintoinvest.com/october-10/",
+      "https://money.cnn.com/2008/10/06/markets/markets_newyork/",
+      "https://moneyzine.com/investments/stock-market-crash-of-2008/"
+    ],
+    "confidence": 0.95
+  },
+  "NVDA|2008-10-23": {
+    "headline": "Continuation of the October 2008 credit-crisis liquidation",
+    "cause": "Continuation of the October 2008 credit-crisis liquidation",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "NVDA|2008-10-31": {
+    "headline": "Late-October 2008 short-covering rebound; Dow +10.9% on Oct 28 ahead of the Fed's 50bp cut on Oct 29",
+    "cause": "From $0.165 on Oct 24 to $0.219 on Oct 31. The engine was Oct 28 2008, when the Dow rose 10.9%, its second-largest percentage gain ever, ahead of the Fed's 50bp cut to 1.0% on Oct 29.",
+    "category": "macro",
+    "sources": [
+      "https://www.benzinga.com/general/education/21/10/23355953/this-day-in-market-history-dow-rebounds-11-following-worst-week-ever-in-2008",
+      "https://moneyzine.com/investments/stock-market-crash-of-2008/"
+    ],
+    "confidence": 0.85
+  },
+  "NVDA|2008-11-20": {
+    "headline": "The November 20 2008 bear-market low; S&P 500 closed at 752, its worst level of the crisis",
+    "cause": "From $0.199 on Nov 13 to $0.148 on Nov 20 2008, the day the S&P 500 closed at 752, its low of the crisis. No NVIDIA-specific news in the window. The Q3 FY2009 report had come on Nov 6, ahead of the window's start.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "NVDA|2008-11-28": {
+    "headline": "Thanksgiving-week melt-up off the Nov 20 low, on the Citigroup rescue (Nov 23) and the Fed's first QE/TALF facilities (Nov 25)",
+    "cause": "From the Nov 20 low of $0.148 to $0.187 on Nov 28, five consecutive up sessions. Market-wide: the S&P 500 rose roughly 19% off the Nov 20 low in that stretch, its largest five-session gain since 1933.",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "NVDA|2009-03-12": {
+    "headline": "The March 9 2009 generational bottom and the reversal week that followed",
+    "cause": "The March 9 2009 generational bottom and the reversal week that followed",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.75
+  },
+  "NVDA|2009-05-13": {
+    "headline": "May 7 Q1 FY2010 report: revenue -42% year over year to $664M, net loss $201M; stock fell 7% on May 7 and 13.8% on May 8 on 2.9bn shares",
+    "cause": "NVIDIA reported Q1 FY2010 after the close on May 7 2009: revenue of $664.2M against $1.2bn a year earlier, down 42%, and a net loss of $201.3M, or $0.37 per share, including a $140.2M non-recurring charge tied to a cash tender offer for employee stock options. The stock fell 7.2% on May 7 and 13.8% on May 8, on 2.9bn shares, the heaviest volume in the sample outside July 2008.",
+    "category": "earnings",
+    "sources": [
+      "https://nvidianews.nvidia.com/news/nvidia-reports-financial-results-for-first-quarter-fiscal-year-2010"
+    ],
+    "confidence": 0.8
+  },
+  "NVDA|2011-01-12": {
+    "headline": "CES 2011 (Jan 5): Tegra 2 and \"Project Denver,\" NVIDIA's ARM-based CPU, plus Microsoft committing Windows to ARM; then Jan 10, Intel settles for a $1.5bn patent cross-license",
+    "cause": "Two catalysts inside one window. At CES on Jan 5 2011, Jen-Hsun Huang announced Tegra 2 and \"Project Denver,\" NVIDIA's plan to build its own high-performance ARM-based CPU cores for PCs, workstations and supercomputers, in the same week Microsoft said Windows would run on ARM. Then on Jan 10 2011, Intel settled its litigation with a six-year patent cross-license and $1.5bn of payments to NVIDIA.",
+    "category": "product",
+    "sources": [
+      "https://www.pcworld.com/article/499902/nvidia_reveals_project_denver_an_arm_based_processor.html",
+      "https://www.digitimes.com/news/a20110106PR204.html",
+      "https://www.forbes.com/sites/briancaulfield/2011/01/10/nvidia-gets-1-5-billion-in-intel-cross-licensing-deal-settles-litigation/",
+      "https://www.sec.gov/Archives/edgar/data/0000050863/000005086311000007/exh991.htm",
+      "https://www.fool.com/investing/general/2011/01/24/nvidia-shares-popped-what-you-need-to-know.aspx"
+    ],
+    "confidence": 0.9
+  },
+  "NVDA|2011-08-08": {
+    "headline": "S&P's downgrade of the US credit rating (Aug 5 2011) and the Aug 8 crash",
+    "cause": "S&P's downgrade of the US credit rating (Aug 5 2011) and the Aug 8 crash",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "NVDA|2011-10-10": {
+    "headline": "The Oct 3 2011 low and the reversal on European bank-recapitalization headlines; best month for the Dow since 2002",
+    "cause": "From $0.295 on Oct 3 2011 to $0.370 on Oct 10. Oct 3 was the closing low of the year for both the Dow and the S&P 500, one bad session away from a formal bear market. What followed was the best month for the Dow since 2002, up 9.5%, and the best month for the S&P 500 since 1991, up 10.8%.",
+    "category": "macro",
+    "sources": [
+      "https://www.foxnews.com/us/ugly-end-to-historic-october-on-wall-street.print",
+      "https://cepr.org/voxeu/columns/short-guide-ebas-recapitalisation-results"
+    ],
+    "confidence": 0.8
+  },
+  "NVDA|2016-05-19": {
+    "headline": "May 12 Q1 FY2017 beat on datacenter and gaming; stock +15.2% on May 13",
+    "cause": "May 12 Q1 FY2017 beat on datacenter and gaming; stock +15.2% on May 13",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "NVDA|2016-11-17": {
+    "headline": "Nov 10 Q3 FY2017 blowout: revenue $2.00bn (+54% y/y) vs $1.69bn consensus, datacenter +193%; stock +29.8% on Nov 11",
+    "cause": "After the close on Nov 10 2016, NVIDIA reported Q3 FY2017 revenue of $2.00bn, up 54% year over year, against consensus of $1.69bn, with adjusted EPS of $0.94 against $0.69 expected. Gaming grew 63% to $1.2bn, datacenter grew 193% to $240M, automotive grew 61% to $127M. The stock rose 29.6% on Nov 11 and kept going, from $1.694 on Nov 10 to $2.310 on Nov 17.",
+    "category": "earnings",
+    "sources": [
+      "https://www.fool.com/investing/2016/12/09/why-nvidia-corporation-stock-skyrocketed-296-in-no.aspx",
+      "https://www.nanalyze.com/2017/01/why-nvda-stock-price-skyrocketed/"
+    ],
+    "confidence": 0.95
+  },
+  "NVDA|2017-05-16": {
+    "headline": "May 9 Q1 FY2018: revenue $1.94bn (+48% y/y), GAAP EPS +126%, datacenter GPU revenue nearly tripled; stock +17.8% on May 10",
+    "cause": "After the close on May 9 2017, NVIDIA reported Q1 FY2018 revenue of $1.94bn, up 48% year over year, and GAAP EPS of $0.79, up 126%. Datacenter GPU computing revenue nearly tripled year over year. Guidance for the following quarter was $1.95bn. The stock rose 17.8% on May 10 and continued to $3.420 by May 16 from $2.574 on May 9.",
+    "category": "earnings",
+    "sources": [
+      "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2018",
+      "https://nvidianews.nvidia.com/_gallery/download_pdf/59122a5eed6ae5323bdf87fd/"
+    ],
+    "confidence": 0.95
+  },
+  "NVDA|2018-10-11": {
+    "headline": "The October 2018 rate-spike selloff; semis led the market down",
+    "cause": "The October 2018 rate-spike selloff; semis led the market down",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "NVDA|2018-10-29": {
+    "headline": "Continuation of the October 2018 rout; NVDA fell 9.8% on Oct 24 alone",
+    "cause": "Continuation of the October 2018 rout; NVDA fell 9.8% on Oct 24 alone",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.65
+  },
+  "NVDA|2018-11-23": {
+    "headline": "Nov 15 Q3 FY2019: revenue +2.5% to $3.18bn, below guidance, on a \"crypto hangover\" of unsold Pascal inventory; Q4 guided to $2.7bn vs $3.4bn consensus. Stock -18.8% Nov 16, -12% more Nov 19",
+    "cause": "After the close on Nov 15 2018, NVIDIA reported Q3 FY2019 revenue of $3.18bn, up only 2.5% year over year, short of both consensus and its own prior guidance, and guided Q4 to $2.7bn plus or minus 2% against roughly $3.4bn expected, a 7.8% year-over-year decline at the midpoint. Jensen Huang described a \"crypto hangover\" that was worse and longer-lasting than expected.",
+    "category": "guidance",
+    "sources": [
+      "https://fortune.com/2018/11/15/nvidia-stock-plunges-crypto-hangover-weighs-revenue-growth",
+      "https://www.fool.com/investing/2018/11/19/why-nvidia-stock-tumbled-today.aspx",
+      "https://www.fool.com/investing/2019/01/14/why-nvidia-stock-plunged-31-in-2018.aspx"
+    ],
+    "confidence": 0.95
+  },
+  "NVDA|2020-02-19": {
+    "headline": "Feb 13 Q4 FY2020 beat, into the Feb 19 2020 pre-COVID market top",
+    "cause": "Feb 13 Q4 FY2020 beat, into the Feb 19 2020 pre-COVID market top",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "NVDA|2020-02-27": {
+    "headline": "The first COVID crash week, Feb 24 to 28 2020",
+    "cause": "The first COVID crash week, Feb 24 to 28 2020",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "NVDA|2020-03-12": {
+    "headline": "COVID crash: WHO pandemic declaration, circuit breakers, March 12 2020",
+    "cause": "COVID crash: WHO pandemic declaration, circuit breakers, March 12 2020",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "NVDA|2020-03-30": {
+    "headline": "CARES Act and the Fed's open-ended QE; the March 23 2020 bottom and rebound",
+    "cause": "CARES Act and the Fed's open-ended QE; the March 23 2020 bottom and rebound",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.75
+  },
+  "NVDA|2020-11-06": {
+    "headline": "US election week 2020; Nasdaq's largest weekly gain since April",
+    "cause": "US election week 2020; Nasdaq's largest weekly gain since April",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.55
+  },
+  "NVDA|2021-03-08": {
+    "headline": "The February to March 2021 long-yield spike and the derating of long-duration growth",
+    "cause": "The February to March 2021 long-yield spike and the derating of long-duration growth",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "NVDA|2021-11-04": {
+    "headline": "Wells Fargo raised its target from $245 to $320 on the Omniverse/metaverse opportunity; stock +12% on Nov 4, adding roughly $80bn of value",
+    "cause": "2021-11-04, +19.5%, sentiment. A 12% single-day move on a sell-side price target increase, from $245 to $320 at Wells Fargo, framed around Omniverse and the metaverse. Roughly $80bn of market value on an analyst note with no new company disclosure.",
+    "category": "sector-rotation",
+    "sources": [
+      "https://www.investing.com/news/stock-market-news/nvidias-rally-turbo-charged-by-metaverse-valuation-breaches-800-billion-2684316",
+      "https://www.coinspeaker.com/nvidia-stock-metaverse/",
+      "https://www.forbes.com/sites/petercohan/2021/11/05/up-33-a-year-since-1999-nvidia-stock-to-benefit-from-metaverse/"
+    ],
+    "confidence": 0.8
+  },
+  "NVDA|2022-02-23": {
+    "headline": "Run-up to the Russian invasion of Ukraine, compounding a poorly received Feb 16 Q4 FY2022 report",
+    "cause": "Run-up to the Russian invasion of Ukraine, compounding a poorly received Feb 16 Q4 FY2022 report",
+    "category": "geopolitical",
+    "sources": [],
+    "confidence": 0.55
+  },
+  "NVDA|2022-03-21": {
+    "headline": "The Fed's first hike of the cycle on March 16 2022 removed the \"when does it start\" overhang; three straight strong sessions and one of the Nasdaq's best weeks since 2020",
+    "cause": "From $21.33 on March 14 2022 to $26.73 on March 21, with the strongest sessions on March 15, 16 and 18. The Fed raised rates 25bp on March 16 2022, the first hike of the cycle, and published a dot plot implying six more hikes that year. The Nasdaq rose 1.3% on March 18 alone and posted one of its strongest weeks since 2020.",
+    "category": "macro",
+    "sources": [
+      "https://www.nasdaq.com/articles/stock-market-news-for-mar-18-2022"
+    ],
+    "confidence": 0.75
+  },
+  "NVDA|2022-04-11": {
+    "headline": "April 2022 inflation and rate repricing; growth-multiple compression",
+    "cause": "April 2022 inflation and rate repricing; growth-multiple compression",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.5
+  },
+  "NVDA|2022-06-13": {
+    "headline": "The 8.6% May CPI print on June 10 2022 and the June 13 plunge into a bear market",
+    "cause": "The 8.6% May CPI print on June 10 2022 and the June 13 plunge into a bear market",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "NVDA|2022-09-01": {
+    "headline": "Two shocks in one window: Powell's Jackson Hole speech (Aug 26) and the Aug 31 8-K disclosing a new US licence requirement on A100/H100 exports to China and Russia, putting up to $400M of Q3 sales at risk",
+    "cause": "2022-09-01, -22.2%, regulatory. Two shocks compressed into one window: Powell's Jackson Hole speech on Aug 26 2022, and NVIDIA's 8-K filed Aug 31 disclosing that on Aug 26 the US government had imposed an immediate licence requirement on exports of A100 and H100 to China, Hong Kong and Russia, putting up to $400M of Q3 sales at risk and threatening H100 development timelines.",
+    "category": "regulatory",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/1045810/000104581022000146/nvda-20220826.htm",
+      "https://www.tomshardware.com/news/us-export-rules-may-cost-nvidia-400-million-prevent-h100-development",
+      "https://videocardz.com/newz/us-imposes-license-requirement-for-nvidia-a100-h100-gpus-export-to-china-and-russia-400m-revenue-at-risk",
+      "https://www.techtarget.com/searchenterpriseai/news/252524511/Nvidia-now-needs-special-license-to-export-AI-chips-to-China"
+    ],
+    "confidence": 0.85
+  },
+  "NVDA|2022-11-10": {
+    "headline": "The Nov 10 2022 downside CPI surprise; Nasdaq +7.4% in a single session",
+    "cause": "The Nov 10 2022 downside CPI surprise; Nasdaq +7.4% in a single session",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.75
+  },
+  "NVDA|2023-06-01": {
+    "headline": "May 24 Q1 FY2024: revenue $7.19bn vs $6.52bn consensus, and Q2 guided to $11bn against roughly $7.2bn expected. Stock +24.4% on May 25, the single most important guidance event in the AI cycle",
+    "cause": "After the close on May 24 2023, NVIDIA reported Q1 FY2024 revenue of $7.19bn against consensus of $6.52bn and adjusted EPS of $1.09 against $0.92, then guided Q2 to approximately $11bn against roughly $7.2bn expected. The stock rose about 30% in after-hours trade and closed up 24.4% on May 25, from $30.54 to $37.98, and reached $39.77 by June 1. It approached a $1trn market capitalization within days.",
+    "category": "guidance",
+    "sources": [
+      "https://www.cnbc.com/2023/05/25/nvidia-on-track-for-record-high-driven-by-ai-chip-demand.html",
+      "https://www.morningstar.com/stocks/three-years-ai-stock-market-boom-charts"
+    ],
+    "confidence": 0.97
+  },
+  "NVDA|2024-02-28": {
+    "headline": "Feb 21 Q4 FY2024: revenue $22.1bn, +265% y/y on Hopper H100 demand; stock +16.4% on Feb 22",
+    "cause": "Feb 21 Q4 FY2024: revenue $22.1bn, +265% y/y on Hopper H100 demand; stock +16.4% on Feb 22",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "NVDA|2024-05-29": {
+    "headline": "May 22 Q1 FY2025 beat plus the announcement of a 10-for-1 stock split",
+    "cause": "May 22 Q1 FY2025 beat plus the announcement of a 10-for-1 stock split",
+    "category": "earnings",
+    "sources": [],
+    "confidence": 0.65
+  },
+  "NVDA|2024-08-07": {
+    "headline": "The Aug 5 2024 global risk-off: weak July payrolls, the Bank of Japan hike and the yen carry-trade unwind",
+    "cause": "The Aug 5 2024 global risk-off: weak July payrolls, the Bank of Japan hike and the yen carry-trade unwind",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.65
+  },
+  "NVDA|2024-08-14": {
+    "headline": "Sharp V-shaped recovery from the Aug 5 2024 low as recession fears faded",
+    "cause": "Sharp V-shaped recovery from the Aug 5 2024 low as recession fears faded",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.55
+  },
+  "NVDA|2024-09-04": {
+    "headline": "The Sept 3 2024 semiconductor rout: a weak ISM print plus press reports of a DOJ antitrust subpoena; NVDA fell about 9.5% in one session",
+    "cause": "The Sept 3 2024 semiconductor rout: a weak ISM print plus press reports of a DOJ antitrust subpoena; NVDA fell about 9.5% in one session",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.55
+  },
+  "NVDA|2025-01-29": {
+    "headline": "DeepSeek R1: a Chinese model claiming frontier performance at a fraction of the training cost, undermining the assumed AI capex trajectory. NVDA fell 17% on Jan 27, roughly $590bn of market value, the largest one-day loss in market history at the time",
+    "cause": "2025-01-29, -15.9%, crisis. DeepSeek's R1 model, claiming frontier-class reasoning at a small fraction of the assumed training cost, hit on Monday Jan 27 2025. NVDA fell 17% and lost roughly $590bn of market value in one session, the largest single-day loss for any company on record at the time. The mechanism is unusual and worth preserving: nothing about NVIDIA's orders, guidance, or products changed.",
+    "category": "crisis",
+    "sources": [
+      "https://www.cnbc.com/2025/01/27/nvidia-calls-chinas-deepseek-r1-model-an-excellent-ai-advancement.html",
+      "https://www.ig.com/en/news-and-trade-ideas/why-nvidia-s-share-price-dropped-17--after-deepseek-news-250128",
+      "https://kathmandupost.com/world/2025/01/28/deepseek-sparks-ai-stock-selloff-nvidia-posts-record-market-cap-loss",
+      "https://www.forbes.com/sites/greatspeculations/2025/01/27/why-deepseek-is-sinking-nvidia-stock/"
+    ],
+    "confidence": 0.95
+  },
+  "NVDA|2025-04-11": {
+    "headline": "The April 9 2025 announcement of a 90-day pause on reciprocal tariffs and the historic single-day rally that followed",
+    "cause": "The April 9 2025 announcement of a 90-day pause on reciprocal tariffs and the historic single-day rally that followed",
+    "category": "geopolitical",
+    "sources": [],
+    "confidence": 0.65
+  },
+  "NVDA|2025-05-16": {
+    "headline": "US-China tariff de-escalation in mid-May 2025 plus large Gulf sovereign AI agreements announced during that week",
+    "cause": "US-China tariff de-escalation in mid-May 2025 plus large Gulf sovereign AI agreements announced during that week",
+    "category": "geopolitical",
+    "sources": [],
+    "confidence": 0.5
+  },
+  "NVDA|2026-08-05": {
+    "headline": "Five-session run of +10.5% into the Aug 5 2026 close of $219.22, on hyperscaler capex beats, a public SpaceX commitment to NVIDIA silicon, and positioning ahead of the Aug 26 earnings report",
+    "cause": "2026-08-05, +15.4%, sentiment. The most recent event in the ledger and the one I am least able to verify independently. Reported drivers are hyperscaler capital-expenditure guidance beats, a public statement from Elon Musk that SpaceX would use NVIDIA silicon exclusively for its AI infrastructure, and positioning into the Aug 26 2026 earnings report.",
+    "category": "sentiment",
+    "sources": [
+      "https://www.tradingkey.com/analysis/stocks/us-stocks/262082021-us-stock-nvidia-nvda-price-ai-chip-spacex-tradingkey",
+      "https://www.tradingkey.com/news/market-movers/262078451-market-movers-nvda-20260805",
+      "https://247wallst.com/investing/2026/08/09/nvidia-and-micron-have-driven-the-sp-500s-2026-rally-to-record-highs-history-says-its-not-over/"
+    ],
+    "confidence": 0.6
+  },
+  "TSLA|2010-07-07": {
+    "headline": "Post-IPO unwind: TSLA breaks below its $17 offer price",
+    "cause": "Post-IPO unwind: TSLA breaks below its $17 offer price. Tesla priced at $17 on 29 June 2010 and closed its first day at $23.89, up 40.5%. The pop did not survive the week. The stock fell 19% on Tuesday 6 July to $16.11, below the offer price, and traded as low as $15.56. There is no adverse company news in this window.",
+    "category": "unexplained",
+    "sources": [
+      "https://money.cnn.com/2010/07/07/technology/tesla_stock/index.htm",
+      "https://www.bloomberg.com/news/articles/2010-07-06/tesla-shares-fall-below-electric-car-maker-s-ipo-price-of-17-in-new-york",
+      "https://money.cnn.com/2010/06/29/technology/tesla_ipo/index.htm"
+    ],
+    "confidence": 0.75
+  },
+  "TSLA|2010-11-10": {
+    "headline": "Panasonic takes a $30m stake and a battery-cell partnership; first Q3 report",
+    "cause": "Panasonic takes a $30m stake; first Q3 report as a public company. On 3 November 2010 Panasonic bought 1,418,573 shares at $21.15 for $30m in a private placement, alongside a continuing next-generation EV battery-cell development programme. Tesla then reported Q3 2010 results after the close on 9 November, inside the window.",
+    "category": "product",
+    "sources": [
+      "https://www.sec.gov/Archives/edgar/data/1318605/000119312510281997/dex991.htm",
+      "https://www.fool.com/investing/general/2010/11/30/has-tesla-motors-gone-too-far.aspx"
+    ],
+    "confidence": 0.65
+  },
+  "TSLA|2011-08-08": {
+    "headline": "S&P strips the US of its AAA rating; 8 Aug is a -6.7% day for the S&P 500",
+    "cause": "Standard & Poor's downgraded the United States from AAA to AA+ on 6 August 2011, ending a rating held since 1941. On 8 August the S&P 500 fell 6.7% and the NASDAQ 6.9%, with ~$2.5trn erased from global equity value in a session. The S&P 500 fell 21.6% from its May peak to its October low, which also frames the 2011-08-22 down leg and the 2011-10-10 rebound.",
+    "category": "macro",
+    "sources": [
+      "https://en.wikipedia.org/wiki/August_2011_stock_markets_fall"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2011-08-22": {
+    "headline": "Second leg of the August 2011 downgrade/eurozone bear market",
+    "cause": "Second leg of the August 2011 downgrade/eurozone bear market",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "TSLA|2011-10-10": {
+    "headline": "Rebound off the early-October 2011 bear-market low",
+    "cause": "Rebound off the early-October 2011 bear-market low",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.5
+  },
+  "TSLA|2013-04-01": {
+    "headline": "Tesla pre-announces its first-ever quarterly profit on 1 April",
+    "cause": "Tesla pre-announces its first-ever quarterly profit on 1 April",
+    "category": "guidance",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "TSLA|2013-05-15": {
+    "headline": "First quarterly profit (8 May) plus a 99/100 Consumer Reports score",
+    "cause": "First quarterly profit, then the best car Consumer Reports had ever tested. Two catalysts landed back to back. On 8 May 2013 Tesla reported its first ever quarterly profit: $562m of revenue and $15m of net income, or $0.12 per share, against consensus of $0.04 on $500m. Shares rose ~13% after hours, then 24% the next day.",
+    "category": "earnings",
+    "sources": [
+      "https://money.cnn.com/2013/05/08/autos/tesla-earnings/index.html",
+      "https://money.cnn.com/2013/05/10/investing/tesla-stock/index.html",
+      "https://www.cnbc.com/2013/05/08/electric-earnings-tesla-earnings-blow-past-expectations-shares-surge.html",
+      "https://www.bloomberg.com/news/articles/2013-05-08/tesla-posts-first-quarterly-profit-on-model-s-deliveries"
+    ],
+    "confidence": 0.9
+  },
+  "TSLA|2013-05-28": {
+    "headline": "$1.02bn capital raise and full early repayment of the DOE loan",
+    "cause": "$1.02bn capital raise and full early repayment of the DOE loan",
+    "category": "guidance",
+    "sources": [],
+    "confidence": 0.5
+  },
+  "TSLA|2013-11-12": {
+    "headline": "Third Model S battery fire; the stock loses 20.4% over November",
+    "cause": "Three Model S battery fires between 1 October and early November 2013 triggered a 20.4% November drawdown; the stock was down 37% from the first fire by mid-November. NHTSA opened a formal investigation on 19 November, which Musk said Tesla had requested. Notably the stock rose 3.7% on the day the probe was announced, so the damage was done by the fire coverage itself, not by the regulator.",
+    "category": "crisis",
+    "sources": [
+      "https://www.techtimes.com/articles/1304/20131109/3rd-tesla-model-s-catches-fire-burns-stock.htm",
+      "https://www.thestreet.com/investing/stocks/tesla-shares-fell-after-news-of-a-battery-fire-investigation-15150260",
+      "https://www.forbes.com/sites/briansolomon/2013/12/03/tesla-rebounds-after-germany-clears-model-s-fires-but-nhtsa-investigation-still-looms/"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2013-12-03": {
+    "headline": "Germany's regulator clears the Model S of a fire defect",
+    "cause": "Germany's regulator clears the Model S of a fire defect",
+    "category": "regulatory",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "TSLA|2014-01-21": {
+    "headline": "Q4 deliveries of ~6,900 beat guidance by ~20% at the Detroit auto show",
+    "cause": "Q4 2013 deliveries beat guidance by ~20% at the Detroit auto show. On 14 January 2014 Tesla disclosed ~6,900 Model S deliveries for Q4 2013 against prior guidance of \"slightly under 6,000\". Shares rose 15.7% in the session and a further 3.6% after hours.",
+    "category": "guidance",
+    "sources": [
+      "https://money.cnn.com/2014/01/14/autos/tesla-model-s-sales/index.html?section=money_topstories",
+      "https://techcrunch.com/2014/01/14/tesla-surges-on-strength-of-fourth-quarter-car-deliveries",
+      "https://insideevs.com/tesla-charges-up-2014-detroit-auto-show-6900-model-s-sales-in-q4/"
+    ],
+    "confidence": 0.85
+  },
+  "TSLA|2014-02-26": {
+    "headline": "Q4 earnings, the Gigafactory reveal, and Morgan Stanley's $320 target",
+    "cause": "Q4 earnings, the Gigafactory reveal, and Morgan Stanley's $320 target. Three things stack inside this window. Q4 2013 results on 19 February showed $46m of non-GAAP net income and raised 2014 delivery guidance to 35,000+, up 55%. On 25 February Morgan Stanley's Adam Jonas more than doubled his target from $153 to $320, and the stock jumped to $254.63 intraday.",
+    "category": "guidance",
+    "sources": [
+      "https://money.cnn.com/2014/02/25/investing/tesla-record-high/index.html",
+      "https://cleantechnica.com/2014/02/20/tesla-financials-strong-stock-surges-whats-story-gigafactory/",
+      "https://blog.sfgate.com/energy/2014/02/26/breaking-tesla-unveils-gigafactory-plans-sort-of/"
+    ],
+    "confidence": 0.9
+  },
+  "TSLA|2015-08-25": {
+    "headline": "August 2015 China-devaluation global selloff",
+    "cause": "August 2015 China-devaluation global selloff",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.5
+  },
+  "TSLA|2016-02-08": {
+    "headline": "Jan-Feb 2016 growth scare plus cheap-gasoline EV demand fears",
+    "cause": "It is tempting to attribute this window to Q4 2015 results. Those were reported on 10 February, two sessions AFTER the ledger date, so they cannot be the cause.",
+    "category": "macro",
+    "sources": [
+      "https://www.autonews.com/article/20160208/OEM05/302089902/tesla-shares-dogged-by-falling-gas-prices-output-concerns/",
+      "https://www.nasdaq.com/articles/tesla-q4-loss-wider-than-expected-2016-outlook-upbeat-2016-02-11"
+    ],
+    "confidence": 0.65
+  },
+  "TSLA|2016-02-22": {
+    "headline": "Rebound on an upbeat 2016 delivery outlook and the 11 Feb market bottom",
+    "cause": "Rebound on an upbeat 2016 delivery outlook and the 11 Feb market bottom",
+    "category": "guidance",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "TSLA|2016-04-06": {
+    "headline": "Model 3 unveiling draws 325,000 reservations in a week",
+    "cause": "The Model 3 was unveiled 31 March 2016. Reservations reached 115,000 within 24 hours, 232,000 within two days, and more than 325,000 within a week, more than triple all Model S units sold through the end of 2015. Each reservation carried a $1,000 deposit, so the market was watching a mass-market demand signal arrive with real cash attached. Source: Tesla Model 3",
+    "category": "product",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Tesla_Model_3"
+    ],
+    "confidence": 0.85
+  },
+  "TSLA|2018-03-28": {
+    "headline": "Fatal Model X Autopilot crash, Moody's downgrade, Model 3 cash-burn panic",
+    "cause": "A fatal Model X crash on Highway 101 on 23 March 2018 with Autopilot engaged, a Moody's downgrade, a 123,000-unit Model S power-steering recall on 29 March, and unresolved Model 3 production and cash-burn fears combined. Tesla lost ~$8bn of market value in two sessions and fell below General Motors, $43.9bn against $49.4bn.",
+    "category": "crisis",
+    "sources": [
+      "https://fortune.com/2018/03/28/tesla-stock-price-model-x-crash-credit-crunch/",
+      "https://money.cnn.com/2018/03/31/technology/tesla-model-x-crash-autopilot/index.html"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2018-08-07": {
+    "headline": "\"Funding secured\": Musk tweets a $420 take-private and trading is halted",
+    "cause": "\"Funding secured.\" Q2 2018 results on 1 August began the move, with Musk apologising to the analysts he had insulted the prior quarter. Then on 7 August Musk tweeted \"Am considering taking Tesla private at $420. Funding secured.\" The stock rallied to as high as $371 and trading was halted.",
+    "category": "leadership",
+    "sources": [
+      "https://x.com/elonmusk/status/1026872652290379776",
+      "https://techcrunch.com/2018/08/07/elon-musk-tesla-private-tweet",
+      "https://www.cnbc.com/2019/08/08/teslas-chaotic-year-after-musks-funding-secured-tweet.html",
+      "https://www.sec.gov/news/press-release/2018-226"
+    ],
+    "confidence": 0.95
+  },
+  "TSLA|2018-10-29": {
+    "headline": "Surprise $312m GAAP profit in Q3 2018",
+    "cause": "Surprise $312m GAAP profit in Q3 2018. On 24 October Tesla reported $6.8bn of revenue and $311.5m of GAAP net income, or $1.75 per share, against consensus of roughly -$0.19. Free cash flow was $881m and Model 3 labour hours per unit fell more than 30% quarter over quarter. Shares rose more than 12% on the print.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2018/10/24/tesla-earnings-q3-2018.html",
+      "https://www.cnn.com/2018/10/24/tech/tesla-earnings-profit-elon-musk"
+    ],
+    "confidence": 0.85
+  },
+  "TSLA|2019-01-23": {
+    "headline": "$2,000 price cut, 7% layoffs, and a \"very difficult\" road ahead",
+    "cause": "On 18 January 2019 Tesla cut US prices by $2,000 to absorb the halving of the federal EV credit from $7,500 to $3,750, cut ~7% of its full-time workforce, and Musk warned of a \"very difficult\" road ahead; this followed a Q4 delivery number of 90,700 that had disappointed.",
+    "category": "guidance",
+    "sources": [
+      "https://www.cnbc.com/2019/01/18/tesla-to-cut-its-workforce-by-around-7-percent.html",
+      "https://www.washingtonpost.com/business/2019/01/18/tesla-will-cut-percent-its-workforce-aid-model-production/",
+      "https://www.cnbc.com/2019/05/20/wedbush-tesla-facing-code-red-but-management-not-focused-on-model-3.html"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2019-05-22": {
+    "headline": "The demand scare: Wedbush \"code red\", Morgan Stanley's $10 bear case",
+    "cause": "The demand scare: Wedbush \"code red\", Morgan Stanley's $10 bear case",
+    "category": "guidance",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "TSLA|2019-10-28": {
+    "headline": "Surprise Q3 2019 profit and Shanghai running ahead of schedule",
+    "cause": "Surprise Q3 2019 profit and Shanghai ahead of schedule. On 23 October Tesla reported adjusted EPS of $1.86 against consensus of roughly -$0.42, on $6.3bn of revenue, and disclosed that Gigafactory Shanghai was already in trial production with Model Y pulled forward to summer 2020. Shares spiked more than 20%.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2019/10/23/tesla-tsla-earnings-q3-2019.html",
+      "https://www.cnn.com/2019/10/23/tech/tesla-earnings-profit-sales/index.html"
+    ],
+    "confidence": 0.9
+  },
+  "TSLA|2020-02-04": {
+    "headline": "The melt-up: Panasonic's battery unit turns a profit, ARK's $7,000 note, short squeeze",
+    "cause": "The melt-up. On 3 February 2020 Tesla rose ~20%, its largest single day since 2013, and on 4 February a further ~15% through $900. The named catalysts were Panasonic reporting the first ever quarterly profit in its US battery business with Tesla, and an ARK Invest note dated 31 January projecting $7,000 per share by 2024. Short interest was 13.8% as of 30 January and covering amplified the move.",
+    "category": "earnings",
+    "sources": [
+      "https://www.japantimes.co.jp/news/2020/02/04/business/tesla-20-panasonic-posts-first-quarterly-profit-battery-business/",
+      "https://www.aljazeera.com/economy/2020/2/4/tesla-shares-hit-900"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2020-02-28": {
+    "headline": "COVID week of 24-28 Feb, the fastest correction in market history",
+    "cause": "One macro shock, three windows. The week of 24-28 February 2020 produced the fastest correction in market history, with US indices down at least 10% in six sessions on the spread of COVID-19 to South Korea, Italy and Iran.",
+    "category": "macro",
+    "sources": [
+      "https://en.wikipedia.org/wiki/2020_stock_market_crash",
+      "https://www.fool.com/investing/2020/03/18/tesla-forced-to-shut-factory-as-part-of-coronaviru.aspx",
+      "https://www.cbsnews.com/sanfrancisco/news/coronavirus-pandemic-tesla-to-shutdown-fremont-plant-beginning-march-23/",
+      "https://techcrunch.com/2020/03/19/tesla-to-temporarily-shut-down-fremont-factory"
+    ],
+    "confidence": 0.85
+  },
+  "TSLA|2020-03-09": {
+    "headline": "Black Monday I: S&P 500 -7.6% on the Russia-Saudi oil war",
+    "cause": "Black Monday I: S&P 500 -7.6% on the Russia-Saudi oil war",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.8
+  },
+  "TSLA|2020-03-18": {
+    "headline": "COVID capitulation plus the order to shut the Fremont plant",
+    "cause": "COVID capitulation plus the order to shut the Fremont plant",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.9
+  },
+  "TSLA|2020-03-25": {
+    "headline": "The 24-26 March record rally on Fed QE and the CARES Act",
+    "cause": "The 24-26 March record rally on Fed QE and the CARES Act",
+    "category": "macro",
+    "sources": [],
+    "confidence": 0.85
+  },
+  "TSLA|2020-04-14": {
+    "headline": "Q1 deliveries of ~88,400 beat a collapsed bar, into the April rebound",
+    "cause": "Q1 2020 deliveries clear a collapsed bar. On 2 April Tesla reported Q1 deliveries and the stock rose sharply, with the window then riding the broader April rebound. Confidence is held at 0.60 because the macro component here is large and was not separated from the company-specific one. Source: Fortune, 2 Apr 2020",
+    "category": "guidance",
+    "sources": [
+      "https://fortune.com/2020/04/02/tesla-q1-2020-deliveries-stock-up-20-percent"
+    ],
+    "confidence": 0.6
+  },
+  "TSLA|2020-07-06": {
+    "headline": "Q2 deliveries of 90,650 vs 72,149 expected, clearing the S&P 500 bar",
+    "cause": "Q2 deliveries of 90,650 against 72,149 expected, clearing the S&P 500 bar. The 2 July delivery print beat consensus by roughly 25% in the middle of a pandemic. Its significance was not the units: four consecutive profitable quarters is the S&P 500 eligibility test, and this print made the fourth one likely, which it became when Tesla posted $0.50 of GAAP EPS on 22 July.",
+    "category": "guidance",
+    "sources": [
+      "https://www.thestreet.com/tesla/news/tesla-q2-delivery-and-production-report-2020-tsla",
+      "https://benzinga.com/news/earnings/20/07/16740767/tesla-turns-a-profit-in-q2-qualifying-for-s-p-500-2020-delivery-goal-more-difficult"
+    ],
+    "confidence": 0.85
+  },
+  "TSLA|2020-08-18": {
+    "headline": "The 5-for-1 stock split announcement and the retail bid behind it",
+    "cause": "The 5-for-1 split. On 11 August 2020 Tesla's board declared a 5-for-1 split as a stock dividend, record date 21 August, distributed 28 August, trading split-adjusted from 31 August. Shares rose ~6-8% after hours on the announcement, and then ran more than 80% over three weeks into the effective date; August 2020 was a +74% month.",
+    "category": "guidance",
+    "sources": [
+      "https://www.cnbc.com/2020/08/11/tesla-announces-five-for-one-stock-split.html",
+      "https://electrek.co/2020/08/11/tesla-tsla-stock-split/",
+      "https://www.sec.gov/Archives/edgar/data/1318605/000156459020039353/tsla-ex991_6.htm"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2020-08-31": {
+    "headline": "Split-effective-date melt-up at the end of a +74% August",
+    "cause": "Split-effective-date melt-up at the end of a +74% August",
+    "category": "guidance",
+    "sources": [],
+    "confidence": 0.6
+  },
+  "TSLA|2020-09-08": {
+    "headline": "The S&P 500 snub: worst day in company history, -21%",
+    "cause": "The S&P 500 snub: the worst day in company history. On 4 September 2020 the S&P index committee added Etsy, Teradyne and Catalent, and passed over Tesla. On 8 September the stock fell 21%, roughly $80bn of market value in one session, leaving it 34% below the record set a week earlier.",
+    "category": "sector-rotation",
+    "sources": [
+      "https://www.cnn.com/2020/09/08/investing/tesla-stock-plunge/index.html",
+      "https://www.thestreet.com/investing/tesla-tsla-stock-declines-sp500-index-snub",
+      "https://benzinga.com/news/20/09/17422501/tesla-stocks-21-drop-on-tuesday-is-its-worst-in-history"
+    ],
+    "confidence": 0.9
+  },
+  "TSLA|2020-11-23": {
+    "headline": "S&P 500 inclusion announced: the largest addition ever made to the index",
+    "cause": "S&P 500 inclusion, the largest addition ever made to the index. Announced 16 November 2020 for an effective date of 21 December. Shares jumped 13-14% in extended trading. Credit Suisse estimated passive funds alone would need ~95m shares and that total demand including active managers would be ~125m shares, one of the largest funding trades in S&P 500 history.",
+    "category": "sector-rotation",
+    "sources": [
+      "https://www.cnbc.com/2020/11/16/tesla-stock-jumps-on-news-company-is-joining-sp-500.html",
+      "https://press.spglobal.com/2020-11-30-S-P-Dow-Jones-Indices-Announces-Implementation-of-Teslas-Addition-to-S-P-500"
+    ],
+    "confidence": 0.9
+  },
+  "TSLA|2021-03-08": {
+    "headline": "The rates-driven unwind of high-multiple growth",
+    "cause": "The rates-driven unwind of high-multiple growth",
+    "category": "sector-rotation",
+    "sources": [],
+    "confidence": 0.7
+  },
+  "TSLA|2021-03-15": {
+    "headline": "Treasury yields back off and high-beta growth violently re-rates",
+    "cause": "The rates trade, both directions. A sharp run-up in Treasury yields from mid-February 2021 hit long-duration growth equities, and Tesla fell more than 30% from its late-January high. On 9 March, as yields dipped, Tesla closed up 19.6% in one of its largest single days since 2020, alongside a broad high-beta and ARK-complex rebound. The 8 March and 15 March windows are the down leg and the up leg of one factor move.",
+    "category": "sector-rotation",
+    "sources": [
+      "https://www.investing.com/news/stock-market-news/futures-bounce-after-selloff-as-tesla-jumps-11-3679649",
+      "https://www.business-standard.com/amp/article/international/nasdaq-jumps-400-points-as-tech-stocks-gain-ground-tesla-rises-5-121030901443_1.html"
+    ],
+    "confidence": 0.7
+  },
+  "TSLA|2022-12-27": {
+    "headline": "Worst month on record: Twitter distraction, Musk share sales, Shanghai halt",
+    "cause": "Worst month, quarter and year on record. December 2022 was a -44% month, by far Tesla's worst ever, having never previously fallen more than 25% in a month. Three mechanisms compounded. Musk's Twitter acquisition, closed 27 October, both consumed his attention and forced sales: he sold ~22m Tesla shares worth ~$3.6bn in mid-December to fund a cash-burning Twitter.",
+    "category": "leadership",
+    "sources": [
+      "https://www.cnbc.com/2022/12/27/teslas-stock-is-headed-for-its-worst-month-quarter-year-on-record.html",
+      "https://www.cnbc.com/2022/12/13/tesla-stock-down-28percent-since-elon-musk-took-over-twitter.html",
+      "https://www.cnn.com/2022/12/23/investing/elon-musk-tesla-twitter/index.html"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2023-01-27": {
+    "headline": "Q4 2022 beat plus \"strongest orders year-to-date than ever in our history\"",
+    "cause": "Q4 2022 beat, and the January price cuts working. On 25 January Tesla reported Q4 adjusted EPS of $1.07 against $1.05 expected on revenue of $24.32bn, up 37% year over year, with full-quarter net profit of $3.68bn. The move was driven less by the print than by Musk's statement on the call: \"Thus far in January we've seen the strongest orders year-to-date than ever in our history.",
+    "category": "earnings",
+    "sources": [
+      "https://www.cnbc.com/2023/01/25/tesla-tsla-earnings-q4-2022.html",
+      "https://www.sec.gov/Archives/edgar/data/1318605/000162828023034588/exhibit991.htm"
+    ],
+    "confidence": 0.85
+  },
+  "TSLA|2024-04-29": {
+    "headline": "Musk's surprise Beijing trip wins tentative FSD approval and a Baidu deal",
+    "cause": "Musk flies to Beijing and comes back with FSD. Over the weekend of 27-28 April 2024 Musk made a 24-hour surprise visit to Beijing and obtained tentative approval for Full Self-Driving in China, plus a mapping and navigation deal with Baidu and data-collection clearance. Shares rose ~15% on Monday 29 April to ~$194.81. Wedbush's Dan Ives called it \"a watershed moment for the Tesla story\".",
+    "category": "product",
+    "sources": [
+      "https://www.cbsnews.com/news/tesla-china-elon-musk-full-self-driving-software/",
+      "https://fortune.com/2024/04/29/tesla-china-full-self-driving-stock-15-percent",
+      "https://www.thestreet.com/investing/stocks/tesla-shares-jump-as-elon-musk-returns-from-china-with-fsd-game-changer"
+    ],
+    "confidence": 0.85
+  },
+  "TSLA|2024-07-08": {
+    "headline": "Q2 deliveries of 443,956 beat, and a nine-session winning streak",
+    "cause": "Q2 deliveries beat, and a nine-session winning streak. On 2 July Tesla reported 443,956 Q2 deliveries against ~439,000 expected, and shares rose 10%. Deliveries were still down 4.8% year over year; the market bought the beat against consensus, not growth. The rally extended to a nine-day streak by 8 July, taking the stock more than 75% off its April lows and nearly erasing the year-to-date loss.",
+    "category": "guidance",
+    "sources": [
+      "https://www.cnbc.com/2024/07/02/tesla-tsla-q2-2024-vehicle-delivery-and-production-numbers.html",
+      "https://www.cnbc.com/2024/07/03/tesla-tsla-shares-rally-after-better-than-expected-deliveries-report.html"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2024-11-11": {
+    "headline": "Trump wins; TSLA is repriced as the politically advantaged EV",
+    "cause": "Trump wins, and Tesla is repriced as the politically advantaged EV. Tesla rose 14.8% on 6 November 2024, the day after the election, hitting its highest level since July 2023 and adding ~$26.5bn to Musk's net worth in a session. November was a +38% month, the best since January 2023.",
+    "category": "geopolitical",
+    "sources": [
+      "https://whyy.org/articles/tesla-shares-soar-trump-wins-election/",
+      "https://www.forbes.com/sites/tylerroush/2024/11/06/tesla-shares-hit-record-soaring-12-and-elon-musk-becomes-15-billion-richer-with-trump-victory/",
+      "https://www.cnbc.com/2024/12/11/tesla-reaches-record-boosted-by-64percent-pop-since-trump-election-victory.html"
+    ],
+    "confidence": 0.9
+  },
+  "TSLA|2025-03-25": {
+    "headline": "China FSD rollout traction plus signals of tariff relief",
+    "cause": "Rebound: China FSD traction plus signals of tariff relief. Tesla rose 10.4% on 24 March 2025, attributed to the China FSD rollout gaining traction and to signals of tariff relief from the administration.",
+    "category": "product",
+    "sources": [
+      "https://markets.financialcontent.com/stocks/article/marketminute-2025-3-24-tesla-stock-surges-104-as-china-full-self-driving-rollout-gains-traction-and-trump-signals-tariff-relief"
+    ],
+    "confidence": 0.6
+  },
+  "TSLA|2025-04-28": {
+    "headline": "Musk says he will step back from DOGE, and a bad Q1 stops mattering",
+    "cause": "Musk says he will step back from DOGE, and a bad Q1 stops mattering. Q1 2025 results on 22 April were poor: revenue down 9% year over year to $19.34bn against ~$21.11bn expected, EPS of $0.27 against $0.39 expected. The stock rose anyway, because on the call Musk said his time at DOGE would drop significantly. Shares were up ~9% to $260 by 24 April.",
+    "category": "leadership",
+    "sources": [
+      "https://www.teslaoracle.com/2025/04/23/tesla-tsla-surges-after-q1-2025-earnings-call-musks-time-at-doge-to-drop-significantly-soon/",
+      "https://fortune.com/article/elon-musk-doge-tesla-stock-market-cap-outlook/"
+    ],
+    "confidence": 0.8
+  },
+  "TSLA|2025-05-14": {
+    "headline": "US-China tariff truce plus the June robotaxi reveal, back to $1trn",
+    "cause": "US-China tariff truce plus the June robotaxi reveal. Tesla surged as US-China tariffs eased and Musk refocused on the company, with the June robotaxi reveal adding a second leg. The stock rallied more than 40% off its April lows and re-entered the $1trn club, despite Q1 revenue having fallen sharply. Source: Benzinga, May 2025",
+    "category": "geopolitical",
+    "sources": [
+      "https://www.benzinga.com/news/25/05/45387469/tesla-stock-soars-amid-china-tariff-relief-and-robotaxi-buzz"
+    ],
+    "confidence": 0.7
+  },
+  "TSLA|2026-07-29": {
+    "headline": "Q2 2026 miss: negative free cash flow as AI and robotics capex surges",
+    "cause": "Q2 2026 miss: negative free cash flow as AI and robotics capex surges. Tesla fell 13% on 23 July 2026 after Q2 results. Revenue beat at $28.24bn, up 25.5% year over year, but non-GAAP EPS of $0.33 missed the ~$0.54 expected, and free cash flow turned negative as operating expense and capital spending rose to fund AI and robotics. Analysts cut targets on margin pressure and cautious autonomy guidance.",
+    "category": "earnings",
+    "sources": [
+      "https://www.fool.com/coverage/stock-market-today/2026/07/23/stock-market-today-july-23-tesla-stock-crashes-on-earnings-miss-and-rising-ai-spending/",
+      "https://www.fool.com/investing/2026/08/06/why-tesla-stock-plunged-26-in-july/"
+    ],
+    "confidence": 0.85
+  },
+  "XOM|2008-10-10": {
+    "headline": "Worst week in Dow history: global credit seizure drags crude and energy equities down together",
+    "cause": "The week ending October 10, 2008 was the worst week in Dow history, down about 1,874 points or 18%, with roughly $2.4trn of US market value erased. The proximate cause was the post-Lehman freeze in interbank and commercial paper funding, which forced indiscriminate deleveraging across every asset class. Crude was in free-fall from its July 2008 peak near $147 as a global recession was priced in.",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/10/10/markets/markets_newyork/index.htm?postversion=2008101011",
+      "https://www.begintoinvest.com/october-10/"
+    ],
+    "confidence": 0.9
+  },
+  "XOM|2008-10-29": {
+    "headline": "Dow's +10.9% / 889-point snapback off the October panic low, ahead of the FOMC cut",
+    "cause": "On October 28 the Dow added 889 points, +10.9%, its second-largest point gain ever at the time and sixth-largest percentage gain, on bargain hunting into the close as the two-day FOMC meeting opened with a rate cut expected. XOM had bottomed at $64.57 on October 22 and captured that snapback almost in full.",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/10/28/markets/markets_newyork/",
+      "https://www.cnbc.com/2008/10/28/stocks-jump-11-amid-bargainhunting-spree.html"
+    ],
+    "confidence": 0.75
+  },
+  "XOM|2008-11-28": {
+    "headline": "Citigroup rescue plus the Geithner nomination trigger the biggest two-day rally since 1987",
+    "cause": "November 20, 2008 was an interim capitulation low for the S&P 500 (the ultimate crisis low came in March 2009), and XOM's own $68.51 close that day is the window's starting point. On November 21 stocks rallied late on reports that Timothy Geithner was Obama's Treasury pick.",
+    "category": "macro",
+    "sources": [
+      "https://money.cnn.com/2008/11/24/markets/markets_newyork/index.htm?postversion=2008112415",
+      "https://elischolar.library.yale.edu/journal-of-financial-crises/vol6/iss3/24"
+    ],
+    "confidence": 0.8
+  },
+  "XOM|2020-02-27": {
+    "headline": "COVID week one: worst week for US equities since 2008, crude's worst week since 2008",
+    "cause": "The first COVID repricing week. The S&P 500 fell about 11% over five sessions, its worst week since 2008, after US officials confirmed the first probable community transmission on US soil. Oil fell toward $45 in its biggest weekly rout since 2008 as the market began pricing a global mobility shutdown.",
+    "category": "macro",
+    "sources": [
+      "https://fortune.com/2020/02/28/us-stock-market-down-2008-crisis-recession-coronavirus/",
+      "https://www.cnbc.com/2020/02/27/stock-market-today-live.html"
+    ],
+    "confidence": 0.85
+  },
+  "XOM|2020-03-12": {
+    "headline": "Saudi-Russia price war collides with the pandemic: oil's worst day since 1991, then the Dow's worst day since 1987",
+    "cause": "Two shocks landed inside one week. On March 6 the OPEC+ meeting in Vienna collapsed when Russia refused Saudi Arabia's proposed 1.5mb/d cut. On March 8 Saudi Arabia retaliated with official selling price discounts of $6 to $8 per barrel and signalled it would raise output from 9.7mb/d to 12.3mb/d in April. Brent fell about 30% on March 9, the largest single-day drop since the 1991 Gulf War.",
+    "category": "geopolitical",
+    "sources": [
+      "https://en.wikipedia.org/wiki/2020_Russia%E2%80%93Saudi_Arabia_oil_price_war",
+      "https://www.pbs.org/newshour/economy/worst-day-on-wall-street-since-1987-as-virus-fears-spread",
+      "https://www.cnbc.com/2020/03/08/oil-plummets-30percent-as-opec-deal-failure-sparks-price-war-fears.html",
+      "https://www.nasdaq.com/articles/why-exxonmobil-stock-lost-more-than-40-in-2020-2021-01-05"
+    ],
+    "confidence": 0.95
+  },
+  "XOM|2020-03-30": {
+    "headline": "\"QE infinity\" plus the $2trn CARES Act mark the March 23 bottom",
+    "cause": "March 23 was the COVID bottom. That day the Fed announced open-ended asset purchases, \"in the amount needed to provide liquidity\", the so-called QE infinity. The S&P then rose 9.4% on March 24 and gained roughly 20% over the three sessions ending March 26 as the $2trn CARES Act moved through Congress; it was signed on March 27.",
+    "category": "macro",
+    "sources": [
+      "https://braggfinancial.com/1st-quarter-2020-market-and-economy/",
+      "https://en.wikipedia.org/wiki/CARES_Act"
+    ],
+    "confidence": 0.8
+  },
+  "XOM|2020-04-08": {
+    "headline": "Trump's April 2 output-cut tweet gives WTI its largest one-day gain on record",
+    "cause": "On April 2, 2020 President Trump tweeted that he expected Saudi Arabia and Russia to cut output by about 10mb/d. WTI settled +24.67% at $25.32, its largest single-day percentage gain on record. The rest of the window was the market positioning into the OPEC+ video conference scheduled for April 9, which eventually produced the 9.7mb/d agreement announced April 12 and formalised April 15.",
+    "category": "geopolitical",
+    "sources": [
+      "https://www.cnbc.com/amp/2020/04/02/oil-rallies-10percent-after-trump-says-he-expects-saudi-arabia-russia-feud-to-end-soon.html",
+      "https://www.eia.gov/todayinenergy/detail.php?id=45236"
+    ],
+    "confidence": 0.85
+  },
+  "XOM|2020-06-08": {
+    "headline": "Reopening trade peaks: a +2.5m May payrolls surprise plus OPEC+ extending the 9.6mb/d cut",
+    "cause": "Two catalysts inside one window. On June 5 the May employment report showed +2.5m jobs against consensus for a loss of more than 7m, and WTI settled $2.14 higher at $39.55 on a faster-than-expected demand recovery. On June 6 OPEC+ agreed to extend the record cut, about 9.6mb/d, through July. June 8 was the peak of the reopening/value rotation, the day the S&P 500 erased its 2020 loss.",
+    "category": "macro",
+    "sources": [
+      "https://www.zacks.com/stock/news/971146/stock-market-news-for-june-8-2020",
+      "https://www.cnbc.com/2020/06/06/opec-and-allies-reportedly-agree-to-extend-record-production-cut.html",
+      "https://www.enerdata.net/publications/daily-energy-news/opec-extends-crude-oil-production-cuts-until-end-july-2020.html"
+    ],
+    "confidence": 0.8
+  },
+  "XOM|2021-02-08": {
+    "headline": "Chevron merger-talk reports, a Q4 loss the market looked through, and crude at 13-month highs",
+    "cause": "This is the only XOM event where a company-specific catalyst is genuinely in the window, and it is confounded. Three things overlapped. First, on February 1 the WSJ reported that the CEOs of Exxon and Chevron had discussed a merger in early 2020, a combination that would trail only Saudi Aramco in size.",
+    "category": "earnings",
+    "sources": [
+      "https://www.aljazeera.com/economy/2021/2/1/ceos-of-oil-giants-exxon-and-chevron-discussed-merger-reports",
+      "https://www.cnbc.com/2021/02/02/exxon-xom-earnings-q4-2020.html",
+      "https://corporate.exxonmobil.com/news/news-releases/2021/0202_exxonmobil-reports-results-for-fourth-quarter-2020-and-provides-perspective-on-forward-plans"
+    ],
+    "confidence": 0.7
+  },
+  "XOM|2022-10-07": {
+    "headline": "OPEC+ cuts quotas by 2mb/d, the deepest since 2020, defying the White House",
+    "cause": "On October 5, 2022 OPEC+ cut production quotas by 2mb/d, the deepest cut since the pandemic, explicitly against US pressure ahead of the midterms. Brent moved above $93 and the whole US energy complex re-rated. The window also caught the October 3 to 4 broad-market rally on soft ISM and JOLTS prints that briefly revived the \"Fed pivot\" trade.",
+    "category": "geopolitical",
+    "sources": [
+      "https://www.cnbc.com/2022/10/05/oil-opec-imposes-deep-production-cuts-in-a-bid-to-shore-up-prices.html",
+      "https://www.npr.org/2022/10/05/1126754169/opec-oil-production-cut",
+      "https://www.energypolicy.columbia.edu/publications/qa-assessing-impact-largest-opec-production-cut-2020/"
+    ],
+    "confidence": 0.85
+  },
+  "XOM|2025-04-08": {
+    "headline": "\"Liberation Day\" tariffs and an OPEC+ supply acceleration take Brent below $60",
+    "cause": "The mirror image of 2020-03-12, with tariffs standing in for the pandemic. On April 2, 2025 the \"Liberation Day\" reciprocal tariffs were announced, and the demand side of the oil balance was immediately marked down on global-recession risk. On April 3 the eight OPEC+ members holding voluntary cuts tripled their scheduled May increase to 411kb/d, adding a supply shock on top.",
+    "category": "macro",
+    "sources": [
+      "https://www.iea.org/reports/oil-market-report-april-2025",
+      "https://www.cnbc.com/2025/04/04/why-opec-is-accelerating-oil-production-as-prices-tank-tariffs-hit.html"
+    ],
+    "confidence": 0.85
+  }
+}

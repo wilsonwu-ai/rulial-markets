@@ -1,0 +1,58 @@
+{
+  "ticker": "NVDA",
+  "event_date": "2024-05-29",
+  "move_pct": 0.203793,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2024-04-29",
+    "end_exclusive": "2024-05-29"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:43+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 3,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 3
+  },
+  "n_articles": 3,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000113/nvda-20240522.htm",
+      "title": "NVDA 8-K: Results of Operations and Financial Condition; Other Events; Financial Statements and Exhibits",
+      "published": "2024-05-22",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001045810-24-000113, period 2024-05-22. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000105/noticeof2024annualmeeting.htm",
+      "title": "NVDA DEFA14A filed with the SEC",
+      "published": "2024-05-14",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001045810-24-000105. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000104/nvda-20240514.htm",
+      "title": "NVDA DEF 14A filed with the SEC",
+      "published": "2024-05-14",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001045810-24-000104, period 2024-06-26. Filing date is the authoritative publication date."
+    }
+  ]
+}

@@ -54,6 +54,18 @@ a ~2-day rolling window of current news. A request for NVDA November 2018
 returns articles dated last week, with ``warnings: null``. That is a corpus
 poisoner, not a data source.
 
+MEASURED on the 334-event ledger (2026-09-06), for LANE-EVAL and LANE-PRD:
+  * 1,145 articles admitted, 0 leakage violations on a full re-audit of the
+    written corpus (every article's own date re-checked against its event).
+  * 156 of those 1,145 (13.6%) were published INSIDE the 5-day jump window.
+    They are legal under the contract's cutoff (strictly before the event date)
+    but they have seen part of the move -- the NVDA 2018-11-23 corpus is the
+    honest example: a 2018-11-16 story whose headline already says "Stock
+    Plunges 17%".
+  * Switching to ``cutoff="window_start"`` removes all 156 and empties only 9
+    of 334 events. The paranoid setting is CHEAP. If LANE-EVAL wants a
+    lookahead-free arm of the backtest, it costs almost nothing to run.
+
 Network policy: nothing here touches the network at import time. Set
 ``RULIAL_NEWS_OFFLINE=1`` to restrict harvesting to the on-disk cache plus the
 curated seed.
@@ -83,6 +95,7 @@ __all__ = [
     "corpus_stats",
     "CURATED_SEED",
     "GDELT_COVERAGE_START",
+    "corpus_report",
 ]
 
 # --------------------------------------------------------------------------
@@ -92,6 +105,12 @@ __all__ = [
 DEFAULT_LOOKBACK_DAYS = 30
 MAX_ARTICLES_PER_EVENT = 12
 GDELT_COVERAGE_START = "2017-01-01"   # GDELT DOC 2.0 index begins here
+GDELT_END_MARGIN_DAYS = 2             # GDELT overshoots `enddatetime` by ~1 day
+# SEC filings are quarterly, so a 30-day window often contains none. For events
+# that predate GDELT there is no news tier at all, and a 30-day window can come
+# back completely empty (measured: AMZN 2000-06-23 -> 0, while the Q1 10-Q sat
+# 39 days back). Widen the window for those, on filing cadence, not on results.
+PRE_GDELT_LOOKBACK_DAYS = 100
 HTTP_TIMEOUT = 40
 USER_AGENT = "rulial-markets/0.1 (Sundai hackathon research; contact wilson1.wu@gmail.com)"
 
@@ -280,6 +299,34 @@ _GDELT_KEYWORDS = {
 }
 
 
+# GDELT's boolean grouping is loose: a query for
+# (Facebook) (stock OR shares OR earnings) also returned "A California DMV
+# employee who napped at work every day" and "Centauro the robot hopes to play
+# role in disaster relief work", both from finance.yahoo.com. So the company
+# name must also appear in the TITLE. This is a relevance filter, not a leakage
+# filter -- the two are kept separate on purpose.
+_TITLE_KEYWORDS = {
+    "NVDA": ("nvidia", "geforce"),
+    "AAPL": ("apple", "iphone", "ipad", "mac "),
+    "MSFT": ("microsoft", "windows", "azure"),
+    "AMZN": ("amazon", "bezos", "aws"),
+    "TSLA": ("tesla", "musk"),
+    "META": ("facebook", "meta platforms", "zuckerberg", "instagram", "whatsapp"),
+    "GOOGL": ("google", "alphabet", "youtube"),
+    "JPM": ("jpmorgan", "jp morgan", "j.p. morgan", "dimon"),
+    "XOM": ("exxon", "mobil"),
+    "BA": ("boeing", "737", "787", "dreamliner", "max 8"),
+}
+
+
+def _is_on_topic(ticker: str, title: str) -> bool:
+    kws = _TITLE_KEYWORDS.get(ticker.upper())
+    if not kws:
+        return True
+    low = (title or "").lower()
+    return any(k in low for k in kws)
+
+
 def _gdelt_query(ticker: str) -> str:
     kw = _GDELT_KEYWORDS.get(ticker) or '"%s"' % TICKER_NAMES.get(ticker, ticker)
     return "(%s) (stock OR shares OR investors OR earnings OR revenue) sourcelang:english" % kw
@@ -330,12 +377,15 @@ def _gdelt_articles(ticker: str, window_start: date, event_date: date,
         "maxrecords": str(max_records),
         "sort": "datedesc",
         "startdatetime": start.strftime("%Y%m%d") + "000000",
-        # MEASURED 2026-09-06: GDELT's `enddatetime` is DAY-INCLUSIVE. Asking for
-        # enddatetime=20180726000000 returned 75 articles stamped through
-        # 2018-07-26T23:45Z -- every one of them published the day of the META
-        # jump. So we ask for the day BEFORE the event and let the Python-side
-        # filter remain the authority. Request narrow, verify strict.
-        "enddatetime": (event_date - timedelta(days=1)).strftime("%Y%m%d") + "235959",
+        # MEASURED 2026-09-06, twice: GDELT does NOT honour `enddatetime`
+        # tightly. Asking for enddatetime=20180725120000 returned 250 articles
+        # every one of them stamped 2018-07-26 -- a full day PAST the requested
+        # end. Asking for 20181121000000 returned articles at 2018-11-21T23:45Z.
+        # The overshoot is about a day, so we request a 2-day margin and let the
+        # Python-side filter stay the authority. Request loose-but-early, verify
+        # strict. If GDELT ever tightens up, the filter still holds.
+        "enddatetime": (event_date - timedelta(days=GDELT_END_MARGIN_DAYS)
+                        ).strftime("%Y%m%d") + "235959",
     }
     url = "https://api.gdeltproject.org/api/v2/doc/doc?" + urllib.parse.urlencode(params)
     try:
@@ -355,6 +405,8 @@ def _gdelt_articles(ticker: str, window_start: date, event_date: date,
         seen = row.get("seendate") or ""
         pub = _parse_date(seen)
         if not url_ or not title or pub is None:
+            continue
+        if not _is_on_topic(ticker, title):
             continue
         out.append(Article(
             url=url_,
@@ -405,12 +457,24 @@ _EIGHTK_ITEMS = {
     "9.01": "Financial Statements and Exhibits",
 }
 
+# Ticker -> every CIK that has ever filed for it, newest entity first.
+# GOOGL is the trap: Alphabet's CIK 0001652044 only starts at the October 2015
+# holding-company reorg, so a GOOGL-only lookup returns NOTHING for the 2008-2013
+# events in the ledger. Google Inc's own CIK 0001288776 carries those. Measured:
+# GOOGL had 7 events with zero articles until this was fixed.
 _CIK_OVERRIDE = {
-    "NVDA": "0001045810", "AAPL": "0000320193", "MSFT": "0000789019",
-    "AMZN": "0001018724", "TSLA": "0001318605", "META": "0001326801",
-    "GOOGL": "0001652044", "JPM": "0000019617", "XOM": "0000034088",
-    "BA": "0000012927",
+    "NVDA": ("0001045810",),
+    "AAPL": ("0000320193",),
+    "MSFT": ("0000789019",),
+    "AMZN": ("0001018724",),
+    "TSLA": ("0001318605",),
+    "META": ("0001326801",),                        # Facebook -> Meta, same CIK
+    "GOOGL": ("0001652044", "0001288776"),          # Alphabet, then Google Inc
+    "JPM": ("0000019617",),
+    "XOM": ("0000034088",),
+    "BA": ("0000012927",),
 }
+_SEC_CACHE_VERSION = 3   # bump to invalidate on-disk submission caches
 
 
 def _sec_headers() -> dict:
@@ -418,12 +482,16 @@ def _sec_headers() -> dict:
 
 
 def _sec_submissions(ticker: str) -> List[dict]:
-    """All filings for a ticker, newest first. Cached to disk; never raises."""
-    cik = _CIK_OVERRIDE.get(ticker.upper())
-    if not cik:
+    """All filings for a ticker across every CIK it has filed under.
+
+    Cached to disk; never raises. Each row carries its own `cik` so the archive
+    URL is built against the entity that actually filed it.
+    """
+    ciks = _CIK_OVERRIDE.get(ticker.upper())
+    if not ciks:
         return []
     _CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    cache_file = _CACHE_DIR / ("sec_%s.json" % ticker.upper())
+    cache_file = _CACHE_DIR / ("sec_%s_v%d.json" % (ticker.upper(), _SEC_CACHE_VERSION))
     if cache_file.exists():
         try:
             return json.loads(cache_file.read_text())
@@ -435,10 +503,18 @@ def _sec_submissions(ticker: str) -> List[dict]:
     import requests
     rows: List[dict] = []
 
-    def _absorb(block: dict) -> None:
+    def _absorb(block: dict, cik: str) -> None:
         n = len(block.get("filingDate", []))
+        forms = block.get("form", [])
         for i in range(n):
+            # Drop the non-material forms at CACHE-WRITE time, not at read time.
+            # JPM alone files enough Form 4s and 424B2 shelf takedowns to make an
+            # unfiltered cache 37 MB; filtered it is a few hundred KB, and the
+            # dropped rows could never have become an Article anyway.
+            if forms[i] not in _MATERIAL_FORMS:
+                continue
             rows.append({
+                "cik": cik,
                 "filingDate": block["filingDate"][i],
                 "form": block["form"][i],
                 "accessionNumber": block["accessionNumber"][i],
@@ -448,17 +524,20 @@ def _sec_submissions(ticker: str) -> List[dict]:
                 "reportDate": block.get("reportDate", [""] * n)[i],
             })
 
-    try:
-        _throttle("sec")
-        top = requests.get("https://data.sec.gov/submissions/CIK%s.json" % cik,
-                           headers=_sec_headers(), timeout=HTTP_TIMEOUT).json()
-        _absorb(top.get("filings", {}).get("recent", {}))
-        for extra in top.get("filings", {}).get("files", []) or []:
+    for cik in ciks:
+        try:
             _throttle("sec")
-            blk = requests.get("https://data.sec.gov/submissions/" + extra["name"],
+            top = requests.get("https://data.sec.gov/submissions/CIK%s.json" % cik,
                                headers=_sec_headers(), timeout=HTTP_TIMEOUT).json()
-            _absorb(blk)
-    except Exception:
+            _absorb(top.get("filings", {}).get("recent", {}), cik)
+            for extra in top.get("filings", {}).get("files", []) or []:
+                _throttle("sec")
+                blk = requests.get("https://data.sec.gov/submissions/" + extra["name"],
+                                   headers=_sec_headers(), timeout=HTTP_TIMEOUT).json()
+                _absorb(blk, cik)
+        except Exception:
+            continue    # one dead CIK must not lose the others
+    if not rows:
         return rows
 
     try:
@@ -485,9 +564,10 @@ def _sec_articles(ticker: str, window_start: date, event_date: date) -> List[Art
     rows = _sec_submissions(ticker)
     if not rows:
         return []
-    cik_int = str(int(_CIK_OVERRIDE[ticker.upper()]))
+    default_cik = _CIK_OVERRIDE[ticker.upper()][0]
     out: List[Article] = []
     for row in rows:
+        cik_int = str(int(row.get("cik") or default_cik))
         form = row.get("form", "")
         if form not in _MATERIAL_FORMS:
             continue
@@ -498,8 +578,11 @@ def _sec_articles(ticker: str, window_start: date, event_date: date) -> List[Art
         doc = row.get("primaryDocument") or ""
         if acc and doc:
             url = "https://www.sec.gov/Archives/edgar/data/%s/%s/%s" % (cik_int, acc, doc)
-        elif acc:
-            url = "https://www.sec.gov/Archives/edgar/data/%s/%s/" % (cik_int, acc)
+        elif row.get("accessionNumber"):
+            # Old filings carry no primaryDocument; the filing index page is the
+            # stable, resolvable address. Verified HTTP 200 on a 2000 AMZN 10-Q.
+            url = "https://www.sec.gov/Archives/edgar/data/%s/%s-index.htm" % (
+                cik_int, row["accessionNumber"])
         else:
             continue
         out.append(Article(
@@ -675,6 +758,9 @@ def harvest(event, lookback_days: int = DEFAULT_LOOKBACK_DAYS,
     if event_date is None:
         raise ValueError("event.date is not an ISO date: %r" % (ev.date,))
     lookback_days = max(1, int(lookback_days))
+    if (event_date <= _parse_date(GDELT_COVERAGE_START)
+            and lookback_days == DEFAULT_LOOKBACK_DAYS):
+        lookback_days = PRE_GDELT_LOOKBACK_DAYS   # SEC-only era; quarterly cadence
     window_start = event_date - timedelta(days=lookback_days)
     # The jump window itself runs (event_date - window_days, event_date].
     jump_window_start = event_date - timedelta(days=int(ev.window_days or WINDOW_DAYS))
@@ -786,6 +872,29 @@ def load_corpus(event) -> Optional[List[Article]]:
     return out
 
 
+def _is_incomplete(ev: Event) -> bool:
+    """True if this event's corpus file was written with the news tier missing.
+
+    Without this, an event harvested while the GDELT breaker was tripped gets a
+    cache file recording zero news and is never retried -- a transient rate
+    limit would silently become a permanent hole in the corpus. Events outside
+    GDELT's coverage window are never "incomplete": SEC is all they can ever get.
+    """
+    path = corpus_path(ev)
+    if not path.exists():
+        return False
+    try:
+        doc = json.loads(path.read_text())
+    except Exception:
+        return True
+    ev_date = _parse_date(ev.date)
+    if ev_date is None or ev_date <= _parse_date(GDELT_COVERAGE_START):
+        return False
+    if (doc.get("gdelt_status") or {}).get("disabled"):
+        return True
+    return int((doc.get("provider_raw_counts") or {}).get("gdelt", 0)) == 0
+
+
 def _load_ledger() -> List[Event]:
     if not EVENTS_PATH.exists():
         return []
@@ -804,7 +913,8 @@ def _load_ledger() -> List[Event]:
 def build_corpus(events: Optional[Iterable] = None, limit: Optional[int] = None,
                  lookback_days: int = DEFAULT_LOOKBACK_DAYS,
                  force: bool = False, verbose: bool = True,
-                 cutoff: str = "event_date") -> dict:
+                 cutoff: str = "event_date", retry_incomplete: bool = True,
+                 max_seconds: Optional[float] = None) -> dict:
     """Harvest every event and write data/corpus/{TICKER}_{DATE}.json.
 
     ``events=None`` loads LANE-EVENTS' ledger at ``data/events.jsonl``.
@@ -817,11 +927,22 @@ def build_corpus(events: Optional[Iterable] = None, limit: Optional[int] = None,
         evs = evs[: int(limit)]
 
     summary = {"n_events": len(evs), "harvested": 0, "cached": 0, "empty": 0,
-               "n_articles": 0, "per_event": []}
+               "retried": 0, "remaining": 0, "n_articles": 0, "per_event": []}
+    started = time.monotonic()
     for i, ev in enumerate(evs, 1):
-        was_cached = corpus_path(ev).exists() and not force
+        if max_seconds is not None and time.monotonic() - started > max_seconds:
+            summary["remaining"] = len(evs) - i + 1
+            if verbose:
+                print("  budget reached; %d events left (re-run to resume)"
+                      % summary["remaining"])
+            break
+        retry = retry_incomplete and not force and _is_incomplete(ev)
+        was_cached = corpus_path(ev).exists() and not force and not retry
+        if retry:
+            summary["retried"] += 1
         try:
-            arts = harvest(ev, lookback_days=lookback_days, force=force, cutoff=cutoff)
+            arts = harvest(ev, lookback_days=lookback_days,
+                           force=force or retry, cutoff=cutoff)
         except Exception as exc:
             if verbose:
                 print("  [%d/%d] %s %s FAILED: %s" % (i, len(evs), ev.ticker, ev.date, exc))
@@ -863,6 +984,23 @@ def corpus_stats() -> dict:
             "universe_missing": [t for t in UNIVERSE if t not in per_ticker]}
 
 
+def corpus_report() -> str:
+    """One-screen text summary of the corpus on disk. No network."""
+    st = corpus_stats()
+    lines = ["rulial-markets news corpus",
+             "  files: %d   articles: %d   events with zero articles: %d"
+             % (st["n_corpus_files"], st["n_articles"], st["n_empty_events"])]
+    for tk in sorted(st["per_ticker"]):
+        row = st["per_ticker"][tk]
+        lines.append("  %-6s events=%-4d articles=%-5d empty=%d"
+                     % (tk, row["n_events"], row["n_articles"], row["empty"]))
+    if st["universe_missing"]:
+        lines.append("  no corpus at all: " + ", ".join(st["universe_missing"]))
+    lines.append("  leakage rule: published STRICTLY before the event date; "
+                 "undated rejected; price-aggregator domains blocked")
+    return "\n".join(lines)
+
+
 if __name__ == "__main__":  # pragma: no cover
     import argparse
 
@@ -870,10 +1008,18 @@ if __name__ == "__main__":  # pragma: no cover
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--lookback", type=int, default=DEFAULT_LOOKBACK_DAYS)
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--max-seconds", type=float, default=None,
+                    help="stop after N seconds; re-run to resume (the corpus is resumable)")
     ap.add_argument("--stats", action="store_true")
     args = ap.parse_args()
     if args.stats:
+        print(corpus_report())
+        print()
         print(json.dumps(corpus_stats(), indent=2))
     else:
-        print(json.dumps(build_corpus(limit=args.limit, lookback_days=args.lookback,
-                                      force=args.force), indent=2)[:4000])
+        out = build_corpus(limit=args.limit, lookback_days=args.lookback,
+                           force=args.force, max_seconds=args.max_seconds)
+        out.pop("per_event", None)
+        print(json.dumps(out, indent=2))
+        print()
+        print(corpus_report())

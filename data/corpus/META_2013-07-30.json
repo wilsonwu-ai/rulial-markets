@@ -1,0 +1,86 @@
+{
+  "ticker": "META",
+  "event_date": "2013-07-30",
+  "move_pct": 0.440107,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2013-04-21",
+    "end_exclusive": "2013-07-30"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:21+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 8,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 7
+  },
+  "n_articles": 7,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680113000019/fb-6302013x10q.htm",
+      "title": "META 10-Q filed with the SEC",
+      "published": "2013-07-25",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001326801-13-000019, period 2013-06-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680113000016/form8-kq22013earnings.htm",
+      "title": "META 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2013-07-24",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001326801-13-000016, period 2013-07-24. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680113000013/fb_-x8xkx2013xannualxmeeti.htm",
+      "title": "META 8-K: Submission of Matters to a Vote of Security Holders",
+      "published": "2013-06-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001326801-13-000013, period 2013-06-11. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312513192397/d530318d8k.htm",
+      "title": "META 8-K: Results of Operations and Financial Condition; Departure or Election of Directors or Principal Officers; Financial Statements and Exhibits",
+      "published": "2013-05-01",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-192397, period 2013-04-25. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312513178118/d526538ddefa14a.htm",
+      "title": "META DEFA14A filed with the SEC",
+      "published": "2013-04-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001193125-13-178118. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312513178090/d493645ddef14a.htm",
+      "title": "META DEF 14A filed with the SEC",
+      "published": "2013-04-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001193125-13-178090, period 2013-06-11. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312513177980/d527261d8k.htm",
+      "title": "META 8-K: Departure or Election of Directors or Principal Officers",
+      "published": "2013-04-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-177980, period 2013-04-23. Filing date is the authoritative publication date."
+    }
+  ]
+}

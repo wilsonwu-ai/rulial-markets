@@ -1,0 +1,79 @@
+{
+  "ticker": "GOOGL",
+  "event_date": "2020-11-04",
+  "move_pct": 0.15558,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2020-10-05",
+    "end_exclusive": "2020-11-04"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:04+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 6,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 6
+  },
+  "n_articles": 6,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000050/goog-20200930.htm",
+      "title": "GOOGL 10-Q filed with the SEC",
+      "published": "2020-10-30",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001652044-20-000050, period 2020-09-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000046/goog-20201029.htm",
+      "title": "GOOGL 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2020-10-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001652044-20-000046, period 2020-10-29. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312520278427/d67558d8ka.htm",
+      "title": "GOOGL 8-K/A: Amendments to Articles of Incorporation or Bylaws; Financial Statements and Exhibits",
+      "published": "2020-10-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K/A, accession 0001193125-20-278427, period 2020-10-21. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204420000038/a202010268-kbylaws.htm",
+      "title": "GOOGL 8-K: Amendments to Articles of Incorporation or Bylaws",
+      "published": "2020-10-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001652044-20-000038, period 2020-10-21. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312520275550/d63784d8k.htm",
+      "title": "GOOGL 8-K: Other Events; Financial Statements and Exhibits",
+      "published": "2020-10-23",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-20-275550, period 2020-10-22. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312520272940/d54645d8k.htm",
+      "title": "GOOGL 8-K: Other Events",
+      "published": "2020-10-20",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-20-272940, period 2020-10-20. Filing date is the authoritative publication date."
+    }
+  ]
+}

@@ -610,9 +610,51 @@ def _fallback_detect_events(close, ticker: str) -> List[Event]:
     ]
 
 
+#: Process-local cache of the on-disk ledger, keyed by nothing (one ledger per run).
+#: walk_forward_universe() calls _load_events once per ticker; without this the
+#: jsonl is re-parsed ten times per run.
+_LEDGER_CACHE: Dict[str, List[Event]] = {}
+
+
+def _ledger_by_ticker(ticker: str) -> List[Event]:
+    """Read data/events.jsonl once and index it by ticker. [] if unreadable."""
+    if not _LEDGER_CACHE:
+        try:
+            from . import events as _ev  # LANE-EVENTS
+
+            for e in _ev.load_ledger():
+                _LEDGER_CACHE.setdefault(getattr(e, "ticker", ""), []).append(e)
+        except Exception:  # noqa: BLE001
+            _LEDGER_CACHE.setdefault("", [])
+    return list(_LEDGER_CACHE.get(ticker, []))
+
+
 def _load_events(ticker: str, close, events: Any = None) -> Tuple[List[Event], str]:
     if events is not None:
         return list(events), "injected"
+
+    # INTEGRATOR FIX. Prefer the SHIPPED LEDGER over live re-detection.
+    #
+    # This function used to call events.detect_events(close) unconditionally.
+    # That re-derives event dates and move_pct correctly, but detect_events()
+    # returns bare geometry: it does NOT carry the `famous` salience label
+    # (assigned by events._assign_famous during build_ledger) or the `headline`.
+    # The consequence was silent and contract-relevant: every scored test event
+    # came back famous=False, so breakdown_famous had n=0 and CONTRACT s8.2's
+    # "a model that only wins on famous events is remembering, not forecasting"
+    # check was structurally unexercised while appearing to be implemented.
+    #
+    # data/events.jsonl is the canonical corpus (built by events.build_ledger
+    # from the same frozen definition), so reading it is not a second opinion --
+    # it is the same events with their labels attached. Re-detection remains the
+    # fallback so a missing/corrupt ledger degrades rather than crashes.
+    try:
+        led = _ledger_by_ticker(ticker)
+    except Exception:  # noqa: BLE001
+        led = []
+    if led:
+        return led, "events.load_ledger"
+
     try:
         from . import events as _ev  # LANE-EVENTS
 

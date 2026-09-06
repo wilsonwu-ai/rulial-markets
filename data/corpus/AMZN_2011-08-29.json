@@ -1,0 +1,65 @@
+{
+  "ticker": "AMZN",
+  "event_date": "2011-08-29",
+  "move_pct": 0.163287,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2011-05-21",
+    "end_exclusive": "2011-08-29"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:53:56+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 4,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 4
+  },
+  "n_articles": 4,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312511197823/d10q.htm",
+      "title": "AMZN 10-Q: QUARTERLY REPORT ON FORM 10-Q",
+      "published": "2011-07-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001193125-11-197823, period 2011-06-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312511197473/d8k.htm",
+      "title": "AMZN 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2011-07-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-11-197473, period 2011-07-26. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312511163100/d8k.htm",
+      "title": "AMZN 8-K: Submission of Matters to a Vote of Security Holders",
+      "published": "2011-06-10",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-11-163100, period 2011-06-07. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000119312511158575/dsc13da.htm",
+      "title": "AMZN SC 13D/A: SCHEDULE 13D AMENDMENT NO. 4",
+      "published": "2011-06-03",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form SC 13D/A, accession 0001193125-11-158575. Filing date is the authoritative publication date."
+    }
+  ]
+}

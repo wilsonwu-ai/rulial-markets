@@ -1,0 +1,93 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2019-05-22",
+  "move_pct": -0.169088,
+  "direction": "down",
+  "lookback_days": 30,
+  "window": {
+    "start": "2019-04-22",
+    "end_exclusive": "2019-05-22"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:43+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 8,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 8
+  },
+  "n_articles": 8,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459019018876/tsla-8k_20190513.htm",
+      "title": "TSLA 8-K: Other Events; Financial Statements and Exhibits",
+      "published": "2019-05-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-19-018876, period 2019-05-13. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459019018878/tsla-8k_20190513.htm",
+      "title": "TSLA 425: 8-K",
+      "published": "2019-05-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 425, accession 0001564590-19-018878. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459019016764/tsla-8k_20190503.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement; Creation of a Direct Financial Obligation; Unregistered Sales of Equity Securities; Other Events; Financial Statements and Exhibits",
+      "published": "2019-05-08",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-19-016764, period 2019-05-03. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312519135910/d730491d8k.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement; Material Modification to Rights of Security Holders; Other Events; Financial Statements and Exhibits",
+      "published": "2019-05-03",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-19-135910, period 2019-05-01. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459019014276/tsla-defa14a_20190606.htm",
+      "title": "TSLA DEFA14A filed with the SEC",
+      "published": "2019-04-30",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001564590-19-014276. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459019014268/tsla-def14a_20190611.htm",
+      "title": "TSLA DEF 14A filed with the SEC",
+      "published": "2019-04-30",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001564590-19-014268, period 2019-06-11. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459019013462/tsla-10q_20190331.htm",
+      "title": "TSLA 10-Q filed with the SEC",
+      "published": "2019-04-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001564590-19-013462, period 2019-03-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459019012758/tsla-8k_20190424.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2019-04-24",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-19-012758, period 2019-04-24. Filing date is the authoritative publication date."
+    }
+  ]
+}

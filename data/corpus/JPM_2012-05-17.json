@@ -1,0 +1,114 @@
+{
+  "ticker": "JPM",
+  "event_date": "2012-05-17",
+  "move_pct": -0.167158,
+  "direction": "down",
+  "lookback_days": 100,
+  "window": {
+    "start": "2012-02-07",
+    "end_exclusive": "2012-05-17"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:21+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 14,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 11
+  },
+  "n_articles": 11,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312512233374/d354629d8k.htm",
+      "title": "JPM 8-K: Departure or Election of Directors or Principal Officers",
+      "published": "2012-05-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-12-233374, period 2012-05-14. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961712000213/jpm-2012033110q.htm",
+      "title": "JPM 10-Q: FORM 10-Q",
+      "published": "2012-05-10",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0000019617-12-000213, period 2012-03-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961712000199/jpmcdefa14a042412.htm",
+      "title": "JPM DEFA14A: JPMORGAN CHASE & CO. 2012 ADDITIONAL PROXY MATERIAL",
+      "published": "2012-04-24",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0000019617-12-000199. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961712000192/jpmc1q12form8k.htm",
+      "title": "JPM 8-K: Regulation FD Disclosure; Financial Statements and Exhibits",
+      "published": "2012-04-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000019617-12-000192, period 2012-04-13. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312512161533/d332188d8k.htm",
+      "title": "JPM 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2012-04-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-12-161533, period 2012-04-13. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961712000187/jpmcdefa14a.htm",
+      "title": "JPM DEFA14A: ADDITIONAL DEFINITIVE PROXY MATERIALS",
+      "published": "2012-04-04",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0000019617-12-000187. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961712000185/jpmc2012proxystatement.htm",
+      "title": "JPM DEF 14A: JPMC 2012 PROXY STATEMENT",
+      "published": "2012-04-04",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0000019617-12-000185, period 2011-12-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312512150081/d329898d8k.htm",
+      "title": "JPM 8-K: Other Events",
+      "published": "2012-04-04",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-12-150081, period 2012-04-04. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000095010312001588/dp29583_8k.htm",
+      "title": "JPM 8-K: Other Events; Financial Statements and Exhibits",
+      "published": "2012-03-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000950103-12-001588, period 2012-03-29. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961712000169/flynnnomination.htm",
+      "title": "JPM 8-K: Departure or Election of Directors or Principal Officers; Financial Statements and Exhibits",
+      "published": "2012-03-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000019617-12-000169, period 2012-03-27. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961712000163/corp10k2011.htm",
+      "title": "JPM 10-K: FORM 10-K",
+      "published": "2012-02-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-K, accession 0000019617-12-000163, period 2011-12-31. Filing date is the authoritative publication date."
+    }
+  ]
+}

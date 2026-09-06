@@ -1,0 +1,51 @@
+{
+  "ticker": "AMZN",
+  "event_date": "2016-02-04",
+  "move_pct": -0.155961,
+  "direction": "down",
+  "lookback_days": 100,
+  "window": {
+    "start": "2015-10-27",
+    "end_exclusive": "2016-02-04"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:53:56+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 2,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 2
+  },
+  "n_articles": 2,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000172/amzn-20151231x10k.htm",
+      "title": "AMZN 10-K: FORM 10-K",
+      "published": "2016-01-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-K, accession 0001018724-16-000172, period 2015-12-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872416000170/amzn-20151231x8k.htm",
+      "title": "AMZN 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2016-01-28",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001018724-16-000170, period 2016-01-28. Filing date is the authoritative publication date."
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "ticker": "NVDA",
+  "event_date": "2022-02-23",
+  "move_pct": -0.155048,
+  "direction": "down",
+  "lookback_days": 30,
+  "window": {
+    "start": "2022-01-24",
+    "end_exclusive": "2022-02-23"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:43+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 2,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 2
+  },
+  "n_articles": 2,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581022000008/nvda-20220216.htm",
+      "title": "NVDA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2022-02-16",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001045810-22-000008, period 2022-02-16. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581022000005/nvda-20220208.htm",
+      "title": "NVDA 8-K: Termination of a Material Definitive Agreement",
+      "published": "2022-02-08",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001045810-22-000005, period 2022-02-08. Filing date is the authoritative publication date."
+    }
+  ]
+}

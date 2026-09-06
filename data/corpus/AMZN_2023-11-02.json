@@ -1,0 +1,58 @@
+{
+  "ticker": "AMZN",
+  "event_date": "2023-11-02",
+  "move_pct": 0.154721,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2023-10-03",
+    "end_exclusive": "2023-11-02"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:02+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 3,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 3
+  },
+  "n_articles": 3,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465923113444/tm2329405d1_8k.htm",
+      "title": "AMZN 8-K: Entry into a Material Definitive Agreement; Termination of a Material Definitive Agreement; Creation of a Direct Financial Obligation; Financial Statements and Exhibits",
+      "published": "2023-11-01",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001104659-23-113444, period 2023-11-01. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000018/amzn-20230930.htm",
+      "title": "AMZN 10-Q filed with the SEC",
+      "published": "2023-10-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001018724-23-000018, period 2023-09-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872423000016/amzn-20231026.htm",
+      "title": "AMZN 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2023-10-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001018724-23-000016, period 2023-10-26. Filing date is the authoritative publication date."
+    }
+  ]
+}

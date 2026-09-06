@@ -1,0 +1,72 @@
+{
+  "ticker": "META",
+  "event_date": "2023-05-02",
+  "move_pct": 0.152686,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2023-04-02",
+    "end_exclusive": "2023-05-02"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:40+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 5,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 5
+  },
+  "n_articles": 5,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000067/meta-20230331.htm",
+      "title": "META 10-Q filed with the SEC",
+      "published": "2023-04-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001326801-23-000067, period 2023-03-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000063/meta-20230426.htm",
+      "title": "META 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2023-04-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001326801-23-000063, period 2023-04-26. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000051/meta2023proxydefa14anextgen.htm",
+      "title": "META DEFA14A filed with the SEC",
+      "published": "2023-04-14",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001326801-23-000051. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000050/meta-20230414.htm",
+      "title": "META DEF 14A filed with the SEC",
+      "published": "2023-04-14",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001326801-23-000050. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000038/meta-20230407.htm",
+      "title": "META 8-K: Departure or Election of Directors or Principal Officers",
+      "published": "2023-04-10",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001326801-23-000038, period 2023-04-07. Filing date is the authoritative publication date."
+    }
+  ]
+}

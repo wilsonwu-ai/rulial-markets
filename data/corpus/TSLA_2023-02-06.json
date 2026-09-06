@@ -1,0 +1,51 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2023-02-06",
+  "move_pct": 0.168607,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2023-01-07",
+    "end_exclusive": "2023-02-06"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:43+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 2,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 2
+  },
+  "n_articles": 2,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000095017023001409/tsla-20221231.htm",
+      "title": "TSLA 10-K filed with the SEC",
+      "published": "2023-01-31",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-K, accession 0000950170-23-001409, period 2022-12-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459023000799/tsla-8k_20230120.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement; Termination of a Material Definitive Agreement; Results of Operations and Financial Condition; Creation of a Direct Financial Obligation; Financial Statements and Exhibits",
+      "published": "2023-01-25",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-23-000799, period 2023-01-20. Filing date is the authoritative publication date."
+    }
+  ]
+}

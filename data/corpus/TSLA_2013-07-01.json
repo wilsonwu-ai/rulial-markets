@@ -1,0 +1,100 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2013-07-01",
+  "move_pct": 0.154597,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2013-03-23",
+    "end_exclusive": "2013-07-01"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:22+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 10,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 9
+  },
+  "n_articles": 9,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513250185/d548215d8k.htm",
+      "title": "TSLA 8-K: Submission of Matters to a Vote of Security Holders",
+      "published": "2013-06-06",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-250185, period 2013-06-04. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513241569/d546598d8k.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement; Unregistered Sales of Equity Securities; Other Events; Financial Statements and Exhibits",
+      "published": "2013-05-30",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-241569, period 2013-05-24. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513231437/d542515d8k.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement; Termination of a Material Definitive Agreement; Creation of a Direct Financial Obligation; Unregistered Sales of Equity Securities; Other Events; Financial Statements and Exhibits",
+      "published": "2013-05-22",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-231437, period 2013-05-16. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513222376/d539676d8k.htm",
+      "title": "TSLA 8-K: Entry into a Material Definitive Agreement; Other Events; Financial Statements and Exhibits",
+      "published": "2013-05-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-222376, period 2013-05-14. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513212354/d511008d10q.htm",
+      "title": "TSLA 10-Q: FORM 10-Q",
+      "published": "2013-05-10",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001193125-13-212354, period 2013-03-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513207910/d532640d8k.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2013-05-08",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-207910, period 2013-05-08. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513158922/d516029ddefa14a.htm",
+      "title": "TSLA DEFA14A filed with the SEC",
+      "published": "2013-04-17",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001193125-13-158922. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513158904/d506419ddef14a.htm",
+      "title": "TSLA DEF 14A filed with the SEC",
+      "published": "2013-04-17",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001193125-13-158904, period 2013-06-04. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513135229/d514482d8k.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Regulation FD Disclosure; Financial Statements and Exhibits",
+      "published": "2013-04-01",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-135229, period 2013-03-31. Filing date is the authoritative publication date."
+    }
+  ]
+}

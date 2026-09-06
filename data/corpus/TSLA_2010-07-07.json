@@ -1,0 +1,93 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2010-07-07",
+  "move_pct": -0.338636,
+  "direction": "down",
+  "lookback_days": 100,
+  "window": {
+    "start": "2010-03-29",
+    "end_exclusive": "2010-07-07"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:22+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 8,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 8
+  },
+  "n_articles": 8,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312510148468/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 8 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2010-06-28",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0001193125-10-148468. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312510147850/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 7 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2010-06-28",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0001193125-10-147850. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312510147655/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 6 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2010-06-28",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0001193125-10-147655. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312510139143/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 5 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2010-06-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0001193125-10-139143. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000095013010002906/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 4 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2010-06-02",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0000950130-10-002906. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312510129878/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 3 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2010-05-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0001193125-10-129878. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312510099603/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 2 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2010-04-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0001193125-10-099603. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312510068933/ds1a.htm",
+      "title": "TSLA S-1/A: AMENDMENT NO. 1 TO REGISTRATION STATEMENT ON FORM S-1",
+      "published": "2010-03-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form S-1/A, accession 0001193125-10-068933. Filing date is the authoritative publication date."
+    }
+  ]
+}

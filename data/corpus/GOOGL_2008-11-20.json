@@ -1,0 +1,51 @@
+{
+  "ticker": "GOOGL",
+  "event_date": "2008-11-20",
+  "move_pct": -0.16829,
+  "direction": "down",
+  "lookback_days": 100,
+  "window": {
+    "start": "2008-08-12",
+    "end_exclusive": "2008-11-20"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:57:14+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 2,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 2
+  },
+  "n_articles": 2,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312508230197/d10q.htm",
+      "title": "GOOGL 10-Q: FORM 10-Q",
+      "published": "2008-11-07",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001193125-08-230197, period 2008-09-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1288776/000119312508211628/d8k.htm",
+      "title": "GOOGL 8-K: Results of Operations and Financial Condition; Other Events; Financial Statements and Exhibits",
+      "published": "2008-10-16",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-08-211628, period 2008-10-16. Filing date is the authoritative publication date."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "ticker": "META",
+  "event_date": "2023-02-07",
+  "move_pct": 0.286299,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2023-01-08",
+    "end_exclusive": "2023-02-07"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:40+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 3,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 3
+  },
+  "n_articles": 3,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000015/meta-20230127.htm",
+      "title": "META 8-K: Departure or Election of Directors or Principal Officers",
+      "published": "2023-02-02",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001326801-23-000015, period 2023-01-27. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000013/meta-20221231.htm",
+      "title": "META 10-K filed with the SEC",
+      "published": "2023-02-02",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-K, accession 0001326801-23-000013, period 2022-12-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000132680123000008/meta-20230201.htm",
+      "title": "META 8-K: Results of Operations and Financial Condition; Other Events; Financial Statements and Exhibits",
+      "published": "2023-02-01",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001326801-23-000008, period 2023-02-01. Filing date is the authoritative publication date."
+    }
+  ]
+}

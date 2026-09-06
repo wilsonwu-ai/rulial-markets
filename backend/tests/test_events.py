@@ -70,11 +70,23 @@ def test_detects_a_single_up_jump():
 
 
 def test_threshold_is_inclusive_and_respected():
-    """24.9% must not fire; 25.0% must. The threshold is frozen at 0.25."""
-    just_under = E.detect_events(_frame(_flat_then_jump(30, JUMP_THRESHOLD - 0.001, 30)), "T")
+    """A hair under the frozen detection floor must not fire; a hair over must.
+
+    INTEGRATOR NOTE (test fixed, not code). This previously asserted that a jump
+    of *exactly* ``JUMP_THRESHOLD`` fires, and its docstring said "frozen at 0.25".
+    That assertion only ever passed by accident of binary floating point: at the
+    old 0.25 floor ``100.0 * 1.25 == 125.0`` exactly, so the realised return was
+    exactly 0.25. CONTRACT section 3 later moved the detection floor to
+    ``TIER_SIGNIFICANT = 0.15``, and ``100.0 * 1.15 == 114.99999999999999``, whose
+    realised return is 0.1499999999999999 -- genuinely BELOW the floor. The
+    detector is correct to reject it; the test was asserting a float artifact.
+    The boundary is now probed with an explicit epsilon on each side.
+    """
+    eps = 1e-9
+    just_under = E.detect_events(_frame(_flat_then_jump(30, JUMP_THRESHOLD - 1e-3, 30)), "T")
     assert just_under == []
-    exactly = E.detect_events(_frame(_flat_then_jump(30, JUMP_THRESHOLD, 30)), "T")
-    assert len(exactly) == 1
+    just_over = E.detect_events(_frame(_flat_then_jump(30, JUMP_THRESHOLD + eps, 30)), "T")
+    assert len(just_over) == 1
 
 
 def test_gradual_drift_below_threshold_is_not_an_event():

@@ -1,0 +1,65 @@
+{
+  "ticker": "JPM",
+  "event_date": "2020-04-09",
+  "move_pct": 0.174266,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2020-03-10",
+    "end_exclusive": "2020-04-09"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:38+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 5,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 4
+  },
+  "n_articles": 4,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312520098871/d864133ddefa14a.htm",
+      "title": "JPM DEFA14A filed with the SEC",
+      "published": "2020-04-06",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001193125-20-098871. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312520098865/d822689ddef14a.htm",
+      "title": "JPM DEF 14A filed with the SEC",
+      "published": "2020-04-06",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001193125-20-098865, period 2020-05-19. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312520083814/d881146d8k.htm",
+      "title": "JPM 8-K: Other Events; Financial Statements and Exhibits",
+      "published": "2020-03-24",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-20-083814, period 2020-03-24. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961720000268/ots8k03192020.htm",
+      "title": "JPM 8-K: Departure or Election of Directors or Principal Officers; Financial Statements and Exhibits",
+      "published": "2020-03-19",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000019617-20-000268, period 2020-03-19. Filing date is the authoritative publication date."
+    }
+  ]
+}

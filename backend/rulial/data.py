@@ -17,10 +17,13 @@ Design notes
 
 * **Fetch order.** ``yfinance`` if it is importable, else a zero-dependency
   urllib call to Yahoo's public ``/v8/finance/chart`` JSON endpoint, else a
-  clearly-labelled synthetic fallback (see ``SYNTHETIC_TICKERS``). The urllib
-  path is the one actually used to build the committed CSVs; it was verified
-  against ``mcp__dubbs-research__equity_price_historical`` (yfinance provider)
-  and agrees to ~1e-9.
+  clearly-labelled synthetic fallback (see ``SYNTHETIC_TICKERS``). The two real
+  paths were cross-checked against each other (max relative close difference
+  2e-16 over 1,761 NVDA rows spanning the 2021 4:1 and 2024 10:1 splits) and
+  both were verified against ``mcp__dubbs-research__equity_price_historical``
+  (yfinance provider, ``adjustment="splits_only"``) on 2026-09-06: 20 anchor
+  bars across all 10 tickers matched to the last decimal place. The urllib path
+  exists because Yahoo HTTP 429s under load; it needs no dependency at all.
 
 * **Prices are SPLIT-ADJUSTED, not dividend-adjusted.** ``close`` is Yahoo's
   ``quote.close``, which is adjusted for splits only, so open/high/low/close in
@@ -29,11 +32,14 @@ Design notes
   10:1 and 4:1 splits. Dividends move a 5-day return by ~0.01% and are ignored
   on purpose.
 
-* **Depth.** ``config.HISTORY_START`` is ``None``, meaning "fetch from each
-  ticker's inception". The CSVs therefore run from each ticker's first trading
-  day (BA/XOM 1962, AAPL 1980, ..., META 2012) to today, and ``load_prices()``
-  returns all of it by default. If the parent ever sets ``HISTORY_START`` to a
-  date, the cache keeps a ``WARMUP_YEARS`` buffer before it so
+* **Depth.** ``config.HISTORY_START`` is currently the sentinel
+  ``"1900-01-01"`` (and ``None`` is treated the same way): fetch from each
+  ticker's inception. The CSVs therefore run from each ticker's first trading
+  day -- BA/XOM 1962-01-02, JPM 1980-03-17, AAPL 1980-12-12, MSFT 1986-03-13,
+  AMZN 1997-05-15, NVDA 1999-01-22, GOOGL 2004-08-19, TSLA 2010-06-29,
+  META 2012-05-18 -- through to today, and ``load_prices()`` returns all of it
+  by default. If the parent later sets ``HISTORY_START`` to a real date, the
+  cache keeps a ``WARMUP_YEARS`` buffer before it so
   ``trailing_vol(..., lookback=250)`` still has a full window on day one, and
   ``load_prices()`` filters to the configured start unless ``start=`` overrides.
 
@@ -115,6 +121,10 @@ def _fetch_start() -> Optional[str]:
     if not hs:
         return None
     d = _dt.date.fromisoformat(hs)
+    # A sentinel like "1900-01-01" means "everything"; Yahoo's epoch floor is
+    # 1962 anyway, so ask for the full series rather than a negative epoch.
+    if d.year <= 1970:
+        return None
     return d.replace(year=d.year - WARMUP_YEARS).isoformat()
 
 

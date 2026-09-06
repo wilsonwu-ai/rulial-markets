@@ -1,0 +1,65 @@
+{
+  "ticker": "BA",
+  "event_date": "2022-05-12",
+  "move_pct": -0.181631,
+  "direction": "down",
+  "lookback_days": 30,
+  "window": {
+    "start": "2022-04-12",
+    "end_exclusive": "2022-05-12"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:04+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 5,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 4
+  },
+  "n_articles": 4,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292722000025/ba-20220429.htm",
+      "title": "BA 8-K: Submission of Matters to a Vote of Security Holders",
+      "published": "2022-04-29",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000012927-22-000025, period 2022-04-29. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292722000022/ba-20220331.htm",
+      "title": "BA 10-Q filed with the SEC",
+      "published": "2022-04-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0000012927-22-000022, period 2022-03-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292722000019/ba-20220427.htm",
+      "title": "BA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2022-04-27",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000012927-22-000019, period 2022-04-27. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312522108037/d703926ddefa14a.htm",
+      "title": "BA DEFA14A filed with the SEC",
+      "published": "2022-04-18",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001193125-22-108037. Filing date is the authoritative publication date."
+    }
+  ]
+}

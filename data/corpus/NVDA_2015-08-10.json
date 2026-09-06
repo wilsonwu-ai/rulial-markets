@@ -1,0 +1,65 @@
+{
+  "ticker": "NVDA",
+  "event_date": "2015-08-10",
+  "move_pct": 0.172006,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2015-05-02",
+    "end_exclusive": "2015-08-10"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:22+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 5,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 4
+  },
+  "n_articles": 4,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581015000131/form8-kq216.htm",
+      "title": "NVDA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2015-08-06",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001045810-15-000131, period 2015-08-06. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581015000124/form8-kcampusfinancing.htm",
+      "title": "NVDA 8-K: Entry into a Material Definitive Agreement; Creation of a Direct Financial Obligation",
+      "published": "2015-06-23",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001045810-15-000124, period 2015-06-19. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581015000117/form8-k2015annualmeetingre.htm",
+      "title": "NVDA 8-K: Submission of Matters to a Vote of Security Holders",
+      "published": "2015-05-26",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001045810-15-000117, period 2015-05-20. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581015000097/nvda2016q110q.htm",
+      "title": "NVDA 10-Q: Q1'16 10-Q",
+      "published": "2015-05-20",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001045810-15-000097, period 2015-04-26. Filing date is the authoritative publication date."
+    }
+  ]
+}

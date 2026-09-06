@@ -1,0 +1,100 @@
+{
+  "ticker": "JPM",
+  "event_date": "2008-12-08",
+  "move_pct": 0.397014,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2008-08-30",
+    "end_exclusive": "2008-12-08"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:20+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 56,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 9
+  },
+  "n_articles": 9,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312508246599/d8k.htm",
+      "title": "JPM 8-K: Other Events; Financial Statements and Exhibits",
+      "published": "2008-12-02",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-08-246599, period 2008-12-02. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000095010308002908/dp11978_8k.htm",
+      "title": "JPM 8-K: Financial Statements and Exhibits",
+      "published": "2008-12-02",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000950103-08-002908, period 2008-12-02. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312508233757/d8k.htm",
+      "title": "JPM 8-K: Regulation FD Disclosure; Financial Statements and Exhibits",
+      "published": "2008-11-12",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-08-233757, period 2008-11-12. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000095012308014621/y72204e10vq.htm",
+      "title": "JPM 10-Q: FORM 10-Q",
+      "published": "2008-11-07",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0000950123-08-014621, period 2008-09-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312508220563/d8k.htm",
+      "title": "JPM 8-K: Unregistered Sales of Equity Securities; Material Modification to Rights of Security Holders; Departure or Election of Directors or Principal Officers; Amendments to Articles of Incorporation or Bylaws; Financial Statements and Exhibits",
+      "published": "2008-10-31",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-08-220563, period 2008-10-28. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312508212301/d8k.htm",
+      "title": "JPM 8-K: Other Events",
+      "published": "2008-10-17",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-08-212301, period 2008-10-13. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000095012308012848/y71827e8vk.htm",
+      "title": "JPM 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2008-10-15",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000950123-08-012848, period 2008-10-15. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000119312508196894/d8ka.htm",
+      "title": "JPM 8-K/A: Financial Statements and Exhibits",
+      "published": "2008-09-17",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K/A, accession 0001193125-08-196894, period 2008-08-21. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/19617/000001961708000388/lipp8k.htm",
+      "title": "JPM 8-K: Departure or Election of Directors or Principal Officers",
+      "published": "2008-09-09",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0000019617-08-000388, period 2008-09-09. Filing date is the authoritative publication date."
+    }
+  ]
+}

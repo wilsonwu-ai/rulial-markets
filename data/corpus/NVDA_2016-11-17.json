@@ -1,0 +1,58 @@
+{
+  "ticker": "NVDA",
+  "event_date": "2016-11-17",
+  "move_pct": 0.363288,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2016-08-09",
+    "end_exclusive": "2016-11-17"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:22+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 5,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 3
+  },
+  "n_articles": 3,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581016000343/form8-kq3fy17.htm",
+      "title": "NVDA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2016-11-10",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001045810-16-000343, period 2016-11-10. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000119312516737735/d30673d8k.htm",
+      "title": "NVDA 8-K: Entry into a Material Definitive Agreement; Creation of a Direct Financial Obligation; Financial Statements and Exhibits",
+      "published": "2016-10-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-16-737735, period 2016-10-07. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581016000300/nvda2017q210q.htm",
+      "title": "NVDA 10-Q: Q2FY17 10-Q",
+      "published": "2016-08-23",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001045810-16-000300, period 2016-07-31. Filing date is the authoritative publication date."
+    }
+  ]
+}

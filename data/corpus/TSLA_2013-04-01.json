@@ -1,0 +1,58 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2013-04-01",
+  "move_pct": 0.199618,
+  "direction": "up",
+  "lookback_days": 100,
+  "window": {
+    "start": "2012-12-22",
+    "end_exclusive": "2013-04-01"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T17:54:22+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": false,
+    "consecutive_failures": 0,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 3,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 3
+  },
+  "n_articles": 3,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513096241/d452995d10k.htm",
+      "title": "TSLA 10-K: FORM 10-K",
+      "published": "2013-03-07",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-K, accession 0001193125-13-096241, period 2012-12-31. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513096223/d498040d8k.htm",
+      "title": "TSLA 8-K: Non-Reliance on Previously Issued Financial Statements",
+      "published": "2013-03-07",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-096223, period 2013-03-06. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000119312513067177/d462441d8k.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2013-02-20",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-13-067177, period 2013-02-20. Filing date is the authoritative publication date."
+    }
+  ]
+}

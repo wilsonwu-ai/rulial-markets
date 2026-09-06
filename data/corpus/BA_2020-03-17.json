@@ -1,0 +1,58 @@
+{
+  "ticker": "BA",
+  "event_date": "2020-03-17",
+  "move_pct": -0.462621,
+  "direction": "down",
+  "lookback_days": 30,
+  "window": {
+    "start": "2020-02-16",
+    "end_exclusive": "2020-03-17"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:04+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 5,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 3
+  },
+  "n_articles": 3,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312520072888/d806083ddefa14a.htm",
+      "title": "BA DEFA14A filed with the SEC",
+      "published": "2020-03-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001193125-20-072888. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312520072864/d806083ddef14a.htm",
+      "title": "BA DEF 14A filed with the SEC",
+      "published": "2020-03-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEF 14A, accession 0001193125-20-072864, period 2020-04-27. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312520046678/d893256d8k.htm",
+      "title": "BA 8-K: Departure or Election of Directors or Principal Officers; Amendments to Articles of Incorporation or Bylaws; Other Events; Financial Statements and Exhibits",
+      "published": "2020-02-24",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001193125-20-046678, period 2020-02-23. Filing date is the authoritative publication date."
+    }
+  ]
+}

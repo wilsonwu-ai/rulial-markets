@@ -1,0 +1,65 @@
+{
+  "ticker": "TSLA",
+  "event_date": "2020-08-18",
+  "move_pct": 0.373038,
+  "direction": "up",
+  "lookback_days": 30,
+  "window": {
+    "start": "2020-07-19",
+    "end_exclusive": "2020-08-18"
+  },
+  "cutoff_mode": "event_date",
+  "harvested_at": "2026-09-06T18:03:43+00:00",
+  "leakage_rule": "published >= window.start AND published < window.end_exclusive (STRICTLY before, never <=); undated articles rejected",
+  "gdelt_status": {
+    "disabled": true,
+    "consecutive_failures": 3,
+    "coverage_start": "2017-01-01"
+  },
+  "provider_raw_counts": {
+    "curated": 0,
+    "sec": 5,
+    "gdelt": 0
+  },
+  "leakage_filter_rejects": {
+    "after_event": 0,
+    "too_old": 0,
+    "undated": 0,
+    "blocked_domain": 0,
+    "no_title": 0
+  },
+  "kept_by_source": {
+    "sec-edgar": 4
+  },
+  "n_articles": 4,
+  "articles": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459020040042/tsla-defa14a_20200922.htm",
+      "title": "TSLA DEFA14A filed with the SEC",
+      "published": "2020-08-13",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form DEFA14A, accession 0001564590-20-040042. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459020039353/tsla-8k_20200811.htm",
+      "title": "TSLA 8-K: Other Events; Financial Statements and Exhibits",
+      "published": "2020-08-11",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-20-039353, period 2020-08-11. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459020033670/tsla-10q_20200630.htm",
+      "title": "TSLA 10-Q filed with the SEC",
+      "published": "2020-07-28",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 10-Q, accession 0001564590-20-033670, period 2020-06-30. Filing date is the authoritative publication date."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1318605/000156459020033069/tsla-8k_20200722.htm",
+      "title": "TSLA 8-K: Results of Operations and Financial Condition; Financial Statements and Exhibits",
+      "published": "2020-07-22",
+      "source": "sec-edgar",
+      "snippet": "SEC EDGAR filing, form 8-K, accession 0001564590-20-033069, period 2020-07-22. Filing date is the authoritative publication date."
+    }
+  ]
+}

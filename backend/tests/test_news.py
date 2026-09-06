@@ -361,8 +361,56 @@ def test_build_corpus_writes_one_file_per_event(monkeypatch):
     assert (news.CORPUS_DIR / "NVDA_2018-11-20.json").exists()
     assert (news.CORPUS_DIR / "TSLA_2019-01-18.json").exists()
 
-    again = news.build_corpus(evs, verbose=False)
+    # Post-2017 events whose GDELT tier came back empty are treated as
+    # INCOMPLETE and retried, so they do not count as cached.
+    again = news.build_corpus(evs, verbose=False, retry_incomplete=False)
     assert again["cached"] == 2 and again["harvested"] == 0
+
+
+def test_events_harvested_while_the_gdelt_breaker_was_tripped_are_retried(monkeypatch):
+    """A transient rate limit must not become a permanent hole in the corpus."""
+    monkeypatch.setattr(news, "_gdelt_articles", lambda *a, **k: [])
+    monkeypatch.setattr(news, "_sec_articles", lambda *a, **k: [])
+    monkeypatch.setattr(news, "_curated_articles", lambda *a, **k: [])
+    modern = Event(ticker="NVDA", date="2018-11-20", move_pct=-0.25,
+                   direction="down", window_days=5)
+    old = Event(ticker="AMZN", date="2000-06-23", move_pct=-0.27,
+                direction="down", window_days=5)
+    news.build_corpus([modern, old], verbose=False)
+
+    # The modern event got no news -> retryable. The 2000 event never could have
+    # had news (GDELT starts 2017), so it is complete, not incomplete.
+    assert news._is_incomplete(modern) is True
+    assert news._is_incomplete(old) is False
+
+    again = news.build_corpus([modern, old], verbose=False)
+    assert again["retried"] == 1
+    assert again["cached"] == 1
+
+    # Once the news tier answers, the event stops being retried.
+    monkeypatch.setattr(news, "_gdelt_articles", lambda *a, **k: [
+        _art("2018-11-16", url="https://www.bbc.com/x", title="Nvidia guides lower")])
+    monkeypatch.setattr(news, "_offline", lambda: False)
+    news.build_corpus([modern], verbose=False)
+    assert news._is_incomplete(modern) is False
+
+
+def test_build_corpus_stops_at_the_time_budget_and_resumes(monkeypatch):
+    monkeypatch.setattr(news, "_sec_articles", lambda *a, **k: [])
+    monkeypatch.setattr(news, "_curated_articles", lambda *a, **k: [])
+
+    def _slow(*a, **k):
+        import time as _t
+        _t.sleep(0.05)
+        return []
+
+    monkeypatch.setattr(news, "_gdelt_articles", _slow)
+    monkeypatch.setattr(news, "_offline", lambda: False)
+    evs = [Event(ticker="NVDA", date="2018-11-%02d" % d, move_pct=-0.25,
+                 direction="down", window_days=5) for d in range(10, 26)]
+    out = news.build_corpus(evs, verbose=False, max_seconds=0.10)
+    assert out["remaining"] > 0
+    assert out["harvested"] < len(evs)
 
 
 def test_build_corpus_honours_limit(monkeypatch):
@@ -422,12 +470,14 @@ def test_gdelt_circuit_breaker_trips_after_repeated_failures(monkeypatch):
     assert calls["n"] == news.GDELT_MAX_CONSECUTIVE_FAILURES, "breaker did not stop the retries"
 
 
-def test_gdelt_end_window_asks_for_the_day_before_the_event(monkeypatch):
+def test_gdelt_end_window_backs_off_from_the_cutoff(monkeypatch):
     """Regression guard for a MEASURED GDELT bug.
 
-    GDELT's `enddatetime` is day-inclusive: asking for 20180726000000 returned
-    75 articles stamped through 2018-07-26T23:45Z. So the request must name the
-    day BEFORE the cutoff, and the Python-side filter stays the authority.
+    GDELT overshoots `enddatetime` by about a day. Asking for 20180725120000
+    returned 250 articles every one stamped 2018-07-26; asking for
+    20181121000000 returned articles at 2018-11-21T23:45Z. So the request backs
+    off GDELT_END_MARGIN_DAYS from the cutoff, and the Python-side filter stays
+    the authority regardless of what GDELT decides to send.
     """
     seen = {}
     monkeypatch.setattr(news, "_offline", lambda: False)
@@ -444,8 +494,111 @@ def test_gdelt_end_window_asks_for_the_day_before_the_event(monkeypatch):
 
     monkeypatch.setattr(news, "_http_get", _capture)
     news._gdelt_articles("META", date(2018, 6, 26), date(2018, 7, 26))
-    assert "enddatetime=20180725235959" in seen["url"]
+    assert "enddatetime=20180724235959" in seen["url"]      # cutoff minus 2 days
     assert "enddatetime=20180726" not in seen["url"]
+    assert "enddatetime=20180725" not in seen["url"]
+
+
+def test_pre_gdelt_events_get_a_wider_lookback_because_filings_are_quarterly(monkeypatch):
+    """MEASURED: AMZN 2000-06-23 returned 0 at 30 days; its Q1 10-Q sat 39 days
+    back. SEC-only events need a window sized to filing cadence, not news cadence."""
+    seen = {}
+
+    def _sec(ticker, window_start, cutoff):
+        seen["window_start"] = window_start
+        return []
+
+    monkeypatch.setattr(news, "_sec_articles", _sec)
+    monkeypatch.setattr(news, "_gdelt_articles", lambda *a, **k: [])
+    monkeypatch.setattr(news, "_curated_articles", lambda *a, **k: [])
+    news.harvest(Event(ticker="AMZN", date="2000-06-23", move_pct=-0.271,
+                       direction="down", window_days=5), force=True)
+    assert seen["window_start"] == date(2000, 6, 23) - timedelta(
+        days=news.PRE_GDELT_LOOKBACK_DAYS)
+
+    # a modern event keeps the default 30-day window
+    news.harvest(Event(ticker="AMZN", date="2018-06-23", move_pct=-0.16,
+                       direction="down", window_days=5), force=True)
+    assert seen["window_start"] == date(2018, 6, 23) - timedelta(
+        days=news.DEFAULT_LOOKBACK_DAYS)
+
+    # an explicit lookback is never overridden
+    news.harvest(Event(ticker="AMZN", date="2000-06-23", move_pct=-0.271,
+                       direction="down", window_days=5), force=True, lookback_days=10)
+    assert seen["window_start"] == date(2000, 6, 23) - timedelta(days=10)
+
+
+def test_old_sec_filings_without_a_primary_document_get_the_index_url(monkeypatch,
+                                                                     _isolated_corpus):
+    cache = _isolated_corpus / "_cache"
+    cache.mkdir(parents=True, exist_ok=True)
+    (cache / ("sec_AMZN_v%d.json" % news._SEC_CACHE_VERSION)).write_text(json.dumps([
+        {"filingDate": "2000-05-15", "form": "10-Q",
+         "accessionNumber": "0000891020-00-001049", "primaryDocument": "",
+         "primaryDocDescription": "", "items": "", "reportDate": ""},
+    ]))
+    got = news._sec_articles("AMZN", date(2000, 3, 15), date(2000, 6, 23))
+    assert len(got) == 1
+    assert got[0].url == ("https://www.sec.gov/Archives/edgar/data/1018724/"
+                          "0000891020-00-001049-index.htm")
+
+
+def test_gdelt_offtopic_noise_is_dropped_by_title(monkeypatch):
+    """Real titles GDELT actually returned for a META query on 2018-07-25.
+
+    GDELT's boolean grouping is loose: the finance.yahoo.com noise below came
+    back from a query that already said (Facebook) AND (stock OR shares ...).
+    """
+    on_topic = [
+        "Facebook shares tumble as growth disappoints",
+        "Facebook value falls $130 billion after Q2 earnings call",
+        "Facebook shares plunge more than 20 percent on warnings for future",
+        "Facebook stock falls 24 percent on forecast for slowing growth",
+    ]
+    off_topic = [
+        "Asian Stocks to Gain on Trade Deal ; Dollar Falls : Markets Wrap",
+        "Five Things You Need to Know to Start Your Day",
+        "A California DMV employee who napped at work every day for 3 hours",
+        "Centauro the robot hopes to play role in disaster relief work",
+        "It should worry China a lot more than tariffs",
+    ]
+    for t in on_topic:
+        assert news._is_on_topic("META", t), t
+    for t in off_topic:
+        assert not news._is_on_topic("META", t), t
+
+    rows = [{"url": "https://www.bbc.com/%d" % i, "title": t,
+             "seendate": "20180725T120000Z"}
+            for i, t in enumerate(on_topic + off_topic)]
+
+    class _R:
+        @staticmethod
+        def json():
+            return {"articles": rows}
+
+    monkeypatch.setattr(news, "_offline", lambda: False)
+    monkeypatch.setattr(news, "_gdelt_disabled", False, raising=False)
+    monkeypatch.setattr(news, "_http_get", lambda url, bucket, **k: _R)
+    got = news._gdelt_articles("META", date(2018, 6, 26), date(2018, 7, 26))
+    assert len(got) == len(on_topic)
+    assert all(news._is_on_topic("META", a.title) for a in got)
+
+
+def test_every_universe_ticker_has_gdelt_query_and_title_keywords():
+    for tk in news.UNIVERSE:
+        assert tk in news._GDELT_KEYWORDS, tk
+        assert tk in news._TITLE_KEYWORDS, tk
+        assert news._gdelt_query(tk)
+
+
+def test_corpus_report_is_a_string_and_names_the_leakage_rule(monkeypatch):
+    monkeypatch.setattr(news, "_gdelt_articles", lambda *a, **k: [])
+    monkeypatch.setattr(news, "_sec_articles", lambda *a, **k: [])
+    monkeypatch.setattr(news, "_curated_articles", lambda *a, **k: [])
+    news.harvest(Event(ticker="NVDA", date="2018-11-20", move_pct=-0.25,
+                       direction="down", window_days=5), force=True)
+    rep = news.corpus_report()
+    assert "NVDA" in rep and "STRICTLY before" in rep
 
 
 def test_sec_filing_title_renders_8k_item_codes_in_english():
@@ -458,7 +611,7 @@ def test_sec_filing_title_renders_8k_item_codes_in_english():
 def test_sec_provider_reads_from_cache_without_network(monkeypatch, _isolated_corpus):
     cache = _isolated_corpus / "_cache"
     cache.mkdir(parents=True, exist_ok=True)
-    (cache / "sec_NVDA.json").write_text(json.dumps([
+    (cache / ("sec_NVDA_v%d.json" % news._SEC_CACHE_VERSION)).write_text(json.dumps([
         {"filingDate": "2018-11-15", "form": "8-K", "accessionNumber": "0001045810-18-000148",
          "primaryDocument": "form8-kq3fy19.htm", "primaryDocDescription": "FORM 8-K",
          "items": "2.02,9.01", "reportDate": "2018-11-15"},
@@ -475,6 +628,36 @@ def test_sec_provider_reads_from_cache_without_network(monkeypatch, _isolated_co
     assert got[0].published == "2018-11-15"
     assert got[0].url == ("https://www.sec.gov/Archives/edgar/data/1045810/"
                           "000104581018000148/form8-kq3fy19.htm")
+
+
+def test_googl_resolves_both_alphabet_and_legacy_google_inc_ciks():
+    """MEASURED BUG: Alphabet's CIK only starts 2015-10-02, so a GOOGL-only
+    lookup returned nothing for the seven 2008-2013 GOOGL events in the ledger."""
+    ciks = news._CIK_OVERRIDE["GOOGL"]
+    assert "0001652044" in ciks and "0001288776" in ciks
+
+
+def test_sec_rows_build_urls_against_the_cik_that_actually_filed(monkeypatch,
+                                                                _isolated_corpus):
+    cache = _isolated_corpus / "_cache"
+    cache.mkdir(parents=True, exist_ok=True)
+    (cache / ("sec_GOOGL_v%d.json" % news._SEC_CACHE_VERSION)).write_text(json.dumps([
+        {"cik": "0001288776", "filingDate": "2008-10-06", "form": "8-K",
+         "accessionNumber": "0001193125-08-000001", "primaryDocument": "d8k.htm",
+         "primaryDocDescription": "", "items": "8.01", "reportDate": ""},
+    ]))
+    got = news._sec_articles("GOOGL", date(2008, 9, 8), date(2008, 10, 8))
+    assert len(got) == 1
+    # 1288776 (Google Inc), not 1652044 (Alphabet)
+    assert "/data/1288776/" in got[0].url
+
+
+def test_every_universe_ticker_has_a_cik_tuple():
+    for tk in news.UNIVERSE:
+        ciks = news._CIK_OVERRIDE[tk]
+        assert isinstance(ciks, tuple) and ciks
+        for c in ciks:
+            assert len(c) == 10 and c.isdigit(), (tk, c)
 
 
 def test_every_curated_seed_entry_is_well_formed_and_dated_before_its_events():

@@ -85,7 +85,21 @@ def test_prices_are_positive_and_ohlc_is_coherent(cached_universe):
         assert (ok["low"] <= ok["close"] + 1e-6).all(), f"{ticker}: close below low"
 
 
-def test_unknown_ticker_returns_empty_frame_not_an_exception():
+@pytest.fixture
+def no_network(monkeypatch):
+    """Make every fetcher fail instantly, so a cache-miss test stays offline."""
+
+    def dead(*a, **k):
+        raise RuntimeError("network disabled in tests")
+
+    monkeypatch.setattr(D, "_fetch_yfinance", dead)
+    monkeypatch.setattr(D, "_fetch_yahoo_urllib", dead)
+    D._MEMO.pop("ZZZZ_NOT_A_TICKER", None)
+    yield
+    D._MEMO.pop("ZZZZ_NOT_A_TICKER", None)
+
+
+def test_unknown_ticker_returns_empty_frame_not_an_exception(no_network):
     df = D.load_prices("ZZZZ_NOT_A_TICKER")
     assert list(df.columns) == D.PRICE_COLUMNS
     assert len(df) == 0
@@ -213,8 +227,9 @@ def test_history_reaches_each_tickers_inception(cached_universe):
         "NVDA": "1999-01-22", "GOOGL": "2004-08-19", "TSLA": "2010-06-29",
         "META": "2012-05-18",
     }
-    if getattr(config, "HISTORY_START", None):
-        pytest.skip("HISTORY_START is set; inception depth not expected")
+    hs = getattr(config, "HISTORY_START", None)
+    if hs and hs > "1962-01-02":
+        pytest.skip(f"HISTORY_START={hs} truncates history; inception depth not expected")
     for ticker in cached_universe:
         first = D.load_prices(ticker)["date"].iloc[0]
         assert first == inception[ticker], f"{ticker}: starts {first}, expected {inception[ticker]}"
@@ -338,6 +353,13 @@ def test_load_fundamentals_unknown_ticker_is_empty_not_an_error():
     assert D.load_fundamentals("ZZZZ_NOT_A_TICKER") == {}
 
 
+def test_unknown_ticker_never_writes_a_cache_file(no_network):
+    """A typo must not leave a synthetic CSV behind in data/prices/."""
+    D.load_prices("ZZZZ_NOT_A_TICKER")
+    assert not D.cache_path("ZZZZ_NOT_A_TICKER").exists()
+    assert "ZZZZ_NOT_A_TICKER" not in D.SYNTHETIC_TICKERS
+
+
 # --------------------------------------------------------------------------
 # trailing_vol -- LANE-EVAL and LANE-MODEL both depend on this convention
 # --------------------------------------------------------------------------
@@ -416,7 +438,7 @@ def test_trailing_vol_default_lookback_is_the_config_value(cached_universe):
     )
 
 
-def test_trailing_vol_returns_nan_on_insufficient_history(cached_universe):
+def test_trailing_vol_returns_nan_on_insufficient_history(cached_universe, no_network):
     df = D.load_prices(cached_universe[0])
     assert math.isnan(D.trailing_vol(df, "1990-01-01"))
     assert math.isnan(D.trailing_vol(df.head(5), config.TRAIN_END))
