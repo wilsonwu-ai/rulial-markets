@@ -70,6 +70,10 @@ export function AtlasChart({
      is state rather than a ref — reading `drag.current` during render is a
      lie about when React will repaint. */
   const [grabbing, setGrabbing] = useState(false);
+  /* Which marker the pointer is over, "SYM|date". Hover is the affordance that
+     tells a viewer the triangles are live at all; before this the only feedback
+     was a native <title>, which waits about a second and looks like chrome. */
+  const [hover, setHover] = useState<string | null>(null);
 
   const lanes = useMemo(() => (focus ? [focus] : order), [focus, order]);
   const laneH = focus ? FOCUS_H : LANE_H;
@@ -114,7 +118,11 @@ export function AtlasChart({
     if (ev.button !== 0) return;
     drag.current = { x: ev.clientX, lo: view.lo, hi: view.hi, moved: false };
     setGrabbing(true);
-    (ev.currentTarget as SVGSVGElement).setPointerCapture(ev.pointerId);
+    // NOTE: pointer capture is deliberately NOT taken here. Capturing on
+    // pointerdown retargets every subsequent pointer event to the <svg>, so the
+    // synthetic click never reaches the marker underneath and the whole atlas
+    // reads as unclickable. Capture is taken in onPointerMove, only once the
+    // pointer has actually travelled far enough to be a pan.
   };
   const onPointerMove = (ev: React.PointerEvent<SVGSVGElement>) => {
     const d = drag.current;
@@ -123,7 +131,12 @@ export function AtlasChart({
     if (!el) return;
     const r = el.getBoundingClientRect();
     const dxPx = ((ev.clientX - d.x) / Math.max(1, r.width)) * W;
-    if (Math.abs(ev.clientX - d.x) > 3) d.moved = true;
+    if (Math.abs(ev.clientX - d.x) > 3 && !d.moved) {
+      d.moved = true;
+      // Now it is a pan, so take the pointer. Clicks never get here.
+      try { (ev.currentTarget as SVGSVGElement).setPointerCapture(ev.pointerId); } catch { /* not capturable */ }
+    }
+    if (!d.moved) return;
     const dxMs = (dxPx / (W - M.l - M.r)) * (d.hi - d.lo);
     setView(clampSpan({ lo: d.lo - dxMs, hi: d.hi - dxMs }, domain));
   };
@@ -339,6 +352,7 @@ export function AtlasChart({
           {lane.marks.map((m) => {
             const key = `${lane.sym}|${m.e.date}`;
             const on = selected === key;
+            const hot = hover === key;
             const color = m.up ? "var(--color-pos)" : "var(--color-neg)";
             return (
               <g key={key}>
@@ -346,11 +360,15 @@ export function AtlasChart({
                   <circle cx={m.cx} cy={m.cy} r={m.r + 7}
                     fill="none" stroke="var(--color-navy)" strokeWidth={2.5} />
                 )}
+                {hot && !on && (
+                  <circle cx={m.cx} cy={m.cy} r={m.r + 6}
+                    fill="none" stroke={color} strokeWidth={2} opacity={0.55} />
+                )}
                 <path
-                  d={tri(m.cx, m.cy, m.r, m.up)}
+                  d={tri(m.cx, m.cy, hot ? m.r * 1.35 : m.r, m.up)}
                   fill={m.solid ? color : "var(--color-panel)"}
                   stroke={color}
-                  strokeWidth={2}
+                  strokeWidth={hot ? 2.5 : 2}
                   strokeLinejoin="round"
                   opacity={m.solid ? 0.92 : 1}
                 />
@@ -360,13 +378,18 @@ export function AtlasChart({
                   cx={m.cx} cy={m.cy} r={Math.max(11, m.r + 5)}
                   fill="transparent"
                   style={{ cursor: "pointer" }}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`${lane.sym} ${m.e.date}, ${(m.e.move * 100).toFixed(1)} percent over 5 sessions. ${m.e.headline || "cause not researched"}`}
+                  onMouseEnter={() => setHover(key)}
+                  onMouseLeave={() => setHover((h) => (h === key ? null : h))}
+                  onFocus={() => setHover(key)}
+                  onBlur={() => setHover((h) => (h === key ? null : h))}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onSelect(lane.sym, m.e); }
+                  }}
                   onClick={() => { if (!suppressClick.current) onSelect(lane.sym, m.e); }}
-                >
-                  <title>
-                    {`${lane.sym} ${m.e.date}  ${m.e.move >= 0 ? "+" : "−"}${(Math.abs(m.e.move) * 100).toFixed(1)}% over 5 sessions`}
-                    {m.e.headline ? `\n${m.e.headline}` : "\ncause not researched"}
-                  </title>
-                </circle>
+                />
               </g>
             );
           })}
@@ -374,6 +397,46 @@ export function AtlasChart({
 
         </g>
       ))}
+
+      {/* Hover card. Drawn after every lane so it is never clipped by one, and
+          pointer-events off so it cannot steal the click it is advertising. */}
+      {(() => {
+        if (!hover) return null;
+        for (const lane of laneData) {
+          const m = lane.marks.find((mk: { e: { date: string } }) => `${lane.sym}|${mk.e.date}` === hover);
+          if (!m) continue;
+          const pct = `${m.e.move >= 0 ? "+" : "−"}${(Math.abs(m.e.move) * 100).toFixed(1)}%`;
+          const head = m.e.headline || "cause not researched";
+          const line = head.length > 58 ? `${head.slice(0, 57)}…` : head;
+          const bw = Math.max(210, 8.2 * Math.max(line.length, 26) + 24);
+          const bh = 62;
+          // keep the card inside the frame on both axes
+          const bx = Math.min(Math.max(m.cx - bw / 2, M.l + 2), W - M.r - bw - 2);
+          const above = m.cy - m.r - bh - 12 > 0;
+          const by = above ? m.cy - m.r - bh - 12 : m.cy + m.r + 12;
+          return (
+            <g pointerEvents="none">
+              <rect x={bx} y={by} width={bw} height={bh} rx={7}
+                fill="var(--color-panel)" stroke="var(--color-navy)" strokeWidth={1.5} opacity={0.98} />
+              <text x={bx + 12} y={by + 22}
+                style={{ fontFamily: "var(--font-mono)", fontSize: 13, fontVariantNumeric: "tabular-nums" }}>
+                <tspan fill="var(--color-navy)" fontWeight={700}>{lane.sym}</tspan>
+                <tspan fill="var(--color-ink-faint)">{"  "}{m.e.date}{"  "}</tspan>
+                <tspan fill={m.up ? "var(--color-pos)" : "var(--color-neg)"} fontWeight={700}>{pct}</tspan>
+              </text>
+              <text x={bx + 12} y={by + 40} fill="var(--color-ink-dim)"
+                style={{ fontFamily: "var(--font-sans)", fontSize: 12.5 }}>
+                {line}
+              </text>
+              <text x={bx + 12} y={by + 55} fill="var(--color-blue)"
+                style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.06em" }}>
+                CLICK TO LOCK IT IN
+              </text>
+            </g>
+          );
+        }
+        return null;
+      })()}
 
       {/* baseline of the time axis — carries meaning, so 2px on the 3:1 token */}
       <line
