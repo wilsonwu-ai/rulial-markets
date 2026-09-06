@@ -1,269 +1,274 @@
 # rulial-markets
 
-**What happens to a stock when something unprecedented happens to it?**
+**Can AI help an individual value investor make better decisions?**
 
-`rulial-markets` takes a plain-English conditional event ("NVDA announces a 40%
-datacenter revenue miss") and returns an **ensemble of possible forward return
-paths** rather than a single number. It then scores that ensemble against
-held-out history and reports how much better it is than a dumb baseline.
+Built at [Sundai Hack 139](https://www.sundai.club/events/boston/wolfram-hack), Harvard iLabs,
+6 September 2026. Theme: *AI Agents That Adapt and Evolve, with Wolfram Research*.
 
-Built at [Sundai Hack 139](https://www.sundai.club/events/boston/wolfram-hack),
-"AI Agents That Adapt and Evolve", Harvard, 6 Sep 2026.
+**Live app → https://rulial-markets.wilson-af8.workers.dev**
 
----
-
-
-## Live demo
-
-**https://rulial-markets.wilson-af8.workers.dev**
-
-The deployed frontend is a static export on Cloudflare Workers. It ships with a bundled mock
-response so the UI is fully demoable with no backend running. To point it at a live backend,
-set `NEXT_PUBLIC_API_BASE` to the API origin and redeploy; the API itself (FastAPI, Python) is
-run locally with `make api`.
-
-To redeploy the frontend:
-
-```bash
-cd frontend && STATIC_EXPORT=1 npm run build && cd .. && npx wrangler deploy
-```
-
-
-## The honest version
-
-This is **not** a crystal ball, and the repo is arranged so it cannot quietly
-become one.
-
-Wolfram's argument is that when a process is computationally irreducible you
-cannot predict its trajectory, but you can still say something about the
-statistics of the ensemble it lives in. We tested whether that actually holds
-for equities before we built on it. On the train period (2010 to 2019, 10
-tickers, ~21,900 observations) we regressed forward 5-day returns on trailing
-move and trailing volatility:
-
-| Target | Out-of-sample R² |
-|---|---|
-| Forward **direction** (signed return) | -0.0008 to +0.0007 |
-| Forward **dispersion** (absolute return) | +0.098 to +0.105 |
-
-Direction is noise. Dispersion is not. That gap is the only thing this project
-claims, and everything downstream is built to keep us honest about it:
-
-- The headline metric is **CRPS lift over a null model**, never accuracy.
-- The null model (Gaussian, trailing 250-day sigma, zero drift) is **frozen into
-  the eval and may not be removed**, however good dropping it would make us look.
-- **Directional hit-rate may not be a headline result.** It makes a coin flip
-  look like skill. Appendix only, labelled.
-- A **flat PIT histogram is the win condition**, not "we called the crash."
-
-See `CONTRACT.md` sections 7 and 8. Those rules are frozen, not aspirational.
-
-### Leakage disclosure
-
-Any LLM in the generator has already read the post-2019 world. **Cutting the
-input data at 2019 does not cut the weights.** This is a known, formal problem:
-under memorization, forecasting ability is not identifiable
-([Lopez-Lira, Tang & Zhu 2025](https://arxiv.org/abs/2504.14765)). We do not
-claim to have solved it. We do three things about it:
-
-1. Report lift over a null. Memorization has to beat a baseline to count.
-2. Keep obscure, low-salience events in the test set next to famous ones and
-   **report them separately**. A model that only wins on famous events is
-   remembering, not forecasting.
-3. State this on the results screen, in the product, where users see it.
-
-### What we already know is weak
-
-Measured during recon, before any of the model code was written. Recorded here
-so nobody rediscovers it at 6pm:
-
-- **The null is harder to beat than it looks.** Trailing volatility already
-  auto-expands about 1.78x after a jump, so "it was a big move" is largely
-  priced into the baseline. An oracle that cheats by using the *realized*
-  post-jump sigma still gets only about +2% CRPS lift. A generator that only
-  widens a Gaussian has nowhere to go.
-- **The obvious generator is a trap.** Resampling historical analog outcomes
-  scores +14.8% lift, but the lift is 100% drift: demeaned, it goes to -4.5%,
-  significantly *worse* than null. The train corpus is 30 up-jumps to 3
-  down-jumps because 2010 to 2019 was a bull decade. The test window opens with
-  COVID. Lift is therefore reported **raw and demeaned**, so this cannot be
-  mistaken for skill.
-- **The sample is small.** Under the frozen event definition, 6 of the 10
-  universe tickers (AAPL, MSFT, AMZN, JPM, XOM, BA) have **zero** train-period
-  events, and one ticker supplies over half the test events. Per-ticker
-  calibration at n≈12 has roughly 30% power against an ensemble that is 2x too
-  narrow, so calibration is judged pooled, not per ticker.
+![rulial-markets](docs/img/webapp-hero.jpg)
 
 ---
 
-## Quickstart
+## The problem
 
-Requires Python 3.10+ and Node 18+.
+Every retail investor faces the same question and has no honest tool for it:
 
-```bash
-git clone <this repo> && cd rulial-markets
-./scripts/bootstrap.sh
-```
+> *"Something just happened to a company I own. Does it matter?"*
 
-That installs everything, builds the dataset if it is missing, runs the tests,
-and starts the demo. On a warm clone it takes well under a minute, because the
-price CSVs and the event ledger are **committed to the repo** and nobody should
-have to refetch them.
+The tools that exist answer the wrong question. Sell-side research gives you a price target,
+which is a point prediction dressed as analysis. Screeners give you ratios. Financial media
+gives you a narrative built after the fact. None of them tell you the one thing a long-horizon
+investor actually needs: **given an event like this, what has historically happened, how much
+did it vary, and how much should I trust that range?**
 
-Prefer to do it by hand:
-
-```bash
-make install     # create .venv, install python + node deps
-make data        # prices -> event ledger -> news corpus  (hits the network)
-make demo        # api on :8000 + ui on :3000, Ctrl-C stops both
-```
-
-Other targets:
-
-```bash
-make api         # backend only, with reload, on :8000  (docs at /docs)
-make ui          # frontend only, on :3000
-make test        # pytest
-make check       # curl the health endpoint of a running api
-make clean       # drop caches and .venv, leaves data/ alone
-make             # help
-```
-
-If the generator's narrative step is enabled you will need an API key. Put it in
-`.env` at the repo root, which is gitignored:
-
-```
-ANTHROPIC_API_KEY=sk-ant-...
-```
-
-The app runs without it. The generator falls back to a deterministic keyword
-heuristic and says so loudly in `Ensemble.narrative` and in the diagnostics. The
-narrative degrades, the scoring does not.
+We wanted to know whether AI could close that gap. Not for a trading desk. For one person
+deciding whether a business they own can take a punch.
 
 ---
 
-## Architecture
+## The team
 
-A straight pipeline. Each stage is one module with one owner.
+| | Who | What they brought |
+|---|---|---|
+| 🧠 | **[Pavel Tkachyk](https://www.linkedin.com/in/pavel-tkachyk/)** · [@Pavel-Tk](https://github.com/Pavel-Tk) | Showed the team the boss-and-worker agent pattern: one agent plans and delegates, another executes, and the loop runs autonomously. His [`auto-data-scientist`](https://github.com/Pavel-Tk/auto-data-scientist) plugin is that idea in production. This became the shape of how we built. |
+| 📈 | **[Guzal K.](https://www.linkedin.com/in/guzalk/)** · [@guzalkhonkh-stack](https://github.com/guzalkhonkh-stack) | Proposed pointing the pattern at markets: build a finance agent that actually helps you allocate capital. Every design decision downstream traces to her framing of the goal as *investing*, not *trading*. |
+| 🔬 | **[Luke Rast](https://www.linkedin.com/in/luke-rast-2b5b5b56/)** · [@lrast](https://github.com/lrast) | Drafted the data framework: how to generate synthetic scenarios from a real seed corpus, and, critically, how to build evaluations that prove the thing works instead of assuming it. The evaluation discipline in this repo is his contribution and it is the reason we found our own bugs. |
+| 🎨 | **[Harsh Kumar](https://www.linkedin.com/in/harsh-kumar-mit/)** · [@harshk02](https://github.com/harshk02) | Drove the interface: what a user should see, in what order, and how a probabilistic result can be read at a glance without being misread. Also pushed for graceful degradation, which is why the demo survives a dead backend. |
+| 🧩 | **[Wilson Wu](https://www.linkedin.com/in/wilson1wu/)** · [@wilsonwu-ai](https://github.com/wilsonwu-ai) | Pulled four ideas into one buildable project, set the scope, ran the build, and held the line on intellectual honesty: no fabricated numbers, no metric we could game, and every claim reported at the weaker of two readings. |
 
+---
+
+## S — Situation
+
+The project assembled itself out of a conversation, in this order.
+
+```mermaid
+flowchart LR
+    P["<b>Pavel</b><br/>boss + worker agents<br/><i>autonomous task loops</i>"]
+    G["<b>Guzal</b><br/>point it at finance<br/><i>help people allocate capital</i>"]
+    L["<b>Luke</b><br/>synthetic data from a real seed<br/>+ evals that can fail"]
+    H["<b>Harsh</b><br/>an interface a human<br/>can read correctly"]
+    W["<b>Wilson</b><br/>scope, build, and<br/>refuse to overclaim"]
+    R(["<b>rulial-markets</b>"])
+    P --> G --> L --> H --> W --> R
+    style R fill:#006FCF,color:#fff,stroke:#00175A,stroke-width:2px
 ```
-data.py       daily OHLCV for 10 tickers, cached to data/prices/*.csv
-   |
-events.py     scan for jumps -> data/events.jsonl        (the event ledger)
-   |
-news.py       harvest contemporaneous articles per event -> data/corpus/
-   |
-generator.py  event text + analogs -> ensemble of N forward return paths
-   |
-evaluate.py   CRPS vs null, PIT histogram, walk-forward backtest
-   |
-api.py        FastAPI on :8000
-   |
-frontend/     Next.js on :3000, proxies /api/* to :8000
+
+**Pavel** started it by showing how he runs two agents against each other, a planner and an
+executor, to complete work without a human in the loop. **Guzal** asked the obvious next
+question: what if that machine did something useful with money? **Luke** supplied the missing
+rigor, arguing that a model generating financial scenarios is worthless without an evaluation
+harness that can declare it wrong, and that the synthetic data has to be anchored to a real
+seed corpus or it just launders assumptions. **Harsh** made sure the output could be read by a
+person without misleading them. **Wilson** scoped it to something buildable in a day and
+enforced the rule that ended up defining the project: **every number we show is measured, and
+where we are uncertain we report the weaker number.**
+
+Then the theme pushed us somewhere specific. Working from Phileas's session and the Wolfram
+Institute's framing, we had to decide what kind of ensemble we were actually building.
+
+### We considered Boltzmann. We chose rulial.
+
+```mermaid
+flowchart TB
+    subgraph B["BOLTZMANN ENSEMBLE — what we built first"]
+        B1["one generator, one fixed rule"]
+        B2["2,000 sampled paths"]
+        B3["spread = sampling uncertainty"]
+        B4["answers: <i>given my model is right,<br/>how uncertain is the outcome?</i>"]
+        B1 --> B2 --> B3 --> B4
+    end
+    subgraph R["RULIAL ENSEMBLE — what we chose"]
+        R1["144 generators, one per rule"]
+        R2["each sampled independently"]
+        R3["spread = model risk"]
+        R4["answers: <i>given I don't know which rule<br/>governs reality, how uncertain am I?</i>"]
+        R1 --> R2 --> R3 --> R4
+    end
+    B4 -.->|"blind to the thing<br/>that actually bit us"| R1
+    style R fill:#EDF7FF,stroke:#006FCF,stroke-width:2px
+    style B fill:#F4F4F4,stroke:#8C8C8C
 ```
 
-**Frozen constants** (`backend/rulial/config.py`, do not edit):
+Wolfram's rulial ensemble is explicitly *an ensemble of possible rules*, and he contrasts it
+against the gas case, which is Boltzmann's ensemble over configurations under one fixed rule. A
+Monte Carlo over paths from a single generator is the gas case. We built that first, and we
+kept it, because the comparison is the argument.
+
+**Why we preferred rulial, concretely:**
+
+1. **Boltzmann's spread is conditional on a rule we picked.** It reports sampling uncertainty
+   and is structurally blind to model risk.
+2. **We measured our model risk, and it is larger than our sampling risk.** An
+   analog-resampling generator scores **+14.8% CRPS lift that becomes −4.5% when demeaned.**
+   The drift assumption is a *rule choice*, and the answer flips sign when you change it. A
+   Boltzmann ensemble cannot see that by construction. A rulial ensemble surfaces it without
+   anyone remembering to check.
+3. **It matches Wolfram's actual argument.** For a computationally irreducible process, a
+   bounded observer does not know which rule generates reality. Averaging configurations under
+   an assumed rule assumes away the hardest part of the problem.
+4. **It raises our own reporting bar.** Under the rulial construction only *invariants* —
+   properties holding under at least 90% of the 144 generators — may be stated as findings.
+   Anything that flips across rules is labelled rule-dependent and can never be called skill.
+   We adopted that standard deliberately, against our own interest.
+
+**The honest concession:** our 144-point grid is a small, hand-chosen slice of rule space, not
+Wolfram's full rulial ensemble. We chose the axes, which is itself a rule choice we cannot
+escape. Full argument in [`docs/BOLTZMANN_VS_RULIAL.md`](docs/BOLTZMANN_VS_RULIAL.md).
+
+---
+
+## T & A — Task and Action
+
+**Task:** build a web app where a value investor describes an event and gets an honest read on
+what it means for a stock, with the evidence attached.
+
+**Action:** we froze a contract, then built against it in parallel.
+
+```mermaid
+flowchart LR
+    subgraph DATA["1 · DATA — all real, all verified"]
+        D1["prices to inception<br/>10 tickers, yfinance + OpenBB"]
+        D2["329 detected events<br/>±15% / ±25% over 5 days"]
+        D3["SEC EDGAR filings<br/>8-K · 10-Q · 10-K · DEF 14A"]
+        D4["news corpus<br/>CNBC · CNN Money · Fortune · Forbes"]
+    end
+    subgraph GEN["2 · GENERATE"]
+        G1["retrieve historical analogs<br/>closing before the as-of date"]
+        G2["LLM proposes scenario weights<br/><b>never a number</b>"]
+        G3["block bootstrap over<br/>real forward windows"]
+        G4["coarse-grain to quantiles"]
+        G1 --> G2 --> G3 --> G4
+    end
+    subgraph SCORE["3 · SCORE"]
+        S1["CRPS vs a null model<br/>we are forbidden to remove"]
+        S2["PIT calibration<br/><i>flat = trustworthy</i>"]
+        S3["walk-forward, 5-day embargo"]
+    end
+    DATA --> GEN --> SCORE --> UI(["web app"])
+    style UI fill:#006FCF,color:#fff,stroke:#00175A,stroke-width:2px
+    style DATA fill:#EDF7FF,stroke:#006FCF
+```
+
+### How the scenarios are actually produced
+
+We do generate many scenarios, but not the way "Monte Carlo" is usually meant, and the
+difference matters:
+
+- **We do not sample from a fitted parametric model.** Every path is a **block bootstrap over
+  five-day windows that actually happened** in the price history, hard-filtered so no analog's
+  forward window closes after the as-of date. Each path traces back to a real week you can go
+  look up.
+- **The LLM never emits a number.** It reads the event text and returns *scenario weights and
+  drift/vol adjustments* — "this is a continuation regime, widen the distribution." The moment
+  it emits a probability we have built a point predictor and lost the argument.
+- **We report a calibrated distribution, not a confidence level.** A single confidence number
+  collapses the distribution back into a point prediction wearing a percent sign. The output is
+  the range, plus a score saying how much to trust the range's *width*.
+- **The rulial layer runs all of that 144 times**, once per rule, and reports only what
+  survives.
+
+### Time boundary
+
+Everything the model may see stops at **2019-12-31**. Testing runs 2020 onward with a 5-day
+embargo. Full guard rationale, rendered: [`docs/diagrams/03-why.html`](docs/diagrams/03-why.html).
+
+### Deeper diagrams
 
 | | |
 |---|---|
-| Universe | NVDA, AAPL, MSFT, AMZN, TSLA, META, GOOGL, JPM, XOM, BA |
-| Train end | `2019-12-31` (this is the leak guard) |
-| Test start | `2020-01-01`, with a 5-day embargo |
-| Event | 25%+ absolute move over a rolling 5-day window |
-
-**Moving `TRAIN_END` for better results is the leak.** Nobody moves it.
-
-### API
-
-```
-GET  /api/tickers                  symbols, names, event counts
-GET  /api/events?ticker=NVDA       the seed ledger, train period only
-POST /api/forecast                 ForecastRequest -> {ensemble, score}
-GET  /api/backtest?ticker=NVDA     n_tests, mean_crps_lift, pit_histogram
-GET  /api/health                   {"ok": true}
-```
-
-Full request and response shapes are in `CONTRACT.md` sections 5 and 6.
-
-Note for anyone touching the API or UI: several tickers legitimately return an
-**empty event list** and `n_tests: 0`. That is a real property of the frozen
-threshold, not a bug. Handle it, do not paper over it.
+| [`01-what.html`](docs/diagrams/01-what.html) | what the product does, end to end |
+| [`02-how.html`](docs/diagrams/02-how.html) | system architecture and module ownership |
+| [`03-why.html`](docs/diagrams/03-why.html) | the four leak guards and what breaks without each |
+| [`04-rulial.html`](docs/diagrams/04-rulial.html) | the Wolfram mapping, graded rigorous vs analogical |
 
 ---
 
-## Who owns what
+## R — Result
 
-`CONTRACT.md` section 4 is the frozen module boundary table. **One owner per
-module.** Write only the files your lane owns; reading anyone else's is fine.
-Import signatures from `CONTRACT.md`, not from someone's half-written source.
+A working web app that gives a value investor a fast, honest pulse check on whether an event
+matters to a stock.
 
-| Lane | Owns | What it does |
+**→ https://rulial-markets.wilson-af8.workers.dev**
+
+### What we measured
+
+| Result | Number |
+|---|---|
+| Events detected and price-verified | **329** across 10 tickers, zero mismatches at 5bp |
+| Events with a researched, sourced cause | **233** with a cause, **153** with a clickable URL |
+| Walk-forward lift over null, NVDA | **+1.26%** over 32 tests, calibration passes |
+| Ceiling for a *cheating* oracle using realized post-jump sigma | **+2.0%** |
+| Paired-control experiment | **+7.6%** lift difference from the event text alone |
+
+That +1.26% is roughly **63% of what an oracle that cheats achieves.** Read alone it looks
+small; read against the ceiling it is most of what is there.
+
+### The paired control
+
+Same ticker, same date, same available analogs. Only the event text differs.
+
+| NVDA, as of 2016-11-10 | CRPS lift | median |
 |---|---|---|
-| parent | `CONTRACT.md`, `backend/rulial/config.py`, `backend/rulial/types.py` | **Frozen.** Nobody edits these. |
-| LANE-DATA | `backend/rulial/data.py` | `load_prices(ticker)`, `load_fundamentals(ticker)` |
-| LANE-EVENTS | `backend/rulial/events.py` | `detect_events(prices)`, `build_ledger()` |
-| LANE-NEWS | `backend/rulial/news.py` | `harvest(event)`, `build_corpus()` |
-| LANE-MODEL | `backend/rulial/generator.py` | `generate_ensemble(req) -> Ensemble` |
-| LANE-EVAL | `backend/rulial/evaluate.py` | `crps`, `null_ensemble`, `pit`, `walk_forward` |
-| LANE-API | `backend/rulial/api.py` | the FastAPI app and the routes above |
-| LANE-UI | `frontend/**` | the Next.js app |
-| LANE-PRD | `docs/PRD.md` | the PRD |
-| LANE-DIAGRAM | `docs/diagrams/*.html` | architecture diagrams |
-| LANE-SCAFFOLD | `README.md`, `requirements.txt`, `.gitignore`, `Makefile`, `scripts/bootstrap.sh` | this file and the build |
-| **LANE-DEPLOY** | **unassigned** | **see below. This one is open.** |
+| True text (datacenter blowout) | **+9.0%** | +0.26% |
+| Fabricated bearish text | **+1.4%** | −0.93% |
 
-### Open lane: deployment
+The model responds to the *text*, not to memorized history. That is our answer to the leakage
+objection, and it is an experiment rather than an assertion.
 
-`CONTRACT.md` specifies localhost only, `:8000` and `:3000`. Sundai's number one
-non-negotiable launch requirement is a **working deployed application at a
-public URL**, due between 18:00 and 19:00. No lane owns this. It is the single
-highest-value thing an arriving teammate can pick up.
+### What this is good for, and what it is not
 
-Scope: get the backend onto a host (Railway, Render, or Fly), the frontend onto
-Vercel, point the frontend at the deployed API, and confirm a stranger can click
-through it on their own phone. Feature freeze is 17:30, not 19:30.
+**Built for the individual value investor.** Someone holding a business for years who wants to
+know whether a shock is survivable, grounded in what actually happened to comparable companies
+in comparable situations, with the filings and articles attached.
 
----
+**Explicitly not built for high-frequency trading desks or hedge funds.** Our horizon is five
+days, our data is daily, and our edge over a naive baseline is roughly one percent. There is no
+alpha here for anyone with a co-location cage. Anyone telling you a hackathon project beats a
+quant fund is selling something.
 
-## Contributing / claim a lane
+**And the finding we did not want:** over five days, **direction is close to a coin flip.**
+P(down) tops out near 0.54 no matter how catastrophic the news we describe. Forward direction
+has an out-of-sample R² of approximately zero; forward *dispersion* has R² ≈ 0.10. Volatility
+is predictable, direction is not. We could have hidden that. It is on the results screen
+instead, because a tool that knows what it cannot predict is worth more than one that pretends.
 
-We are adding collaborators through the day. To take a lane without colliding
-with anyone:
+### Data provenance, stated exactly
 
-1. **Read `CONTRACT.md` first.** It is the frozen interface and it is short.
-   It exists so that people who have not read each other's code can still ship
-   compatible modules.
-2. **Claim your lane** in the team Discord channel before you start, and check
-   the table above. If a lane is already listed as owned, an agent or a person is
-   writing it right now. Ask first.
-3. **Write only the files your lane owns.** This is the whole reason parallel
-   work is possible here. Need something from another module? Import the
-   signature from `CONTRACT.md`.
-4. **Never edit** `CONTRACT.md`, `backend/rulial/config.py`, or
-   `backend/rulial/types.py`. If you think the contract is wrong, say so in your
-   PR description and code to the contract anyway. The parent reconciles.
-5. **Never fabricate a number.** If real data is not available, ship a working
-   code path with a clearly labelled synthetic fallback and say so out loud.
-   A fake number that reaches the demo is worse than a missing feature.
-6. **Run it before you push.** `make test` and `make demo`. "It should work" is
-   not verification.
-7. Open a PR against `main`. Small and mergeable beats complete and late.
-
-Every module must import cleanly **with no network access at import time**. Fetch
-lazily, inside functions.
+- **Prices:** yfinance, cross-checked against OpenBB, split-adjusted, to each ticker's inception.
+- **Filings:** SEC EDGAR submissions API — 8-K, 10-Q, 10-K, DEF 14A. 1,129 corpus documents.
+- **News:** CNBC, CNN Money, Fortune, Forbes, Benzinga, TechCrunch, federalreserve.gov, SEC.gov.
+- **We do not use Bloomberg.** It is paywalled and we never accessed it.
 
 ---
+
+## Run it
+
+```bash
+git clone https://github.com/wilsonwu-ai/rulial-markets && cd rulial-markets
+make install
+make data      # build the event ledger and news corpus
+make demo      # FastAPI on :8000, Next.js on :3000
+```
+
+The deployed frontend runs on precomputed real results, so it works with no backend at all.
+
+## Repo map
+
+| Path | What |
+|---|---|
+| [`CONTRACT.md`](CONTRACT.md) | The frozen interface. Module ownership, API, and the rules no one may tune. |
+| [`docs/PRD.md`](docs/PRD.md) | Product requirements and the claimable backlog. |
+| [`docs/BACKEND_LOGIC.md`](docs/BACKEND_LOGIC.md) | How the backend actually works, stage by stage. |
+| [`docs/BOLTZMANN_VS_RULIAL.md`](docs/BOLTZMANN_VS_RULIAL.md) | Why we chose the rulial construction. |
+| [`docs/research/`](docs/research/) | Ten per-ticker investigations plus cross-ticker synthesis. |
+| `backend/rulial/` | Data, event detection, news, generator, evaluation, inverse solver, API. |
+| `frontend/` | Next.js app. |
 
 ## Status
 
-Hack-day build, moving fast. As of the last scaffold check: all eight pipeline
-modules import cleanly with no network at import time, the API boots and serves
-`/api/health` and `/api/tickers`, and the test suite passes (114 tests) against
-the dependency set in `requirements.txt`. Deployment is not done and is
-unclaimed, see the open lane above.
-
-Because lanes land continuously, run `ls backend/rulial/` and `make test` to see
-what is actually true right now rather than trusting this paragraph.
-
-Nothing in this README describes a feature that does not exist. If you find
-something here that is not true, that is a bug, please fix it.
+Built in one day. Working, measured, and honest about its limits. The precedent view with a
+TradingView-style chart and major-event markers is the next build, and this README will carry a
+screenshot of it when it lands.
