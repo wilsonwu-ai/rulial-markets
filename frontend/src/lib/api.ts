@@ -107,3 +107,55 @@ export const api = {
     return req<Backtest>(`/api/backtest?ticker=${encodeURIComponent(ticker)}`);
   },
 };
+
+/* ================================================================
+   SOURCE-REPORTING VARIANTS
+   ================================================================
+   `api.*` above returns bare data, which means a precomputed MISS silently
+   becomes a synthetic answer and the caller cannot tell. That is how a page
+   badge reading "precomputed · real" ended up sitting above a walk-forward
+   panel rendering in-browser RNG — `/data/backtest_<T>.json` does not exist
+   for any ticker, so EVERY baked backtest fell through to mock without a word.
+   The fallback ORDER is unchanged and no fourth source is introduced; these
+   wrappers only report which of the three actually answered, so the panel can
+   say so on its own face.
+   ================================================================ */
+
+export interface Sourced<T> { data: T; source: Mode }
+
+export const apiSourced = {
+  async backtest(mode: Mode, ticker: string): Promise<Sourced<Backtest>> {
+    if (mode === "mock") return { data: mockBacktest(ticker), source: "mock" };
+    if (mode === "baked") {
+      const b = await bakedBacktest(ticker);
+      return b ? { data: b, source: "baked" } : { data: mockBacktest(ticker), source: "mock" };
+    }
+    return { data: await req<Backtest>(`/api/backtest?ticker=${encodeURIComponent(ticker)}`), source: "live" };
+  },
+
+  async events(mode: Mode, ticker: string): Promise<Sourced<EventRec[]>> {
+    if (mode === "mock") return { data: mockEvents(ticker), source: "mock" };
+    if (mode === "baked") {
+      const e = await bakedEvents(ticker);
+      return e ? { data: e, source: "baked" } : { data: mockEvents(ticker), source: "mock" };
+    }
+    return { data: await req<EventRec[]>(`/api/events?ticker=${encodeURIComponent(ticker)}`), source: "live" };
+  },
+
+  async forecast(mode: Mode, body: ForecastRequest): Promise<Sourced<ForecastResponse>> {
+    if (mode === "mock") {
+      await new Promise((r) => setTimeout(r, 420));
+      return { data: mockForecast(body), source: "mock" };
+    }
+    if (mode === "baked") {
+      const d = await bakedForecast(body);
+      if (d) return { data: d, source: "baked" };
+      await new Promise((r) => setTimeout(r, 420));
+      return { data: mockForecast(body), source: "mock" };
+    }
+    return {
+      data: await req<ForecastResponse>("/api/forecast", { method: "POST", body: JSON.stringify(body) }),
+      source: "live",
+    };
+  },
+};

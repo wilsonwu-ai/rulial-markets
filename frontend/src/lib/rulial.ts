@@ -156,6 +156,10 @@ export interface RulialResponse {
   note: string;
   /** Set by this client, not by the wire: which engine produced the numbers. */
   source?: Mode;
+  /** Precomputed only: which scenario key in rulial_index.json answered. */
+  bakedKey?: string;
+  /** Present on the live payload; the panel surfaces the path budget from it. */
+  diagnostics?: { n_paths_per_rule?: number; [k: string]: unknown };
 }
 
 const BASE = process.env.NEXT_PUBLIC_API_BASE ?? "";
@@ -207,21 +211,149 @@ async function liveRulial(body: RulialRequest): Promise<RulialResponse> {
    SOURCE 2 — BAKED (real output precomputed at build time)
    ================================================================ */
 
-/** Filename convention for a precomputed rulial run. Documented here so the
- *  bundle can be generated without reading this file. */
-export function bakedRulialPath(ticker: string, asOf: string): string {
-  return `/data/rulial_${encodeURIComponent(ticker.toUpperCase())}_${asOf}.json`;
+/**
+ * The precomputed bundle is keyed by SCENARIO, not by filename convention.
+ * `public/data/rulial_index.json` maps a scenario key -> { ticker, as_of, ... }
+ * and the payload lives at `/data/rulial_<key>.json`.
+ *
+ * This used to guess `/data/rulial_<TICKER>_<date>.json`. No such file has ever
+ * shipped, so `bakedRulial` returned null every single time and precomputed
+ * mode fell through to the SYNTHETIC grid while four real 144-generator runs
+ * at 1,000 paths per rule sat unread on disk. Exactly the defect the baked
+ * layer exists to prevent, one level down.
+ */
+export interface RulialIndexEntry {
+  ticker: string;
+  as_of: string;
+  sign_agreement: number;
+  reducible: boolean;
+  n: number;
+  drift_eta2: number | null;
 }
 
-export async function bakedRulial(req: RulialRequest): Promise<RulialResponse | null> {
+/**
+ * Measured Monte Carlo noise on `sign_agreement`, from re-seeding the frozen
+ * grid. This is a real measurement shipped beside the runs, not a guess, and
+ * it is why the UI must never print a bare 71.5%.
+ */
+export interface RulialNoise {
+  n_paths_per_rule: number;
+  sign_agreement_samples: number[];
+  /** max - min across the re-seeded samples, e.g. 0.0694 = 6.9 points */
+  spread: number;
+}
+
+export interface RulialIndex {
+  entries: Record<string, RulialIndexEntry>;
+  noise: RulialNoise | null;
+}
+
+let _rulialIndex: RulialIndex | null = null;
+let _rulialIndexTried = false;
+/** The in-flight fetch, shared. Without it a second caller that arrives while
+ *  the first is still awaiting sees `_rulialIndexTried === true` and gets a
+ *  null that means "not loaded yet", not "not available" — which under React's
+ *  development double-invoke is the caller whose result actually reaches
+ *  state. That is how the noise band silently disappeared. */
+let _rulialIndexInflight: Promise<RulialIndex | null> | null = null;
+
+export async function rulialIndex(): Promise<RulialIndex | null> {
+  if (_rulialIndexTried) return _rulialIndex;
+  if (_rulialIndexInflight) return _rulialIndexInflight;
+  _rulialIndexInflight = load();
+  return _rulialIndexInflight;
+}
+
+async function load(): Promise<RulialIndex | null> {
   try {
-    const res = await fetch(bakedRulialPath(req.ticker, req.as_of_date), {
-      cache: "force-cache",
-    });
+    const res = await fetch("/data/rulial_index.json", { cache: "force-cache" });
+    if (!res.ok) return null;
+    const raw = (await res.json()) as Record<string, unknown>;
+    const entries: Record<string, RulialIndexEntry> = {};
+    let noise: RulialNoise | null = null;
+    for (const [k, v] of Object.entries(raw)) {
+      if (k === "_noise") {
+        const n = v as Partial<RulialNoise>;
+        if (typeof n?.spread === "number") {
+          noise = {
+            n_paths_per_rule: n.n_paths_per_rule ?? 0,
+            sign_agreement_samples: n.sign_agreement_samples ?? [],
+            spread: n.spread,
+          };
+        }
+        continue;
+      }
+      const e = v as Partial<RulialIndexEntry>;
+      if (e && typeof e.ticker === "string" && typeof e.as_of === "string") {
+        entries[k] = e as RulialIndexEntry;
+      }
+    }
+    _rulialIndex = { entries, noise };
+    return _rulialIndex;
+  } catch {
+    return null;
+  } finally {
+    _rulialIndexTried = true;
+    _rulialIndexInflight = null;
+  }
+}
+
+/** Measured re-seed spread on sign agreement, or null when nothing measured it. */
+export async function rulialNoise(): Promise<RulialNoise | null> {
+  return (await rulialIndex())?.noise ?? null;
+}
+
+/** Payload path for one precomputed scenario key. */
+export function bakedRulialPath(key: string): string {
+  return `/data/rulial_${encodeURIComponent(key)}.json`;
+}
+
+/** Every precomputed rulial run, for the "these are the ones we have" list. */
+export async function bakedRulialScenarios(): Promise<
+  { key: string; entry: RulialIndexEntry }[]
+> {
+  const idx = await rulialIndex();
+  return Object.entries(idx?.entries ?? {}).map(([key, entry]) => ({ key, entry }));
+}
+
+/**
+ * Best precomputed run for a request, or null.
+ *
+ * Matches on ticker + as-of date. Two scenarios can share both (`boom_nvda` and
+ * `control_nvda` are the paired NVDA runs at 2016-11-10), so the event text
+ * breaks the tie by bag-of-words overlap against the stored note. Returns null
+ * rather than a near-miss, so the caller falls through instead of silently
+ * showing a grid the user did not ask for.
+ */
+export async function bakedRulial(req: RulialRequest): Promise<RulialResponse | null> {
+  const all = await bakedRulialScenarios();
+  const want = req.ticker.toUpperCase();
+  const cands = all.filter((c) => c.entry.ticker.toUpperCase() === want && c.entry.as_of === req.as_of_date);
+  if (!cands.length) return null;
+
+  let picked = cands[0];
+  if (cands.length > 1) {
+    const tok = (s: string) =>
+      new Set(
+        s.toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w.length > 3),
+      );
+    const A = tok(req.event_text ?? "");
+    let bestScore = -1;
+    for (const c of cands) {
+      const B = tok(c.key.replace(/_/g, " "));
+      let hit = 0;
+      A.forEach((w) => { if (B.has(w)) hit += 1; });
+      const s = A.size && B.size ? hit / Math.min(A.size, B.size) : 0;
+      if (s > bestScore) { bestScore = s; picked = c; }
+    }
+  }
+
+  try {
+    const res = await fetch(bakedRulialPath(picked.key), { cache: "force-cache" });
     if (!res.ok) return null;
     const json = (await res.json()) as RulialResponse;
     if (!json?.rulial?.per_generator?.length) return null;
-    return { ...json, source: "baked" };
+    return { ...json, source: "baked", bakedKey: picked.key };
   } catch {
     return null;
   }

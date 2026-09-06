@@ -233,7 +233,7 @@ export function ScenarioPanel({
             <p className="mt-4 text-sm leading-relaxed text-[var(--color-ink-faint)]">
               A {target}% chance that {ticker} closes {direction} over the next {horizon} sessions,
               as of{" "}
-              <span className="num">{asOf}</span>. Ticker and as-of come from panel 01.
+              <span className="num">{asOf}</span>. Ticker and date follow the selector above.
             </p>
           </div>
 

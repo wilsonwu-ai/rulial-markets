@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Mode } from "@/lib/types";
 import { pct, pctPlain } from "@/lib/quant";
 import {
   AXIS_LABEL, AXIS_ORDER, EXPECTED_GENERATORS, INVARIANT_THRESHOLD, RULE_AXES,
   axisVariance, gridCoverage, levelKey, measureProperties, mockRulial,
-  requestRulial,
-  type PropertyAgreement, type RulialResponse,
+  requestRulial, rulialNoise,
+  type PropertyAgreement, type RulialNoise, type RulialResponse,
 } from "@/lib/rulial";
 import { RulialFan } from "./RulialFan";
 
@@ -49,8 +49,24 @@ export function RulialPanel({
   const [pinned, setPinned] = useState<string | null>(null);
   const [hover, setHover] = useState<string | null>(null);
   const [metric, setMetric] = useState<"median" | "p_down">("median");
+  /* Measured Monte Carlo noise on sign agreement, shipped beside the
+     precomputed runs. Loaded regardless of mode because it is a property of
+     the estimator, not of this particular run — and because a bare
+     "71.5%" on a quantity that moves 6.9 points on a re-seed is a
+     precise-looking number that is not precise. */
+  const [noise, setNoise] = useState<RulialNoise | null>(null);
+  useEffect(() => {
+    let dead = false;
+    void rulialNoise().then((n) => { if (!dead) setNoise(n); });
+    return () => { dead = true; };
+  }, []);
 
-  const nPerRule = 400;
+  /* 1,000 to match the path budget at which the Monte Carlo noise floor on
+     sign agreement was actually MEASURED (rulial_index.json `_noise`). Running
+     the live grid at a different budget than the measurement would put a band
+     on screen that was calibrated for someone else's run. The backend does 144
+     generators at this budget in ~2s. */
+  const nPerRule = 1000;
   const highlight = hover ?? pinned;
 
   const run = useCallback(async () => {
@@ -142,17 +158,17 @@ export function RulialPanel({
         <>
           {/* ---------------- headline measurements ---------------- */}
           <div className="grid gap-px overflow-hidden rounded-lg border border-[var(--color-rule)] bg-[var(--color-rule)] sm:grid-cols-2 xl:grid-cols-4">
-            <Tile
-              label="sign agreement"
-              value={pctPlain(res.rulial.consensus.sign_agreement, 1)}
-              sub={`${Math.round(res.rulial.consensus.sign_agreement * (cov?.ran ?? per.length))} of ${cov?.ran ?? per.length} rules share the median's sign`}
-              big
+            <SignAgreement
+              agreement={res.rulial.consensus.sign_agreement}
+              ran={cov?.ran ?? per.length}
+              noise={noise}
+              ranPaths={res.diagnostics?.n_paths_per_rule ?? nPerRule}
             />
             <Tile
-              label="reducible?"
-              value={res.rulial.consensus.reducible ? "REDUCIBLE" : "IRREDUCIBLE"}
+              label="do the rules agree?"
+              value={res.rulial.consensus.reducible ? "YES — A REDUCIBLE POCKET" : "NO — RULE-DEPENDENT"}
               sub={`measured against the frozen ${pctPlain(INVARIANT_THRESHOLD, 0)} agreement threshold — not asserted`}
-              tone={res.rulial.consensus.reducible ? "pos" : "neg"}
+              tone={res.rulial.consensus.reducible ? "pos" : undefined}
               big
             />
             <Tile
@@ -275,6 +291,73 @@ function SourceBadge({ source }: { source: Mode }) {
     >
       {s.text}
     </span>
+  );
+}
+
+/**
+ * SIGN AGREEMENT, AS A BAND.
+ *
+ * Re-seeding the SAME frozen grid at 1,000 paths per rule moved this fraction
+ * by 6.9 percentage points across four seeds — that measurement ships in
+ * `rulial_index.json` beside the runs. Printing "71.5%" implies a resolution
+ * the estimator does not have, so the headline is the band and the centre is
+ * the sub-line. Where no noise measurement is available the panel says that
+ * instead of quietly reverting to a precise-looking figure.
+ */
+function SignAgreement({
+  agreement, ran, noise, ranPaths,
+}: { agreement: number; ran: number; noise: RulialNoise | null; ranPaths?: number }) {
+  const half = noise ? noise.spread / 2 : null;
+  const lo = half != null ? Math.max(0, agreement - half) : null;
+  const hi = half != null ? Math.min(1, agreement + half) : null;
+  const share = Math.round(agreement * ran);
+
+  return (
+    <div className="bg-[var(--color-panel)] px-6 py-5">
+      <div className="label">how many rules agree on direction</div>
+      <div className="figure mt-3 break-words" style={{ fontSize: "var(--fs-metric)", color: "var(--color-navy)" }}>
+        {lo != null && hi != null
+          ? `${pctPlain(lo, 0)}–${pctPlain(hi, 0)}`
+          : pctPlain(agreement, 1)}
+      </div>
+
+      {/* the band on a 0-100 rule, with the frozen invariant threshold marked */}
+      <svg viewBox="0 0 300 26" className="mt-3 w-full" role="img"
+        aria-label={`Sign agreement band, centre ${(agreement * 100).toFixed(1)} percent`}>
+        <line x1="2" x2="298" y1="13" y2="13" stroke="var(--color-gray-200)" strokeWidth="6" strokeLinecap="round" />
+        {lo != null && hi != null && (
+          <line
+            x1={2 + lo * 296} x2={2 + hi * 296} y1="13" y2="13"
+            stroke="var(--color-blue)" strokeWidth="8" strokeLinecap="round" opacity="0.45"
+          />
+        )}
+        <line x1={2 + agreement * 296} x2={2 + agreement * 296} y1="3" y2="23"
+          stroke="var(--color-navy)" strokeWidth="3" />
+        <line x1={2 + INVARIANT_THRESHOLD * 296} x2={2 + INVARIANT_THRESHOLD * 296} y1="4" y2="22"
+          stroke="var(--color-axis)" strokeWidth="2" strokeDasharray="3 3" />
+      </svg>
+
+      <div className="mt-2 text-sm leading-snug text-[var(--color-ink-faint)]">
+        {noise ? (
+          <>
+            centre {pctPlain(agreement, 1)} ({share} of {ran} rules). Re-seeding the same grid at{" "}
+            <span className="num">{noise.n_paths_per_rule.toLocaleString()}</span> paths per rule moved
+            this by <span className="num">{(noise.spread * 100).toFixed(1)}</span> points across{" "}
+            {noise.sign_agreement_samples.length} seeds
+            {ranPaths && ranPaths < noise.n_paths_per_rule
+              ? ` — and this run used only ${ranPaths.toLocaleString()} per rule, so treat that spread as a floor`
+              : ""}
+            . Read the band, not the figure. Dashed mark is the{" "}
+            {pctPlain(INVARIANT_THRESHOLD, 0)} invariant threshold.
+          </>
+        ) : (
+          <>
+            {share} of {ran} rules share the median&rsquo;s sign. Monte Carlo noise on this fraction
+            has not been measured for this run, so treat it as approximate rather than exact.
+          </>
+        )}
+      </div>
+    </div>
   );
 }
 

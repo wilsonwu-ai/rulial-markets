@@ -11,7 +11,9 @@ Built at [Sundai Hack 139](https://www.sundai.club/events/boston/wolfram-hack), 
 
 **Live app → https://rulial-markets.wilson-af8.workers.dev**
 
-![rulial-markets](docs/img/webapp-hero.jpg)
+![rulial-markets atlas](docs/img/atlas-hero.jpg)
+
+*Every event that moved any of the ten tickers, on one axis, 1962 to 2026. Click a mark to see what caused it. Then branch, and ask what else could have happened.*
 
 ---
 
@@ -299,6 +301,9 @@ unpredictable over five days. Disclosures, contributor list and third-party data
 
 ## Status
 
-Built in one day. Working, measured, and honest about its limits. The precedent view with a
-TradingView-style chart and major-event markers is the next build, and this README will carry a
-screenshot of it when it lands.
+Built in one day. Working, measured, and honest about its limits.
+
+**The memorization test, measured rather than argued.** Across tickers with at least three
+events in each bucket, mean CRPS lift on *famous* events is **-5.94%** against **-0.55%** on
+obscure ones. A model recalling its training data would do better on the famous ones. Ours does
+worse. Computed from `per_event.famous` in the shipped backtests, not asserted.

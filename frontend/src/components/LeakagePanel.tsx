@@ -9,13 +9,14 @@ import { signedPct } from "@/lib/quant";
  * So it is a designed panel sitting directly under the score, not a footnote.
  */
 export function LeakagePanel({
-  famous, obscure, liftFamous, liftObscure,
+  famous, obscure, liftFamous, liftObscure, synthetic = false,
 }: {
-  famous?: number; obscure?: number;
+  famous?: number; obscure?: number; synthetic?: boolean;
   liftFamous?: number; liftObscure?: number;
 }) {
   const [open, setOpen] = useState(false);
   const haveSplit =
+    !synthetic &&
     famous !== undefined && obscure !== undefined &&
     liftFamous !== undefined && liftObscure !== undefined;
 

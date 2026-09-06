@@ -42,6 +42,14 @@
   --color-pos:  #00733B;   /* 5.97:1 */
   --color-neg:  #B42318;   /* 6.57:1 */
 
+  /* PRECOMPUTED is REAL model output, so it must not borrow the amber that
+     means "synthetic" nor the blue that means "live right now". Navy: in
+     palette, 15.6:1 on white, and legible as "real, but stored". This token
+     was referenced by ModeToggle and SourceTag before it was ever defined,
+     which rendered the precomputed pill with NO background at all — the one
+     state where being unmistakable matters most. */
+  --color-accent:      #00175A;
+
   /* Attention amber for the two honesty surfaces (MOCK banner, leakage
      disclosure). Outside the Amex palette on purpose — those panels must
      never be mistakable for ordinary chrome. 5.60:1 on its own tint. */
