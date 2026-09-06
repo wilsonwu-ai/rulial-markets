@@ -1,0 +1,24 @@
+# rulial-markets — backend dependencies
+# Install:  python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+# Loose lower bounds on purpose: this has to install on a stranger's laptop today.
+
+# --- numerics ---------------------------------------------------------------
+numpy>=1.26,<3
+pandas>=2.0,<3      # <3 on purpose: every lane is developing against pandas 2.x
+scipy>=1.11
+
+# --- market data ------------------------------------------------------------
+yfinance>=0.2.40
+requests>=2.31
+python-dateutil>=2.8
+
+# --- api --------------------------------------------------------------------
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.5
+
+# --- llm (generator narrative + counterfactual conditioning) ----------------
+anthropic>=0.40
+
+# --- test -------------------------------------------------------------------
+pytest>=8.0
