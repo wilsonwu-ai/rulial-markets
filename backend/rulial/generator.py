@@ -138,6 +138,8 @@ from .config import (
     DEFAULT_N_PATHS,
     EVENTS_PATH,
     JUMP_THRESHOLD,
+    TIER_MAJOR,
+    TIER_SIGNIFICANT,
     NULL_VOL_LOOKBACK,
     PRICES_DIR,
     TICKER_NAMES,
@@ -588,8 +590,32 @@ _UP_WORDS = frozenset(
 )
 _SEVERE_WORDS = frozenset(
     """massive catastrophic unprecedented total complete existential severe historic
-    devastating collapse bankruptcy fraud emergency""".split()
+    devastating collapse bankruptcy fraud emergency
+    grounded halt halted indefinitely withdraws withdrawn writedown crash crashes
+    triples tripled doubled soars plunges collapses guts slashes cancels cancelled
+    overstated recall investigation regulators blowout""".split()
 )
+
+
+def _severity_anchor(event_text: str) -> float:
+    """Target |move| that analog retrieval should aim at, as a fraction.
+
+    Adding the 15% significant tier made ``JUMP_THRESHOLD`` equal to 0.15, and
+    `retrieve_analogs` used that as its fallback magnitude anchor. Any event
+    text without a literal percent sign therefore retrieved the SMALLEST events
+    in the pool and the bootstrap inherited their width.
+
+    The fix retrieves better analogs rather than inflating vol_mult: the
+    scenario prior is deliberately timid about width because over-widening was
+    measured to score -52% lift. Width should come from WHICH events we
+    bootstrap, not from a multiplier.
+    """
+    toks = _tokens(event_text)
+    sev = sum(1 for t in toks if t in _SEVERE_WORDS)
+    up = sum(1 for t in toks if t in _UP_WORDS)
+    dn = sum(1 for t in toks if t in _DOWN_WORDS)
+    anchor = TIER_SIGNIFICANT + 0.035 * sev + 0.015 * abs(up - dn)
+    return float(min(0.45, max(TIER_SIGNIFICANT, anchor)))
 
 
 def _implied_direction(event_text: str) -> Tuple[str, float]:
@@ -713,6 +739,7 @@ def retrieve_analogs(
 
     q_dir, _ = _implied_direction(req.event_text or "")
     q_mag = _implied_magnitude(req.event_text or "")
+    q_anchor = _severity_anchor(req.event_text or "")
     tick = req.ticker.upper()
 
     score = np.zeros(len(admissible))
@@ -723,10 +750,11 @@ def retrieve_analogs(
             s += W_DIRECTION * (1.0 if ev.direction == q_dir else 0.0)
         else:
             s += W_DIRECTION * 0.5
-        if q_mag is not None:
-            s += W_MAGNITUDE * math.exp(-abs(abs(ev.move_pct) - q_mag) / 0.20)
-        else:
-            s += W_MAGNITUDE * math.exp(-abs(abs(ev.move_pct) - JUMP_THRESHOLD) / 0.30)
+        target = q_mag if q_mag is not None else q_anchor
+        s += W_MAGNITUDE * math.exp(-abs(abs(ev.move_pct) - target) / 0.20)
+        want_major = target >= TIER_MAJOR
+        is_major = abs(ev.move_pct) >= TIER_MAJOR
+        s += W_MAGNITUDE * 0.35 * (1.0 if want_major == is_major else 0.0)
         score[i] = s
 
     order = np.argsort(-score)[: max(int(k), 1)]
