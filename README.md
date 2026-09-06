@@ -281,12 +281,9 @@ it never pretends a fallback was a model result.
 
 [MIT](LICENSE). Use it, fork it, sell something built on it. Attribution appreciated, not required.
 
-**Not investment advice.** This produces statistical descriptions of historical market
-behaviour. It is a research and educational tool, and nobody involved is your financial adviser.
-
-**Third-party data.** Prices via yfinance and OpenBB, filings from the SEC EDGAR public API,
-news retrieved from public sources and cited with links. Article text is not redistributed here.
-The MIT license covers this repository's code and derived analysis, not the underlying data.
+**Not investment advice**, and the project's own findings say direction is close to
+unpredictable over five days. Disclosures, contributor list and third-party data terms are in
+[`NOTICE.md`](NOTICE.md).
 
 ## Repo map
 
