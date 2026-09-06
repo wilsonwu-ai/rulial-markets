@@ -104,6 +104,10 @@ export interface BacktestEvent {
   crps_lift: number;
   z_score: number;
   salience?: string;
+  /** second baseline, per event */
+  crps_fhs?: number;
+  fhs_lift_vs_null?: number;
+  retrieval_increment?: number;
 }
 
 export interface Backtest {
@@ -118,6 +122,14 @@ export interface Backtest {
   n_obscure?: number;
   mean_crps_lift_famous?: number;
   mean_crps_lift_obscure?: number;
+  /** Second baseline: event-conditioned full-pool historical simulation.
+   *  fhs = knows a >=15% event happened, not WHICH event. The increment is
+   *  the model minus that baseline, paired per event — the number that says
+   *  whether similarity retrieval earns its keep. Negative is a real result. */
+  mean_fhs_lift?: number;
+  fhs_lift_ci90?: (number | null)[];
+  mean_retrieval_increment?: number;
+  retrieval_increment_ci90?: (number | null)[];
 }
 
 /** Data source, in fallback order.

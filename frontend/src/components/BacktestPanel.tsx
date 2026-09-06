@@ -4,6 +4,7 @@ import type { Backtest, BacktestEvent } from "@/lib/types";
 import { signedPct } from "@/lib/quant";
 import { Empty } from "./Panel";
 import { PitHistogram } from "./PitHistogram";
+import { useCompact } from "@/lib/useCompact";
 
 export function BacktestPanel({ bt, ticker }: { bt: Backtest | null; ticker: string }) {
   if (!bt) return <div className="label-title py-10 text-center" style={{ color: "var(--color-ink-faint)" }}>loading walk-forward…</div>;
@@ -50,6 +51,8 @@ export function BacktestPanel({ bt, ticker }: { bt: Backtest | null; ticker: str
           color={bt.calibration_ok ? "var(--color-blue)" : "var(--color-ink-faint)"} />
       </div>
 
+      <BaselineLadder bt={bt} />
+
       <PitHistogram counts={bt.pit_histogram} n={bt.n_tests} calibrationOk={bt.calibration_ok} />
 
       {/* per-event lift strip — a diverging bar chart around a zero line */}
@@ -67,7 +70,13 @@ export function BacktestPanel({ bt, ticker }: { bt: Backtest | null; ticker: str
 }
 
 function PerEventStrip({ events }: { events: BacktestEvent[] }) {
-  const W = 1000, H = 170, PAD = 26;
+  /* See useCompact: a 1000-unit strip is 48px tall on a phone, which reads as
+     a rule rather than a chart. 520 units gives it real height. */
+  const compact = useCompact();
+  const W = compact ? 520 : 1000;
+  const H = compact ? 230 : 170;
+  const PAD = compact ? 22 : 26;
+  const fs = compact ? 22 : 13;
   const cap = Math.max(0.25, ...events.map((e) => Math.abs(e.crps_lift)));
   const mid = H / 2;
   const bw = (W - PAD * 2) / Math.max(1, events.length);
@@ -82,11 +91,11 @@ function PerEventStrip({ events }: { events: BacktestEvent[] }) {
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img"
       aria-label="CRPS lift for each scored test event">
       <line x1={PAD} x2={W - PAD} y1={mid} y2={mid} stroke="var(--color-axis)" strokeWidth={2} />
-      <text x={PAD - 4} y={mid - 8} className="num" fontSize="13" fill="var(--color-ink-faint)"
+      <text x={PAD - 4} y={mid - 8} className="num" fontSize={fs} fill="var(--color-ink-faint)"
         textAnchor="start">0</text>
-      <text x={PAD - 4} y={20} className="num" fontSize="13" fill="var(--color-blue)"
+      <text x={PAD - 4} y={compact ? 32 : 20} className="num" fontSize={fs} fill="var(--color-blue)"
         textAnchor="start">+{(cap * 100).toFixed(0)}%</text>
-      <text x={PAD - 4} y={H - 8} className="num" fontSize="13" fill="var(--color-neg)"
+      <text x={PAD - 4} y={H - 8} className="num" fontSize={fs} fill="var(--color-neg)"
         textAnchor="start">−{(cap * 100).toFixed(0)}%</text>
 
       {events.map((e, i) => {
@@ -121,4 +130,117 @@ function Stat({ label, value, color, note }: { label: string; value: string; col
       {note && <div className="mt-2 text-sm leading-snug text-[var(--color-ink-faint)]">{note}</div>}
     </div>
   );
+}
+
+
+/**
+ * THE SECOND BASELINE, on screen.
+ *
+ * The frozen Gaussian null answers a soft question: does post-event historical
+ * simulation beat a simple volatility model? A heavy-tailed ensemble can win
+ * that on distributional shape alone, with no forecasting skill at all.
+ *
+ * The full-pool baseline answers the hard one: does knowing WHICH event
+ * happened add anything beyond knowing that SOME large event happened? The
+ * increment is that difference, paired per event. When it is negative we say
+ * so here, in the product -- an ablation that can only flatter the model is
+ * not an ablation.
+ *
+ * Wording is deliberately hedged to what the interval supports. "Underperforms
+ * the full-pool benchmark, paired 90% interval excludes zero" survives
+ * scrutiny; "similarity is harmful" does not.
+ */
+function BaselineLadder({ bt }: { bt: Backtest }) {
+  const fhs = bt.mean_fhs_lift;
+  const inc = bt.mean_retrieval_increment;
+  if (fhs == null || inc == null) return null;
+
+  const ci = bt.retrieval_increment_ci90 ?? [null, null];
+  const [lo, hi] = [ci[0], ci[1]];
+  const excludesZero = lo != null && hi != null && (lo > 0 || hi < 0);
+
+  const verdict = !excludesZero
+    ? "No evidence either way at this sample size — the paired 90% interval spans zero."
+    : inc < 0
+      ? "At this specification, similarity selection underperforms the full-pool benchmark; the paired 90% interval excludes zero."
+      : "Similarity selection outperforms the full-pool benchmark; the paired 90% interval excludes zero.";
+
+  const rows: [string, string, string, string | undefined][] = [
+    ["Gaussian null", "0.00%", "Frozen baseline — trailing 250d σ, zero drift", undefined],
+    ["Full-pool post-event simulation", signedPct(fhs),
+     "Knows a ≥15% event occurred, not which one", ciText(bt.fhs_lift_ci90)],
+    ["Similarity retrieval (shipped, K=25)", signedPct(bt.mean_crps_lift),
+     "The current conditioning layer", undefined],
+  ];
+
+  return (
+    <div>
+      <div className="label mb-3">Baselines · what the lift is measured against</div>
+      <div className="overflow-x-auto rounded-lg border border-[var(--color-rule)]">
+        <table className="w-full min-w-[520px] border-collapse text-left">
+          <thead className="bg-[var(--color-panel-2)]">
+            <tr className="border-b-2 border-[var(--color-axis)]">
+              <th className="label py-3 pl-4 pr-3">Forecast</th>
+              <th className="label py-3 pr-3 text-right">CRPS lift vs null</th>
+              <th className="label py-3 pr-4">Interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([name, val, note, ci90]) => (
+              <tr key={name} className="border-b border-[var(--color-rule)]">
+                <td className="py-3 pl-4 pr-3 text-sm">{name}</td>
+                <td className="num py-3 pr-3 text-right text-sm font-semibold">
+                  {val}
+                  {ci90 && <span className="ml-2 font-normal text-[var(--color-ink-faint)]">{ci90}</span>}
+                </td>
+                <td className="py-3 pr-4 text-sm text-[var(--color-ink-faint)]">{note}</td>
+              </tr>
+            ))}
+            <tr className="bg-[var(--color-panel-2)]">
+              <td className="py-3 pl-4 pr-3 text-sm font-semibold">
+                Incremental value of retrieval
+              </td>
+              <td className="num py-3 pr-3 text-right text-sm font-semibold"
+                  style={{ color: inc < 0 ? "var(--color-neg)" : "var(--color-blue)" }}>
+                {signedPp(inc)}
+                {ppCi(bt.retrieval_increment_ci90) && (
+                  <span className="ml-2 font-normal text-[var(--color-ink-faint)]">
+                    {ppCi(bt.retrieval_increment_ci90)}
+                  </span>
+                )}
+              </td>
+              <td className="py-3 pr-4 text-sm text-[var(--color-ink-faint)]">
+                vs full pool, paired per event
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-3 max-w-[80ch] text-sm leading-relaxed text-[var(--color-ink-dim)]">
+        {verdict}{" "}
+        The full-pool arm is <em>event-conditioned</em>, not unconditioned: it knows a qualifying
+        event occurred and draws from every admissible past post-event window under the same
+        lookahead filter, but it has no knowledge of which kind of event this is. This ablation
+        evaluates the retrieval path under the deterministic fallback prior; we have not
+        established whether the LLM-conditioned prior adds incremental skill.
+      </p>
+    </div>
+  );
+}
+
+function ciText(ci?: (number | null)[]): string | undefined {
+  if (!ci || ci[0] == null || ci[1] == null) return undefined;
+  return `[${signedPct(ci[0])}, ${signedPct(ci[1])}]`;
+}
+
+/* The increment is a DIFFERENCE of two lifts, so its unit is percentage
+   points, not percent. Rendering it as "%" invites reading it as a relative
+   change of the lift, which it is not. */
+function signedPp(v: number): string {
+  return `${v >= 0 ? "+" : "−"}${Math.abs(v * 100).toFixed(1)} pp`;
+}
+
+function ppCi(ci?: (number | null)[]): string | undefined {
+  if (!ci || ci[0] == null || ci[1] == null) return undefined;
+  return `[${signedPp(ci[0])}, ${signedPp(ci[1])}]`;
 }
